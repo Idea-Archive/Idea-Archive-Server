@@ -2,7 +2,7 @@ name: Spring Boot & Gradle CI/CD
 
 on:
   push:
-    branches: [ "*" ]
+    branches: [ "master" ]
   pull_request:
     branches: [ "*" ]
 
@@ -24,8 +24,8 @@ jobs:
         if: ${{ success() }}
         run: echo "jdk 11 job succeeded"
           
-      - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v2
       
       - name: Build with Gradle
         run : ./gradlew clean build
