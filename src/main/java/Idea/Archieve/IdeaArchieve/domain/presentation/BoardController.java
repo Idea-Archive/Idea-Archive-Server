@@ -32,7 +32,7 @@ public class BoardController {
     }
 
     @PatchMapping("/{boardId}")
-    public void UpdateBoard(@PathVariable Long boardId, UpdateBoard updateBoard) {
+    public void UpdateBoard(@PathVariable Long boardId, @RequestBody UpdateBoard updateBoard) {
         boardService.UpdateBoard(boardId, updateBoard);
     }
 
