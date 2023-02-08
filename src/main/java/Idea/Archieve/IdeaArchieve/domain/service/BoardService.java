@@ -35,4 +35,9 @@ public class BoardService {
         findBoard.get().update(updateBoard.getTitle(), updateBoard.getContent(), updateBoard.getCategory());
         boardRepository.save(findBoard.get());
     }
+
+    public void DeleteBoard(Long boardId) {
+        boardRepository.deleteById(boardId);
+    }
+
 }
