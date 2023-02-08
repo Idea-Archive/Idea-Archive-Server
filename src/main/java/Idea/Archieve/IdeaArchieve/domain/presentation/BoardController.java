@@ -35,4 +35,9 @@ public class BoardController {
     public void UpdateBoard(@PathVariable Long boardId, UpdateBoard updateBoard) {
         boardService.UpdateBoard(boardId, updateBoard);
     }
+
+    @DeleteMapping("/boardId")
+    public void DeleteBoard(@PathVariable Long boardId) {
+        boardService.DeleteBoard(boardId);
+    }
 }
