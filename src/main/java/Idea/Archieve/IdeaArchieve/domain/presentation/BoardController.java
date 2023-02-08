@@ -1,6 +1,7 @@
 package Idea.Archieve.IdeaArchieve.domain.presentation;
 
 import Idea.Archieve.IdeaArchieve.domain.Entity.Board;
+import Idea.Archieve.IdeaArchieve.domain.presentation.dto.request.UpdateBoard;
 import Idea.Archieve.IdeaArchieve.domain.presentation.dto.request.WriteBoard;
 import Idea.Archieve.IdeaArchieve.domain.service.BoardService;
 import lombok.RequiredArgsConstructor;
@@ -28,5 +29,10 @@ public class BoardController {
     @GetMapping("/{boardId}")
     public Board ViewBoardById(@PathVariable Long boardId) {
         return boardService.ViewBoardById(boardId);
+    }
+
+    @PatchMapping("/{boardId}")
+    public void UpdateBoard(@PathVariable Long boardId, UpdateBoard updateBoard) {
+        boardService.UpdateBoard(boardId, updateBoard);
     }
 }
