@@ -4,10 +4,7 @@ import Idea.Archieve.IdeaArchieve.domain.Entity.Board;
 import Idea.Archieve.IdeaArchieve.domain.presentation.dto.request.WriteBoard;
 import Idea.Archieve.IdeaArchieve.domain.service.BoardService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,5 +23,10 @@ public class BoardController {
     @GetMapping
     public List<Board> ViewBoard() {
         return boardService.ViewBoard();
+    }
+
+    @GetMapping("/{boardId}")
+    public Board ViewBoardById(@PathVariable Long boardId) {
+        return boardService.ViewBoardById(boardId);
     }
 }
