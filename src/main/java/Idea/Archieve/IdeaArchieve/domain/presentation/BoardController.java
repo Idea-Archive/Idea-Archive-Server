@@ -17,7 +17,7 @@ public class BoardController {
     private final BoardService boardService;
 
     @PostMapping("write")
-    public void WriteBoard(WriteBoard writeBoard) {
+    public void WriteBoard(@RequestBody WriteBoard writeBoard) {
         boardService.WriteBoard(writeBoard);
     }
 
