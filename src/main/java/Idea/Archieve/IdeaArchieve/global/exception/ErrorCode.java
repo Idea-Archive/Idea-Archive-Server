@@ -7,6 +7,8 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum ErrorCode {
 
+    NOT_EXIST_BOARD("존재하지 않는 게시판입니다.", 404),
+
     MANY_REQUEST_EMAIL_AUTH("15분에 최대 3번의 이메일 요청만 가능합니다." , 429),
     EXPIRE_EMAIL_CODE("이메일 인증번호 시간이 만료되었습니다.", 401),
     MEMBER_NOT_FOUND("존재하지 않는 회원입니다.", 404),

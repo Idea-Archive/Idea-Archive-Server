@@ -1,6 +1,7 @@
 package Idea.Archieve.IdeaArchieve.domain.service;
 
 import Idea.Archieve.IdeaArchieve.domain.Entity.Board;
+import Idea.Archieve.IdeaArchieve.domain.exception.NotExistBoardException;
 import Idea.Archieve.IdeaArchieve.domain.presentation.dto.request.WriteBoard;
 import Idea.Archieve.IdeaArchieve.domain.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
@@ -20,5 +21,10 @@ public class BoardService {
 
     public List<Board> ViewAllBoard() {
         return boardRepository.findAll();
+    }
+
+    public Board ViewBoardById(Long boardId) {
+        return boardRepository.findById(boardId)
+                .orElseThrow(() -> new NotExistBoardException("존재하지 않는 게시판입니다."));
     }
 }
