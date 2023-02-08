@@ -21,7 +21,7 @@ public class BoardService {
         boardRepository.save(creatBoard.toEntity());
     }
 
-    public List<Board> ViewAllBoard() {
+    public List<Board> ViewBoard() {
         return boardRepository.findAll();
     }
 
