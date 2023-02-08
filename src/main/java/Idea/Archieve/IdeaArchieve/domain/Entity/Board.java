@@ -27,4 +27,10 @@ public class Board {
     @Column(name = "board_category", nullable = false)
     private String category;
 
+    public void update(String title, String content, String category) {
+        this.title = title;
+        this.content = content;
+        this.category = category;
+    }
+
 }
