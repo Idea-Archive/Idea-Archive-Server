@@ -5,6 +5,7 @@ import Idea.Archieve.IdeaArchieve.domain.presentation.dto.request.UpdateBoard;
 import Idea.Archieve.IdeaArchieve.domain.presentation.dto.request.WriteBoard;
 import Idea.Archieve.IdeaArchieve.domain.service.BoardService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/board")
 @RequiredArgsConstructor
+@Slf4j
 public class BoardController {
 
     private final BoardService boardService;
@@ -39,5 +41,16 @@ public class BoardController {
     @DeleteMapping("/{boardId}")
     public void DeleteBoard(@PathVariable Long boardId) {
         boardService.DeleteBoard(boardId);
+    }
+
+    @GetMapping("/search")
+    public List<Board> SearchBoard(@RequestParam String searchKeyword,@RequestParam String category){
+        if(category.equals("null")){
+            log.info("필터 적용 X");
+            return boardService.SearchBoard(searchKeyword);
+        }else{
+            log.info("필터 적용 O");
+            return boardService.SearchBoard(searchKeyword,category);
+        }
     }
 }
