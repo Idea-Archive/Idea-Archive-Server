@@ -13,10 +13,10 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EnableConfigurationProperties
 @ConfigurationProperties
 @EnableJpaRepositories
-public class IdeaArchieveApplication {
+public class IdeaArchiveApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(IdeaArchieveApplication.class, args);
+		SpringApplication.run(IdeaArchiveApplication.class, args);
 	}
 
 }
