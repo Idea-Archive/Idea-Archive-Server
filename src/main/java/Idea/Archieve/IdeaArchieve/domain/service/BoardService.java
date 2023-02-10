@@ -40,4 +40,19 @@ public class BoardService {
         boardRepository.deleteById(boardId);
     }
 
+    public List<Board> SearchBoard(String searchKeyword, String category){
+        List<Board> boards = boardRepository.findByTitleContainingAndCategory(searchKeyword, category);
+        if (boards.size() == 0) {
+            throw new NotExistBoardException("게시글이 존재하지 않습니다.");
+        }
+        return boards;
+    }
+    public List<Board> SearchBoard(String searchKeyword) {
+        List<Board> boards = boardRepository.findByTitleContaining(searchKeyword);
+        if (boards.size() == 0) {
+            throw new NotExistBoardException("게시글이 존재하지 않습니다.");
+        }
+        return boards;
+    }
+
 }
