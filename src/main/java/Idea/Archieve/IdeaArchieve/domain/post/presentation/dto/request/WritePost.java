@@ -1,6 +1,6 @@
-package Idea.Archieve.IdeaArchieve.domain.board.presentation.dto.request;
+package Idea.Archieve.IdeaArchieve.domain.post.presentation.dto.request;
 
-import Idea.Archieve.IdeaArchieve.domain.board.Entity.Board;
+import Idea.Archieve.IdeaArchieve.domain.post.Entity.Post;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,7 +10,7 @@ import javax.validation.constraints.NotBlank;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class WriteBoard {
+public class WritePost {
 
     @NotBlank(message = "제목은 공백을 허용하지 않습니다.")
     private String title;
@@ -21,8 +21,8 @@ public class WriteBoard {
     @NotBlank(message = "카테고리은 공백을 허용하지 않습니다.")
     private String category;
 
-    public Board toEntity() {
-        return Board.builder()
+    public Post toEntity() {
+        return Post.builder()
                 .title(title)
                 .content(content)
                 .category(category)

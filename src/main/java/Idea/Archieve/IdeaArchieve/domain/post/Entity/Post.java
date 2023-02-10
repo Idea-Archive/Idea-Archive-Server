@@ -1,4 +1,4 @@
-package Idea.Archieve.IdeaArchieve.domain.board.Entity;
+package Idea.Archieve.IdeaArchieve.domain.post.Entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,20 +11,20 @@ import javax.persistence.*;
 @Getter @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Board {
+public class Post {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "board_id", nullable = false)
-    private Long boardId;
+    @Column(name = "post_id", nullable = false)
+    private Long postId;
 
-    @Column(name = "board_title", nullable = false, length = 30)
+    @Column(name = "title", nullable = false, length = 30)
     private String title;
 
-    @Column(name = "board_content", nullable = false)
+    @Column(name = "content", nullable = false)
     private String content;
 
-    @Column(name = "board_category", nullable = false)
+    @Column(name = "category", nullable = false)
     private String category;
 
     public void update(String title, String content, String category) {
