@@ -40,6 +40,9 @@ public class BoardService {
         boardRepository.deleteById(boardId);
     }
 
+    /*
+        카테고리를 선택하고 검색했을때
+     */
     public List<Board> SearchBoard(String searchKeyword, String category){
         List<Board> boards = boardRepository.findByTitleContainingAndCategory(searchKeyword, category);
         if (boards.size() == 0) {
@@ -47,6 +50,9 @@ public class BoardService {
         }
         return boards;
     }
+    /*
+        카테고리를 선택하지 않고 검색했을때
+     */
     public List<Board> SearchBoard(String searchKeyword) {
         List<Board> boards = boardRepository.findByTitleContaining(searchKeyword);
         if (boards.size() == 0) {
