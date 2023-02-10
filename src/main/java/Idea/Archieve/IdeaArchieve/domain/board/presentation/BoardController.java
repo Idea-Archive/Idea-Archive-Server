@@ -1,9 +1,9 @@
-package Idea.Archieve.IdeaArchieve.domain.presentation;
+package Idea.Archieve.IdeaArchieve.domain.board.presentation;
 
-import Idea.Archieve.IdeaArchieve.domain.Entity.Board;
-import Idea.Archieve.IdeaArchieve.domain.presentation.dto.request.UpdateBoard;
-import Idea.Archieve.IdeaArchieve.domain.presentation.dto.request.WriteBoard;
-import Idea.Archieve.IdeaArchieve.domain.service.BoardService;
+import Idea.Archieve.IdeaArchieve.domain.board.Entity.Board;
+import Idea.Archieve.IdeaArchieve.domain.board.presentation.dto.request.UpdateBoard;
+import Idea.Archieve.IdeaArchieve.domain.board.presentation.dto.request.WriteBoard;
+import Idea.Archieve.IdeaArchieve.domain.board.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;

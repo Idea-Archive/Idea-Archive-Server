@@ -1,4 +1,4 @@
-package Idea.Archieve.IdeaArchieve.domain.exception;
+package Idea.Archieve.IdeaArchieve.domain.board.exception;
 
 import Idea.Archieve.IdeaArchieve.global.exception.ErrorCode;
 import lombok.Getter;

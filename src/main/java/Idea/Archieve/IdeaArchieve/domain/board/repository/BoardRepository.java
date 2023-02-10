@@ -1,6 +1,6 @@
-package Idea.Archieve.IdeaArchieve.domain.repository;
+package Idea.Archieve.IdeaArchieve.domain.board.repository;
 
-import Idea.Archieve.IdeaArchieve.domain.Entity.Board;
+import Idea.Archieve.IdeaArchieve.domain.board.Entity.Board;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

@@ -1,10 +1,10 @@
-package Idea.Archieve.IdeaArchieve.domain.service;
+package Idea.Archieve.IdeaArchieve.domain.board.service;
 
-import Idea.Archieve.IdeaArchieve.domain.Entity.Board;
-import Idea.Archieve.IdeaArchieve.domain.exception.NotExistBoardException;
-import Idea.Archieve.IdeaArchieve.domain.presentation.dto.request.UpdateBoard;
-import Idea.Archieve.IdeaArchieve.domain.presentation.dto.request.WriteBoard;
-import Idea.Archieve.IdeaArchieve.domain.repository.BoardRepository;
+import Idea.Archieve.IdeaArchieve.domain.board.Entity.Board;
+import Idea.Archieve.IdeaArchieve.domain.board.exception.NotExistBoardException;
+import Idea.Archieve.IdeaArchieve.domain.board.presentation.dto.request.UpdateBoard;
+import Idea.Archieve.IdeaArchieve.domain.board.presentation.dto.request.WriteBoard;
+import Idea.Archieve.IdeaArchieve.domain.board.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
