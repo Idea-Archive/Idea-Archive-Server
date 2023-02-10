@@ -61,4 +61,12 @@ public class BoardService {
         return boards;
     }
 
+    public List<Board> viewBoardByCategory(String category){
+        List<Board> boards = boardRepository.findByCategory(category);
+        if (boards.size()==0){
+            throw new NotExistBoardException("게시글이 존재하지 않습니다.");
+        }
+        return boards;
+    }
+
 }
