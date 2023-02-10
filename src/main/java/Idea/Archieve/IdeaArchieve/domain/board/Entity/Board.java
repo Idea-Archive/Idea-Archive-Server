@@ -1,4 +1,4 @@
-package Idea.Archieve.IdeaArchieve.domain.Entity;
+package Idea.Archieve.IdeaArchieve.domain.board.Entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

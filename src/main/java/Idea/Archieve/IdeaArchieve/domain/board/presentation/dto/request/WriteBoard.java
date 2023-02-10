@@ -1,6 +1,6 @@
-package Idea.Archieve.IdeaArchieve.domain.presentation.dto.request;
+package Idea.Archieve.IdeaArchieve.domain.board.presentation.dto.request;
 
-import Idea.Archieve.IdeaArchieve.domain.Entity.Board;
+import Idea.Archieve.IdeaArchieve.domain.board.Entity.Board;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
