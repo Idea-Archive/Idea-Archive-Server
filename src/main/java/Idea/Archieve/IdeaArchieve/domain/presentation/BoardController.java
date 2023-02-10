@@ -53,4 +53,9 @@ public class BoardController {
             return boardService.SearchBoard(searchKeyword,category);
         }
     }
+
+    @GetMapping("/category")
+    public List<Board> ViewBoardByCategory(@RequestParam String category){
+        return boardService.viewBoardByCategory(category);
+    }
 }
