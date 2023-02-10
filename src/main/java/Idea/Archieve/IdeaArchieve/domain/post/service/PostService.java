@@ -3,7 +3,6 @@ package Idea.Archieve.IdeaArchieve.domain.post.service;
 import Idea.Archieve.IdeaArchieve.domain.post.Entity.Post;
 import Idea.Archieve.IdeaArchieve.domain.post.exception.NotExistPostException;
 import Idea.Archieve.IdeaArchieve.domain.post.presentation.dto.request.UpdatePost;
-import Idea.Archieve.IdeaArchieve.domain.post.presentation.dto.request.WritePost;
 import Idea.Archieve.IdeaArchieve.domain.post.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -16,10 +15,6 @@ import java.util.Optional;
 public class PostService {
 
     private final PostRepository postRepository;
-
-    public void WritePost(WritePost writePost) {
-        postRepository.save(writePost.toEntity());
-    }
 
     public List<Post> ViewPost() {
         return postRepository.findAll();

@@ -4,6 +4,7 @@ import Idea.Archieve.IdeaArchieve.domain.post.Entity.Post;
 import Idea.Archieve.IdeaArchieve.domain.post.presentation.dto.request.UpdatePost;
 import Idea.Archieve.IdeaArchieve.domain.post.presentation.dto.request.WritePost;
 import Idea.Archieve.IdeaArchieve.domain.post.service.PostService;
+import Idea.Archieve.IdeaArchieve.domain.post.service.WritePostService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -16,11 +17,12 @@ import java.util.List;
 @Slf4j
 public class PostController {
 
+    private final WritePostService writePostService;
     private final PostService postService;
 
     @PostMapping("write")
     public void WritePost(@RequestBody WritePost writePost) {
-        postService.WritePost(writePost);
+        writePostService.WritePost(writePost);
     }
 
     @GetMapping
