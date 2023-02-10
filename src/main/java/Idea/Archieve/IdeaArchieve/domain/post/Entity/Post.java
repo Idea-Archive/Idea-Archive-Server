@@ -1,5 +1,6 @@
 package Idea.Archieve.IdeaArchieve.domain.post.Entity;
 
+import Idea.Archieve.IdeaArchieve.domain.member.Entity.Member;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -26,6 +27,10 @@ public class Post {
 
     @Column(name = "category", nullable = false)
     private String category;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_id", nullable = false)
+    private Member member;
 
     public void update(String title, String content, String category) {
         this.title = title;
