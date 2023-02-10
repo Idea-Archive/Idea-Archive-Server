@@ -8,4 +8,5 @@ import java.util.List;
 public interface BoardRepository extends JpaRepository<Board, Long> {
     List<Board> findByTitleContainingAndCategory(String searchKeyword, String category);
     List<Board> findByTitleContaining(String searchKeyword);
+    List<Board> findByCategory(String category);
 }
