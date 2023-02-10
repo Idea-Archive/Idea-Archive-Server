@@ -17,6 +17,7 @@ spring:
         file-size-threshold: 1MB
         max-file-size: 100MB
         max-request-size: 100MB
+    open-in-view: false
 
   main:
     allow-bean-definition-overriding: 'true'
