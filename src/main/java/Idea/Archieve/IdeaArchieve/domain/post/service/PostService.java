@@ -16,10 +16,6 @@ public class PostService {
 
     private final PostRepository postRepository;
 
-    public List<Post> ViewPost() {
-        return postRepository.findAll();
-    }
-
     public Post ViewPostById(Long PostId) {
         return postRepository.findById(PostId)
                 .orElseThrow(() -> new NotExistPostException("존재하지 않는 게시판입니다."));
