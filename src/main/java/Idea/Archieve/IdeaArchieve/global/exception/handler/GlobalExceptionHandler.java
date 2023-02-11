@@ -1,5 +1,6 @@
 package Idea.Archieve.IdeaArchieve.global.exception.handler;
 
+import Idea.Archieve.IdeaArchieve.domain.member.exception.MemberNotFoundException;
 import Idea.Archieve.IdeaArchieve.domain.post.exception.NotExistPostException;
 import Idea.Archieve.IdeaArchieve.global.exception.ErrorMessage;
 import lombok.extern.slf4j.Slf4j;
@@ -16,6 +17,13 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(NotExistPostException.class)
     public ResponseEntity<ErrorMessage> handleNotExistBoardException(HttpServletRequest request , NotExistPostException exception) {
+        printError(request, exception, exception.getErrorCode().getMessage());
+        ErrorMessage errorMessage = new ErrorMessage(exception.getErrorCode().getMessage(), exception.getErrorCode().getStatus());
+        return new ResponseEntity<>(errorMessage, HttpStatus.valueOf(exception.getErrorCode().getStatus()));
+    }
+
+    @ExceptionHandler(MemberNotFoundException.class)
+    public ResponseEntity<ErrorMessage> handleMemberNotFoundException(HttpServletRequest request , MemberNotFoundException exception) {
         printError(request, exception, exception.getErrorCode().getMessage());
         ErrorMessage errorMessage = new ErrorMessage(exception.getErrorCode().getMessage(), exception.getErrorCode().getStatus());
         return new ResponseEntity<>(errorMessage, HttpStatus.valueOf(exception.getErrorCode().getStatus()));
