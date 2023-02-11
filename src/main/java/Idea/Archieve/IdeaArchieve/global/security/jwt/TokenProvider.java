@@ -4,10 +4,7 @@ import Idea.Archieve.IdeaArchieve.global.security.auth.MemberDetailsService;
 import Idea.Archieve.IdeaArchieve.global.security.exception.TokenExpirationException;
 import Idea.Archieve.IdeaArchieve.global.security.exception.TokenNotValidException;
 import Idea.Archieve.IdeaArchieve.global.security.jwt.properties.JwtProperties;
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.ExpiredJwtException;
-import io.jsonwebtoken.JwtException;
-import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -50,7 +47,7 @@ public class TokenProvider {
         return Keys.hmacShaKeyFor(bytes);
     }
 
-    private String generateToken(String userEmail, TokenType tokenType, long expireTime) {
+    private String generateToken(String userEmail, TokenType tokenType, String secret, long expireTime) {
         final Claims claims = Jwts.claims();
         claims.put(TokenClaimName.USER_EMAIL.value, userEmail);
         claims.put(TokenClaimName.TOKEN_TYPE.value, tokenType);
@@ -58,6 +55,7 @@ public class TokenProvider {
                 .setClaims(claims)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis()))
+                .signWith(getSignInKey(secret), SignatureAlgorithm.HS256)
                 .compact();
     }
 
@@ -89,11 +87,11 @@ public class TokenProvider {
     }
 
     public String generatedAccessToken(String email) {
-        return generateToken(email, TokenType.ACCESS_TOKEN, ACCESS_TOKEN_EXPIRE_TIME);
+        return generateToken(email, TokenType.ACCESS_TOKEN, jwtProperties.getAccessSecret(), ACCESS_TOKEN_EXPIRE_TIME);
     }
 
     public String generatedRefreshToken(String email) {
-        return generateToken(email, TokenType.REFRESH_TOKEN, REFRESH_TOKEN_EXPIRE_TIME);
+        return generateToken(email, TokenType.REFRESH_TOKEN, jwtProperties.getRefreshSecret(), REFRESH_TOKEN_EXPIRE_TIME);
     }
 
     public UsernamePasswordAuthenticationToken authenticationToken(String email) {
