@@ -16,11 +16,6 @@ public class PostService {
 
     private final PostRepository postRepository;
 
-    public Post ViewPostById(Long PostId) {
-        return postRepository.findById(PostId)
-                .orElseThrow(() -> new NotExistPostException("존재하지 않는 게시판입니다."));
-    }
-
     public void UpdatePost(Long postId, UpdatePost updatePost) {
         Optional<Post> findPost = postRepository.findById(postId);
         findPost.get().update(updatePost.getTitle(), updatePost.getContent(), updatePost.getCategory());

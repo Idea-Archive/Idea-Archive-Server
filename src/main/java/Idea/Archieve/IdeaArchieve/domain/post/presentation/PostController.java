@@ -4,6 +4,8 @@ import Idea.Archieve.IdeaArchieve.domain.post.Entity.Post;
 import Idea.Archieve.IdeaArchieve.domain.post.presentation.dto.request.UpdatePost;
 import Idea.Archieve.IdeaArchieve.domain.post.presentation.dto.request.WritePost;
 import Idea.Archieve.IdeaArchieve.domain.post.service.PostService;
+import Idea.Archieve.IdeaArchieve.domain.post.service.ViewPostByIdService;
+import Idea.Archieve.IdeaArchieve.domain.post.service.ViewPostService;
 import Idea.Archieve.IdeaArchieve.domain.post.service.WritePostService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,6 +21,8 @@ public class PostController {
 
     private final WritePostService writePostService;
     private final PostService postService;
+    private final ViewPostService viewPostService;
+    private final ViewPostByIdService viewPostByIdService;
 
     @PostMapping("write")
     public void WritePost(@RequestBody WritePost writePost) {
@@ -27,12 +31,12 @@ public class PostController {
 
     @GetMapping
     public List<Post> ViewPost() {
-        return postService.ViewPost();
+        return viewPostService.ViewPost();
     }
 
     @GetMapping("/{postId}")
     public Post ViewPostById(@PathVariable Long postId) {
-        return postService.ViewPostById(postId);
+        return viewPostByIdService.ViewPostById(postId);
     }
 
     @PatchMapping("/{postId}")
