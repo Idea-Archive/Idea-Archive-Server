@@ -3,14 +3,12 @@ package Idea.Archieve.IdeaArchieve.domain.post.presentation;
 import Idea.Archieve.IdeaArchieve.domain.post.Entity.Post;
 import Idea.Archieve.IdeaArchieve.domain.post.presentation.dto.request.UpdatePost;
 import Idea.Archieve.IdeaArchieve.domain.post.presentation.dto.request.WritePost;
-import Idea.Archieve.IdeaArchieve.domain.post.service.PostService;
-import Idea.Archieve.IdeaArchieve.domain.post.service.ViewPostByIdService;
-import Idea.Archieve.IdeaArchieve.domain.post.service.ViewPostService;
-import Idea.Archieve.IdeaArchieve.domain.post.service.WritePostService;
+import Idea.Archieve.IdeaArchieve.domain.post.service.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -23,6 +21,7 @@ public class PostController {
     private final PostService postService;
     private final ViewPostService viewPostService;
     private final ViewPostByIdService viewPostByIdService;
+    private final UpdatePostService updatePostService;
 
     @PostMapping("write")
     public void WritePost(@RequestBody WritePost writePost) {
@@ -40,8 +39,8 @@ public class PostController {
     }
 
     @PatchMapping("/{postId}")
-    public void UpdatePost(@PathVariable Long postId, @RequestBody UpdatePost updatePost) {
-        postService.UpdatePost(postId, updatePost);
+    public void UpdatePost(@PathVariable Long postId, @RequestBody @Valid UpdatePost updatePost) {
+        updatePostService.UpdatePost(postId, updatePost);
     }
 
     @DeleteMapping("/{postId}")

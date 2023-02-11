@@ -16,12 +16,6 @@ public class PostService {
 
     private final PostRepository postRepository;
 
-    public void UpdatePost(Long postId, UpdatePost updatePost) {
-        Optional<Post> findPost = postRepository.findById(postId);
-        findPost.get().update(updatePost.getTitle(), updatePost.getContent(), updatePost.getCategory());
-        postRepository.save(findPost.get());
-    }
-
     public void DeletePost(Long postId) {
         postRepository.deleteById(postId);
     }
