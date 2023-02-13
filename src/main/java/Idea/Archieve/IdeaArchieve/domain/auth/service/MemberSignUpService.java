@@ -2,7 +2,6 @@ package Idea.Archieve.IdeaArchieve.domain.auth.service;
 
 import Idea.Archieve.IdeaArchieve.domain.auth.exception.ExistEmailException;
 import Idea.Archieve.IdeaArchieve.domain.auth.presentation.dto.request.MemberSignUpRequest;
-import Idea.Archieve.IdeaArchieve.domain.auth.repository.RefreshTokenRepository;
 import Idea.Archieve.IdeaArchieve.domain.email.entity.EmailAuth;
 import Idea.Archieve.IdeaArchieve.domain.email.exception.NotVerifyEmailException;
 import Idea.Archieve.IdeaArchieve.domain.email.repository.EmailAuthRepository;
