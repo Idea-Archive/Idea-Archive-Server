@@ -1,6 +1,8 @@
 package Idea.Archieve.IdeaArchieve.global.exception.handler;
 
 import Idea.Archieve.IdeaArchieve.domain.auth.exception.ExistEmailException;
+import Idea.Archieve.IdeaArchieve.domain.email.exception.FailedSendEmailException;
+import Idea.Archieve.IdeaArchieve.domain.email.exception.ManyRequestEmailException;
 import Idea.Archieve.IdeaArchieve.domain.email.exception.NotVerifyEmailException;
 import Idea.Archieve.IdeaArchieve.domain.member.exception.MemberNotFoundException;
 import Idea.Archieve.IdeaArchieve.domain.post.exception.NotExistPostException;
@@ -36,7 +38,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ErrorMessage> handleNotVerifyEmailException(HttpServletRequest request , NotVerifyEmailException exception) {
         printError(request, exception, exception.getErrorCode().getMessage());
         ErrorMessage errorMessage = new ErrorMessage(exception.getErrorCode().getMessage(), exception.getErrorCode().getStatus());
-        return new ResponseEntity<>(errorMessage, HttpStatus.valueOf(exception.getErrorCode().getStatus()));
+        return new   ResponseEntity<>(errorMessage, HttpStatus.valueOf(exception.getErrorCode().getStatus()));
     }
 
     @ExceptionHandler(ExistEmailException.class)
@@ -52,6 +54,21 @@ public class GlobalExceptionHandler {
         ErrorMessage errorMessage = new ErrorMessage(exception.getErrorCode().getMessage(), exception.getErrorCode().getStatus());
         return new ResponseEntity<>(errorMessage, HttpStatus.valueOf(exception.getErrorCode().getStatus()));
     }
+
+    @ExceptionHandler(FailedSendEmailException.class)
+    public ResponseEntity<ErrorMessage> handleFailedSendEmailException(HttpServletRequest request , NotVerifyMember exception) {
+        printError(request, exception, exception.getErrorCode().getMessage());
+        ErrorMessage errorMessage = new ErrorMessage(exception.getErrorCode().getMessage(), exception.getErrorCode().getStatus());
+        return new ResponseEntity<>(errorMessage, HttpStatus.valueOf(exception.getErrorCode().getStatus()));
+    }
+
+    @ExceptionHandler(ManyRequestEmailException.class)
+    public ResponseEntity<ErrorMessage> handleManyRequestEmailException(HttpServletRequest request , NotVerifyMember exception) {
+        printError(request, exception, exception.getErrorCode().getMessage());
+        ErrorMessage errorMessage = new ErrorMessage(exception.getErrorCode().getMessage(), exception.getErrorCode().getStatus());
+        return new ResponseEntity<>(errorMessage, HttpStatus.valueOf(exception.getErrorCode().getStatus()));
+    }
+
 
     private void printError(HttpServletRequest request, RuntimeException ex, String message) {
         log.error(request.getRequestURI());
