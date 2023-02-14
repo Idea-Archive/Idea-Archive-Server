@@ -41,6 +41,6 @@ spring:
 
 jwt:
   # Idea  * 4
-  accessSecret: SWRlYQ==SWRlYQ==SWRlYQ==SWRlYQ==
+  accessSecret: ${ACCESS_SECRET}
   # Archive * 4
-  refreshSecret: QXJjaGl2ZQ==QXJjaGl2ZQ==QXJjaGl2ZQ==QXJjaGl2ZQ==
+  refreshSecret: ${REFRESH_SECRET}
