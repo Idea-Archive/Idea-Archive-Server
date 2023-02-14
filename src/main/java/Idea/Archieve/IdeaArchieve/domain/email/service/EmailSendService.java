@@ -66,7 +66,5 @@ public class EmailSendService {
         } catch (MessagingException e) {
             throw new FailedSendEmailException("메일 발송에 실패했습니다");
         }
-
-        log.info("이메일 전송");
     }
 }
