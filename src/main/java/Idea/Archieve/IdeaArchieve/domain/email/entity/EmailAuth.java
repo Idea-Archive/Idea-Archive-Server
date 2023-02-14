@@ -26,4 +26,14 @@ public class EmailAuth {
 
     @ColumnDefault("1")
     private Integer attemptCount;
+
+    public void updateAuthentication(Boolean authentication) {
+        this.authentication = authentication;
+    }
+    public void updateRandomValue(String uuid) {
+        this.randomValue = uuid;
+    }
+    public void increaseAttemptCount() {
+        this.attemptCount += 1;
+    }
 }
