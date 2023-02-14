@@ -6,7 +6,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create-drop
     database-platform: org.hibernate.dialect.MySQL8Dialect
     properties:
       hibernate:
@@ -32,3 +32,15 @@ spring:
 
   main:
     allow-bean-definition-overriding: 'true'
+
+  redis:
+    host: localhost
+    port: 6379
+
+
+
+jwt:
+  # Idea  * 4
+  accessSecret: SWRlYQ==SWRlYQ==SWRlYQ==SWRlYQ==
+  # Archive * 4
+  refreshSecret: QXJjaGl2ZQ==QXJjaGl2ZQ==QXJjaGl2ZQ==QXJjaGl2ZQ==
