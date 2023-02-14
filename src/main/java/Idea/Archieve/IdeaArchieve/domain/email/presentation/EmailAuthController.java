@@ -2,7 +2,6 @@ package Idea.Archieve.IdeaArchieve.domain.email.presentation;
 
 
 import Idea.Archieve.IdeaArchieve.domain.email.presentation.dto.request.EmailAuthRequest;
-import Idea.Archieve.IdeaArchieve.domain.email.presentation.dto.response.VerifyCheckResponse;
 import Idea.Archieve.IdeaArchieve.domain.email.service.EmailCheckService;
 import Idea.Archieve.IdeaArchieve.domain.email.service.EmailSendService;
 import lombok.RequiredArgsConstructor;
@@ -28,7 +27,8 @@ public class EmailAuthController {
 
 
     @PostMapping("/check")
-    public VerifyCheckResponse verifyEmail(@RequestParam @Email String email, @RequestParam String authKey){
-        return emailCheckService.execute(email,authKey);
+    public ResponseEntity<Void> verifyEmail(@RequestParam @Email String email, @RequestParam String authKey){
+         emailCheckService.execute(email,authKey);
+         return ResponseEntity.ok().build();
     }
 }
