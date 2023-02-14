@@ -3,6 +3,7 @@ package Idea.Archieve.IdeaArchieve.global.exception.handler;
 import Idea.Archieve.IdeaArchieve.domain.auth.exception.ExistEmailException;
 import Idea.Archieve.IdeaArchieve.domain.email.exception.FailedSendEmailException;
 import Idea.Archieve.IdeaArchieve.domain.email.exception.ManyRequestEmailException;
+import Idea.Archieve.IdeaArchieve.domain.email.exception.MisMatchAuthCodeException;
 import Idea.Archieve.IdeaArchieve.domain.email.exception.NotVerifyEmailException;
 import Idea.Archieve.IdeaArchieve.domain.member.exception.MemberNotFoundException;
 import Idea.Archieve.IdeaArchieve.domain.post.exception.NotExistPostException;
@@ -56,14 +57,21 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(FailedSendEmailException.class)
-    public ResponseEntity<ErrorMessage> handleFailedSendEmailException(HttpServletRequest request , NotVerifyMember exception) {
+    public ResponseEntity<ErrorMessage> handleFailedSendEmailException(HttpServletRequest request , FailedSendEmailException exception) {
         printError(request, exception, exception.getErrorCode().getMessage());
         ErrorMessage errorMessage = new ErrorMessage(exception.getErrorCode().getMessage(), exception.getErrorCode().getStatus());
         return new ResponseEntity<>(errorMessage, HttpStatus.valueOf(exception.getErrorCode().getStatus()));
     }
 
     @ExceptionHandler(ManyRequestEmailException.class)
-    public ResponseEntity<ErrorMessage> handleManyRequestEmailException(HttpServletRequest request , NotVerifyMember exception) {
+    public ResponseEntity<ErrorMessage> handleManyRequestEmailException(HttpServletRequest request , ManyRequestEmailException exception) {
+        printError(request, exception, exception.getErrorCode().getMessage());
+        ErrorMessage errorMessage = new ErrorMessage(exception.getErrorCode().getMessage(), exception.getErrorCode().getStatus());
+        return new ResponseEntity<>(errorMessage, HttpStatus.valueOf(exception.getErrorCode().getStatus()));
+    }
+
+    @ExceptionHandler(MisMatchAuthCodeException.class)
+    public ResponseEntity<ErrorMessage> handleMisMatchAuthCodeException(HttpServletRequest request , MisMatchAuthCodeException exception) {
         printError(request, exception, exception.getErrorCode().getMessage());
         ErrorMessage errorMessage = new ErrorMessage(exception.getErrorCode().getMessage(), exception.getErrorCode().getStatus());
         return new ResponseEntity<>(errorMessage, HttpStatus.valueOf(exception.getErrorCode().getStatus()));
