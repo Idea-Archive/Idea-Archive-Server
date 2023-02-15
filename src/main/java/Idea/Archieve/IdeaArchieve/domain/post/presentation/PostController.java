@@ -56,11 +56,11 @@ public class PostController {
     }
 
     @GetMapping("/search")
-    public ResponseEntity<List<Post>> SearchPost(@RequestParam String searchKeyword, @RequestParam String category){
-        if(category.equals("null")){
+    public ResponseEntity<List<Post>> SearchPost(@RequestParam String searchKeyword, @RequestParam String category) {
+        if(category.equals(null)) {
             log.info("필터 적용 X");
             postService.SearchPost(searchKeyword);
-        }else{
+        } else {
             log.info("필터 적용 O");
             postService.SearchPost(searchKeyword,category);
         }
