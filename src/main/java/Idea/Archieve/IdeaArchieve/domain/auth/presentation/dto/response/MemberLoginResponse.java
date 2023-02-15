@@ -14,8 +14,6 @@ public class MemberLoginResponse {
 
     private String refreshToken;
 
-    private String name;
-
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private ZonedDateTime expiredAt;
 }

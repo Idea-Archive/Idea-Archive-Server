@@ -43,7 +43,6 @@ public class MemberLoginService {
         return MemberLoginResponse.builder()
                 .accessToken(accessToken)
                 .refreshToken(refreshToken)
-                .name(member.getName())
                 .expiredAt(tokenProvider.getExpiredAtToken(accessToken,jwtProperties.getAccessSecret()))
                 .build();
     }
