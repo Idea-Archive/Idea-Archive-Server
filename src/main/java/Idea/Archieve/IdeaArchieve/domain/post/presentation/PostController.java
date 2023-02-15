@@ -6,6 +6,8 @@ import Idea.Archieve.IdeaArchieve.domain.post.presentation.dto.request.WritePost
 import Idea.Archieve.IdeaArchieve.domain.post.service.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -24,43 +26,50 @@ public class PostController {
     private final UpdatePostService updatePostService;
 
     @PostMapping("write")
-    public void WritePost(@RequestBody WritePostRequest writePostRequest) {
-        writePostService.WritePost(writePostRequest);
+    public ResponseEntity<Void> WritePost(@RequestBody @Valid WritePostRequest writePostRequest) {
+        writePostService.execute(writePostRequest);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @GetMapping
-    public List<Post> ViewPost() {
-        return viewPostService.ViewPost();
+    public ResponseEntity<List<Post>> ViewPost() {
+        viewPostService.ViewPost();
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping("/{postId}")
-    public Post ViewPostById(@PathVariable Long postId) {
-        return viewPostByIdService.ViewPostById(postId);
+    public ResponseEntity<Post> ViewPostById(@PathVariable Long postId) {
+        viewPostByIdService.ViewPostById(postId);
+        return ResponseEntity.ok().build();
     }
 
     @PatchMapping("/{postId}")
-    public void UpdatePost(@PathVariable Long postId, @RequestBody @Valid UpdatePost updatePost) {
+    public ResponseEntity<Void> UpdatePost(@PathVariable Long postId, @RequestBody @Valid UpdatePost updatePost) {
         updatePostService.UpdatePost(postId, updatePost);
+        return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/{postId}")
-    public void DeletePost(@PathVariable Long postId) {
+    public ResponseEntity<Void> DeletePost(@PathVariable Long postId) {
         postService.DeletePost(postId);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
     @GetMapping("/search")
-    public List<Post> SearchPost(@RequestParam String searchKeyword, @RequestParam String category){
+    public ResponseEntity<List<Post>> SearchPost(@RequestParam String searchKeyword, @RequestParam String category){
         if(category.equals("null")){
             log.info("필터 적용 X");
-            return postService.SearchPost(searchKeyword);
+            postService.SearchPost(searchKeyword);
         }else{
             log.info("필터 적용 O");
-            return postService.SearchPost(searchKeyword,category);
+            postService.SearchPost(searchKeyword,category);
         }
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping("/category")
-    public List<Post> ViewPostByCategory(@RequestParam String category){
-        return postService.viewPostByCategory(category);
+    public ResponseEntity<List<Post>> ViewPostByCategory(@RequestParam String category){
+        postService.viewPostByCategory(category);
+        return ResponseEntity.ok().build();
     }
 }
