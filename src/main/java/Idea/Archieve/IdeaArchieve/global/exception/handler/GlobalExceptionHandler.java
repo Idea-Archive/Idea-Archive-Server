@@ -6,6 +6,7 @@ import Idea.Archieve.IdeaArchieve.domain.email.exception.ManyRequestEmailExcepti
 import Idea.Archieve.IdeaArchieve.domain.email.exception.MisMatchAuthCodeException;
 import Idea.Archieve.IdeaArchieve.domain.email.exception.NotVerifyEmailException;
 import Idea.Archieve.IdeaArchieve.domain.member.exception.MemberNotFoundException;
+import Idea.Archieve.IdeaArchieve.domain.member.exception.MisMatchPasswordException;
 import Idea.Archieve.IdeaArchieve.domain.post.exception.NotExistPostException;
 import Idea.Archieve.IdeaArchieve.domain.post.exception.NotVerifyMember;
 import Idea.Archieve.IdeaArchieve.global.exception.ErrorMessage;
@@ -77,6 +78,13 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(errorMessage, HttpStatus.valueOf(exception.getErrorCode().getStatus()));
     }
 
+
+    @ExceptionHandler(MisMatchPasswordException.class)
+    public ResponseEntity<ErrorMessage> handleMisMatchPasswordException(HttpServletRequest request , MisMatchPasswordException exception) {
+        printError(request, exception, exception.getErrorCode().getMessage());
+        ErrorMessage errorMessage = new ErrorMessage(exception.getErrorCode().getMessage(), exception.getErrorCode().getStatus());
+        return new ResponseEntity<>(errorMessage, HttpStatus.valueOf(exception.getErrorCode().getStatus()));
+    }
 
     private void printError(HttpServletRequest request, RuntimeException ex, String message) {
         log.error(request.getRequestURI());
