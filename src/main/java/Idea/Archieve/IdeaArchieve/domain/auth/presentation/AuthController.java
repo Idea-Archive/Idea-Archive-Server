@@ -30,7 +30,8 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public MemberLoginResponse login(@RequestBody @Valid MemberLoginRequest memberLoginRequest){
-        return memberLoginService.execute(memberLoginRequest);
+    public ResponseEntity<MemberLoginResponse> login(@RequestBody @Valid MemberLoginRequest memberLoginRequest){
+        MemberLoginResponse memberLoginResponse = memberLoginService.execute(memberLoginRequest);
+        return ResponseEntity.ok(memberLoginResponse);
     }
 }
