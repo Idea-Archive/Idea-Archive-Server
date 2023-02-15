@@ -2,7 +2,7 @@ package Idea.Archieve.IdeaArchieve.domain.post.presentation;
 
 import Idea.Archieve.IdeaArchieve.domain.post.Entity.Post;
 import Idea.Archieve.IdeaArchieve.domain.post.presentation.dto.request.UpdatePost;
-import Idea.Archieve.IdeaArchieve.domain.post.presentation.dto.request.WritePost;
+import Idea.Archieve.IdeaArchieve.domain.post.presentation.dto.request.WritePostRequest;
 import Idea.Archieve.IdeaArchieve.domain.post.service.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,8 +24,8 @@ public class PostController {
     private final UpdatePostService updatePostService;
 
     @PostMapping("write")
-    public void WritePost(@RequestBody WritePost writePost) {
-        writePostService.WritePost(writePost);
+    public void WritePost(@RequestBody WritePostRequest writePostRequest) {
+        writePostService.WritePost(writePostRequest);
     }
 
     @GetMapping

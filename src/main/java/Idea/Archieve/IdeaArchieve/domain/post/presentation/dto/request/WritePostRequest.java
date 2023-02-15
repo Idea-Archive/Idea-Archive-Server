@@ -10,7 +10,7 @@ import javax.validation.constraints.NotBlank;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class WritePost {
+public class WritePostRequest {
 
     @NotBlank(message = "제목은 공백을 허용하지 않습니다.")
     private String title;
