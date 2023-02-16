@@ -26,7 +26,7 @@ public class EmailAuthController {
     }
 
 
-    @PostMapping("/check")
+    @RequestMapping(method = RequestMethod.HEAD)
     public ResponseEntity<Void> verifyEmail(@RequestParam @Email String email, @RequestParam String authKey){
          emailCheckService.execute(email,authKey);
          return ResponseEntity.ok().build();
