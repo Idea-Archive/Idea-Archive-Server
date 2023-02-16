@@ -27,7 +27,7 @@ public class PostController {
     private final FilterPostService filterPostService;
     private final FilterPostByCategoryService filterPostByCategoryService;
 
-    @PostMapping("write")
+    @PostMapping("/write")
     public ResponseEntity<Void> WritePost(@RequestBody @Valid WritePostRequest writePostRequest) {
         writePostService.execute(writePostRequest);
         return ResponseEntity.status(HttpStatus.CREATED).build();

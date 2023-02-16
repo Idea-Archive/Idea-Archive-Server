@@ -32,13 +32,6 @@ public class Post {
     @JoinColumn(name = "member_id", nullable = false)
     private Member member;
 
-    @Builder
-    public Post(String title, String content, Member member) {
-        this.title = title;
-        this.content = content;
-        this.member = member;
-    }
-
     public void update(String title, String content, String category) {
         this.title = title;
         this.content = content;
