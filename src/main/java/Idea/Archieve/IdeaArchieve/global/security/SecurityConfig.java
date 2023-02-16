@@ -40,6 +40,8 @@ public class SecurityConfig {
                 .authorizeRequests()
                 .antMatchers("/**").permitAll()
                 .antMatchers("/email/**").permitAll()
+                .antMatchers("/auth/**").permitAll()
+                .antMatchers("/post/**").authenticated()
                 .anyRequest().authenticated();
         http
                 .sessionManagement()

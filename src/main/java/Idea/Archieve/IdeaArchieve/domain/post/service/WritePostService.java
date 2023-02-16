@@ -21,7 +21,8 @@ public class WritePostService {
                 .title(writePostRequest.getTitle())
                 .content(writePostRequest.getContent())
                 .category(writePostRequest.getCategory())
-                .member(currentMember).build();
+                .member(currentMember)
+                .build();
         postRepository.save(post);
     }
 
