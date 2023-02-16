@@ -25,6 +25,7 @@ public class PostController {
     private final ViewPostByIdService viewPostByIdService;
     private final UpdatePostService updatePostService;
     private final DeletePostService deletePostService;
+    private final FilterPostService filterPostService;
 
     @PostMapping("write")
     public ResponseEntity<Void> WritePost(@RequestBody @Valid WritePostRequest writePostRequest) {
@@ -58,12 +59,12 @@ public class PostController {
 
     @GetMapping("/search")
     public ResponseEntity<List<Post>> SearchPost(@RequestParam String searchKeyword, @RequestParam String category) {
-        if(category.equals(null)) {
+        if(category.isEmpty()) {
             log.info("필터 적용 X");
-            postService.SearchPost(searchKeyword);
+            filterPostService.execute(searchKeyword);
         } else {
             log.info("필터 적용 O");
-            postService.SearchPost(searchKeyword,category);
+            filterPostService.execute(searchKeyword,category);
         }
         return ResponseEntity.ok().build();
     }
