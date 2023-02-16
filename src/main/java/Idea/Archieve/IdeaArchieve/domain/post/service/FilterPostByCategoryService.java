@@ -10,16 +10,15 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class PostService {
+public class FilterPostByCategoryService {
 
     private final PostRepository postRepository;
 
-    public List<Post> viewPostByCategory(String category){
+    public List<Post> execute(String category){
         List<Post> posts = postRepository.findByCategory(category);
         if (posts.size()==0){
             throw new NotExistPostException("게시글이 존재하지 않습니다.");
         }
         return posts;
     }
-
 }

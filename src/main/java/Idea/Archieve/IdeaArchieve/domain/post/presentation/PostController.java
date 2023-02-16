@@ -20,12 +20,12 @@ import java.util.List;
 public class PostController {
 
     private final WritePostService writePostService;
-    private final PostService postService;
     private final ViewPostService viewPostService;
     private final ViewPostByIdService viewPostByIdService;
     private final UpdatePostService updatePostService;
     private final DeletePostService deletePostService;
     private final FilterPostService filterPostService;
+    private final FilterPostByCategoryService filterPostByCategoryService;
 
     @PostMapping("write")
     public ResponseEntity<Void> WritePost(@RequestBody @Valid WritePostRequest writePostRequest) {
@@ -71,7 +71,7 @@ public class PostController {
 
     @GetMapping("/category")
     public ResponseEntity<List<Post>> ViewPostByCategory(@RequestParam String category){
-        postService.viewPostByCategory(category);
+        filterPostByCategoryService.execute(category);
         return ResponseEntity.ok().build();
     }
 }
