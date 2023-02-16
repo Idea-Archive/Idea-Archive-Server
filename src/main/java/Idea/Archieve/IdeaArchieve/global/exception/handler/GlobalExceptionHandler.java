@@ -1,14 +1,17 @@
 package Idea.Archieve.IdeaArchieve.global.exception.handler;
 
 import Idea.Archieve.IdeaArchieve.domain.auth.exception.ExistEmailException;
+import Idea.Archieve.IdeaArchieve.domain.auth.exception.RefreshTokenNotFoundException;
 import Idea.Archieve.IdeaArchieve.domain.email.exception.FailedSendEmailException;
 import Idea.Archieve.IdeaArchieve.domain.email.exception.ManyRequestEmailException;
 import Idea.Archieve.IdeaArchieve.domain.email.exception.MisMatchAuthCodeException;
 import Idea.Archieve.IdeaArchieve.domain.email.exception.NotVerifyEmailException;
 import Idea.Archieve.IdeaArchieve.domain.member.exception.MemberNotFoundException;
+import Idea.Archieve.IdeaArchieve.domain.member.exception.MisMatchPasswordException;
 import Idea.Archieve.IdeaArchieve.domain.post.exception.NotExistPostException;
 import Idea.Archieve.IdeaArchieve.domain.post.exception.NotVerifyMember;
 import Idea.Archieve.IdeaArchieve.global.exception.ErrorMessage;
+import Idea.Archieve.IdeaArchieve.global.security.exception.TokenNotValidException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -72,6 +75,28 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(MisMatchAuthCodeException.class)
     public ResponseEntity<ErrorMessage> handleMisMatchAuthCodeException(HttpServletRequest request , MisMatchAuthCodeException exception) {
+        printError(request, exception, exception.getErrorCode().getMessage());
+        ErrorMessage errorMessage = new ErrorMessage(exception.getErrorCode().getMessage(), exception.getErrorCode().getStatus());
+        return new ResponseEntity<>(errorMessage, HttpStatus.valueOf(exception.getErrorCode().getStatus()));
+    }
+
+
+    @ExceptionHandler(MisMatchPasswordException.class)
+    public ResponseEntity<ErrorMessage> handleMisMatchPasswordException(HttpServletRequest request , MisMatchPasswordException exception) {
+        printError(request, exception, exception.getErrorCode().getMessage());
+        ErrorMessage errorMessage = new ErrorMessage(exception.getErrorCode().getMessage(), exception.getErrorCode().getStatus());
+        return new ResponseEntity<>(errorMessage, HttpStatus.valueOf(exception.getErrorCode().getStatus()));
+    }
+
+    @ExceptionHandler(RefreshTokenNotFoundException.class)
+    public ResponseEntity<ErrorMessage> handleRefreshTokenNotFoundException(HttpServletRequest request , RefreshTokenNotFoundException exception) {
+        printError(request, exception, exception.getErrorCode().getMessage());
+        ErrorMessage errorMessage = new ErrorMessage(exception.getErrorCode().getMessage(), exception.getErrorCode().getStatus());
+        return new ResponseEntity<>(errorMessage, HttpStatus.valueOf(exception.getErrorCode().getStatus()));
+    }
+
+    @ExceptionHandler(TokenNotValidException.class)
+    public ResponseEntity<ErrorMessage> handleTokenNotValidException(HttpServletRequest request , TokenNotValidException exception) {
         printError(request, exception, exception.getErrorCode().getMessage());
         ErrorMessage errorMessage = new ErrorMessage(exception.getErrorCode().getMessage(), exception.getErrorCode().getStatus());
         return new ResponseEntity<>(errorMessage, HttpStatus.valueOf(exception.getErrorCode().getStatus()));
