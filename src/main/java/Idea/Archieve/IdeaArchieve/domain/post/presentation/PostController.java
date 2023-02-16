@@ -24,6 +24,7 @@ public class PostController {
     private final ViewPostService viewPostService;
     private final ViewPostByIdService viewPostByIdService;
     private final UpdatePostService updatePostService;
+    private final DeletePostService deletePostService;
 
     @PostMapping("write")
     public ResponseEntity<Void> WritePost(@RequestBody @Valid WritePostRequest writePostRequest) {
@@ -51,7 +52,7 @@ public class PostController {
 
     @DeleteMapping("/{postId}")
     public ResponseEntity<Void> DeletePost(@PathVariable Long postId) {
-        postService.DeletePost(postId);
+        deletePostService.execute(postId);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 

@@ -14,10 +14,6 @@ public class PostService {
 
     private final PostRepository postRepository;
 
-    public void DeletePost(Long postId) {
-        postRepository.deleteById(postId);
-    }
-
     /*
         카테고리를 선택하고 검색했을때
      */
