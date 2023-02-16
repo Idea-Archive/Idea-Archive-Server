@@ -33,19 +33,19 @@ public class PostController {
 
     @GetMapping
     public ResponseEntity<List<Post>> ViewPost() {
-        viewPostService.ViewPost();
+        viewPostService.execute();
         return ResponseEntity.ok().build();
     }
 
     @GetMapping("/{postId}")
     public ResponseEntity<Post> ViewPostById(@PathVariable Long postId) {
-        viewPostByIdService.ViewPostById(postId);
+        viewPostByIdService.execute(postId);
         return ResponseEntity.ok().build();
     }
 
     @PatchMapping("/{postId}")
     public ResponseEntity<Void> UpdatePost(@PathVariable Long postId, @RequestBody @Valid UpdatePost updatePost) {
-        updatePostService.UpdatePost(postId, updatePost);
+        updatePostService.execute(postId, updatePost);
         return ResponseEntity.ok().build();
     }
 

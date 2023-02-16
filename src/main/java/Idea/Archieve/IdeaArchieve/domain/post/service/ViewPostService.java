@@ -20,7 +20,7 @@ public class ViewPostService {
         }
     }
 
-    public List<Post> ViewPost() {
+    public List<Post> execute() {
         List<Post> posts = postRepository.findAll();
         emptyNotice(posts);
         return posts;

@@ -12,7 +12,7 @@ public class ViewPostByIdService {
 
     private final PostRepository postRepository;
 
-    public Post ViewPostById(Long PostId) {
+    public Post execute(Long PostId) {
         return postRepository.findById(PostId)
                 .orElseThrow(() -> new NotExistPostException("존재하지 않는 게시판입니다."));
     }
