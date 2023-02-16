@@ -28,37 +28,37 @@ public class PostController {
     private final FilterPostByCategoryService filterPostByCategoryService;
 
     @PostMapping("/write")
-    public ResponseEntity<Void> WritePost(@RequestBody @Valid WritePostRequest writePostRequest) {
+    public ResponseEntity<Void> writePost(@RequestBody @Valid WritePostRequest writePostRequest) {
         writePostService.execute(writePostRequest);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @GetMapping
-    public ResponseEntity<List<Post>> ViewPost() {
+    public ResponseEntity<List<Post>> viewPost() {
         viewPostService.execute();
         return ResponseEntity.ok().build();
     }
 
     @GetMapping("/{postId}")
-    public ResponseEntity<Post> ViewPostById(@PathVariable Long postId) {
+    public ResponseEntity<Post> viewPostById(@PathVariable Long postId) {
         viewPostByIdService.execute(postId);
         return ResponseEntity.ok().build();
     }
 
     @PatchMapping("/{postId}")
-    public ResponseEntity<Void> UpdatePost(@PathVariable Long postId, @RequestBody @Valid UpdatePost updatePost) {
+    public ResponseEntity<Void> updatePost(@PathVariable Long postId, @RequestBody @Valid UpdatePost updatePost) {
         updatePostService.execute(postId, updatePost);
         return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/{postId}")
-    public ResponseEntity<Void> DeletePost(@PathVariable Long postId) {
+    public ResponseEntity<Void> deletePost(@PathVariable Long postId) {
         deletePostService.execute(postId);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
     @GetMapping("/search")
-    public ResponseEntity<List<Post>> SearchPost(@RequestParam String searchKeyword, @RequestParam String category) {
+    public ResponseEntity<List<Post>> searchPost(@RequestParam String searchKeyword, @RequestParam String category) {
         if(category.isEmpty()) {
             log.info("필터 적용 X");
             filterPostService.execute(searchKeyword);
@@ -70,7 +70,7 @@ public class PostController {
     }
 
     @GetMapping("/category")
-    public ResponseEntity<List<Post>> ViewPostByCategory(@RequestParam String category){
+    public ResponseEntity<List<Post>> viewPostByCategory(@RequestParam String category){
         filterPostByCategoryService.execute(category);
         return ResponseEntity.ok().build();
     }
