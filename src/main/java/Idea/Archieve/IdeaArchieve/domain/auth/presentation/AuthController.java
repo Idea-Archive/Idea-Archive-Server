@@ -38,6 +38,6 @@ public class AuthController {
     @PatchMapping
     public ResponseEntity<NewTokenResponse> reIssueToken(@RequestHeader("RefreshToken") String token) {
         NewTokenResponse reIssueToken = tokenReissuanceService.execute(token);
-        return new ResponseEntity<>(reIssueToken, HttpStatus.OK);
+        return ResponseEntity.ok(reIssueToken);
     }
 }
