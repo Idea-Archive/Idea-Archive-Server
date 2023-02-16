@@ -21,6 +21,8 @@ public class ViewPostService {
     }
 
     public List<Post> ViewPost() {
-        return postRepository.findAll();
+        List<Post> posts = postRepository.findAll();
+        emptyNotice(posts);
+        return posts;
     }
 }
