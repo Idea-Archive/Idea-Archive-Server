@@ -17,8 +17,7 @@ public class MemberUtil {
 
     public Member currentMember(){
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
-        System.out.println(email);
-        return memberRepository.findByName(email)
+        return memberRepository.findByEmail(email)
                 .orElseThrow(() -> new MemberNotFoundException("존재하지 않는 회원입니다."));
     }
 }
