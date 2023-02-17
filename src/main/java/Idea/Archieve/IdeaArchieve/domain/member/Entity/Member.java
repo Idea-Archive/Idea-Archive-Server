@@ -17,7 +17,7 @@ import java.util.Collection;
 @Getter @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Member implements UserDetails {
+public class Member{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,49 +37,8 @@ public class Member implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        ArrayList<GrantedAuthority> auth = new ArrayList<>();
-        auth.add(new SimpleGrantedAuthority(role.name()));
-        return auth;
-    }
-
     public void updatePassword(String password) {
         this.password = password;
     }
 
-    @Override
-    public String getUsername() {
-        return name;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return super.toString();
-    }
-
-    public Object update(String name, String email) {
-        return null;
-    }
 }
