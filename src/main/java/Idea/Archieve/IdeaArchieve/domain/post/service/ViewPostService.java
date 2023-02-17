@@ -14,15 +14,7 @@ public class ViewPostService {
 
     private final PostRepository postRepository;
 
-    private void emptyNotice(List<Post> notice) {
-        if (notice.isEmpty()) {
-            throw new NotExistPostException("존재하지 않는 게시글입니다.");
-        }
-    }
-
     public List<Post> execute() {
-        List<Post> posts = postRepository.findAll();
-        emptyNotice(posts);
-        return posts;
+        return postRepository.findAll();
     }
 }
