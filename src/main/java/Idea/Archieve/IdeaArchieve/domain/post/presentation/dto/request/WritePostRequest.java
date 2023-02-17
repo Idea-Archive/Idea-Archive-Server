@@ -1,5 +1,6 @@
 package Idea.Archieve.IdeaArchieve.domain.post.presentation.dto.request;
 
+import Idea.Archieve.IdeaArchieve.domain.member.Entity.Member;
 import Idea.Archieve.IdeaArchieve.domain.post.Entity.Post;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,11 +22,12 @@ public class WritePostRequest {
     @NotBlank(message = "카테고리은 공백을 허용하지 않습니다.")
     private String category;
 
-    public Post toEntity() {
+    public Post toEntity(Member member) {
         return Post.builder()
                 .title(title)
                 .content(content)
                 .category(category)
+                .member(member)
                 .build();
     }
 }
