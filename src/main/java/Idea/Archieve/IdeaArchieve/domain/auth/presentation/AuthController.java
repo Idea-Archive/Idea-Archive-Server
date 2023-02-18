@@ -40,7 +40,7 @@ public class AuthController {
     @DeleteMapping
     public ResponseEntity<Void> logout(@RequestHeader("Authorization")String accessToken){
         memberLogoutService.execute(accessToken);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 
     }
 
