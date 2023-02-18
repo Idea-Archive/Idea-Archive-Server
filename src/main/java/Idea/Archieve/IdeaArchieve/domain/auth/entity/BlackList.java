@@ -14,7 +14,7 @@ import org.springframework.data.annotation.Id;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@RedisHash()
+@RedisHash(value = "blackList")
 public class BlackList {
 
     @Id
