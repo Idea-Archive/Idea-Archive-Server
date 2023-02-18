@@ -3,6 +3,7 @@ package Idea.Archieve.IdeaArchieve.domain.post.presentation;
 import Idea.Archieve.IdeaArchieve.domain.post.Entity.Post;
 import Idea.Archieve.IdeaArchieve.domain.post.presentation.dto.request.UpdatePost;
 import Idea.Archieve.IdeaArchieve.domain.post.presentation.dto.request.WritePostRequest;
+import Idea.Archieve.IdeaArchieve.domain.post.presentation.dto.response.ViewPostResponse;
 import Idea.Archieve.IdeaArchieve.domain.post.service.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -34,9 +35,9 @@ public class PostController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Post>> viewPost() {
-        viewPostService.execute();
-        return ResponseEntity.ok().build();
+    public ResponseEntity<List<ViewPostResponse>> viewNotice() {
+        List<ViewPostResponse> response = viewPostService.execute();
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping("/{postId}")
