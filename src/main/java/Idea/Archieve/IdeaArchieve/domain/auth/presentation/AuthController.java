@@ -5,6 +5,7 @@ import Idea.Archieve.IdeaArchieve.domain.auth.presentation.dto.request.MemberSig
 import Idea.Archieve.IdeaArchieve.domain.auth.presentation.dto.response.MemberLoginResponse;
 import Idea.Archieve.IdeaArchieve.domain.auth.presentation.dto.response.NewTokenResponse;
 import Idea.Archieve.IdeaArchieve.domain.auth.service.MemberLoginService;
+import Idea.Archieve.IdeaArchieve.domain.auth.service.MemberLogoutService;
 import Idea.Archieve.IdeaArchieve.domain.auth.service.MemberSignUpService;
 import Idea.Archieve.IdeaArchieve.domain.auth.service.TokenReissuanceService;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +22,7 @@ public class AuthController {
 
     private final MemberSignUpService memberSignUpService;
     private final MemberLoginService memberLoginService;
+    private final MemberLogoutService memberLogoutService;
     private final TokenReissuanceService tokenReissuanceService;
 
     @PostMapping("/signup")
@@ -33,6 +35,13 @@ public class AuthController {
     public ResponseEntity<MemberLoginResponse> login(@RequestBody @Valid MemberLoginRequest memberLoginRequest){
         MemberLoginResponse memberLoginResponse = memberLoginService.execute(memberLoginRequest);
         return ResponseEntity.ok(memberLoginResponse);
+    }
+
+    @DeleteMapping
+    public ResponseEntity<Void> logout(@RequestHeader("Authorization")String accessToken){
+        memberLogoutService.execute(accessToken);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+
     }
 
     @PatchMapping
