@@ -16,10 +16,10 @@ public class ViewPostService {
     private final PostRepository postRepository;
 
     public List<ViewPostResponse> execute() {
-        List<Post> postList =  postRepository.findAll();
-        List<ViewPostResponse> response = postList.stream().map(
-                p -> new ViewPostResponse(p.getTitle(), p.getContent(), p.getCategory(), p.getMember().getName()))
+        List<Post> noticeList = postRepository.findAll();
+        return noticeList.stream()
+                .map(n -> ViewPostResponse.builder()
+                        .id(n.getPostId()).title(n.getTitle()).content(n.getContent()).name(n.getMember().getName()).build())
                 .collect(Collectors.toList());
-        return response;
     }
 }

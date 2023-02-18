@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ViewPostResponse {
 
+    private Long id;
     private String title;
     private String content;
     private String category;
