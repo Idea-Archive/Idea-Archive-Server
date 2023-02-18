@@ -1,5 +1,6 @@
 package Idea.Archieve.IdeaArchieve.global.exception.handler;
 
+import Idea.Archieve.IdeaArchieve.domain.auth.exception.BlackListAlreadyExistException;
 import Idea.Archieve.IdeaArchieve.domain.auth.exception.ExistEmailException;
 import Idea.Archieve.IdeaArchieve.domain.auth.exception.RefreshTokenNotFoundException;
 import Idea.Archieve.IdeaArchieve.domain.email.exception.FailedSendEmailException;
@@ -102,6 +103,12 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(errorMessage, HttpStatus.valueOf(exception.getErrorCode().getStatus()));
     }
 
+    @ExceptionHandler(BlackListAlreadyExistException.class)
+    public ResponseEntity<ErrorMessage> handleBlackListAlreadyExistException(HttpServletRequest request , BlackListAlreadyExistException exception) {
+        printError(request, exception, exception.getErrorcode().getMessage());
+        ErrorMessage errorMessage = new ErrorMessage(exception.getErrorcode().getMessage(), exception.getErrorcode().getStatus());
+        return new ResponseEntity<>(errorMessage, HttpStatus.valueOf(exception.getErrorcode().getStatus()));
+    }
 
     private void printError(HttpServletRequest request, RuntimeException ex, String message) {
         log.error(request.getRequestURI());
