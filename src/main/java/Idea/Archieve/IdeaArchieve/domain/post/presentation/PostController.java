@@ -7,7 +7,6 @@ import Idea.Archieve.IdeaArchieve.domain.post.presentation.dto.response.ViewPost
 import Idea.Archieve.IdeaArchieve.domain.post.presentation.dto.response.ViewByCategoryResponse;
 import Idea.Archieve.IdeaArchieve.domain.post.service.*;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +17,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/post")
 @RequiredArgsConstructor
-@Slf4j
 public class PostController {
 
     private final WritePostService writePostService;
@@ -60,12 +58,14 @@ public class PostController {
     }
 
     @GetMapping("/search")
-    public List<ViewByCategoryResponse> SearchPost(@RequestParam String searchKeyword, @RequestParam String category){
-        return filterPostService.SearchPost(searchKeyword,category);
+    public ResponseEntity<List<ViewByCategoryResponse>> SearchPost(@RequestParam String searchKeyword, @RequestParam String category){
+        List<ViewByCategoryResponse> response =  filterPostService.SearchPost(searchKeyword,category);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @GetMapping("/category")
-    public List<ViewByCategoryResponse> ViewPostByCategory(@RequestParam String category){
-        return filterPostByCategoryService.viewPostByCategory(category);
+    public ResponseEntity<List<ViewByCategoryResponse>> ViewPostByCategory(@RequestParam String category){
+        List<ViewByCategoryResponse> response = filterPostByCategoryService.viewPostByCategory(category);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }
