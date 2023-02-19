@@ -37,7 +37,7 @@ public class PostController {
     public ResponseEntity<List<ViewPostResponse>> viewNotice() {
         List<ViewPostResponse> response = viewPostService.execute();
         return ResponseEntity.ok(response);
-    } // 카테고리 값 안넘어옴
+    }
 
     @GetMapping("/{postId}")
     public ResponseEntity<Post> viewPostById(@PathVariable Long postId) {
@@ -59,13 +59,13 @@ public class PostController {
 
     @GetMapping("/search")
     public ResponseEntity<List<ViewByCategoryResponse>> SearchPost(@RequestParam String searchKeyword, @RequestParam String category){
-        List<ViewByCategoryResponse> response =  filterPostService.SearchPost(searchKeyword,category);
+        List<ViewByCategoryResponse> response =  filterPostService.execute(searchKeyword,category);
         return ResponseEntity.ok(response);
     }
 
     @GetMapping("/category")
     public ResponseEntity<List<ViewByCategoryResponse>> ViewPostByCategory(@RequestParam String category){
-        List<ViewByCategoryResponse> response = filterPostByCategoryService.viewPostByCategory(category);
+        List<ViewByCategoryResponse> response = filterPostByCategoryService.execute(category);
         return ResponseEntity.ok(response);
     }
 }

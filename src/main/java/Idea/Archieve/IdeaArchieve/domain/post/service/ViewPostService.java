@@ -19,7 +19,12 @@ public class ViewPostService {
         List<Post> noticeList = postRepository.findAll();
         return noticeList.stream()
                 .map(n -> ViewPostResponse.builder()
-                        .id(n.getPostId()).title(n.getTitle()).content(n.getContent()).name(n.getMember().getName()).build())
+                        .id(n.getPostId())
+                        .title(n.getTitle())
+                        .content(n.getContent())
+                        .category(n.getCategory())
+                        .name(n.getMember().getName())
+                        .build())
                 .collect(Collectors.toList());
     }
 }
