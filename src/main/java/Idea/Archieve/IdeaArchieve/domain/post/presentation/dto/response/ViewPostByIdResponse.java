@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ViewPostResponse {
+public class ViewPostByIdResponse {
 
     private Long id;
     private String title;

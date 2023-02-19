@@ -1,8 +1,8 @@
 package Idea.Archieve.IdeaArchieve.domain.post.presentation;
 
-import Idea.Archieve.IdeaArchieve.domain.post.Entity.Post;
 import Idea.Archieve.IdeaArchieve.domain.post.presentation.dto.request.UpdatePost;
 import Idea.Archieve.IdeaArchieve.domain.post.presentation.dto.request.WritePostRequest;
+import Idea.Archieve.IdeaArchieve.domain.post.presentation.dto.response.ViewPostByIdResponse;
 import Idea.Archieve.IdeaArchieve.domain.post.presentation.dto.response.ViewPostResponse;
 import Idea.Archieve.IdeaArchieve.domain.post.presentation.dto.response.ViewByCategoryResponse;
 import Idea.Archieve.IdeaArchieve.domain.post.service.*;
@@ -40,10 +40,10 @@ public class PostController {
     }
 
     @GetMapping("/{postId}")
-    public ResponseEntity<Post> viewPostById(@PathVariable Long postId) {
-        viewPostByIdService.execute(postId);
-        return ResponseEntity.ok().build();
-    } // 그냥 안됨
+    public ResponseEntity<ViewPostByIdResponse> viewPostById(@PathVariable Long postId) {
+        ViewPostByIdResponse response = viewPostByIdService.execute(postId);
+        return ResponseEntity.ok(response);
+    }
 
     @PatchMapping("/{postId}")
     public ResponseEntity<Void> updatePost(@PathVariable Long postId, @RequestBody @Valid UpdatePost updatePost) {
