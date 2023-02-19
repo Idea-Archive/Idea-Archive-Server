@@ -21,26 +21,20 @@ public class PostService {
         postRepository.deleteById(postId);
     }
 
-    /*
-        카테고리를 선택하고 검색했을때
-     */
     public List<ViewByCategoryResponse> SearchPost(String searchKeyword, String category){
-        List<ViewByCategoryResponse> posts = postRepository.findByTitleContainingAndCategory(searchKeyword, category);
-        if (posts.size() == 0) {
-            throw new NotExistPostException("게시글이 존재하지 않습니다.");
+        if(category.isEmpty()){
+            List<ViewByCategoryResponse> posts = postRepository.findByTitleContaining(searchKeyword);
+            if (posts.size() == 0) {
+                throw new NotExistPostException("게시글이 존재하지 않습니다.");
+            }
+            return posts;
+        }else{
+            List<ViewByCategoryResponse> posts = postRepository.findByTitleContainingAndCategory(searchKeyword, category);
+            if (posts.size() == 0) {
+                throw new NotExistPostException("게시글이 존재하지 않습니다.");
+            }
+            return posts;
         }
-        return posts;
-    }
-    /*
-        카테고리를 선택하지 않고 검색했을때
-     */
-
-    public List<ViewByCategoryResponse> SearchPost(String searchKeyword) {
-        List<ViewByCategoryResponse> posts = postRepository.findByTitleContaining(searchKeyword);
-        if (posts.size() == 0) {
-            throw new NotExistPostException("게시글이 존재하지 않습니다.");
-        }
-        return posts;
     }
 
     public List<ViewByCategoryResponse> viewPostByCategory(String category){

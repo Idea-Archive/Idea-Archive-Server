@@ -51,13 +51,7 @@ public class PostController {
 
     @GetMapping("/search")
     public List<ViewByCategoryResponse> SearchPost(@RequestParam String searchKeyword, @RequestParam String category){
-        if(category.isEmpty()){
-            log.info("필터 적용 X");
-            return postService.SearchPost(searchKeyword);
-        }else{
-            log.info("필터 적용 O");
-            return postService.SearchPost(searchKeyword,category);
-        }
+        return postService.SearchPost(searchKeyword,category);
     }
 
     @GetMapping("/category")
