@@ -3,6 +3,7 @@ package Idea.Archieve.IdeaArchieve.domain.post.presentation;
 import Idea.Archieve.IdeaArchieve.domain.post.Entity.Post;
 import Idea.Archieve.IdeaArchieve.domain.post.presentation.dto.request.UpdatePost;
 import Idea.Archieve.IdeaArchieve.domain.post.presentation.dto.request.WritePost;
+import Idea.Archieve.IdeaArchieve.domain.post.presentation.dto.response.ViewByCategoryResponse;
 import Idea.Archieve.IdeaArchieve.domain.post.service.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -49,8 +50,8 @@ public class PostController {
     }
 
     @GetMapping("/search")
-    public List<Post> SearchPost(@RequestParam String searchKeyword, @RequestParam String category){
-        if(category.equals("null")){
+    public List<ViewByCategoryResponse> SearchPost(@RequestParam String searchKeyword, @RequestParam String category){
+        if(category.isEmpty()){
             log.info("필터 적용 X");
             return postService.SearchPost(searchKeyword);
         }else{
@@ -60,7 +61,7 @@ public class PostController {
     }
 
     @GetMapping("/category")
-    public List<Post> ViewPostByCategory(@RequestParam String category){
+    public List<ViewByCategoryResponse> ViewPostByCategory(@RequestParam String category){
         return postService.viewPostByCategory(category);
     }
 }
