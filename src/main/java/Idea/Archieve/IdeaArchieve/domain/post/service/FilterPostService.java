@@ -15,7 +15,7 @@ public class FilterPostService {
     private final PostRepository postRepository;
 
 
-    public List<ViewByCategoryResponse> SearchPost(String searchKeyword, String category){
+    public List<ViewByCategoryResponse> execute(String searchKeyword, String category){
         if(category.isEmpty()){
             List<ViewByCategoryResponse> posts = postRepository.findByTitleContaining(searchKeyword);
             if (posts.size() == 0) {
