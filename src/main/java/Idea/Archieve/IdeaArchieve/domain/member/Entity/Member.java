@@ -8,11 +8,12 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+
 @Entity
 @Getter @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Member {
+public class Member{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,5 +32,9 @@ public class Member {
     @Column(name = "role", nullable = false)
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    public void updatePassword(String password) {
+        this.password = password;
+    }
 
 }
