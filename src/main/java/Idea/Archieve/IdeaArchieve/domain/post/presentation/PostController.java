@@ -4,6 +4,7 @@ import Idea.Archieve.IdeaArchieve.domain.post.Entity.Post;
 import Idea.Archieve.IdeaArchieve.domain.post.presentation.dto.request.UpdatePost;
 import Idea.Archieve.IdeaArchieve.domain.post.presentation.dto.request.WritePostRequest;
 import Idea.Archieve.IdeaArchieve.domain.post.presentation.dto.response.ViewPostResponse;
+import Idea.Archieve.IdeaArchieve.domain.post.presentation.dto.response.ViewByCategoryResponse;
 import Idea.Archieve.IdeaArchieve.domain.post.service.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -59,20 +60,12 @@ public class PostController {
     }
 
     @GetMapping("/search")
-    public ResponseEntity<List<Post>> searchPost(@RequestParam String searchKeyword, @RequestParam String category) {
-        if(category.isEmpty()) {
-            log.info("필터 적용 X");
-            filterPostService.execute(searchKeyword);
-        } else {
-            log.info("필터 적용 O");
-            filterPostService.execute(searchKeyword,category);
-        }
-        return ResponseEntity.ok().build();
+    public List<ViewByCategoryResponse> SearchPost(@RequestParam String searchKeyword, @RequestParam String category){
+        return filterPostService.SearchPost(searchKeyword,category);
     }
 
     @GetMapping("/category")
-    public ResponseEntity<List<Post>> viewPostByCategory(@RequestParam String category){
-        filterPostByCategoryService.execute(category);
-        return ResponseEntity.ok().build();
+    public List<ViewByCategoryResponse> ViewPostByCategory(@RequestParam String category){
+        return filterPostByCategoryService.viewPostByCategory(category);
     }
 }
