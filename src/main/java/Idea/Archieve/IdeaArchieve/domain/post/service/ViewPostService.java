@@ -23,7 +23,6 @@ public class ViewPostService {
                         .title(n.getTitle())
                         .content(n.getContent())
                         .category(n.getCategory())
-                        .member(n.getMember())
                         .build())
                 .collect(Collectors.toList());
     }

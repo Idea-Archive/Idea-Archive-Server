@@ -28,8 +28,8 @@ public class Post {
     @Column(name = "category", nullable = false)
     private String category;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "member_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_id")
     private Member member;
 
     public void update(String title, String content, String category) {

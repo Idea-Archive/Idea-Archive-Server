@@ -21,7 +21,6 @@ public class ViewPostByIdService {
                 .title(post.getTitle())
                 .content(post.getContent())
                 .category(post.getCategory())
-                .member(post.getMember())
                 .build();
     }
 

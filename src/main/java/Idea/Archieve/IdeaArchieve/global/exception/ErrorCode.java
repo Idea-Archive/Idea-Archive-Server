@@ -21,8 +21,7 @@ public enum ErrorCode {
     TOKEN_EXPIRATION("토큰이 만료 되었습니다.", 401),
     REFRESH_TOKEN_NOT_FOUND("존재하지 않는 리프레시 토큰입니다.", 404),
     FAILED_SEND_EMAIL("이메일 발송에 실패했습니다",400),
-    BLACKLIST_ALREADY_EXIST("블랙리스트에 이미 등록되었습니다",400),
-    NOT_MY_POST("남의 글은 수정할 수 없습니다.", 403);
+    BLACKLIST_ALREADY_EXIST("블랙리스트에 이미 등록되었습니다",400);
 
     private final String message;
     private final int status;
