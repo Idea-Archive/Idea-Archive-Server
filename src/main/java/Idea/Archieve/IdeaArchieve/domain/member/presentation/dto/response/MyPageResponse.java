@@ -15,5 +15,5 @@ public class MyPageResponse {
 
     private String email;
     private String name;
-    private String password;
+
 }

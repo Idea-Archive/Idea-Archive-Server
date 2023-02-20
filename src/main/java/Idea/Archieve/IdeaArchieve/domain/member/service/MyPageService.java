@@ -21,7 +21,6 @@ public class MyPageService {
                 .orElseThrow(()->new MemberNotFoundException("존재하지 않는 회원입니다"));
         return MyPageResponse.builder()
                 .email(member.getEmail())
-                .password(member.getPassword())
                 .name(member.getName())
                 .build();
     }
