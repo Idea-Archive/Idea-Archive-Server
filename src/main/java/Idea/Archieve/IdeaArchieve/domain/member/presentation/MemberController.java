@@ -23,7 +23,7 @@ public class MemberController {
     @PatchMapping
     public ResponseEntity<Void> editPassword(@RequestBody @Valid ChangePasswordRequest changePasswordRequest){
         changePasswordService.execute(changePasswordRequest);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping
