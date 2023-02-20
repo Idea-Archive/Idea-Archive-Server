@@ -49,13 +49,13 @@ public class PostController {
     public ResponseEntity<Void> updatePost(@PathVariable Long postId, @RequestBody @Valid UpdatePost updatePost) {
         updatePostService.execute(postId, updatePost);
         return ResponseEntity.ok().build();
-    } // 검증되지 않은 회원입니다. -> 로그인 제대로 했는데 이상함
+    }
 
     @DeleteMapping("/{postId}")
     public ResponseEntity<Void> deletePost(@PathVariable Long postId) {
         deletePostService.execute(postId);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-    } // 검증되지 않은 회원입니다. -> 로그인 제대로 했는데 이상함
+    }
 
     @GetMapping("/search")
     public ResponseEntity<List<ViewByCategoryResponse>> SearchPost(@RequestParam String searchKeyword, @RequestParam String category){
