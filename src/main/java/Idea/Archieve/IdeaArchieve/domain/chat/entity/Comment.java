@@ -13,12 +13,12 @@ import javax.persistence.*;
 @Getter @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Chat {
+public class Comment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "chat_id")
-    private Long chatId;
+    @Column(name = "comment_id")
+    private Long commentId;
 
     @Column(name = "content", nullable = false)
     private String content;

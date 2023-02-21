@@ -1,8 +1,8 @@
 package Idea.Archieve.IdeaArchieve.domain.chat.service;
 
-import Idea.Archieve.IdeaArchieve.domain.chat.entity.Chat;
-import Idea.Archieve.IdeaArchieve.domain.chat.presentation.dto.request.WriteChatRequest;
-import Idea.Archieve.IdeaArchieve.domain.chat.repository.ChatRepository;
+import Idea.Archieve.IdeaArchieve.domain.chat.entity.Comment;
+import Idea.Archieve.IdeaArchieve.domain.chat.presentation.dto.request.WriteCommentRequest;
+import Idea.Archieve.IdeaArchieve.domain.chat.repository.CommentRepository;
 import Idea.Archieve.IdeaArchieve.domain.member.Entity.Member;
 import Idea.Archieve.IdeaArchieve.global.util.MemberUtil;
 import lombok.RequiredArgsConstructor;
@@ -10,14 +10,14 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class WriteChatService {
+public class WriteCommentService {
 
-    private final ChatRepository chatRepository;
+    private final CommentRepository commentRepository;
     private final MemberUtil memberUtil;
 
-    public void execute(Long postId, WriteChatRequest request) {
+    public void execute(Long postId, WriteCommentRequest request) {
         Member currentMember = memberUtil.currentMember();
-        Chat chat = Chat.builder()
+        Comment comment = Comment.builder()
                 .content(request.getContent())
                 .member(currentMember)
                 .build();
