@@ -22,7 +22,7 @@ public class CommentController {
     private final ModifyCommentService modifyCommentService;
     private final DeleteCommentService deleteCommentService;
 
-    @PostMapping("/comment/{postId}/write")
+    @PostMapping("/comment/{postId}")
     public ResponseEntity<Void> writeComment(@PathVariable Long postId, @RequestBody @Valid WriteCommentRequest request) {
         writeCommentService.execute(postId, request);
         return ResponseEntity.status(HttpStatus.CREATED).build();
