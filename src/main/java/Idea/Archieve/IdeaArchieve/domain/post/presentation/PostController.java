@@ -71,8 +71,8 @@ public class PostController {
     }
 
     @GetMapping("{postId}/heart")
-    public ResponseEntity<Void> insertHeart(@PathVariable("boardId") Long boardId){
-        insertHeartService.execute(boardId);
+    public ResponseEntity<Void> insertHeart(@PathVariable("postId") Long postId){
+        insertHeartService.execute(postId);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 }
