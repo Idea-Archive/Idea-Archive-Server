@@ -8,6 +8,7 @@ import Idea.Archieve.IdeaArchieve.domain.post.exception.NotVerifyMember;
 import Idea.Archieve.IdeaArchieve.global.util.MemberUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -22,6 +23,7 @@ public class ModifyCommentService {
         }
     }
 
+    @Transactional
     public void execute(Long commentId, ModifyCommentRequest request) {
         Comment comment = commentRepository.findById(commentId)
                 .orElseThrow(() -> new NotExistCommentException("존재하지 않는 댓글입니다."));
