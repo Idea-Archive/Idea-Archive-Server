@@ -9,6 +9,7 @@ import Idea.Archieve.IdeaArchieve.domain.email.exception.MisMatchAuthCodeExcepti
 import Idea.Archieve.IdeaArchieve.domain.email.exception.NotVerifyEmailException;
 import Idea.Archieve.IdeaArchieve.domain.member.exception.MemberNotFoundException;
 import Idea.Archieve.IdeaArchieve.domain.member.exception.MisMatchPasswordException;
+import Idea.Archieve.IdeaArchieve.domain.post.exception.AlreadyInsertHeartException;
 import Idea.Archieve.IdeaArchieve.domain.post.exception.NotExistPostException;
 import Idea.Archieve.IdeaArchieve.domain.post.exception.NotVerifyMember;
 import Idea.Archieve.IdeaArchieve.global.exception.ErrorMessage;
@@ -108,6 +109,13 @@ public class GlobalExceptionHandler {
         printError(request, exception, exception.getErrorcode().getMessage());
         ErrorMessage errorMessage = new ErrorMessage(exception.getErrorcode().getMessage(), exception.getErrorcode().getStatus());
         return new ResponseEntity<>(errorMessage, HttpStatus.valueOf(exception.getErrorcode().getStatus()));
+    }
+
+    @ExceptionHandler(AlreadyInsertHeartException.class)
+    public ResponseEntity<ErrorMessage> handleAlreadyInsertHeartException(HttpServletRequest request , AlreadyInsertHeartException exception) {
+        printError(request, exception, exception.getErrorCode().getMessage());
+        ErrorMessage errorMessage = new ErrorMessage(exception.getErrorCode().getMessage(), exception.getErrorCode().getStatus());
+        return new ResponseEntity<>(errorMessage, HttpStatus.valueOf(exception.getErrorCode().getStatus()));
     }
 
     private void printError(HttpServletRequest request, RuntimeException ex, String message) {
