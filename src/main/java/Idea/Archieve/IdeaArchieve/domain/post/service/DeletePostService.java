@@ -3,7 +3,6 @@ package Idea.Archieve.IdeaArchieve.domain.post.service;
 import Idea.Archieve.IdeaArchieve.domain.post.Entity.Post;
 import Idea.Archieve.IdeaArchieve.domain.post.exception.NotExistPostException;
 import Idea.Archieve.IdeaArchieve.domain.post.exception.NotVerifyMember;
-import Idea.Archieve.IdeaArchieve.domain.post.presentation.dto.request.UpdatePost;
 import Idea.Archieve.IdeaArchieve.domain.post.repository.PostRepository;
 import Idea.Archieve.IdeaArchieve.global.util.MemberUtil;
 import lombok.RequiredArgsConstructor;
@@ -12,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
-public class UpdatePostService {
+public class DeletePostService {
 
     private final PostRepository postRepository;
     private final MemberUtil memberUtil;
@@ -24,12 +23,10 @@ public class UpdatePostService {
     }
 
     @Transactional
-    public void execute(Long postId, UpdatePost updatePost) {
+    public void execute(Long postId) {
         Post post = postRepository.findById(postId)
-                        .orElseThrow(() -> new NotExistPostException("존재하지 않는 게시글입니다."));
+                .orElseThrow(() -> new NotExistPostException("존재하지 않는 게시글입니다."));
         verifyPostWriter(post);
-        post.update(updatePost.getTitle(), updatePost.getContent(), updatePost.getCategory());
-        postRepository.save(post);
+        postRepository.deleteById(postId);
     }
-
 }

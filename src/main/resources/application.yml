@@ -31,7 +31,7 @@ spring:
     password: ${EMAIL_PASSWORD}
 
   main:
-    allow-bean-definition-overriding: 'true'
+    allow-bean-definition-overriding: true
 
   redis:
     host: localhost
