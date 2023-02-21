@@ -41,6 +41,7 @@ public class SecurityConfig {
                 .antMatchers("/email/**").permitAll()
                 .antMatchers("/auth/**").permitAll()
                 .antMatchers("/post/**").authenticated()
+                .antMatchers("/post/comment/**").authenticated()
                 .anyRequest().authenticated();
         http
                 .sessionManagement()
