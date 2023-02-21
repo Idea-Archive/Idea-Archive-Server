@@ -28,6 +28,7 @@ public class WriteCommentService {
                 .post(findPost)
                 .member(currentMember)
                 .build();
+        commentRepository.save(comment);
     }
 
 }

@@ -34,9 +34,6 @@ public class Post {
     @JoinColumn(name = "member_id")
     private Member member;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    private List<Comment> comments;
-
     public void update(String title, String content, String category) {
         this.title = title;
         this.content = content;
