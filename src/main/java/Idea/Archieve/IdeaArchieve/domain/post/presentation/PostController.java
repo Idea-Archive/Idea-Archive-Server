@@ -1,6 +1,6 @@
 package Idea.Archieve.IdeaArchieve.domain.post.presentation;
 
-import Idea.Archieve.IdeaArchieve.domain.post.presentation.dto.request.UpdatePost;
+import Idea.Archieve.IdeaArchieve.domain.post.presentation.dto.request.ModifyPostRequest;
 import Idea.Archieve.IdeaArchieve.domain.post.presentation.dto.request.WritePostRequest;
 import Idea.Archieve.IdeaArchieve.domain.post.presentation.dto.response.ViewPostByIdResponse;
 import Idea.Archieve.IdeaArchieve.domain.post.presentation.dto.response.ViewPostResponse;
@@ -22,7 +22,7 @@ public class PostController {
     private final WritePostService writePostService;
     private final ViewPostService viewPostService;
     private final ViewPostByIdService viewPostByIdService;
-    private final UpdatePostService updatePostService;
+    private final ModifyPostService modifyPostService;
     private final DeletePostService deletePostService;
     private final FilterPostService filterPostService;
     private final FilterPostByCategoryService filterPostByCategoryService;
@@ -46,8 +46,8 @@ public class PostController {
     }
 
     @PatchMapping("/{postId}")
-    public ResponseEntity<Void> updatePost(@PathVariable Long postId, @RequestBody @Valid UpdatePost updatePost) {
-        updatePostService.execute(postId, updatePost);
+    public ResponseEntity<Void> updatePost(@PathVariable Long postId, @RequestBody @Valid ModifyPostRequest modifyPostRequest) {
+        modifyPostService.execute(postId, modifyPostRequest);
         return ResponseEntity.ok().build();
     }
 
