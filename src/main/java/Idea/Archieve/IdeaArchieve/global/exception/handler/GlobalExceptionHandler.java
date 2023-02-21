@@ -3,6 +3,7 @@ package Idea.Archieve.IdeaArchieve.global.exception.handler;
 import Idea.Archieve.IdeaArchieve.domain.auth.exception.BlackListAlreadyExistException;
 import Idea.Archieve.IdeaArchieve.domain.auth.exception.ExistEmailException;
 import Idea.Archieve.IdeaArchieve.domain.auth.exception.RefreshTokenNotFoundException;
+import Idea.Archieve.IdeaArchieve.domain.comment.exception.NotExistCommentException;
 import Idea.Archieve.IdeaArchieve.domain.email.exception.FailedSendEmailException;
 import Idea.Archieve.IdeaArchieve.domain.email.exception.ManyRequestEmailException;
 import Idea.Archieve.IdeaArchieve.domain.email.exception.MisMatchAuthCodeException;
@@ -109,6 +110,14 @@ public class GlobalExceptionHandler {
         ErrorMessage errorMessage = new ErrorMessage(exception.getErrorcode().getMessage(), exception.getErrorcode().getStatus());
         return new ResponseEntity<>(errorMessage, HttpStatus.valueOf(exception.getErrorcode().getStatus()));
     }
+
+    @ExceptionHandler(NotExistCommentException.class)
+    public ResponseEntity<ErrorMessage> handleNotExistCommentException(HttpServletRequest request , NotExistCommentException exception) {
+        printError(request, exception, exception.getErrorCode().getMessage());
+        ErrorMessage errorMessage = new ErrorMessage(exception.getErrorCode().getMessage(), exception.getErrorCode().getStatus());
+        return new ResponseEntity<>(errorMessage, HttpStatus.valueOf(exception.getErrorCode().getStatus()));
+    }
+
 
     private void printError(HttpServletRequest request, RuntimeException ex, String message) {
         log.error(request.getRequestURI());

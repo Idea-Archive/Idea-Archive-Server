@@ -31,4 +31,7 @@ public class Comment {
     @JoinColumn(name = "member_id")
     private Member member;
 
+    public void update(String content) {
+        this.content = content;
+    }
 }

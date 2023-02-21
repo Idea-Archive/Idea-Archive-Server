@@ -1,6 +1,5 @@
 package Idea.Archieve.IdeaArchieve.domain.post.Entity;
 
-import Idea.Archieve.IdeaArchieve.domain.comment.entity.Comment;
 import Idea.Archieve.IdeaArchieve.domain.member.Entity.Member;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -8,7 +7,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Getter @Builder
