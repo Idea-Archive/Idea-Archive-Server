@@ -1,5 +1,6 @@
 package Idea.Archieve.IdeaArchieve.domain.post.Entity;
 
+import Idea.Archieve.IdeaArchieve.domain.chat.entity.Comment;
 import Idea.Archieve.IdeaArchieve.domain.member.Entity.Member;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -7,6 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Getter @Builder
@@ -31,6 +33,9 @@ public class Post {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
+
+    @OneToMany(fetch = FetchType.LAZY)
+    private List<Comment> comments;
 
     public void update(String title, String content, String category) {
         this.title = title;
