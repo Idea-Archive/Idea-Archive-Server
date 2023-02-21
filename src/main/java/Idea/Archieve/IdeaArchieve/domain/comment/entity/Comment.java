@@ -1,4 +1,4 @@
-package Idea.Archieve.IdeaArchieve.domain.chat.entity;
+package Idea.Archieve.IdeaArchieve.domain.comment.entity;
 
 import Idea.Archieve.IdeaArchieve.domain.member.Entity.Member;
 import Idea.Archieve.IdeaArchieve.domain.post.Entity.Post;

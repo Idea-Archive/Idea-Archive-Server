@@ -1,4 +1,4 @@
-package Idea.Archieve.IdeaArchieve.domain.chat.presentation.dto.request;
+package Idea.Archieve.IdeaArchieve.domain.comment.presentation.dto.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
