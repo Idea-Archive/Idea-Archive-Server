@@ -1,5 +1,6 @@
 package Idea.Archieve.IdeaArchieve.domain.chat.entity;
 
+import Idea.Archieve.IdeaArchieve.domain.member.Entity.Member;
 import Idea.Archieve.IdeaArchieve.domain.post.Entity.Post;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -25,5 +26,9 @@ public class Chat {
     @ManyToOne
     @JoinColumn(name = "post_id")
     private Post post;
+
+    @ManyToOne
+    @JoinColumn(name = "member_id")
+    private Member member;
 
 }
