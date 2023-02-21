@@ -20,10 +20,10 @@ public class InsertHeartService {
     private final PostRepository postRepository;
     private final HeartRepository heartRepository;
 
-    public void execute(Long boardId){
+    public void execute(Long postId){
         Member member = memberUtil.currentMember();
 
-        Post post = postRepository.findById(boardId)
+        Post post = postRepository.findById(postId)
                 .orElseThrow(()->new NotExistPostException("게시글이 존재하지 않습니다"));
 
         if(heartRepository.existsHeartByMemberAndPost(member,post)){
