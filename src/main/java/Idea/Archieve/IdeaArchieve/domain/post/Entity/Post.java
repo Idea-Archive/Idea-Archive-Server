@@ -43,7 +43,7 @@ public class Post {
         this.category = category;
     }
 
-    public void update(Integer heartCount){
+    public void updateHeart(Integer heartCount){
         this.heartCount = heartCount;
     }
 

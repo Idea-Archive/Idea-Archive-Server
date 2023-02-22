@@ -3,7 +3,6 @@ package Idea.Archieve.IdeaArchieve.domain.post.service;
 
 import Idea.Archieve.IdeaArchieve.domain.post.Entity.Heart;
 import Idea.Archieve.IdeaArchieve.domain.member.Entity.Member;
-import Idea.Archieve.IdeaArchieve.domain.post.exception.AlreadyInsertHeartException;
 import Idea.Archieve.IdeaArchieve.domain.post.repository.HeartRepository;
 import Idea.Archieve.IdeaArchieve.domain.post.Entity.Post;
 import Idea.Archieve.IdeaArchieve.domain.post.exception.NotExistPostException;
@@ -29,7 +28,7 @@ public class InsertHeartService {
                 .orElseThrow(()->new NotExistPostException("게시글이 존재하지 않습니다"));
 
         if(heartRepository.existsHeartByMemberAndPost(member,post)){
-            post.update(post.getHeartCount()-1);
+            post.updateHeart(post.getHeartCount()-1);
             postRepository.save(post);
             heartRepository.deleteHeartByMemberAndPost(member,post);
         }else{
@@ -38,7 +37,7 @@ public class InsertHeartService {
                     .post(post)
                     .build();
 
-            post.update(post.getHeartCount()+1);
+            post.updateHeart(post.getHeartCount()+1);
             heartRepository.save(heart);
             postRepository.save(post);
         }
