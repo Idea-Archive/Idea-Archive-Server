@@ -41,7 +41,6 @@ public class AuthController {
     public ResponseEntity<Void> logout(@RequestHeader("Authorization")String accessToken){
         memberLogoutService.execute(accessToken);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-
     }
 
     @PatchMapping
