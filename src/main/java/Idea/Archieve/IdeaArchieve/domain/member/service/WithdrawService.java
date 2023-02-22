@@ -6,7 +6,6 @@ import Idea.Archieve.IdeaArchieve.domain.auth.exception.RefreshTokenNotFoundExce
 import Idea.Archieve.IdeaArchieve.domain.auth.repository.RefreshTokenRepository;
 import Idea.Archieve.IdeaArchieve.domain.member.Entity.Member;
 import Idea.Archieve.IdeaArchieve.domain.member.exception.MisMatchPasswordException;
-import Idea.Archieve.IdeaArchieve.domain.member.presentation.dto.request.WithdrawRequest;
 import Idea.Archieve.IdeaArchieve.domain.member.repository.MemberRepository;
 import Idea.Archieve.IdeaArchieve.domain.post.Entity.Heart;
 import Idea.Archieve.IdeaArchieve.domain.post.repository.HeartRepository;
@@ -31,12 +30,12 @@ public class WithdrawService {
     private final PostRepository postRepository;
 
     @Transactional
-    public void execute(WithdrawRequest withdrawRequest){
+    public void execute(String password){
         Member member = memberUtil.currentMember();
         RefreshToken refreshToken = refreshTokenRepository.findById(member.getEmail())
                         .orElseThrow(()->new RefreshTokenNotFoundException("존재하지 않은 리프레시 토큰입니다."));
 
-        if(!passwordEncoder.matches(withdrawRequest.getPassword(), member.getPassword())){
+        if(!passwordEncoder.matches(password, member.getPassword())){
             throw new MisMatchPasswordException("비밀번호가 일치하지 않습니다.");
         }
 

@@ -2,14 +2,11 @@ package Idea.Archieve.IdeaArchieve.domain.member.presentation;
 
 
 import Idea.Archieve.IdeaArchieve.domain.member.presentation.dto.request.ChangePasswordRequest;
-import Idea.Archieve.IdeaArchieve.domain.member.presentation.dto.request.WithdrawRequest;
 import Idea.Archieve.IdeaArchieve.domain.member.presentation.dto.response.MyPageResponse;
 import Idea.Archieve.IdeaArchieve.domain.member.service.ChangePasswordService;
 import Idea.Archieve.IdeaArchieve.domain.member.service.MyPageService;
 import Idea.Archieve.IdeaArchieve.domain.member.service.WithdrawService;
 import lombok.RequiredArgsConstructor;
-import lombok.With;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,8 +34,8 @@ public class MemberController {
     }
 
     @DeleteMapping
-    public ResponseEntity<Void> withdraw(@RequestBody @Valid WithdrawRequest withdrawRequest){
-        withdrawService.execute(withdrawRequest);
+    public ResponseEntity<Void> withdraw(@RequestParam String password){
+        withdrawService.execute(password);
         return ResponseEntity.noContent().build();
     }
 }
