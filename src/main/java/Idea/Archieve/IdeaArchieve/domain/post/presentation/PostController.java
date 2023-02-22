@@ -26,6 +26,7 @@ public class PostController {
     private final DeletePostService deletePostService;
     private final FilterPostService filterPostService;
     private final FilterPostByCategoryService filterPostByCategoryService;
+    private final InsertHeartService insertHeartService;
 
     @PostMapping("/write")
     public ResponseEntity<Void> writePost(@RequestBody @Valid WritePostRequest writePostRequest) {
@@ -67,5 +68,11 @@ public class PostController {
     public ResponseEntity<List<ViewByCategoryResponse>> ViewPostByCategory(@RequestParam String category){
         List<ViewByCategoryResponse> response = filterPostByCategoryService.execute(category);
         return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("{postId}/heart")
+    public ResponseEntity<Void> insertHeart(@PathVariable("postId") Long postId){
+        insertHeartService.execute(postId);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 }

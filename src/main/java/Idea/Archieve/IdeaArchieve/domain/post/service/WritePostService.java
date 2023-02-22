@@ -24,6 +24,7 @@ public class WritePostService {
                 .content(writePostRequest.getContent())
                 .category(writePostRequest.getCategory())
                 .member(currentMember)
+                .heartCount(0)
                 .build();
         postRepository.save(post);
     }
