@@ -5,6 +5,7 @@ import Idea.Archieve.IdeaArchieve.domain.auth.entity.RefreshToken;
 import Idea.Archieve.IdeaArchieve.domain.auth.exception.RefreshTokenNotFoundException;
 import Idea.Archieve.IdeaArchieve.domain.auth.repository.RefreshTokenRepository;
 import Idea.Archieve.IdeaArchieve.domain.member.Entity.Member;
+import Idea.Archieve.IdeaArchieve.domain.member.exception.MemberNotFoundException;
 import Idea.Archieve.IdeaArchieve.domain.member.exception.MisMatchPasswordException;
 import Idea.Archieve.IdeaArchieve.domain.member.repository.MemberRepository;
 import Idea.Archieve.IdeaArchieve.domain.post.Entity.Heart;
@@ -30,8 +31,9 @@ public class WithdrawService {
     private final PostRepository postRepository;
 
     @Transactional
-    public void execute(String password){
-        Member member = memberUtil.currentMember();
+    public void execute(String email,String password){
+        Member member = memberRepository.findByEmail(email)
+                .orElseThrow(()-> new MemberNotFoundException("유저가 존재하지 않습니다"));
         RefreshToken refreshToken = refreshTokenRepository.findById(member.getEmail())
                         .orElseThrow(()->new RefreshTokenNotFoundException("존재하지 않은 리프레시 토큰입니다."));
 

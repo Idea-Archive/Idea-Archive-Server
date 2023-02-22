@@ -34,8 +34,8 @@ public class MemberController {
     }
 
     @DeleteMapping
-    public ResponseEntity<Void> withdraw(@RequestParam String password){
-        withdrawService.execute(password);
+    public ResponseEntity<Void> withdraw(@RequestParam String email,@RequestParam String password){
+        withdrawService.execute(email,password);
         return ResponseEntity.noContent().build();
     }
 }
