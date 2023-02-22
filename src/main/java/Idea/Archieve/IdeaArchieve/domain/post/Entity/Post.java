@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 
@@ -28,6 +29,10 @@ public class Post {
     @Column(name = "category", nullable = false)
     private String category;
 
+    @ColumnDefault("0")
+    @Column(name = "heart_count", nullable = false)
+    private Integer heartCount;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
@@ -36,6 +41,10 @@ public class Post {
         this.title = title;
         this.content = content;
         this.category = category;
+    }
+
+    public void update(Integer heartCount){
+        this.heartCount = heartCount;
     }
 
 }
