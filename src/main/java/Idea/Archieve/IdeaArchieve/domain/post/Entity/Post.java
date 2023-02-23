@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Getter @Builder
@@ -37,13 +38,16 @@ public class Post {
     @JoinColumn(name = "member_id")
     private Member member;
 
+    @OneToMany(mappedBy = "post",fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Heart> hearts;
+
     public void update(String title, String content, String category) {
         this.title = title;
         this.content = content;
         this.category = category;
     }
 
-    public void update(Integer heartCount){
+    public void updateHeart(Integer heartCount){
         this.heartCount = heartCount;
     }
 
