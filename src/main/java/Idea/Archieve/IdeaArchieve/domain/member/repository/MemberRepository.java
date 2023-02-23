@@ -1,6 +1,6 @@
 package Idea.Archieve.IdeaArchieve.domain.member.repository;
 
-import Idea.Archieve.IdeaArchieve.domain.member.Entity.Member;
+import Idea.Archieve.IdeaArchieve.domain.member.entity.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

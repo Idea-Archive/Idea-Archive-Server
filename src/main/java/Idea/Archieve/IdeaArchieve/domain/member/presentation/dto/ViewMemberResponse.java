@@ -1,6 +1,6 @@
 package Idea.Archieve.IdeaArchieve.domain.member.presentation.dto;
 
-import Idea.Archieve.IdeaArchieve.domain.member.Entity.Member;
+import Idea.Archieve.IdeaArchieve.domain.member.entity.Member;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

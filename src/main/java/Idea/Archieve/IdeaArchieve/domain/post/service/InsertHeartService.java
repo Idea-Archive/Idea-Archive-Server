@@ -2,7 +2,7 @@ package Idea.Archieve.IdeaArchieve.domain.post.service;
 
 
 import Idea.Archieve.IdeaArchieve.domain.post.entity.Heart;
-import Idea.Archieve.IdeaArchieve.domain.member.Entity.Member;
+import Idea.Archieve.IdeaArchieve.domain.member.entity.Member;
 import Idea.Archieve.IdeaArchieve.domain.post.repository.HeartRepository;
 import Idea.Archieve.IdeaArchieve.domain.post.entity.Post;
 import Idea.Archieve.IdeaArchieve.domain.post.exception.NotExistPostException;

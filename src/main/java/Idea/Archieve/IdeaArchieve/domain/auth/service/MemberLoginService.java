@@ -5,7 +5,7 @@ import Idea.Archieve.IdeaArchieve.domain.auth.entity.RefreshToken;
 import Idea.Archieve.IdeaArchieve.domain.auth.presentation.dto.request.MemberLoginRequest;
 import Idea.Archieve.IdeaArchieve.domain.auth.presentation.dto.response.MemberLoginResponse;
 import Idea.Archieve.IdeaArchieve.domain.auth.repository.RefreshTokenRepository;
-import Idea.Archieve.IdeaArchieve.domain.member.Entity.Member;
+import Idea.Archieve.IdeaArchieve.domain.member.entity.Member;
 import Idea.Archieve.IdeaArchieve.domain.member.exception.MemberNotFoundException;
 import Idea.Archieve.IdeaArchieve.domain.member.exception.MisMatchPasswordException;
 import Idea.Archieve.IdeaArchieve.domain.member.repository.MemberRepository;

@@ -1,6 +1,6 @@
 package Idea.Archieve.IdeaArchieve.domain.post.service;
 
-import Idea.Archieve.IdeaArchieve.domain.member.Entity.Member;
+import Idea.Archieve.IdeaArchieve.domain.member.entity.Member;
 import Idea.Archieve.IdeaArchieve.domain.post.entity.Post;
 import Idea.Archieve.IdeaArchieve.domain.post.presentation.dto.request.WritePostRequest;
 import Idea.Archieve.IdeaArchieve.domain.post.repository.PostRepository;

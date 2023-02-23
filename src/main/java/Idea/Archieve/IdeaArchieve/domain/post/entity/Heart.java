@@ -1,7 +1,7 @@
 package Idea.Archieve.IdeaArchieve.domain.post.entity;
 
 
-import Idea.Archieve.IdeaArchieve.domain.member.Entity.Member;
+import Idea.Archieve.IdeaArchieve.domain.member.entity.Member;
 import lombok.*;
 
 import javax.persistence.*;
