@@ -31,6 +31,10 @@ public class Member{
     @Column(name = "password", nullable = false)
     private String password;
 
+    @Column(name = "profile_image_url", nullable = false)
+    private String profileImageUrl;
+
+
     @Column(name = "role", nullable = false)
     @Enumerated(EnumType.STRING)
     private Role role;
