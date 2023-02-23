@@ -10,4 +10,5 @@ public interface PostRepository extends JpaRepository<Post, Long> {
     List<ViewByCategoryResponse> findByTitleContainingAndCategory(String searchKeyword, String category);
     List<ViewByCategoryResponse> findByTitleContaining(String searchKeyword);
     List<ViewByCategoryResponse> findByCategory(String category);
+    void deleteByMember_MemberId(Long memberId);
 }

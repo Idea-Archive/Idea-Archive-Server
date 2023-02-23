@@ -1,8 +1,13 @@
 package Idea.Archieve.IdeaArchieve.domain.post.service;
 
 
+<<<<<<< HEAD
 import Idea.Archieve.IdeaArchieve.domain.post.entity.Heart;
 import Idea.Archieve.IdeaArchieve.domain.member.entity.Member;
+=======
+import Idea.Archieve.IdeaArchieve.domain.post.Entity.Heart;
+import Idea.Archieve.IdeaArchieve.domain.member.Entity.Member;
+>>>>>>> f5fd92affad7047fd0a52f67e99faddc67029615
 import Idea.Archieve.IdeaArchieve.domain.post.repository.HeartRepository;
 import Idea.Archieve.IdeaArchieve.domain.post.entity.Post;
 import Idea.Archieve.IdeaArchieve.domain.post.exception.NotExistPostException;
@@ -28,7 +33,7 @@ public class InsertHeartService {
                 .orElseThrow(()->new NotExistPostException("게시글이 존재하지 않습니다"));
 
         if(heartRepository.existsHeartByMemberAndPost(member,post)){
-            post.update(post.getHeartCount()-1);
+            post.updateHeart(post.getHeartCount()-1);
             postRepository.save(post);
             heartRepository.deleteHeartByMemberAndPost(member,post);
         }else{
@@ -37,7 +42,7 @@ public class InsertHeartService {
                     .post(post)
                     .build();
 
-            post.update(post.getHeartCount()+1);
+            post.updateHeart(post.getHeartCount()+1);
             heartRepository.save(heart);
             postRepository.save(post);
         }
