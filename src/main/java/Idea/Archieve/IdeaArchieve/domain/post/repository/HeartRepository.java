@@ -12,7 +12,8 @@ public interface HeartRepository extends JpaRepository<Heart, Long> {
 
     boolean existsHeartByMemberAndPost(Member member , Post post);
 
-    Optional<Heart> deleteHeartByMemberAndPost(Member member, Post post);
+    void deleteHeartByMemberAndPost(Member member, Post post);
+    void deleteByPost(Post post);
 
     void deleteByMember_MemberId(Long memberId);
     List<Heart> findByMember_MemberId(Long memberId);
