@@ -33,6 +33,15 @@ spring:
   main:
     allow-bean-definition-overriding: true
 
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 960793902038-ei5r49r2ou9pflsn9bas5hvj4c13uroq.apps.googleusercontent.com
+            client-secret: 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
+
+
   redis:
     host: ${REDIS_HOST}
     port: ${REDIS_PORT}
