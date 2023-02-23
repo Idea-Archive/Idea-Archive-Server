@@ -7,15 +7,11 @@ import Idea.Archieve.IdeaArchieve.domain.auth.exception.BlackListAlreadyExistExc
 import Idea.Archieve.IdeaArchieve.domain.auth.exception.RefreshTokenNotFoundException;
 import Idea.Archieve.IdeaArchieve.domain.auth.repository.BlackListRepository;
 import Idea.Archieve.IdeaArchieve.domain.auth.repository.RefreshTokenRepository;
-import Idea.Archieve.IdeaArchieve.domain.member.Entity.Member;
-import Idea.Archieve.IdeaArchieve.global.security.jwt.TokenProvider;
-import Idea.Archieve.IdeaArchieve.global.security.jwt.properties.JwtProperties;
+import Idea.Archieve.IdeaArchieve.domain.member.entity.Member;
 import Idea.Archieve.IdeaArchieve.global.util.MemberUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
-
-import java.time.ZonedDateTime;
 
 @Service
 @RequiredArgsConstructor

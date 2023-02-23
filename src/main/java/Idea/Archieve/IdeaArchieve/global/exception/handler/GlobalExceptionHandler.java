@@ -3,6 +3,7 @@ package Idea.Archieve.IdeaArchieve.global.exception.handler;
 import Idea.Archieve.IdeaArchieve.domain.auth.exception.BlackListAlreadyExistException;
 import Idea.Archieve.IdeaArchieve.domain.auth.exception.ExistEmailException;
 import Idea.Archieve.IdeaArchieve.domain.auth.exception.RefreshTokenNotFoundException;
+import Idea.Archieve.IdeaArchieve.domain.comment.exception.NotExistCommentException;
 import Idea.Archieve.IdeaArchieve.domain.email.exception.FailedSendEmailException;
 import Idea.Archieve.IdeaArchieve.domain.email.exception.ManyRequestEmailException;
 import Idea.Archieve.IdeaArchieve.domain.email.exception.MisMatchAuthCodeException;
@@ -111,18 +112,24 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(errorMessage, HttpStatus.valueOf(exception.getErrorcode().getStatus()));
     }
 
-    @ExceptionHandler(AlreadyInsertHeartException.class)
-    public ResponseEntity<ErrorMessage> handleAlreadyInsertHeartException(HttpServletRequest request , AlreadyInsertHeartException exception) {
+    @ExceptionHandler(NotExistCommentException.class)
+    public ResponseEntity<ErrorMessage> handleNotExistCommentException(HttpServletRequest request , NotExistCommentException exception) {
         printError(request, exception, exception.getErrorCode().getMessage());
         ErrorMessage errorMessage = new ErrorMessage(exception.getErrorCode().getMessage(), exception.getErrorCode().getStatus());
         return new ResponseEntity<>(errorMessage, HttpStatus.valueOf(exception.getErrorCode().getStatus()));
     }
 
-    private void printError(HttpServletRequest request, RuntimeException ex, String message) {
+
+    @ExceptionHandler(AlreadyInsertHeartException.class)
+    public ResponseEntity<ErrorMessage> handleAlreadyInsertHeartException (HttpServletRequest request, AlreadyInsertHeartException exception){
+        printError(request, exception, exception.getErrorCode().getMessage());
+        ErrorMessage errorMessage = new ErrorMessage(exception.getErrorCode().getMessage(), exception.getErrorCode().getStatus());
+        return new ResponseEntity<>(errorMessage, HttpStatus.valueOf(exception.getErrorCode().getStatus()));
+    }
+
+    private void printError(HttpServletRequest request, RuntimeException ex, String message){
         log.error(request.getRequestURI());
         log.error(message);
         ex.printStackTrace();
     }
-
-
 }

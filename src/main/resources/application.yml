@@ -26,7 +26,7 @@ spring:
           starttls:
             enable: 'true'
           auth: 'true'
-    host: smtp.gmail.com
+    host: ${EMAIL_HOST}
     username: ${EMAIL_NAME}
     password: ${EMAIL_PASSWORD}
 
@@ -34,8 +34,8 @@ spring:
     allow-bean-definition-overriding: true
 
   redis:
-    host: localhost
-    port: 6379
+    host: ${REDIS_HOST}
+    port: ${REDIS_PORT}
 
 
 

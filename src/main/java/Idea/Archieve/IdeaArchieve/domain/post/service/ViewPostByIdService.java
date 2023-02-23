@@ -1,11 +1,16 @@
 package Idea.Archieve.IdeaArchieve.domain.post.service;
 
-import Idea.Archieve.IdeaArchieve.domain.post.Entity.Post;
+import Idea.Archieve.IdeaArchieve.domain.comment.presentation.dto.response.ViewCommentByPostResponse;
+import Idea.Archieve.IdeaArchieve.domain.member.presentation.dto.ViewMemberResponse;
+import Idea.Archieve.IdeaArchieve.domain.post.entity.Post;
 import Idea.Archieve.IdeaArchieve.domain.post.exception.NotExistPostException;
 import Idea.Archieve.IdeaArchieve.domain.post.presentation.dto.response.ViewPostByIdResponse;
 import Idea.Archieve.IdeaArchieve.domain.post.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -13,14 +18,19 @@ public class ViewPostByIdService {
 
     private final PostRepository postRepository;
 
+    @Transactional
     public ViewPostByIdResponse execute(Long PostId) {
         Post post = postRepository.findById(PostId)
                 .orElseThrow(() -> new NotExistPostException("존재하지 않는 게시판입니다."));
+        List<ViewCommentByPostResponse> comment = ViewCommentByPostResponse.convertToCommentList(post.getCommentList());
         return ViewPostByIdResponse.builder()
                 .id(post.getPostId())
                 .title(post.getTitle())
                 .content(post.getContent())
                 .category(post.getCategory())
+                .member(
+                        ViewMemberResponse.convertToMember(post.getMember()))
+                .comment(comment)
                 .build();
     }
 

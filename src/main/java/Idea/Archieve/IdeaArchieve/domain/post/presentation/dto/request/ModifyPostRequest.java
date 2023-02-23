@@ -10,7 +10,7 @@ import javax.validation.constraints.Size;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UpdatePost {
+public class ModifyPostRequest {
 
     @NotBlank(message = "제목은 공백을 허용하지 않습니다.")
     @Size(min = 1, max = 30, message = "제목은 1자 ~ 30자 내외입니다.")

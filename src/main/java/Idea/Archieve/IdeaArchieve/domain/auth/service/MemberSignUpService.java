@@ -5,7 +5,7 @@ import Idea.Archieve.IdeaArchieve.domain.auth.presentation.dto.request.MemberSig
 import Idea.Archieve.IdeaArchieve.domain.email.entity.EmailAuth;
 import Idea.Archieve.IdeaArchieve.domain.email.exception.NotVerifyEmailException;
 import Idea.Archieve.IdeaArchieve.domain.email.repository.EmailAuthRepository;
-import Idea.Archieve.IdeaArchieve.domain.member.Entity.Member;
+import Idea.Archieve.IdeaArchieve.domain.member.entity.Member;
 import Idea.Archieve.IdeaArchieve.domain.member.repository.MemberRepository;
 import Idea.Archieve.IdeaArchieve.global.filter.role.Role;
 import lombok.RequiredArgsConstructor;

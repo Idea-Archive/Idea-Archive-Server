@@ -1,4 +1,4 @@
-package Idea.Archieve.IdeaArchieve.domain.member.Entity;
+package Idea.Archieve.IdeaArchieve.domain.member.entity;
 
 import Idea.Archieve.IdeaArchieve.domain.post.Entity.Post;
 import Idea.Archieve.IdeaArchieve.global.filter.role.Role;

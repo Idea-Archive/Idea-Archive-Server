@@ -1,12 +1,11 @@
 package Idea.Archieve.IdeaArchieve.domain.member.service;
 
 
-import Idea.Archieve.IdeaArchieve.domain.member.Entity.Member;
+import Idea.Archieve.IdeaArchieve.domain.member.entity.Member;
 import Idea.Archieve.IdeaArchieve.domain.member.exception.MisMatchPasswordException;
 import Idea.Archieve.IdeaArchieve.domain.member.presentation.dto.request.ChangePasswordRequest;
 import Idea.Archieve.IdeaArchieve.global.util.MemberUtil;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
