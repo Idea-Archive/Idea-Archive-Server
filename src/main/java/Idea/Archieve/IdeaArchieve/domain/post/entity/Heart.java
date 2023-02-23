@@ -1,4 +1,4 @@
-package Idea.Archieve.IdeaArchieve.domain.post.Entity;
+package Idea.Archieve.IdeaArchieve.domain.post.entity;
 
 
 import Idea.Archieve.IdeaArchieve.domain.member.Entity.Member;

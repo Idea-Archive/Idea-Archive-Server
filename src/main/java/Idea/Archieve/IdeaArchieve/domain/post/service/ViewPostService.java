@@ -1,6 +1,6 @@
 package Idea.Archieve.IdeaArchieve.domain.post.service;
 
-import Idea.Archieve.IdeaArchieve.domain.post.Entity.Post;
+import Idea.Archieve.IdeaArchieve.domain.post.entity.Post;
 import Idea.Archieve.IdeaArchieve.domain.post.presentation.dto.response.ViewPostResponse;
 import Idea.Archieve.IdeaArchieve.domain.post.repository.PostRepository;
 import lombok.RequiredArgsConstructor;

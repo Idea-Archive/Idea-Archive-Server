@@ -2,7 +2,7 @@ package Idea.Archieve.IdeaArchieve.domain.post.service;
 
 import Idea.Archieve.IdeaArchieve.domain.comment.presentation.dto.response.ViewCommentByPostResponse;
 import Idea.Archieve.IdeaArchieve.domain.member.presentation.dto.ViewMemberResponse;
-import Idea.Archieve.IdeaArchieve.domain.post.Entity.Post;
+import Idea.Archieve.IdeaArchieve.domain.post.entity.Post;
 import Idea.Archieve.IdeaArchieve.domain.post.exception.NotExistPostException;
 import Idea.Archieve.IdeaArchieve.domain.post.presentation.dto.response.ViewPostByIdResponse;
 import Idea.Archieve.IdeaArchieve.domain.post.repository.PostRepository;

@@ -4,7 +4,7 @@ import Idea.Archieve.IdeaArchieve.domain.comment.entity.Comment;
 import Idea.Archieve.IdeaArchieve.domain.comment.presentation.dto.request.WriteCommentRequest;
 import Idea.Archieve.IdeaArchieve.domain.comment.repository.CommentRepository;
 import Idea.Archieve.IdeaArchieve.domain.member.Entity.Member;
-import Idea.Archieve.IdeaArchieve.domain.post.Entity.Post;
+import Idea.Archieve.IdeaArchieve.domain.post.entity.Post;
 import Idea.Archieve.IdeaArchieve.domain.post.exception.NotExistPostException;
 import Idea.Archieve.IdeaArchieve.domain.post.repository.PostRepository;
 import Idea.Archieve.IdeaArchieve.global.util.MemberUtil;

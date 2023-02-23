@@ -1,7 +1,7 @@
 package Idea.Archieve.IdeaArchieve.domain.comment.entity;
 
 import Idea.Archieve.IdeaArchieve.domain.member.Entity.Member;
-import Idea.Archieve.IdeaArchieve.domain.post.Entity.Post;
+import Idea.Archieve.IdeaArchieve.domain.post.entity.Post;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

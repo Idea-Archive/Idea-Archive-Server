@@ -1,11 +1,10 @@
 package Idea.Archieve.IdeaArchieve.domain.post.service;
 
 
-import Idea.Archieve.IdeaArchieve.domain.post.Entity.Heart;
+import Idea.Archieve.IdeaArchieve.domain.post.entity.Heart;
 import Idea.Archieve.IdeaArchieve.domain.member.Entity.Member;
-import Idea.Archieve.IdeaArchieve.domain.post.exception.AlreadyInsertHeartException;
 import Idea.Archieve.IdeaArchieve.domain.post.repository.HeartRepository;
-import Idea.Archieve.IdeaArchieve.domain.post.Entity.Post;
+import Idea.Archieve.IdeaArchieve.domain.post.entity.Post;
 import Idea.Archieve.IdeaArchieve.domain.post.exception.NotExistPostException;
 import Idea.Archieve.IdeaArchieve.domain.post.repository.PostRepository;
 import Idea.Archieve.IdeaArchieve.global.util.MemberUtil;

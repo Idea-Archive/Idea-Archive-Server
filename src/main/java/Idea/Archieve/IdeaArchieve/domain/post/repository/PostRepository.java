@@ -1,6 +1,6 @@
 package Idea.Archieve.IdeaArchieve.domain.post.repository;
 
-import Idea.Archieve.IdeaArchieve.domain.post.Entity.Post;
+import Idea.Archieve.IdeaArchieve.domain.post.entity.Post;
 import Idea.Archieve.IdeaArchieve.domain.post.presentation.dto.response.ViewByCategoryResponse;
 import org.springframework.data.jpa.repository.JpaRepository;
 
