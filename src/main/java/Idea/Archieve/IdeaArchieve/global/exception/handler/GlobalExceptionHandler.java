@@ -112,27 +112,24 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(errorMessage, HttpStatus.valueOf(exception.getErrorcode().getStatus()));
     }
 
-<<<<<<< HEAD
     @ExceptionHandler(NotExistCommentException.class)
     public ResponseEntity<ErrorMessage> handleNotExistCommentException(HttpServletRequest request , NotExistCommentException exception) {
-=======
-    @ExceptionHandler(AlreadyInsertHeartException.class)
-    public ResponseEntity<ErrorMessage> handleAlreadyInsertHeartException(HttpServletRequest request , AlreadyInsertHeartException exception) {
->>>>>>> 3b9a3cdaca3bce2a199de32682f926d448c0966c
         printError(request, exception, exception.getErrorCode().getMessage());
         ErrorMessage errorMessage = new ErrorMessage(exception.getErrorCode().getMessage(), exception.getErrorCode().getStatus());
         return new ResponseEntity<>(errorMessage, HttpStatus.valueOf(exception.getErrorCode().getStatus()));
     }
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 3b9a3cdaca3bce2a199de32682f926d448c0966c
-    private void printError(HttpServletRequest request, RuntimeException ex, String message) {
+    @ExceptionHandler(AlreadyInsertHeartException.class)
+    public ResponseEntity<ErrorMessage> handleAlreadyInsertHeartException (HttpServletRequest request, AlreadyInsertHeartException exception){
+        printError(request, exception, exception.getErrorCode().getMessage());
+        ErrorMessage errorMessage = new ErrorMessage(exception.getErrorCode().getMessage(), exception.getErrorCode().getStatus());
+        return new ResponseEntity<>(errorMessage, HttpStatus.valueOf(exception.getErrorCode().getStatus()));
+    }
+
+    private void printError(HttpServletRequest request, RuntimeException ex, String message){
         log.error(request.getRequestURI());
         log.error(message);
         ex.printStackTrace();
     }
-
-
 }
