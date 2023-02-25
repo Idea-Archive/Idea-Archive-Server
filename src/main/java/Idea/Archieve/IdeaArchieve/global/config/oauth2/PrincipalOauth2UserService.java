@@ -5,13 +5,11 @@ import Idea.Archieve.IdeaArchieve.domain.member.exception.MemberNotFoundExceptio
 import Idea.Archieve.IdeaArchieve.domain.member.repository.MemberRepository;
 import Idea.Archieve.IdeaArchieve.global.config.oauth2.provider.GoogleUserInfo;
 import Idea.Archieve.IdeaArchieve.global.config.oauth2.provider.OAuth2UserInfo;
-import Idea.Archieve.IdeaArchieve.global.filter.role.Role;
 import Idea.Archieve.IdeaArchieve.global.security.auth.MemberDetails;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
-import org.springframework.security.oauth2.client.userinfo.OAuth2UserService;
 import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 
