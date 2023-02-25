@@ -1,5 +1,6 @@
 package Idea.Archieve.IdeaArchieve.domain.member.entity;
 
+import Idea.Archieve.IdeaArchieve.domain.post.entity.Heart;
 import Idea.Archieve.IdeaArchieve.domain.post.entity.Post;
 import Idea.Archieve.IdeaArchieve.global.filter.provider.AuthProvider;
 import Idea.Archieve.IdeaArchieve.global.filter.role.Role;
@@ -47,6 +48,8 @@ public class Member{
     @OneToMany(mappedBy = "member",fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Post> post;
 
+    @OneToMany(mappedBy = "member",fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Heart> hearts;
     public void updatePassword(String password) {
         this.password = password;
     }

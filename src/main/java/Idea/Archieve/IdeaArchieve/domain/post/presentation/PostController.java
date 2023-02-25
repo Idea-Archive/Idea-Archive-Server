@@ -2,6 +2,7 @@ package Idea.Archieve.IdeaArchieve.domain.post.presentation;
 
 import Idea.Archieve.IdeaArchieve.domain.post.presentation.dto.request.ModifyPostRequest;
 import Idea.Archieve.IdeaArchieve.domain.post.presentation.dto.request.WritePostRequest;
+import Idea.Archieve.IdeaArchieve.domain.post.presentation.dto.response.ViewByHeartListResponse;
 import Idea.Archieve.IdeaArchieve.domain.post.presentation.dto.response.ViewPostByIdResponse;
 import Idea.Archieve.IdeaArchieve.domain.post.presentation.dto.response.ViewPostResponse;
 import Idea.Archieve.IdeaArchieve.domain.post.presentation.dto.response.ViewByCategoryResponse;
@@ -27,6 +28,7 @@ public class PostController {
     private final FilterPostService filterPostService;
     private final FilterPostByCategoryService filterPostByCategoryService;
     private final InsertHeartService insertHeartService;
+    private final ViewHeartListService viewHeartListService;
 
     @PostMapping("/write")
     public ResponseEntity<Void> writePost(@RequestBody @Valid WritePostRequest writePostRequest) {
@@ -74,5 +76,11 @@ public class PostController {
     public ResponseEntity<Void> insertHeart(@PathVariable("postId") Long postId){
         insertHeartService.execute(postId);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
+
+    @GetMapping("/heart")
+    public ResponseEntity<List<ViewByHeartListResponse>> viewHeartList(){
+        List<ViewByHeartListResponse> heartList = viewHeartListService.execute();
+        return ResponseEntity.ok(heartList);
     }
 }
