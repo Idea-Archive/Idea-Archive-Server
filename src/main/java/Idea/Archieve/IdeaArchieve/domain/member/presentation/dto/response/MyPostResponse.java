@@ -18,11 +18,13 @@ public class MyPostResponse {
 
     private String title;
     private String category;
+    private String writer;
 
     public static MyPostResponse convertToComment(Post post) {
         return MyPostResponse.builder()
                 .title(post.getTitle())
                 .category(post.getCategory())
+                .writer(post.getMember().getName())
                 .build();
     }
 
