@@ -21,7 +21,7 @@ public class ViewMyPostService {
     @Transactional
     public List<MyPostResponse> execute(){
         Member member = memberUtil.currentMember();
-        List<MyPostResponse> posts = MyPostResponse.convertToCommentList(member.getPost());
+        List<MyPostResponse> posts = MyPostResponse.convertToPostList(member.getPost());
         for(int i=0;i<posts.size();i++){
             if(!posts.get(0).getWriter().equals(member.getName())){
                 throw new MemberNotFoundException("회원이 존재하지 않습니다");

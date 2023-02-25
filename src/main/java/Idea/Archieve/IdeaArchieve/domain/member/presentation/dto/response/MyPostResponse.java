@@ -20,7 +20,7 @@ public class MyPostResponse {
     private String category;
     private String writer;
 
-    public static MyPostResponse convertToComment(Post post) {
+    public static MyPostResponse convertToPost(Post post) {
         return MyPostResponse.builder()
                 .title(post.getTitle())
                 .category(post.getCategory())
@@ -28,9 +28,9 @@ public class MyPostResponse {
                 .build();
     }
 
-    public static List<MyPostResponse> convertToCommentList(List<Post> commentList) {
-        Stream<Post> stream = commentList.stream();
-        return stream.map(MyPostResponse::convertToComment)
+    public static List<MyPostResponse> convertToPostList(List<Post> postList) {
+        Stream<Post> stream = postList.stream();
+        return stream.map(MyPostResponse::convertToPost)
                 .collect(Collectors.toList());
     }
 }
