@@ -23,7 +23,12 @@ public enum ErrorCode {
     FAILED_SEND_EMAIL("이메일 발송에 실패했습니다",400),
     BLACKLIST_ALREADY_EXIST("블랙리스트에 이미 등록되었습니다",400),
     NOT_EXIST_COMMENT("존재하지 않는 댓글입니다", 404),
-    ALREADY_INSERT_HEART("이미 좋아요를 누르셨습니다.",400);
+    ALREADY_INSERT_HEART("이미 좋아요를 누르셨습니다.",400),
+
+    UNAUTHORIZED("권한이 없습니다.", 401),
+    FORBIDDEN("권한이 없습니다." , 403),
+    EXPIRED_TOKEN("토큰이 만료되었습니다.", 419),
+    BAD_REQUEST("잘못된 요청입니다.", 400);
 
     private final String message;
     private final int status;
