@@ -2,7 +2,6 @@ package Idea.Archieve.IdeaArchieve.domain.member.entity;
 
 import Idea.Archieve.IdeaArchieve.domain.post.entity.Heart;
 import Idea.Archieve.IdeaArchieve.domain.post.entity.Post;
-import Idea.Archieve.IdeaArchieve.global.filter.provider.AuthProvider;
 import Idea.Archieve.IdeaArchieve.global.filter.role.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -41,9 +40,6 @@ public class Member{
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    @Column(name = "auth_provider", nullable = false)
-    @Enumerated(EnumType.STRING)
-    private AuthProvider authProvider;
 
     @OneToMany(mappedBy = "member",fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Post> post;

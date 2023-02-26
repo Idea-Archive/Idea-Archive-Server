@@ -1,7 +1,5 @@
 package Idea.Archieve.IdeaArchieve.global.security;
 
-import Idea.Archieve.IdeaArchieve.domain.auth.service.GoogleLoginService;
-import Idea.Archieve.IdeaArchieve.global.config.oauth2.PrincipalOauth2UserService;
 import Idea.Archieve.IdeaArchieve.global.filter.JwtRequestFilter;
 import Idea.Archieve.IdeaArchieve.global.security.handler.CustomAccessDeniedHandler;
 import Idea.Archieve.IdeaArchieve.global.security.handler.CustomAuthenticationEntryPointHandler;
@@ -23,7 +21,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfig {
 
     private final JwtRequestFilter jwtRequestFilter;
-    private final PrincipalOauth2UserService principalOauth2UserService;
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
@@ -56,11 +53,6 @@ public class SecurityConfig {
                 .authenticationEntryPoint(new CustomAuthenticationEntryPointHandler());
         http
                 .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
-        http
-                .oauth2Login()
-                .userInfoEndpoint()
-                .userService(principalOauth2UserService);
-
         return http.build();
     }
 }
