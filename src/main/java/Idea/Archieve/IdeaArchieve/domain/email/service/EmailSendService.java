@@ -6,6 +6,7 @@ import Idea.Archieve.IdeaArchieve.domain.email.exception.FailedSendEmailExceptio
 import Idea.Archieve.IdeaArchieve.domain.email.exception.ManyRequestEmailException;
 import Idea.Archieve.IdeaArchieve.domain.email.presentation.dto.request.EmailAuthRequest;
 import Idea.Archieve.IdeaArchieve.domain.email.repository.EmailAuthRepository;
+import Idea.Archieve.IdeaArchieve.global.redis.util.RedisUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -50,7 +51,7 @@ public class EmailSendService {
                         .build());
 
         if(emailAuth.getAttemptCount() >= 100){
-            throw new ManyRequestEmailException("15분에 최대 3번까지 요청가능합니다.");
+            throw new ManyRequestEmailException("15분에 최대 100번까지 요청가능합니다.");
         }
         emailAuth.updateRandomValue(authKey);
         emailAuth.increaseAttemptCount();
