@@ -37,17 +37,17 @@ spring:
     allow-bean-definition-overriding: true
 
 
-  auth:
-    google:
-      base-url: ${GOOGLE_BASE_URL}
-      client-id: ${GOOGLE_CLIENT_ID}
-      client-secret: ${GOOGLE_SECRET}
-      redirect-url: ${GOOGLE_REDIRECT_URL}
-
-
   redis:
     host: ${REDIS_HOST}
     port: ${REDIS_PORT}
+
+
+auth:
+  google:
+    base-url: ${GOOGLE_BASE_URL}
+    client-id: ${GOOGLE_CLIENT_ID}
+    client-secret: ${GOOGLE_SECRET}
+    redirect-url: ${GOOGLE_REDIRECT_URL}
 
 
 jwt:

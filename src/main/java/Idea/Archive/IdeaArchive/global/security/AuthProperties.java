@@ -1,4 +1,4 @@
-package Idea.Archive.IdeaArchive.global.security.auth;
+package Idea.Archive.IdeaArchive.global.security;
 
 import lombok.Getter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -6,7 +6,7 @@ import org.springframework.boot.context.properties.ConstructorBinding;
 
 @Getter
 @ConstructorBinding
-@ConfigurationProperties("auth.google")
+@ConfigurationProperties(prefix = "auth.google")
 public class AuthProperties {
 
     private final String baseUrl;
@@ -20,4 +20,5 @@ public class AuthProperties {
         this.clientSecret = clientSecret;
         this.redirectUrl = redirectUrl;
     }
+
 }
