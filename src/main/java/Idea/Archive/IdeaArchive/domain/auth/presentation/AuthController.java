@@ -4,10 +4,7 @@ import Idea.Archive.IdeaArchive.domain.auth.presentation.dto.request.MemberLogin
 import Idea.Archive.IdeaArchive.domain.auth.presentation.dto.request.MemberSignUpRequest;
 import Idea.Archive.IdeaArchive.domain.auth.presentation.dto.response.MemberLoginResponse;
 import Idea.Archive.IdeaArchive.domain.auth.presentation.dto.response.NewTokenResponse;
-import Idea.Archive.IdeaArchive.domain.auth.service.MemberLoginService;
-import Idea.Archive.IdeaArchive.domain.auth.service.MemberLogoutService;
-import Idea.Archive.IdeaArchive.domain.auth.service.MemberSignUpService;
-import Idea.Archive.IdeaArchive.domain.auth.service.TokenReissuanceService;
+import Idea.Archive.IdeaArchive.domain.auth.service.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +21,7 @@ public class AuthController {
     private final MemberLoginService memberLoginService;
     private final MemberLogoutService memberLogoutService;
     private final TokenReissuanceService tokenReissuanceService;
+    private final GoogleAuthService googleAuthService;
 
     @PostMapping("/signup")
     public ResponseEntity<Void> signUp(@RequestBody @Valid MemberSignUpRequest memberSignUpRequest) {
@@ -47,5 +45,11 @@ public class AuthController {
     public ResponseEntity<NewTokenResponse> reIssueToken(@RequestHeader("RefreshToken") String token) {
         NewTokenResponse reIssueToken = tokenReissuanceService.execute(token);
         return ResponseEntity.ok(reIssueToken);
+    }
+
+    @GetMapping("/google/auth")
+    public ResponseEntity<MemberLoginResponse> GoogleAuthLogin(@RequestParam("code") String code) {
+        googleAuthService.execute(code);
+        return ResponseEntity.ok().build();
     }
 }
