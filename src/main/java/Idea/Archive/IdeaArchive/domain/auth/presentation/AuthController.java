@@ -49,7 +49,7 @@ public class AuthController {
 
     @GetMapping("/google/auth")
     public ResponseEntity<MemberLoginResponse> GoogleAuthLogin(@RequestParam("code") String code) {
-        googleAuthService.execute(code);
-        return ResponseEntity.ok().build();
+        MemberLoginResponse memberLoginResponse =  googleAuthService.execute(code);
+        return ResponseEntity.ok().body(memberLoginResponse);
     }
 }

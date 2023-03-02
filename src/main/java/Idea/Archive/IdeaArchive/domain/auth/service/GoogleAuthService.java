@@ -74,7 +74,7 @@ public class GoogleAuthService {
         createUser(email, name);
 
         return MemberLoginResponse.builder()
-                .accessToken(tokenProvider.generatedAccessToken(email))
+                .accessToken(accessToken)
                 .refreshToken(refreshToken)
                 .expiredAt(tokenProvider.getExpiredAtToken(accessToken, jwtProperties.getAccessSecret()))
                 .build();
