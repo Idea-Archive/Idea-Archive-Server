@@ -51,7 +51,6 @@ auth:
 
 
 jwt:
-  # Idea  * 4
+  header: ${HEADER}
   accessSecret: ${ACCESS_SECRET}
-  # Archive * 4
   refreshSecret: ${REFRESH_SECRET}

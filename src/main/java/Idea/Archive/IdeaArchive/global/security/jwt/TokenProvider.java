@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.nio.charset.StandardCharsets;
@@ -107,5 +108,10 @@ public class TokenProvider {
         }
         return null;
     }
+
+//    public String resolveToken(HttpServletRequest request) {
+//        String bearerToken = request.getHeader(jwtProperties.getHeader());
+//
+//    }
 
 }
