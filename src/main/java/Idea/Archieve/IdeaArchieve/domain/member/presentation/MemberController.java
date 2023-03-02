@@ -1,6 +1,7 @@
 package Idea.Archieve.IdeaArchieve.domain.member.presentation;
 
 
+import Idea.Archieve.IdeaArchieve.domain.member.presentation.dto.request.ChangeNameRequest;
 import Idea.Archieve.IdeaArchieve.domain.member.presentation.dto.request.ChangePasswordRequest;
 import Idea.Archieve.IdeaArchieve.domain.member.presentation.dto.request.MakeNewPasswordRequest;
 import Idea.Archieve.IdeaArchieve.domain.member.presentation.dto.response.MyPageResponse;
@@ -23,6 +24,7 @@ public class MemberController {
     private final WithdrawService withdrawService;
     private final ViewMyPostService viewMyPostService;
     private final FindPasswordService findPasswordService;
+    private final ChangeNameService changeNameService;
 
     @PatchMapping
     public ResponseEntity<Void> editPassword(@RequestBody @Valid ChangePasswordRequest changePasswordRequest){
@@ -47,6 +49,11 @@ public class MemberController {
     @PatchMapping("/findPassword")
     public ResponseEntity<Void> findPassword(@RequestBody @Valid MakeNewPasswordRequest makeNewPasswordRequest){
         findPasswordService.execute(makeNewPasswordRequest);
+        return ResponseEntity.noContent().build();
+    }
+    @PatchMapping("/name")
+    public ResponseEntity<Void> changeName(@RequestBody @Valid ChangeNameRequest changeNameRequest){
+        changeNameService.execute(changeNameRequest);
         return ResponseEntity.noContent().build();
     }
 }
