@@ -8,6 +8,7 @@ import Idea.Archieve.IdeaArchieve.domain.email.exception.FailedSendEmailExceptio
 import Idea.Archieve.IdeaArchieve.domain.email.exception.ManyRequestEmailException;
 import Idea.Archieve.IdeaArchieve.domain.email.exception.MisMatchAuthCodeException;
 import Idea.Archieve.IdeaArchieve.domain.email.exception.NotVerifyEmailException;
+import Idea.Archieve.IdeaArchieve.domain.member.exception.AlreadyExistNicknameException;
 import Idea.Archieve.IdeaArchieve.domain.member.exception.MemberNotFoundException;
 import Idea.Archieve.IdeaArchieve.domain.member.exception.MisMatchPasswordException;
 import Idea.Archieve.IdeaArchieve.domain.post.exception.AlreadyInsertHeartException;
@@ -125,6 +126,13 @@ public class GlobalExceptionHandler {
         printError(request, exception, exception.getErrorCode().getMessage());
         ErrorMessage errorMessage = new ErrorMessage(exception.getErrorCode().getMessage(), exception.getErrorCode().getStatus());
         return new ResponseEntity<>(errorMessage, HttpStatus.valueOf(exception.getErrorCode().getStatus()));
+    }
+
+    @ExceptionHandler(AlreadyExistNicknameException.class)
+    public ResponseEntity<ErrorMessage> handleAlreadyExistNicknameException (HttpServletRequest request, AlreadyExistNicknameException exception){
+        printError(request,exception,exception.getErrorCode().getMessage());
+        ErrorMessage errorMessage = new ErrorMessage(exception.getErrorCode().getMessage(), exception.getErrorCode().getStatus());
+        return new ResponseEntity<>(errorMessage,HttpStatus.valueOf(exception.getErrorCode().getStatus()));
     }
 
     private void printError(HttpServletRequest request, RuntimeException ex, String message){
