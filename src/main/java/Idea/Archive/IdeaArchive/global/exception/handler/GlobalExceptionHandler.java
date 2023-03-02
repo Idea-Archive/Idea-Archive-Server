@@ -1,5 +1,6 @@
 package Idea.Archive.IdeaArchive.global.exception.handler;
 
+<<<<<<< HEAD:src/main/java/Idea/Archive/IdeaArchive/global/exception/handler/GlobalExceptionHandler.java
 import Idea.Archive.IdeaArchive.domain.auth.exception.BlackListAlreadyExistException;
 import Idea.Archive.IdeaArchive.domain.auth.exception.ExistEmailException;
 import Idea.Archive.IdeaArchive.domain.auth.exception.RefreshTokenNotFoundException;
@@ -15,6 +16,24 @@ import Idea.Archive.IdeaArchive.domain.post.exception.NotExistPostException;
 import Idea.Archive.IdeaArchive.domain.post.exception.NotVerifyMember;
 import Idea.Archive.IdeaArchive.global.exception.ErrorMessage;
 import Idea.Archive.IdeaArchive.global.security.exception.TokenNotValidException;
+=======
+import Idea.Archieve.IdeaArchieve.domain.auth.exception.BlackListAlreadyExistException;
+import Idea.Archieve.IdeaArchieve.domain.auth.exception.ExistEmailException;
+import Idea.Archieve.IdeaArchieve.domain.auth.exception.RefreshTokenNotFoundException;
+import Idea.Archieve.IdeaArchieve.domain.comment.exception.NotExistCommentException;
+import Idea.Archieve.IdeaArchieve.domain.email.exception.FailedSendEmailException;
+import Idea.Archieve.IdeaArchieve.domain.email.exception.ManyRequestEmailException;
+import Idea.Archieve.IdeaArchieve.domain.email.exception.MisMatchAuthCodeException;
+import Idea.Archieve.IdeaArchieve.domain.email.exception.NotVerifyEmailException;
+import Idea.Archieve.IdeaArchieve.domain.member.exception.AlreadyExistNicknameException;
+import Idea.Archieve.IdeaArchieve.domain.member.exception.MemberNotFoundException;
+import Idea.Archieve.IdeaArchieve.domain.member.exception.MisMatchPasswordException;
+import Idea.Archieve.IdeaArchieve.domain.post.exception.AlreadyInsertHeartException;
+import Idea.Archieve.IdeaArchieve.domain.post.exception.NotExistPostException;
+import Idea.Archieve.IdeaArchieve.domain.post.exception.NotVerifyMember;
+import Idea.Archieve.IdeaArchieve.global.exception.ErrorMessage;
+import Idea.Archieve.IdeaArchieve.global.security.exception.TokenNotValidException;
+>>>>>>> d0cf1c2812d08a6698dfc52a3403d6fea7a7b5f1:src/main/java/Idea/Archieve/IdeaArchieve/global/exception/handler/GlobalExceptionHandler.java
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -125,6 +144,13 @@ public class GlobalExceptionHandler {
         printError(request, exception, exception.getErrorCode().getMessage());
         ErrorMessage errorMessage = new ErrorMessage(exception.getErrorCode().getMessage(), exception.getErrorCode().getStatus());
         return new ResponseEntity<>(errorMessage, HttpStatus.valueOf(exception.getErrorCode().getStatus()));
+    }
+
+    @ExceptionHandler(AlreadyExistNicknameException.class)
+    public ResponseEntity<ErrorMessage> handleAlreadyExistNicknameException (HttpServletRequest request, AlreadyExistNicknameException exception){
+        printError(request,exception,exception.getErrorCode().getMessage());
+        ErrorMessage errorMessage = new ErrorMessage(exception.getErrorCode().getMessage(), exception.getErrorCode().getStatus());
+        return new ResponseEntity<>(errorMessage,HttpStatus.valueOf(exception.getErrorCode().getStatus()));
     }
 
     private void printError(HttpServletRequest request, RuntimeException ex, String message){
