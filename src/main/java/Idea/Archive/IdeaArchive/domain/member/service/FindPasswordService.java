@@ -1,13 +1,14 @@
-package Idea.Archieve.IdeaArchieve.domain.member.service;
+package Idea.Archive.IdeaArchive.domain.member.service;
 
 
-import Idea.Archieve.IdeaArchieve.domain.email.entity.EmailAuth;
-import Idea.Archieve.IdeaArchieve.domain.email.exception.NotVerifyEmailException;
-import Idea.Archieve.IdeaArchieve.domain.email.repository.EmailAuthRepository;
-import Idea.Archieve.IdeaArchieve.domain.member.entity.Member;
-import Idea.Archieve.IdeaArchieve.domain.member.exception.MisMatchPasswordException;
+
 import Idea.Archieve.IdeaArchieve.domain.member.presentation.dto.request.MakeNewPasswordRequest;
-import Idea.Archieve.IdeaArchieve.global.util.MemberUtil;
+import Idea.Archive.IdeaArchive.domain.email.entity.EmailAuth;
+import Idea.Archive.IdeaArchive.domain.email.exception.NotVerifyEmailException;
+import Idea.Archive.IdeaArchive.domain.email.repository.EmailAuthRepository;
+import Idea.Archive.IdeaArchive.domain.member.entity.Member;
+import Idea.Archive.IdeaArchive.domain.member.exception.MisMatchPasswordException;
+import Idea.Archive.IdeaArchive.global.util.MemberUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

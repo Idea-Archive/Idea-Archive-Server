@@ -1,22 +1,12 @@
 package Idea.Archive.IdeaArchive.domain.member.presentation;
 
 
-<<<<<<< HEAD:src/main/java/Idea/Archive/IdeaArchive/domain/member/presentation/MemberController.java
 import Idea.Archive.IdeaArchive.domain.member.presentation.dto.request.ChangePasswordRequest;
 import Idea.Archive.IdeaArchive.domain.member.presentation.dto.response.MyPageResponse;
 import Idea.Archive.IdeaArchive.domain.member.presentation.dto.response.MyPostResponse;
-import Idea.Archive.IdeaArchive.domain.member.service.ChangePasswordService;
-import Idea.Archive.IdeaArchive.domain.member.service.MyPageService;
-import Idea.Archive.IdeaArchive.domain.member.service.ViewMyPostService;
-import Idea.Archive.IdeaArchive.domain.member.service.WithdrawService;
-=======
+import Idea.Archive.IdeaArchive.domain.member.service.*;
 import Idea.Archieve.IdeaArchieve.domain.member.presentation.dto.request.ChangeNameRequest;
-import Idea.Archieve.IdeaArchieve.domain.member.presentation.dto.request.ChangePasswordRequest;
 import Idea.Archieve.IdeaArchieve.domain.member.presentation.dto.request.MakeNewPasswordRequest;
-import Idea.Archieve.IdeaArchieve.domain.member.presentation.dto.response.MyPageResponse;
-import Idea.Archieve.IdeaArchieve.domain.member.presentation.dto.response.MyPostResponse;
-import Idea.Archieve.IdeaArchieve.domain.member.service.*;
->>>>>>> d0cf1c2812d08a6698dfc52a3403d6fea7a7b5f1:src/main/java/Idea/Archieve/IdeaArchieve/domain/member/presentation/MemberController.java
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -33,7 +23,7 @@ public class MemberController {
     private final MyPageService myPageService;
     private final WithdrawService withdrawService;
     private final ViewMyPostService viewMyPostService;
-    private final FindPasswordService findPasswordService;
+    private final Idea.Archive.IdeaArchive.domain.member.service.FindPasswordService findPasswordService;
     private final ChangeNameService changeNameService;
 
     @PatchMapping

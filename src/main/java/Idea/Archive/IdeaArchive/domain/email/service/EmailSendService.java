@@ -1,20 +1,11 @@
 package Idea.Archive.IdeaArchive.domain.email.service;
 
 
-<<<<<<< HEAD:src/main/java/Idea/Archive/IdeaArchive/domain/email/service/EmailSendService.java
 import Idea.Archive.IdeaArchive.domain.email.entity.EmailAuth;
 import Idea.Archive.IdeaArchive.domain.email.exception.FailedSendEmailException;
 import Idea.Archive.IdeaArchive.domain.email.exception.ManyRequestEmailException;
 import Idea.Archive.IdeaArchive.domain.email.presentation.dto.request.EmailAuthRequest;
 import Idea.Archive.IdeaArchive.domain.email.repository.EmailAuthRepository;
-=======
-import Idea.Archieve.IdeaArchieve.domain.email.entity.EmailAuth;
-import Idea.Archieve.IdeaArchieve.domain.email.exception.FailedSendEmailException;
-import Idea.Archieve.IdeaArchieve.domain.email.exception.ManyRequestEmailException;
-import Idea.Archieve.IdeaArchieve.domain.email.presentation.dto.request.EmailAuthRequest;
-import Idea.Archieve.IdeaArchieve.domain.email.repository.EmailAuthRepository;
-import Idea.Archieve.IdeaArchieve.global.redis.util.RedisUtil;
->>>>>>> d0cf1c2812d08a6698dfc52a3403d6fea7a7b5f1:src/main/java/Idea/Archieve/IdeaArchieve/domain/email/service/EmailSendService.java
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.mail.javamail.JavaMailSender;
