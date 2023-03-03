@@ -46,6 +46,12 @@ public class Member{
 
     @OneToMany(mappedBy = "member",fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Heart> hearts;
+
+    @PrePersist
+    public void setting() {
+        this.role = this.role == null ? Role.MEMBER : this.role;
+    }
+
     public void updatePassword(String password) {
         this.password = password;
     }
