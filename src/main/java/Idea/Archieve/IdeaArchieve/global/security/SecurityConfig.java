@@ -43,6 +43,8 @@ public class SecurityConfig {
                 .antMatchers("/member/**").authenticated()
                 .antMatchers("/post/**").authenticated()
                 .antMatchers("/post/comment/**").authenticated()
+
+                .antMatchers("/admin/**").hasAuthority("ADMIN")
                 .anyRequest().authenticated();
         http
                 .sessionManagement()
