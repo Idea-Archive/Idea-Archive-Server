@@ -1,8 +1,10 @@
 package Idea.Archieve.IdeaArchieve.domain.notice.presentation;
 
+import Idea.Archieve.IdeaArchieve.domain.notice.presentation.dto.request.ModifyNoticeRequest;
 import Idea.Archieve.IdeaArchieve.domain.notice.presentation.dto.request.WriteNoticeRequest;
 import Idea.Archieve.IdeaArchieve.domain.notice.presentation.dto.response.ViewNoticeResponse;
 import Idea.Archieve.IdeaArchieve.domain.notice.service.DeleteNoticeService;
+import Idea.Archieve.IdeaArchieve.domain.notice.service.ModifyNoticeService;
 import Idea.Archieve.IdeaArchieve.domain.notice.service.ViewNoticeService;
 import Idea.Archieve.IdeaArchieve.domain.notice.service.WriteNoticeService;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +23,7 @@ public class AdminNoticeController {
     private final WriteNoticeService writeNoticeService;
     private final ViewNoticeService viewNoticeService;
     private final DeleteNoticeService deleteNoticeService;
+    private final ModifyNoticeService modifyNoticeService;
 
     @PostMapping("/write")
     public ResponseEntity<Void> writeNotice(@RequestBody @Valid WriteNoticeRequest writeNoticeRequest){
@@ -35,6 +38,11 @@ public class AdminNoticeController {
     @DeleteMapping("{noticeId}")
     public ResponseEntity<Void> deleteNotice(@PathVariable Long noticeId){
         deleteNoticeService.execute(noticeId);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
+    @PatchMapping("{noticeId}")
+    public ResponseEntity<Void> modifyNotice(@PathVariable Long noticeId, @RequestBody @Valid ModifyNoticeRequest modifyNoticeRequest){
+        modifyNoticeService.execute(noticeId,modifyNoticeRequest);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 }
