@@ -31,24 +31,24 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-//        String accessToken = request.getHeader("Authorization");
-//
-//        if (!Objects.isNull(accessToken)) {
-//            tokenProvider.extractAllClaims(accessToken, jwtProperties.getAccessSecret());
-//            if (!tokenProvider.getTokenType(accessToken, jwtProperties.getAccessSecret()).equals("ACCESS_TOKEN")) {
-//                throw new TokenNotValidException("토큰이 유효하지 않습니다.");
-//            }
-//
-//            String email = tokenProvider.getUserEmail(accessToken, jwtProperties.getAccessSecret());
-//            registerSecurityContext(request, email);
-//        }
-//        filterChain.doFilter(request, response);
-//    }
-        String token = tokenProvider.getBearerToken(request);
-        if (token != null) {
-            Authentication authentication = tokenProvider.authenticationToken(token);
-            SecurityContextHolder.getContext().setAuthentication(authentication);
+        String accessToken = request.getHeader("Authorization");
+
+        if (!Objects.isNull(accessToken)) {
+            tokenProvider.extractAllClaims(accessToken, jwtProperties.getAccessSecret());
+            if (!tokenProvider.getTokenType(accessToken, jwtProperties.getAccessSecret()).equals("ACCESS_TOKEN")) {
+                throw new TokenNotValidException("토큰이 유효하지 않습니다.");
+            }
+
+            String email = tokenProvider.getUserEmail(accessToken, jwtProperties.getAccessSecret());
+            registerSecurityContext(request, email);
         }
         filterChain.doFilter(request, response);
-        }
+    }
+//        String token = tokenProvider.getBearerToken(request);
+//        if (token != null) {
+//            Authentication authentication = tokenProvider.authenticationToken(token);
+//            SecurityContextHolder.getContext().setAuthentication(authentication);
+//        }
+//        filterChain.doFilter(request, response);
+//        }
 }
