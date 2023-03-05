@@ -24,7 +24,11 @@ public enum ErrorCode {
     FAILED_SEND_EMAIL("이메일 발송에 실패했습니다",400),
     BLACKLIST_ALREADY_EXIST("블랙리스트에 이미 등록되었습니다",400),
     NOT_EXIST_COMMENT("존재하지 않는 댓글입니다", 404),
-    ALREADY_INSERT_HEART("이미 좋아요를 누르셨습니다.",400);
+    ALREADY_INSERT_HEART("이미 좋아요를 누르셨습니다.",400),
+    NOT_QUALIFIED_WRITE_NOTICE("공지글을 작성할 권한이 없습니다",403),
+    NOT_QUALIFIED_DELETE_NOTICE("공지글을 삭제할 권한이 없습니다",403),
+
+    NOT_FOUND_NOTICE("공지글이 존재하지 않습니다",404);
 
     private final String message;
     private final int status;
