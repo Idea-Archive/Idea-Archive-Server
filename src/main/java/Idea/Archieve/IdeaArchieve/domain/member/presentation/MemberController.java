@@ -41,12 +41,12 @@ public class MemberController {
         withdrawService.execute(email,password);
         return ResponseEntity.noContent().build();
     }
-    @GetMapping("/myPost")
+    @GetMapping("/my-post")
     public ResponseEntity<List<MyPostResponse>> viewMyPost(){
         List<MyPostResponse> myPostResponses = viewMyPostService.execute();
         return ResponseEntity.ok().body(myPostResponses);
     }
-    @PatchMapping("/findPassword")
+    @PatchMapping("/find-password")
     public ResponseEntity<Void> findPassword(@RequestBody @Valid MakeNewPasswordRequest makeNewPasswordRequest){
         findPasswordService.execute(makeNewPasswordRequest);
         return ResponseEntity.noContent().build();
