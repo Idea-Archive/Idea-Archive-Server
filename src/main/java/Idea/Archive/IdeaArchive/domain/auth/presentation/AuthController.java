@@ -22,6 +22,7 @@ public class AuthController {
     private final MemberLogoutService memberLogoutService;
     private final TokenReissuanceService tokenReissuanceService;
     private final GoogleAuthService googleAuthService;
+    private final ViewGoogleInfo viewGoogleInfo;
 
     @PostMapping("/signup")
     public ResponseEntity<Void> signUp(@RequestBody @Valid MemberSignUpRequest memberSignUpRequest) {
@@ -30,13 +31,13 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<MemberLoginResponse> login(@RequestBody @Valid MemberLoginRequest memberLoginRequest){
+    public ResponseEntity<MemberLoginResponse> login(@RequestBody @Valid MemberLoginRequest memberLoginRequest) {
         MemberLoginResponse memberLoginResponse = memberLoginService.execute(memberLoginRequest);
         return ResponseEntity.ok(memberLoginResponse);
     }
 
     @DeleteMapping
-    public ResponseEntity<Void> logout(@RequestHeader("Authorization")String accessToken){
+    public ResponseEntity<Void> logout(@RequestHeader("Authorization") String accessToken) {
         memberLogoutService.execute(accessToken);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
@@ -47,9 +48,15 @@ public class AuthController {
         return ResponseEntity.ok(reIssueToken);
     }
 
+    @GetMapping("/google")
+    public ResponseEntity<String> viewGoogleInfo() {
+        String response =  viewGoogleInfo.execute();
+        return ResponseEntity.ok().body(response);
+    }
+
     @GetMapping("/receiveCode")
     public ResponseEntity<MemberLoginResponse> GoogleAuthLogin(@RequestParam("code") String code) {
-        MemberLoginResponse memberLoginResponse =  googleAuthService.execute(code);
+        MemberLoginResponse memberLoginResponse = googleAuthService.execute(code);
         return ResponseEntity.ok().body(memberLoginResponse);
     }
 }
