@@ -25,18 +25,14 @@ public enum ErrorCode {
     BLACKLIST_ALREADY_EXIST("블랙리스트에 이미 등록되었습니다",400),
     NOT_EXIST_COMMENT("존재하지 않는 댓글입니다", 404),
     ALREADY_INSERT_HEART("이미 좋아요를 누르셨습니다.",400),
-<<<<<<< HEAD:src/main/java/Idea/Archive/IdeaArchive/global/exception/ErrorCode.java
-
     UNAUTHORIZED("권한이 없습니다.", 401),
     FORBIDDEN("권한이 없습니다." , 403),
     EXPIRED_TOKEN("토큰이 만료되었습니다.", 419),
-    BAD_REQUEST("잘못된 요청입니다.", 400);
-=======
+    BAD_REQUEST("잘못된 요청입니다.", 400),
     NOT_QUALIFIED_WRITE_NOTICE("공지글을 작성할 권한이 없습니다",403),
     NOT_QUALIFIED_DELETE_NOTICE("공지글을 삭제할 권한이 없습니다",403),
 
     NOT_FOUND_NOTICE("공지글이 존재하지 않습니다",404);
->>>>>>> dd96ac9df6d8d81ddaaf65060da9da0233fdd814:src/main/java/Idea/Archieve/IdeaArchieve/global/exception/ErrorCode.java
 
     private final String message;
     private final int status;

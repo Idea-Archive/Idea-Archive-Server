@@ -1,12 +1,12 @@
 package Idea.Archieve.IdeaArchieve.domain.notice.service;
 
 
-import Idea.Archieve.IdeaArchieve.domain.member.entity.Member;
 import Idea.Archieve.IdeaArchieve.domain.notice.entity.Notice;
 import Idea.Archieve.IdeaArchieve.domain.notice.exception.NotQualifiedDeleteNoticeException;
 import Idea.Archieve.IdeaArchieve.domain.notice.exception.NoticeNotFoundException;
 import Idea.Archieve.IdeaArchieve.domain.notice.repository.NoticeRepository;
-import Idea.Archieve.IdeaArchieve.global.util.MemberUtil;
+import Idea.Archive.IdeaArchive.domain.member.entity.Member;
+import Idea.Archive.IdeaArchive.global.util.MemberUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

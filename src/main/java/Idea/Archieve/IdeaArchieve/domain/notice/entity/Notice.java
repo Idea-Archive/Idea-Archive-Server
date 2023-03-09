@@ -1,6 +1,6 @@
 package Idea.Archieve.IdeaArchieve.domain.notice.entity;
 
-import Idea.Archieve.IdeaArchieve.domain.member.entity.Member;
+import Idea.Archive.IdeaArchive.domain.member.entity.Member;
 import lombok.*;
 
 import javax.persistence.*;

@@ -1,6 +1,6 @@
 package Idea.Archieve.IdeaArchieve.domain.notice.exception;
 
-import Idea.Archieve.IdeaArchieve.global.exception.ErrorCode;
+import Idea.Archive.IdeaArchive.global.exception.ErrorCode;
 import lombok.Getter;
 
 @Getter
