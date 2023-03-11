@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
-@EnableFeignClients(basePackages = "Idea.Archive.IdeaArchive.infrastructure")
+@EnableFeignClients(basePackages = "Idea.Archive.IdeaArchive.infrastructure.feign")
 @Import(FeignClientErrorDecoder.class)
 @Configuration
 public class FeignConfig {

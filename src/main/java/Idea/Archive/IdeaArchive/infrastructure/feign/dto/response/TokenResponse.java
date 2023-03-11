@@ -1,4 +1,4 @@
-package Idea.Archive.IdeaArchive.infrastructure.dto.response;
+package Idea.Archive.IdeaArchive.infrastructure.feign.dto.response;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

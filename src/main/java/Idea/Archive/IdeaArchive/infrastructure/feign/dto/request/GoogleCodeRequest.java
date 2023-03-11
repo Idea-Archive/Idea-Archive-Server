@@ -1,4 +1,4 @@
-package Idea.Archive.IdeaArchive.infrastructure.dto.request;
+package Idea.Archive.IdeaArchive.infrastructure.feign.dto.request;
 
 import lombok.Builder;
 import lombok.Getter;

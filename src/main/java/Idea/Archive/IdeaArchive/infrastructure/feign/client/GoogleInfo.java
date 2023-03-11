@@ -1,6 +1,6 @@
-package Idea.Archive.IdeaArchive.infrastructure.client;
+package Idea.Archive.IdeaArchive.infrastructure.feign.client;
 
-import Idea.Archive.IdeaArchive.infrastructure.dto.response.GoogleInfoResponse;
+import Idea.Archive.IdeaArchive.infrastructure.feign.dto.response.GoogleInfoResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
