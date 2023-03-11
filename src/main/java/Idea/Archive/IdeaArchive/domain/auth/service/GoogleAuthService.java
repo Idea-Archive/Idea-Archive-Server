@@ -49,7 +49,7 @@ public class GoogleAuthService {
     public MemberLoginResponse execute(String code) {
 
         String accessToken = googleAuth.googleAuth(
-        GoogleCodeRequest.builder()
+            GoogleCodeRequest.builder()
                         .code(URLDecoder.decode(code, StandardCharsets.UTF_8))
                         .clientId(authProperties.getClientId())
                         .clientSecret(authProperties.getClientSecret())
@@ -74,7 +74,7 @@ public class GoogleAuthService {
         createUser(email, name);
 
         return MemberLoginResponse.builder()
-                .accessToken(accessToken)
+                .accessToken(tokenProvider.generatedAccessToken(email))
                 .refreshToken(refreshToken)
                 .expiredAt(tokenProvider.getExpiredAtToken(accessToken, jwtProperties.getAccessSecret()))
                 .build();

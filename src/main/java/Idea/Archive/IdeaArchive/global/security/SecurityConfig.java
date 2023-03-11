@@ -40,7 +40,7 @@ public class SecurityConfig {
                 .authorizeRequests()
                 .antMatchers("/email/**").permitAll()
                 .antMatchers("/auth/**").permitAll()
-
+                
                 .antMatchers("/member/**").authenticated()
                 .antMatchers("/post/**").authenticated()
                 .antMatchers("/post/comment/**").authenticated()
