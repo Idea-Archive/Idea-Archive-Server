@@ -9,6 +9,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 public interface GoogleInfo {
 
     @GetMapping("?alt=json&access_token={ACCESS_TOKEN}")
-    GoogleInfoResponse googleInfo(@PathVariable("ACCESS_TOKEN") String accessToken);
+    GoogleInfoResponse googleInfo(@PathVariable("ACCESS_TOKEN")String accessToken);
 
 }

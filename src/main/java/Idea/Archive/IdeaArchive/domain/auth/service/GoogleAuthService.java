@@ -57,12 +57,15 @@ public class GoogleAuthService {
                         .build()
         ).getAccessToken();
 
+        System.out.println("googleinfo 전");
+
         GoogleInfoResponse googleInfoResponse = googleInfo.googleInfo(accessToken);
 
         String email = googleInfoResponse.getEmail();
         String name = googleInfoResponse.getName();
 
         String refreshToken = tokenProvider.generatedRefreshToken(email);
+        String jwtAccessToken = tokenProvider.generatedAccessToken(email);
 
         refreshTokenRepository.save(
                 RefreshToken.builder()
@@ -74,9 +77,9 @@ public class GoogleAuthService {
         createUser(email, name);
 
         return MemberLoginResponse.builder()
-                .accessToken(tokenProvider.generatedAccessToken(email))
+                .accessToken(jwtAccessToken)
                 .refreshToken(refreshToken)
-                .expiredAt(tokenProvider.getExpiredAtToken(accessToken, jwtProperties.getAccessSecret()))
+                .expiredAt(tokenProvider.getExpiredAtToken(jwtAccessToken, jwtProperties.getAccessSecret()))
                 .build();
     }
 }
