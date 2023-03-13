@@ -51,6 +51,5 @@ auth:
 
 
 jwt:
-  header: ${HEADER}
   accessSecret: ${ACCESS_SECRET}
   refreshSecret: ${REFRESH_SECRET}
