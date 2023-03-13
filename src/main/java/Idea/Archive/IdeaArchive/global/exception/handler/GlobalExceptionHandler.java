@@ -10,6 +10,9 @@ import Idea.Archive.IdeaArchive.domain.email.exception.MisMatchAuthCodeException
 import Idea.Archive.IdeaArchive.domain.email.exception.NotVerifyEmailException;
 import Idea.Archive.IdeaArchive.domain.member.exception.MemberNotFoundException;
 import Idea.Archive.IdeaArchive.domain.member.exception.MisMatchPasswordException;
+import Idea.Archive.IdeaArchive.domain.notice.exception.NotQualifiedDeleteNoticeException;
+import Idea.Archive.IdeaArchive.domain.notice.exception.NotQualifiedWriteNoticeException;
+import Idea.Archive.IdeaArchive.domain.notice.exception.NoticeNotFoundException;
 import Idea.Archive.IdeaArchive.domain.post.exception.AlreadyInsertHeartException;
 import Idea.Archive.IdeaArchive.domain.post.exception.NotExistPostException;
 import Idea.Archive.IdeaArchive.domain.post.exception.NotVerifyMember;

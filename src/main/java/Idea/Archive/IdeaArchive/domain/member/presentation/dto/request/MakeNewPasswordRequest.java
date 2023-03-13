@@ -1,4 +1,4 @@
-package Idea.Archieve.IdeaArchieve.domain.member.presentation.dto.request;
+package Idea.Archive.IdeaArchieve.domain.member.presentation.dto.request;
 
 import lombok.Getter;
 

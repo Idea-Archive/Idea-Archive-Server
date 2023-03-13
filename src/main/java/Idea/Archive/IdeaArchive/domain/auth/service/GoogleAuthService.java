@@ -58,6 +58,10 @@ public class GoogleAuthService {
         ).getAccessToken();
 
         System.out.println(accessToken);
+        System.out.println(URLDecoder.decode(code, StandardCharsets.UTF_8));
+        System.out.println(authProperties.getClientId());
+        System.out.println(authProperties.getClientSecret());
+        System.out.println(authProperties.getRedirectUrl());
         System.out.println("googleinfo 전");
 
         GoogleInfoResponse googleInfoResponse = googleInfo.googleInfo(accessToken);

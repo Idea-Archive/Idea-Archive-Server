@@ -1,7 +1,7 @@
 package Idea.Archive.IdeaArchive.domain.member.service;
 
 import Idea.Archive.IdeaArchive.domain.member.exception.AlreadyExistNicknameException;
-import Idea.Archieve.IdeaArchieve.domain.member.presentation.dto.request.ChangeNameRequest;
+import Idea.Archive.IdeaArchieve.domain.member.presentation.dto.request.ChangeNameRequest;
 import Idea.Archive.IdeaArchive.domain.member.entity.Member;
 import Idea.Archive.IdeaArchive.domain.member.repository.MemberRepository;
 import Idea.Archive.IdeaArchive.global.util.MemberUtil;

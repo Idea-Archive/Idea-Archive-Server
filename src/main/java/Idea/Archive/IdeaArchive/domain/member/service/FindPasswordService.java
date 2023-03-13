@@ -2,7 +2,7 @@ package Idea.Archive.IdeaArchive.domain.member.service;
 
 
 
-import Idea.Archieve.IdeaArchieve.domain.member.presentation.dto.request.MakeNewPasswordRequest;
+import Idea.Archive.IdeaArchieve.domain.member.presentation.dto.request.MakeNewPasswordRequest;
 import Idea.Archive.IdeaArchive.domain.email.entity.EmailAuth;
 import Idea.Archive.IdeaArchive.domain.email.exception.NotVerifyEmailException;
 import Idea.Archive.IdeaArchive.domain.email.repository.EmailAuthRepository;
