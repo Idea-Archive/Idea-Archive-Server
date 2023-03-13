@@ -57,6 +57,7 @@ public class GoogleAuthService {
                         .build()
         ).getAccessToken();
 
+        System.out.println(accessToken);
         System.out.println("googleinfo 전");
 
         GoogleInfoResponse googleInfoResponse = googleInfo.googleInfo(accessToken);
