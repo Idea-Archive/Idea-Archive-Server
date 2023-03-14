@@ -29,12 +29,11 @@ public class Member{
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "password", nullable = false)
+    @Column(name = "password")
     private String password;
 
     @Column(name = "profile_image_url", nullable = false)
     private String profileImageUrl;
-
 
     @Column(name = "role", nullable = false)
     @Enumerated(EnumType.STRING)
@@ -55,6 +54,7 @@ public class Member{
     public void updatePassword(String password) {
         this.password = password;
     }
+
     public void updateName(String name){
         this.name = name;
     }

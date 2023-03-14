@@ -73,6 +73,9 @@ public class GoogleAuthService {
         String email = googleInfoResponse.getEmail();
         String name = googleInfoResponse.getName();
 
+        System.out.println(email);
+        System.out.println(name);
+
         String refreshToken = tokenProvider.generatedRefreshToken(email);
         String jwtAccessToken = tokenProvider.generatedAccessToken(email);
 
