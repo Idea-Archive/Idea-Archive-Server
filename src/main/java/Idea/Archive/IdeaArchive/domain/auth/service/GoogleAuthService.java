@@ -14,6 +14,7 @@ import Idea.Archive.IdeaArchive.infrastructure.feign.client.GoogleAuth;
 import Idea.Archive.IdeaArchive.infrastructure.feign.client.GoogleInfo;
 import Idea.Archive.IdeaArchive.infrastructure.feign.dto.request.GoogleCodeRequest;
 import Idea.Archive.IdeaArchive.infrastructure.feign.dto.response.GoogleInfoResponse;
+import Idea.Archive.IdeaArchive.infrastructure.feign.dto.response.TokenResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -48,23 +49,26 @@ public class GoogleAuthService {
     @Transactional
     public MemberLoginResponse execute(String code) {
 
-        String accessToken = googleAuth.googleAuth(
+        System.out.println(code);
+
+        TokenResponse tokenResponse = googleAuth.googleAuth(
             GoogleCodeRequest.builder()
                         .code(URLDecoder.decode(code, StandardCharsets.UTF_8))
                         .clientId(authProperties.getClientId())
                         .clientSecret(authProperties.getClientSecret())
                         .redirectUri(authProperties.getRedirectUrl())
                         .build()
-        ).getAccessToken();
+        );
 
-        System.out.println(accessToken);
+        System.out.println(tokenResponse.getAccess_token());
+        System.out.println(tokenResponse.getId_token());
         System.out.println(URLDecoder.decode(code, StandardCharsets.UTF_8));
         System.out.println(authProperties.getClientId());
         System.out.println(authProperties.getClientSecret());
         System.out.println(authProperties.getRedirectUrl());
         System.out.println("googleinfo 전");
 
-        GoogleInfoResponse googleInfoResponse = googleInfo.googleInfo(accessToken);
+        GoogleInfoResponse googleInfoResponse = googleInfo.googleInfo(tokenResponse.getAccess_token());
 
         String email = googleInfoResponse.getEmail();
         String name = googleInfoResponse.getName();
