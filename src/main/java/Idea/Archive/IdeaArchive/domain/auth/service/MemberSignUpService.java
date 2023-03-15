@@ -8,6 +8,7 @@ import Idea.Archive.IdeaArchive.domain.email.repository.EmailAuthRepository;
 import Idea.Archive.IdeaArchive.domain.member.entity.Member;
 import Idea.Archive.IdeaArchive.domain.member.repository.MemberRepository;
 import Idea.Archive.IdeaArchive.global.filter.role.Role;
+import Idea.Archive.IdeaArchive.global.img.DefaultImage;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -39,6 +40,7 @@ public class MemberSignUpService {
                 .password(passwordEncoder.encode(memberSignUpRequest.getPassword()))
                 .name(memberSignUpRequest.getName())
                 .role(Role.from(memberSignUpRequest.getRole()))
+                .profileImageUrl(DefaultImage.MEMBER_PROFILE_IMAGE)
                 .build();
 
         memberRepository.save(member);

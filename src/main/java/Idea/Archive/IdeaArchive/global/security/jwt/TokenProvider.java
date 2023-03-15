@@ -99,12 +99,4 @@ public class TokenProvider {
         UserDetails userDetails = memberDetailsService.loadUserByUsername(email);
         return new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
     }
-
-    public String getBearerToken(HttpServletRequest request) {
-        String bearerToken = request.getHeader("Authorization");
-        if (bearerToken != null) {
-            return bearerToken.substring(7);
-        }
-        return null;
-    }
 }

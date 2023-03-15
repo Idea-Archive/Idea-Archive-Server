@@ -36,11 +36,12 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .csrf().and()
-                .cors().disable();
+                .csrf();
+//                .and()
+//                .cors().disable();
         http
                 .authorizeRequests()
-                .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
+//                .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
                 .antMatchers("/email/**").permitAll()
                 .antMatchers("/auth/**").permitAll()
                 
