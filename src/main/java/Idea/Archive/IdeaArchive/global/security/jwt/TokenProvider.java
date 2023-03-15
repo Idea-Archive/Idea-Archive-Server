@@ -107,10 +107,4 @@ public class TokenProvider {
         }
         return null;
     }
-
-//    public String resolveToken(HttpServletRequest request) {
-//        String bearerToken = request.getHeader(jwtProperties.getHeader());
-//
-//    }
-
 }

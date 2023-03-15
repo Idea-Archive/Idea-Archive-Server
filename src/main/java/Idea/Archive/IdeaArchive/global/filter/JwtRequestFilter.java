@@ -43,11 +43,4 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         }
         filterChain.doFilter(request, response);
     }
-//        String token = tokenProvider.getBearerToken(request);
-//        if (token != null) {
-//            Authentication authentication = tokenProvider.authenticationToken(token);
-//            SecurityContextHolder.getContext().setAuthentication(authentication);
-//        }
-//        filterChain.doFilter(request, response);
-//        }
 }
