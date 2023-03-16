@@ -20,7 +20,7 @@ public class MemberSignUpRequest {
     private String password;
 
     @NotBlank(message = "이름은 공백을 허용하지 않습니다.")
-    private String name;p
+    private String name;
 
     @NotBlank(message = "역할은 공백을 허용하지 않습니다.")
     private String role;
