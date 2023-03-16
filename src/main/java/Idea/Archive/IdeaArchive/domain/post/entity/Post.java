@@ -40,6 +40,7 @@ public class Post {
     @JoinColumn(name = "member_id")
     private Member member;
 
+    @Builder.Default
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "post")
     private List<Comment> commentList = new ArrayList<>();
 
