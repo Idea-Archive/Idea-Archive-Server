@@ -4,6 +4,8 @@ spring:
     username: ${DB_USER}
     password: ${DB_PASSWORD}
     driver-class-name: com.mysql.cj.jdbc.Driver
+
+
   jpa:
     hibernate:
       ddl-auto: update
@@ -18,7 +20,7 @@ spring:
         max-request-size: 100MB
     open-in-view: false
 
-  # Mail
+
   mail:
     properties:
       mail:
@@ -30,17 +32,24 @@ spring:
     username: ${EMAIL_NAME}
     password: ${EMAIL_PASSWORD}
 
+
   main:
     allow-bean-definition-overriding: true
+
 
   redis:
     host: ${REDIS_HOST}
     port: ${REDIS_PORT}
 
 
+auth:
+  google:
+    base-url: ${GOOGLE_BASE_URL}
+    client-id: ${GOOGLE_CLIENT_ID}
+    client-secret: ${GOOGLE_SECRET}
+    redirect-url: ${GOOGLE_REDIRECT_URL}
+
 
 jwt:
-  # Idea  * 4
   accessSecret: ${ACCESS_SECRET}
-  # Archive * 4
   refreshSecret: ${REFRESH_SECRET}
