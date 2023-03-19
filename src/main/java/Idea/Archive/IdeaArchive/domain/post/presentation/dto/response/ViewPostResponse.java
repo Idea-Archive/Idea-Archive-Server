@@ -15,4 +15,7 @@ public class ViewPostResponse {
     private String title;
     private String content;
     private String category;
+    private Integer heartCount;
+    private Integer commentCount;
+
 }

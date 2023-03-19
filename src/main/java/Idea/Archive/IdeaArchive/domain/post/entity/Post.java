@@ -36,6 +36,10 @@ public class Post {
     @Column(name = "heart_count", nullable = false)
     private Integer heartCount;
 
+    @ColumnDefault("0")
+    @Column(name = "comment_count",nullable = false)
+    private Integer commentCount;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
@@ -56,5 +60,6 @@ public class Post {
     public void updateHeart(Integer heartCount){
         this.heartCount = heartCount;
     }
+    public void updateComment(Integer commentCount){this.commentCount = commentCount;}
 
 }

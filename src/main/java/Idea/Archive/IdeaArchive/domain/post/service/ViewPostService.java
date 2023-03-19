@@ -23,6 +23,8 @@ public class ViewPostService {
                         .title(n.getTitle())
                         .content(n.getContent())
                         .category(n.getCategory())
+                        .heartCount(n.getHeartCount())
+                        .commentCount(n.getCommentCount())
                         .build())
                 .collect(Collectors.toList());
     }
