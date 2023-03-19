@@ -2,10 +2,7 @@ package Idea.Archive.IdeaArchive.domain.post.presentation;
 
 import Idea.Archive.IdeaArchive.domain.post.presentation.dto.request.ModifyPostRequest;
 import Idea.Archive.IdeaArchive.domain.post.presentation.dto.request.WritePostRequest;
-import Idea.Archive.IdeaArchive.domain.post.presentation.dto.response.ViewByHeartListResponse;
-import Idea.Archive.IdeaArchive.domain.post.presentation.dto.response.ViewPostByIdResponse;
-import Idea.Archive.IdeaArchive.domain.post.presentation.dto.response.ViewPostResponse;
-import Idea.Archive.IdeaArchive.domain.post.presentation.dto.response.ViewByCategoryResponse;
+import Idea.Archive.IdeaArchive.domain.post.presentation.dto.response.*;
 import Idea.Archive.IdeaArchive.domain.post.service.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -29,6 +26,7 @@ public class PostController {
     private final FilterPostByCategoryService filterPostByCategoryService;
     private final InsertHeartService insertHeartService;
     private final ViewHeartListService viewHeartListService;
+    private final SharePostService sharePostService;
 
     @PostMapping("/write")
     public ResponseEntity<Void> writePost(@RequestBody @Valid WritePostRequest writePostRequest) {
@@ -82,5 +80,11 @@ public class PostController {
     public ResponseEntity<List<ViewByHeartListResponse>> viewHeartList(){
         List<ViewByHeartListResponse> heartList = viewHeartListService.execute();
         return ResponseEntity.ok(heartList);
+    }
+
+    @GetMapping("/share/{postId}")
+    public ResponseEntity<SharePostResponse> sharePost(@PathVariable Long postId){
+        SharePostResponse postUrl = sharePostService.execute(postId);
+        return ResponseEntity.ok(postUrl);
     }
 }
