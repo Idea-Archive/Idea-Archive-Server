@@ -31,6 +31,8 @@ public class ViewPostByIdService {
                 .member(
                         ViewMemberResponse.convertToMember(post.getMember()))
                 .comment(comment)
+                .heartCount(post.getHeartCount())
+                .commentCount(post.getCommentCount())
                 .build();
     }
 

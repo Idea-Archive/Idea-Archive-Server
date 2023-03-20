@@ -28,9 +28,8 @@ public class Post {
 
     @Column(name = "content", nullable = false)
     private String content;
-
-    @Column(name = "category", nullable = false)
-    private String category;
+    @ElementCollection(fetch=FetchType.EAGER)
+    private List<String> category;
 
     @ColumnDefault("0")
     @Column(name = "heart_count", nullable = false)
@@ -44,6 +43,7 @@ public class Post {
     @JoinColumn(name = "member_id")
     private Member member;
 
+
     @Builder.Default
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "post")
     private List<Comment> commentList = new ArrayList<>();
@@ -51,10 +51,9 @@ public class Post {
     @OneToMany(mappedBy = "post",fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Heart> hearts;
 
-    public void update(String title, String content, String category) {
+    public void update(String title, String content) {
         this.title = title;
         this.content = content;
-        this.category = category;
     }
 
     public void updateHeart(Integer heartCount){

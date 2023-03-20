@@ -17,7 +17,7 @@ import java.util.stream.Stream;
 public class MyPostResponse {
 
     private String title;
-    private String category;
+    private List<String> category;
     private String writer;
 
     public static MyPostResponse convertToPost(Post post) {
