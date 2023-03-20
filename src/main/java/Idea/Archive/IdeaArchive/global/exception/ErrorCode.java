@@ -31,8 +31,8 @@ public enum ErrorCode {
     BAD_REQUEST("잘못된 요청입니다.", 400),
     NOT_QUALIFIED_WRITE_NOTICE("공지글을 작성할 권한이 없습니다",403),
     NOT_QUALIFIED_DELETE_NOTICE("공지글을 삭제할 권한이 없습니다",403),
-
-    NOT_FOUND_NOTICE("공지글이 존재하지 않습니다",404);
+    NOT_FOUND_NOTICE("공지글이 존재하지 않습니다",404),
+    MISMATCH_EXTENSION("파일 확장자가 일치하지 않습니다.", 400);
 
     private final String message;
     private final int status;
