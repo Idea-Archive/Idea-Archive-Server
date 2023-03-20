@@ -3,12 +3,14 @@ package Idea.Archive.IdeaArchive.domain.member.service;
 import Idea.Archive.IdeaArchive.domain.member.exception.MisMatchExtensionException;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
+import com.amazonaws.services.s3.model.DeleteObjectRequest;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -25,10 +27,10 @@ public class UploadProfileImg {
 
     @Value("${cloud.aws.s3.bucket}")
     private String bucket;
-
     private AmazonS3 amazonS3;
 
-    public List<String> upload(List<MultipartFile> multipartFiles) {
+    @Transactional
+    public List<String> execute(List<MultipartFile> multipartFiles) {
         List<String> urls = new ArrayList<>();
         multipartFiles.forEach(file -> {
             String fileName = createFileName(file.getOriginalFilename());
@@ -49,7 +51,7 @@ public class UploadProfileImg {
         return urls;
     }
 
-    public String createFileName(String fileName) {
+    private String createFileName(String fileName) {
         return UUID.randomUUID().toString().concat(getFileExtension(fileName));
     }
 
@@ -66,5 +68,9 @@ public class UploadProfileImg {
         } catch (StringIndexOutOfBoundsException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "잘못된 형식의 파일(" + fileName + ") 입니다.");
         }
+    }
+
+    private void deleteImage(String filename) {
+        amazonS3.deleteObject(new DeleteObjectRequest(bucket, filename));
     }
 }
