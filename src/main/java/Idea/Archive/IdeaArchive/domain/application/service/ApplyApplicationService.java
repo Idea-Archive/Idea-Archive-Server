@@ -28,8 +28,6 @@ public class ApplyApplicationService {
                 .post(post)
                 .member(member)
                 .build();
-
-        System.out.println(post.getApplicationCount());
         post.updateApplication(post.getApplicationCount()+1);
         postRepository.save(post);
         applicationRepository.save(application);
