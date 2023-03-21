@@ -1,5 +1,6 @@
 package Idea.Archive.IdeaArchive.domain.post.entity;
 
+import Idea.Archive.IdeaArchive.domain.application.entity.Application;
 import Idea.Archive.IdeaArchive.domain.comment.entity.Comment;
 import Idea.Archive.IdeaArchive.domain.member.entity.Member;
 import lombok.AllArgsConstructor;
@@ -43,6 +44,10 @@ public class Post {
     @JoinColumn(name = "member_id")
     private Member member;
 
+    @ColumnDefault("0")
+    @Column(name = "application_count", nullable = false)
+    private Integer applicationCount;
+
 
     @Builder.Default
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "post")
@@ -50,6 +55,9 @@ public class Post {
 
     @OneToMany(mappedBy = "post",fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Heart> hearts;
+
+    @OneToMany(mappedBy = "post",fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Application> applications;
 
     public void update(String title, String content) {
         this.title = title;
@@ -60,5 +68,6 @@ public class Post {
         this.heartCount = heartCount;
     }
     public void updateComment(Integer commentCount){this.commentCount = commentCount;}
+    public void updateApplication(Integer applicationCount){this.applicationCount = applicationCount;}
 
 }

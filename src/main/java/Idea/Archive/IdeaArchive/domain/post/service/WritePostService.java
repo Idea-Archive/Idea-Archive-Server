@@ -24,6 +24,7 @@ public class WritePostService {
                 .member(currentMember)
                 .heartCount(0)
                 .commentCount(0)
+                .applicationCount(0)
                 .build();
         postRepository.save(post);
     }
