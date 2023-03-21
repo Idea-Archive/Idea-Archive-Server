@@ -49,6 +49,19 @@ auth:
     client-secret: ${GOOGLE_SECRET}
     redirect-url: ${GOOGLE_REDIRECT_URL}
 
+oauth2:
+  user:
+    google:
+      base-url: ${GOOGLE_BASE_URL}
+      client-id: ${GOOGLE_CLIENT_ID}
+      client-secret: ${GOOGLE_SECRET}
+      redirect-url: ${GOOGLE_REDIRECT_URL}
+  github:
+    base-url: ${GOOGLE_BASE_URL}
+    client-id: ${GOOGLE_CLIENT_ID}
+    client-secret: ${GOOGLE_SECRET}
+    redirect-url: ${GOOGLE_REDIRECT_URL}
+
 
 jwt:
   accessSecret: ${ACCESS_SECRET}
