@@ -65,25 +65,25 @@ public class PostController {
     }
 
     @GetMapping("/category")
-    public ResponseEntity<List<ViewByCategoryResponse>> ViewPostByCategory(@RequestParam String category){
+    public ResponseEntity<List<ViewByCategoryResponse>> ViewPostByCategory(@RequestParam String category) {
         List<ViewByCategoryResponse> response = filterPostByCategoryService.execute(category);
         return ResponseEntity.ok(response);
     }
 
     @GetMapping("{postId}/heart")
-    public ResponseEntity<Void> insertHeart(@PathVariable("postId") Long postId){
+    public ResponseEntity<Void> insertHeart(@PathVariable("postId") Long postId) {
         insertHeartService.execute(postId);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
     @GetMapping("/heart")
-    public ResponseEntity<List<ViewByHeartListResponse>> viewHeartList(){
+    public ResponseEntity<List<ViewByHeartListResponse>> viewHeartList() {
         List<ViewByHeartListResponse> heartList = viewHeartListService.execute();
         return ResponseEntity.ok(heartList);
     }
 
     @GetMapping("/share/{postId}")
-    public ResponseEntity<SharePostResponse> sharePost(@PathVariable Long postId){
+    public ResponseEntity<SharePostResponse> sharePost(@PathVariable Long postId) {
         SharePostResponse postUrl = sharePostService.execute(postId);
         return ResponseEntity.ok(postUrl);
     }
