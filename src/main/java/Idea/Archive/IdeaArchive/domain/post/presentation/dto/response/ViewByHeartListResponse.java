@@ -23,7 +23,7 @@ public class ViewByHeartListResponse {
     public static ViewByHeartListResponse convertToHeart(Heart heart) {
         return ViewByHeartListResponse.builder()
                 .title(heart.getPost().getTitle())
-                .category(heart.getPost().getCategory())
+                .category(heart.getPost().getCategory().get(0))
                 .build();
     }
 

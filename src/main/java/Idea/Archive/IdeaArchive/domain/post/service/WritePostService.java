@@ -12,10 +12,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @RequiredArgsConstructor
 public class WritePostService {
-
     private final PostRepository postRepository;
     private final MemberUtil memberUtil;
-
     @Transactional
     public void execute(WritePostRequest writePostRequest) {
         Member currentMember = memberUtil.currentMember();
@@ -25,8 +23,8 @@ public class WritePostService {
                 .category(writePostRequest.getCategory())
                 .member(currentMember)
                 .heartCount(0)
+                .commentCount(0)
                 .build();
         postRepository.save(post);
     }
-
 }
