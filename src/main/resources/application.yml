@@ -57,10 +57,10 @@ oauth2:
       client-secret: ${GOOGLE_SECRET}
       redirect-url: ${GOOGLE_REDIRECT_URL}
   github:
-    base-url: ${GOOGLE_BASE_URL}
-    client-id: ${GOOGLE_CLIENT_ID}
-    client-secret: ${GOOGLE_SECRET}
-    redirect-url: ${GOOGLE_REDIRECT_URL}
+    base-url: ${GITHUB_BASE_URL}
+    client-id: ${GITHUB_CLIENT_ID}
+    client-secret: ${GITHUB_SECRET}
+    redirect-url: ${GITHUB_REDIRECT_URL}
 
 
 jwt:

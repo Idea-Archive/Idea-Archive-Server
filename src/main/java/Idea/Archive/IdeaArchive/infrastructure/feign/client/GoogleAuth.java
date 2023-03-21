@@ -1,7 +1,7 @@
 package Idea.Archive.IdeaArchive.infrastructure.feign.client;
 
 import Idea.Archive.IdeaArchive.infrastructure.feign.dto.request.GoogleCodeRequest;
-import Idea.Archive.IdeaArchive.infrastructure.feign.dto.response.TokenResponse;
+import Idea.Archive.IdeaArchive.infrastructure.feign.dto.response.GoogleTokenResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,6 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 public interface GoogleAuth {
 
     @PostMapping
-    TokenResponse googleAuth(GoogleCodeRequest googleCodeRequest);
+    GoogleTokenResponse googleAuth(GoogleCodeRequest googleCodeRequest);
 
 }

@@ -14,7 +14,7 @@ import Idea.Archive.IdeaArchive.infrastructure.feign.client.GoogleAuth;
 import Idea.Archive.IdeaArchive.infrastructure.feign.client.GoogleInfo;
 import Idea.Archive.IdeaArchive.infrastructure.feign.dto.request.GoogleCodeRequest;
 import Idea.Archive.IdeaArchive.infrastructure.feign.dto.response.GoogleInfoResponse;
-import Idea.Archive.IdeaArchive.infrastructure.feign.dto.response.TokenResponse;
+import Idea.Archive.IdeaArchive.infrastructure.feign.dto.response.GoogleTokenResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -49,7 +49,7 @@ public class GoogleAuthService {
     @Transactional
     public MemberLoginResponse execute(String code) {
 
-        TokenResponse tokenResponse = googleAuth.googleAuth(
+        GoogleTokenResponse googleTokenResponse = googleAuth.googleAuth(
             GoogleCodeRequest.builder()
                         .code(URLDecoder.decode(code, StandardCharsets.UTF_8))
                         .clientId(authProperties.getClientId())
@@ -58,7 +58,7 @@ public class GoogleAuthService {
                         .build()
         );
 
-        GoogleInfoResponse googleInfoResponse = googleInfo.googleInfo(tokenResponse.getAccess_token());
+        GoogleInfoResponse googleInfoResponse = googleInfo.googleInfo(googleTokenResponse.getAccess_token());
 
         String email = googleInfoResponse.getEmail();
         String name = googleInfoResponse.getName();
