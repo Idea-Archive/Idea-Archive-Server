@@ -21,8 +21,6 @@ public class AuthController {
     private final MemberLoginService memberLoginService;
     private final MemberLogoutService memberLogoutService;
     private final TokenReissuanceService tokenReissuanceService;
-    private final GoogleAuthService googleAuthService;
-    private final ViewGoogleInfo viewGoogleInfo;
 
     @PostMapping("/signup")
     public ResponseEntity<Void> signUp(@RequestBody @Valid MemberSignUpRequest memberSignUpRequest) {
@@ -46,17 +44,5 @@ public class AuthController {
     public ResponseEntity<NewTokenResponse> reIssueToken(@RequestHeader("RefreshToken") String token) {
         NewTokenResponse reIssueToken = tokenReissuanceService.execute(token);
         return ResponseEntity.ok(reIssueToken);
-    }
-
-    @GetMapping("/google")
-    public ResponseEntity<String> viewGoogleInfo() {
-        String response =  viewGoogleInfo.execute();
-        return ResponseEntity.ok().body(response);
-    }
-
-    @GetMapping("/receiveCode")
-    public ResponseEntity<MemberLoginResponse> GoogleAuthLogin(@RequestParam("code") String code) {
-        MemberLoginResponse memberLoginResponse = googleAuthService.execute(code);
-        return ResponseEntity.ok().body(memberLoginResponse);
     }
 }
