@@ -20,14 +20,14 @@ public class EmailAuthController {
     private final EmailCheckService emailCheckService;
 
     @PostMapping("/send")
-    public ResponseEntity<Void> sendEmail(@RequestBody @Valid EmailAuthRequest emailAuthRequest){
+    public ResponseEntity<Void> sendEmail(@RequestBody @Valid EmailAuthRequest emailAuthRequest) {
         emailSendService.execute(emailAuthRequest);
         return ResponseEntity.ok().build();
     }
 
 
     @RequestMapping(method = RequestMethod.HEAD)
-    public ResponseEntity<Void> verifyEmail(@RequestParam @Email String email, @RequestParam String authKey){
+    public ResponseEntity<Void> verifyEmail(@RequestParam @Email String email, @RequestParam String authKey) {
          emailCheckService.execute(email,authKey);
          return ResponseEntity.ok().build();
     }

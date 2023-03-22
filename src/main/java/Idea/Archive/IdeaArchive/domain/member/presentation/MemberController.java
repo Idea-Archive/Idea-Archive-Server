@@ -27,32 +27,32 @@ public class MemberController {
     private final ChangeNameService changeNameService;
 
     @PatchMapping
-    public ResponseEntity<Void> editPassword(@RequestBody @Valid ChangePasswordRequest changePasswordRequest){
+    public ResponseEntity<Void> editPassword(@RequestBody @Valid ChangePasswordRequest changePasswordRequest) {
         changePasswordService.execute(changePasswordRequest);
         return ResponseEntity.noContent().build();
     }
     @GetMapping
-    public ResponseEntity<MyPageResponse> viewMyPage(){
+    public ResponseEntity<MyPageResponse> viewMyPage() {
         MyPageResponse myPageResponse = myPageService.execute();
         return ResponseEntity.ok().body(myPageResponse);
     }
     @DeleteMapping
-    public ResponseEntity<Void> withdraw(@RequestParam String email,@RequestParam String password){
+    public ResponseEntity<Void> withdraw(@RequestParam String email,@RequestParam String password) {
         withdrawService.execute(email,password);
         return ResponseEntity.noContent().build();
     }
     @GetMapping("/my-post")
-    public ResponseEntity<List<MyPostResponse>> viewMyPost(){
+    public ResponseEntity<List<MyPostResponse>> viewMyPost() {
         List<MyPostResponse> myPostResponses = viewMyPostService.execute();
         return ResponseEntity.ok().body(myPostResponses);
     }
     @PatchMapping("/find-password")
-    public ResponseEntity<Void> findPassword(@RequestBody @Valid MakeNewPasswordRequest makeNewPasswordRequest){
+    public ResponseEntity<Void> findPassword(@RequestBody @Valid MakeNewPasswordRequest makeNewPasswordRequest) {
         findPasswordService.execute(makeNewPasswordRequest);
         return ResponseEntity.noContent().build();
     }
     @PatchMapping("/name")
-    public ResponseEntity<Void> changeName(@RequestBody @Valid ChangeNameRequest changeNameRequest){
+    public ResponseEntity<Void> changeName(@RequestBody @Valid ChangeNameRequest changeNameRequest) {
         changeNameService.execute(changeNameRequest);
         return ResponseEntity.noContent().build();
     }

@@ -29,7 +29,7 @@ public class EmailSendService {
 
     @Async
     @Transactional(rollbackFor = Exception.class)
-    public void execute(EmailAuthRequest emailAuthRequest){
+    public void execute(EmailAuthRequest emailAuthRequest) {
 
         Random random = new Random();
         String authKey = String.valueOf(random.nextInt(8888)+1111);
@@ -37,7 +37,7 @@ public class EmailSendService {
         sendAuthEmail(emailAuthRequest.getEmail(),authKey);
     }
 
-    private void sendAuthEmail(String email,String authKey){
+    private void sendAuthEmail(String email,String authKey) {
 
         String title = "IdeaArchive 인증번호";
         String content = "IdeaArchive 인증번호는 " + authKey + "입니다.";
