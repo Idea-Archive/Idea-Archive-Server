@@ -27,6 +27,7 @@ public class PostController {
     private final InsertHeartService insertHeartService;
     private final ViewHeartListService viewHeartListService;
     private final SharePostService sharePostService;
+    private final ViewPostByHeartService viewPostByHeartService;
 
     @PostMapping("/write")
     public ResponseEntity<Void> writePost(@RequestBody @Valid WritePostRequest writePostRequest) {
@@ -86,5 +87,11 @@ public class PostController {
     public ResponseEntity<SharePostResponse> sharePost(@PathVariable Long postId) {
         SharePostResponse postUrl = sharePostService.execute(postId);
         return ResponseEntity.ok(postUrl);
+    }
+
+    @GetMapping("/popular")
+    public ResponseEntity<List<ViewPostResponse>> viewPostByHeart(){
+        List<ViewPostResponse> posts = viewPostByHeartService.execute();
+        return ResponseEntity.ok(posts);
     }
 }
