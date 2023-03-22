@@ -1,7 +1,6 @@
 package Idea.Archive.IdeaArchive.domain.application.service;
 
 import Idea.Archive.IdeaArchive.domain.application.entity.Application;
-import Idea.Archive.IdeaArchive.domain.application.exception.AlreadyApplyApplicationException;
 import Idea.Archive.IdeaArchive.domain.application.repository.ApplicationRepository;
 import Idea.Archive.IdeaArchive.domain.member.entity.Member;
 import Idea.Archive.IdeaArchive.domain.post.entity.Post;
@@ -25,14 +24,17 @@ public class ApplyApplicationService {
         Post post = postRepository.findById(postId)
                 .orElseThrow(() -> new NotExistPostException("게시글이 존재하지 않습니다."));
         if(applicationRepository.existsByPostAndMember(post,member)){
-            throw new AlreadyApplyApplicationException("이미 신청하셨습니다");
+            post.updateApplication(post.getApplicationCount()-1);
+            applicationRepository.deleteByPostAndMember(post,member);
+        }else {
+            Application application = Application.builder()
+                    .post(post)
+                    .member(member)
+                    .build();
+            post.updateApplication(post.getApplicationCount() + 1);
+            postRepository.save(post);
+            applicationRepository.save(application);
         }
-        Application application = Application.builder()
-                .post(post)
-                .member(member)
-                .build();
-        post.updateApplication(post.getApplicationCount()+1);
-        postRepository.save(post);
-        applicationRepository.save(application);
+
     }
 }

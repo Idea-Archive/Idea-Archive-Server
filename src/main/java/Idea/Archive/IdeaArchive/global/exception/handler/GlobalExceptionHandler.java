@@ -1,7 +1,5 @@
 package Idea.Archive.IdeaArchive.global.exception.handler;
 
-import Idea.Archive.IdeaArchive.domain.application.exception.AlreadyApplyApplicationException;
-import Idea.Archive.IdeaArchive.domain.application.exception.NotApplyApplicationException;
 import Idea.Archive.IdeaArchive.domain.auth.exception.BlackListAlreadyExistException;
 import Idea.Archive.IdeaArchive.domain.auth.exception.ExistEmailException;
 import Idea.Archive.IdeaArchive.domain.auth.exception.RefreshTokenNotFoundException;
@@ -154,20 +152,6 @@ public class GlobalExceptionHandler {
     }
     @ExceptionHandler(NotQualifiedDeleteNoticeException.class)
     public ResponseEntity<ErrorMessage> handleNotQualifiedDeleteNoticeException (HttpServletRequest request, NotQualifiedDeleteNoticeException exception){
-        printError(request,exception,exception.getErrorCode().getMessage());
-        ErrorMessage errorMessage = new ErrorMessage(exception.getErrorCode().getMessage(), exception.getErrorCode().getStatus());
-        return new ResponseEntity<>(errorMessage,HttpStatus.valueOf(exception.getErrorCode().getStatus()));
-    }
-
-    @ExceptionHandler(AlreadyApplyApplicationException.class)
-    public ResponseEntity<ErrorMessage> handleAlreadyApplyApplicationException (HttpServletRequest request, AlreadyApplyApplicationException exception){
-        printError(request,exception,exception.getErrorCode().getMessage());
-        ErrorMessage errorMessage = new ErrorMessage(exception.getErrorCode().getMessage(), exception.getErrorCode().getStatus());
-        return new ResponseEntity<>(errorMessage,HttpStatus.valueOf(exception.getErrorCode().getStatus()));
-    }
-
-    @ExceptionHandler(NotApplyApplicationException.class)
-    public ResponseEntity<ErrorMessage> handleNotApplyApplicationException (HttpServletRequest request, NotApplyApplicationException exception){
         printError(request,exception,exception.getErrorCode().getMessage());
         ErrorMessage errorMessage = new ErrorMessage(exception.getErrorCode().getMessage(), exception.getErrorCode().getStatus());
         return new ResponseEntity<>(errorMessage,HttpStatus.valueOf(exception.getErrorCode().getStatus()));
