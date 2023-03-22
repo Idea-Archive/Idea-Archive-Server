@@ -60,13 +60,13 @@ public class PostController {
     }
 
     @GetMapping("/search")
-    public ResponseEntity<List<ViewByCategoryResponse>> SearchPost(@RequestParam String searchKeyword, @RequestParam String category){
+    public ResponseEntity<List<ViewByCategoryResponse>> searchPost(@RequestParam String searchKeyword, @RequestParam String category) {
         List<ViewByCategoryResponse> response =  filterPostService.execute(searchKeyword,category);
         return ResponseEntity.ok(response);
     }
 
     @GetMapping("/category")
-    public ResponseEntity<List<ViewByCategoryResponse>> ViewPostByCategory(@RequestParam String category) {
+    public ResponseEntity<List<ViewByCategoryResponse>> viewPostByCategory(@RequestParam String category) {
         List<ViewByCategoryResponse> response = filterPostByCategoryService.execute(category);
         return ResponseEntity.ok(response);
     }
@@ -90,7 +90,7 @@ public class PostController {
     }
 
     @GetMapping("/popular")
-    public ResponseEntity<List<ViewPostResponse>> viewPostByHeart(){
+    public ResponseEntity<List<ViewPostResponse>> viewPostByHeart() {
         List<ViewPostResponse> posts = viewPostByHeartService.execute();
         return ResponseEntity.ok(posts);
     }
