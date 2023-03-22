@@ -18,7 +18,7 @@ public class ApplicationListService {
     private final PostRepository postRepository;
 
     @Transactional
-    public List<ApplicationResponse> execute(Long postId){
+    public List<ApplicationResponse> execute(Long postId) {
         Post post = postRepository.findById(postId)
                 .orElseThrow(() -> new NotExistPostException("게시글이 존재하지 않습니다"));
         List<ApplicationResponse> applicationResponses = ApplicationResponse.convertToApplicationList(post.getApplications());

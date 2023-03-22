@@ -4,7 +4,7 @@ import Idea.Archive.IdeaArchive.global.exception.ErrorCode;
 import lombok.Getter;
 
 @Getter
-public class AlreadyApplyApplicationException extends RuntimeException{
+public class AlreadyApplyApplicationException extends RuntimeException {
     private final ErrorCode errorCode;
 
     public AlreadyApplyApplicationException(String message) {

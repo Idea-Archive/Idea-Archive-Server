@@ -23,7 +23,7 @@ public class MemberLogoutService {
     private final RedisTemplate redisTemplate;
 
 
-    public void execute(String accessToken){
+    public void execute(String accessToken) {
         Member member = memberUtil.currentMember();
         RefreshToken refreshToken = refreshTokenRepository.findById(member.getEmail())
                 .orElseThrow(()->new RefreshTokenNotFoundException("RefreshToken을 찾을 수 없습니다."));

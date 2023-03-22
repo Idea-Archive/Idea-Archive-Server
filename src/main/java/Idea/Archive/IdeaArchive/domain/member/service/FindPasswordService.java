@@ -25,7 +25,7 @@ public class FindPasswordService {
 
 
     @Transactional
-    public void execute(MakeNewPasswordRequest makeNewPasswordRequest){
+    public void execute(MakeNewPasswordRequest makeNewPasswordRequest) {
         Member member = memberUtil.currentMember();
         EmailAuth emailAuth = emailAuthRepository.findById(member.getEmail())
                 .orElseThrow(() -> new NotVerifyEmailException("인증되지 않은 이메일입니다."));

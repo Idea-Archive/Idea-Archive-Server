@@ -20,7 +20,7 @@ public class ApplyApplicationService {
     private final MemberUtil memberUtil;
 
     @Transactional
-    public void execute(Long postId){
+    public void execute(Long postId) {
         Member member = memberUtil.currentMember();
         Post post = postRepository.findById(postId)
                 .orElseThrow(() -> new NotExistPostException("게시글이 존재하지 않습니다."));

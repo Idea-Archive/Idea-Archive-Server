@@ -26,7 +26,7 @@ public class MemberLoginService {
     private final JwtProperties jwtProperties;
 
 
-    public MemberLoginResponse execute(MemberLoginRequest memberLoginRequest){
+    public MemberLoginResponse execute(MemberLoginRequest memberLoginRequest) {
         Member member = memberRepository.findByEmail(memberLoginRequest.getEmail())
                 .orElseThrow(() -> new MemberNotFoundException("존재하지 않은 회원입니다."));
 
