@@ -14,7 +14,7 @@ public class SharePostService {
     private final PostRepository postRepository;
 
     @Transactional
-    public SharePostResponse execute(Long postId){
+    public SharePostResponse execute(Long postId) {
         postRepository.findById(postId)
                 .orElseThrow(() -> new NotExistPostException("존재하지 않은 게시글 입니다"));
         return SharePostResponse.builder()

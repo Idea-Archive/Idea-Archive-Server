@@ -23,7 +23,7 @@ public class TokenReissuanceService {
     private final JwtProperties jwtProperties;
 
     @Transactional(rollbackFor = Exception.class)
-    public NewTokenResponse execute(String reqToken){
+    public NewTokenResponse execute(String reqToken) {
         String email = tokenProvider.getUserEmail(reqToken,jwtProperties.getRefreshSecret());
         RefreshToken token = refreshTokenRepository.findById(email)
                 .orElseThrow(()->new RefreshTokenNotFoundException("존재하지 않은 refreshToken입니다."));

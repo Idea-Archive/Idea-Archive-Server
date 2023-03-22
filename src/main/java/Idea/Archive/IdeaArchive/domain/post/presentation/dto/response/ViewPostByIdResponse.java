@@ -23,6 +23,6 @@ public class ViewPostByIdResponse {
     private List<ViewCommentByPostResponse> comment;
     private Integer heartCount;
     private Integer commentCount;
-
+    private Integer applicantCount;
 
 }
