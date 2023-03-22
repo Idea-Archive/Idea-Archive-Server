@@ -24,14 +24,14 @@ public class ApplyApplicationService {
         Post post = postRepository.findById(postId)
                 .orElseThrow(() -> new NotExistPostException("게시글이 존재하지 않습니다."));
         if(applicationRepository.existsByPostAndMember(post,member)){
-            post.updateApplication(post.getApplicationCount()-1);
+            post.updateApplication(post.getApplicantCount()-1);
             applicationRepository.deleteByPostAndMember(post,member);
         }else {
             Application application = Application.builder()
                     .post(post)
                     .member(member)
                     .build();
-            post.updateApplication(post.getApplicationCount() + 1);
+            post.updateApplication(post.getApplicantCount() + 1);
             postRepository.save(post);
             applicationRepository.save(application);
         }

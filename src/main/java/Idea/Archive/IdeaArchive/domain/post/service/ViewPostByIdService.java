@@ -33,6 +33,7 @@ public class ViewPostByIdService {
                 .comment(comment)
                 .heartCount(post.getHeartCount())
                 .commentCount(post.getCommentCount())
+                .applicantCount(post.getApplicantCount())
                 .build();
     }
 

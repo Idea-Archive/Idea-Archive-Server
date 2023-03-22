@@ -45,8 +45,8 @@ public class Post {
     private Member member;
 
     @ColumnDefault("0")
-    @Column(name = "application_count", nullable = false)
-    private Integer applicationCount;
+    @Column(name = "applicant_count", nullable = false)
+    private Integer applicantCount;
 
 
     @Builder.Default
@@ -68,6 +68,6 @@ public class Post {
         this.heartCount = heartCount;
     }
     public void updateComment(Integer commentCount){this.commentCount = commentCount;}
-    public void updateApplication(Integer applicationCount){this.applicationCount = applicationCount;}
+    public void updateApplication(Integer applicantCount){this.applicantCount = applicantCount;}
 
 }

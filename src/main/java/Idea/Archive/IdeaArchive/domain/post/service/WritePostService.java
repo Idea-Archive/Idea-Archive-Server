@@ -20,10 +20,11 @@ public class WritePostService {
         Post post = Post.builder()
                 .title(writePostRequest.getTitle())
                 .content(writePostRequest.getContent())
+                .category(writePostRequest.getCategory())
                 .member(currentMember)
                 .heartCount(0)
                 .commentCount(0)
-                .applicationCount(0)
+                .applicantCount(0)
                 .build();
         postRepository.save(post);
     }
