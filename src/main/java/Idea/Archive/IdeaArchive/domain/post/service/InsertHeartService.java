@@ -29,6 +29,7 @@ public class InsertHeartService {
 
         if(heartRepository.existsHeartByMemberAndPost(member,post)){
             post.updateHeart(post.getHeartCount()-1);
+            post.updatePopularValue();
             postRepository.save(post);
             heartRepository.deleteHeartByMemberAndPost(member,post);
         }else{

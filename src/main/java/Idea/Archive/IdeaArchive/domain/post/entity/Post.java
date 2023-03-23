@@ -52,17 +52,27 @@ public class Post {
     @OneToMany(mappedBy = "post",fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Application> applications;
 
+    @ColumnDefault("0")
+    @Column(name = "popular_value")
+    private Integer popularValue;
+
+
     public void update(String title, String content) {
         this.title = title;
         this.content = content;
     }
-    public void updateHeart(Integer heartCount){
+    public void updateHeart(Integer heartCount) {
         this.heartCount = heartCount;
+        this.popularValue = this.popularValue + 1;
+    }
+    public void updatePopularValue() {
+        this.popularValue = this.popularValue-1;
     }
     public void updateComment(Integer commentCount) {this.commentCount = commentCount;}
     public void updateApplication(Integer applicantCount) {this.applicantCount = applicantCount;}
-    public void updateViews(Integer views){
+    public void updateViews(Integer views) {
         this.views = views;
+        this.popularValue = this.popularValue + 1;
     }
 
 
