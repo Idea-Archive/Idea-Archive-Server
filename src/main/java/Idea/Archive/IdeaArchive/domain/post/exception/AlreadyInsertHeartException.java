@@ -4,7 +4,7 @@ import Idea.Archive.IdeaArchive.global.exception.ErrorCode;
 import lombok.Getter;
 
 @Getter
-public class AlreadyInsertHeartException extends RuntimeException{
+public class AlreadyInsertHeartException extends RuntimeException {
 
     private final ErrorCode errorCode;
 

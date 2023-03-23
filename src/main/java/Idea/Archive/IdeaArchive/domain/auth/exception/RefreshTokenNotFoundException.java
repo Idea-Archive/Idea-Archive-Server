@@ -5,7 +5,7 @@ import Idea.Archive.IdeaArchive.global.exception.ErrorCode;
 import lombok.Getter;
 
 @Getter
-public class RefreshTokenNotFoundException extends RuntimeException{
+public class RefreshTokenNotFoundException extends RuntimeException {
 
     private final ErrorCode errorCode;
 

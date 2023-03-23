@@ -25,6 +25,8 @@ public class WritePostService {
                 .heartCount(0)
                 .commentCount(0)
                 .applicantCount(0)
+                .popularValue(0)
+                .views(0)
                 .build();
         postRepository.save(post);
     }

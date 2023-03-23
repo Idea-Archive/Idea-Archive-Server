@@ -5,7 +5,7 @@ import Idea.Archive.IdeaArchive.global.exception.ErrorCode;
 import lombok.Getter;
 
 @Getter
-public class ManyRequestEmailException extends RuntimeException{
+public class ManyRequestEmailException extends RuntimeException {
 
     private final ErrorCode errorCode;
 
