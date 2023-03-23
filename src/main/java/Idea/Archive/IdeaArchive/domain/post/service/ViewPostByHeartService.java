@@ -20,9 +20,9 @@ public class ViewPostByHeartService {
     private final PostRepository postRepository;
 
     @Transactional
-    public List<ViewPostResponse> execute(){
+    public List<ViewPostResponse> execute() {
         List<Post> posts = postRepository.findAll(Sort.by(Sort.Direction.DESC,"popularValue"));
-        if(posts.size()==0){
+        if(posts.size()==0) {
             throw new NotExistPostException("게시글이 존재하지 않습니다");
         }
         return posts.stream()

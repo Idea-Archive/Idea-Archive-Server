@@ -5,8 +5,8 @@ import Idea.Archive.IdeaArchive.domain.member.presentation.dto.request.ChangePas
 import Idea.Archive.IdeaArchive.domain.member.presentation.dto.response.MyPageResponse;
 import Idea.Archive.IdeaArchive.domain.member.presentation.dto.response.MyPostResponse;
 import Idea.Archive.IdeaArchive.domain.member.service.*;
-import Idea.Archive.IdeaArchieve.domain.member.presentation.dto.request.ChangeNameRequest;
-import Idea.Archive.IdeaArchieve.domain.member.presentation.dto.request.MakeNewPasswordRequest;
+import Idea.Archive.IdeaArchive.domain.member.presentation.dto.request.ChangeNameRequest;
+import Idea.Archive.IdeaArchive.domain.member.presentation.dto.request.MakeNewPasswordRequest;
 import Idea.Archive.IdeaArchive.domain.post.presentation.dto.response.ViewByHeartListResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
