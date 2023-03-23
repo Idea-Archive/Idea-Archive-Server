@@ -19,4 +19,5 @@ public class ViewPostResponse {
     private List<String> category;
     private Integer heartCount;
     private Integer commentCount;
+
 }

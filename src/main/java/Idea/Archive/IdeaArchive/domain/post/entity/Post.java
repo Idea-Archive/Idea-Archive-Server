@@ -51,11 +51,9 @@ public class Post {
     private List<Heart> hearts;
     @OneToMany(mappedBy = "post",fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Application> applications;
-
     @ColumnDefault("0")
     @Column(name = "popular_value")
     private Integer popularValue;
-
 
     public void update(String title, String content) {
         this.title = title;

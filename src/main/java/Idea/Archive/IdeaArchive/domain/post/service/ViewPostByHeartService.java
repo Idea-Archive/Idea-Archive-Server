@@ -22,17 +22,17 @@ public class ViewPostByHeartService {
     @Transactional
     public List<ViewPostResponse> execute() {
         List<Post> posts = postRepository.findAll(Sort.by(Sort.Direction.DESC,"popularValue"));
-        if(posts.size()==0) {
+        if(posts.isEmpty()) {
             throw new NotExistPostException("게시글이 존재하지 않습니다");
         }
         return posts.stream()
-                .map(n -> ViewPostResponse.builder()
-                        .id(n.getPostId())
-                        .title(n.getTitle())
-                        .content(n.getContent())
-                        .category(n.getCategory())
-                        .heartCount(n.getHeartCount())
-                        .commentCount(n.getCommentCount())
+                .map(p -> ViewPostResponse.builder()
+                        .id(p.getPostId())
+                        .title(p.getTitle())
+                        .content(p.getContent())
+                        .category(p.getCategory())
+                        .heartCount(p.getHeartCount())
+                        .commentCount(p.getCommentCount())
                         .build())
                 .collect(Collectors.toList());
     }
