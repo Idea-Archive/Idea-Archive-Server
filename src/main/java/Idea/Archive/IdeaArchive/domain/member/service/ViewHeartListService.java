@@ -1,4 +1,4 @@
-package Idea.Archive.IdeaArchive.domain.post.service;
+package Idea.Archive.IdeaArchive.domain.member.service;
 
 import Idea.Archive.IdeaArchive.domain.member.entity.Member;
 import Idea.Archive.IdeaArchive.domain.post.exception.NotExistPostException;

@@ -7,6 +7,7 @@ import Idea.Archive.IdeaArchive.domain.member.presentation.dto.response.MyPostRe
 import Idea.Archive.IdeaArchive.domain.member.service.*;
 import Idea.Archive.IdeaArchieve.domain.member.presentation.dto.request.ChangeNameRequest;
 import Idea.Archive.IdeaArchieve.domain.member.presentation.dto.request.MakeNewPasswordRequest;
+import Idea.Archive.IdeaArchive.domain.post.presentation.dto.response.ViewByHeartListResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,8 +24,10 @@ public class MemberController {
     private final MyPageService myPageService;
     private final WithdrawService withdrawService;
     private final ViewMyPostService viewMyPostService;
-    private final Idea.Archive.IdeaArchive.domain.member.service.FindPasswordService findPasswordService;
+    private final FindPasswordService findPasswordService;
     private final ChangeNameService changeNameService;
+    private final ViewHeartListService viewHeartListService;
+
 
     @PatchMapping
     public ResponseEntity<Void> editPassword(@RequestBody @Valid ChangePasswordRequest changePasswordRequest) {
@@ -56,4 +59,10 @@ public class MemberController {
         changeNameService.execute(changeNameRequest);
         return ResponseEntity.noContent().build();
     }
+    @GetMapping("/heart")
+    public ResponseEntity<List<ViewByHeartListResponse>> viewHeartList() {
+        List<ViewByHeartListResponse> heartList = viewHeartListService.execute();
+        return ResponseEntity.ok(heartList);
+    }
+
 }

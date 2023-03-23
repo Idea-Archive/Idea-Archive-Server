@@ -1,5 +1,6 @@
 package Idea.Archive.IdeaArchive.domain.post.presentation;
 
+import Idea.Archive.IdeaArchive.domain.member.service.ViewHeartListService;
 import Idea.Archive.IdeaArchive.domain.post.presentation.dto.request.ModifyPostRequest;
 import Idea.Archive.IdeaArchive.domain.post.presentation.dto.request.WritePostRequest;
 import Idea.Archive.IdeaArchive.domain.post.presentation.dto.response.*;
@@ -25,7 +26,6 @@ public class PostController {
     private final FilterPostService filterPostService;
     private final FilterPostByCategoryService filterPostByCategoryService;
     private final InsertHeartService insertHeartService;
-    private final ViewHeartListService viewHeartListService;
     private final SharePostService sharePostService;
     private final ViewPostByHeartService viewPostByHeartService;
 
@@ -75,12 +75,6 @@ public class PostController {
     public ResponseEntity<Void> insertHeart(@PathVariable("postId") Long postId) {
         insertHeartService.execute(postId);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-    }
-
-    @GetMapping("/heart")
-    public ResponseEntity<List<ViewByHeartListResponse>> viewHeartList() {
-        List<ViewByHeartListResponse> heartList = viewHeartListService.execute();
-        return ResponseEntity.ok(heartList);
     }
 
     @GetMapping("/share/{postId}")
