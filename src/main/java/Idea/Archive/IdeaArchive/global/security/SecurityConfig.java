@@ -43,6 +43,7 @@ public class SecurityConfig {
                 .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
                 .antMatchers("/email/**").permitAll()
                 .antMatchers("/auth/**").permitAll()
+                .antMatchers("/google/**").permitAll()
                 
                 .antMatchers("/member/**").authenticated()
                 .antMatchers("/post/**").authenticated()
