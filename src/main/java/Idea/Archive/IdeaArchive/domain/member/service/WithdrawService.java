@@ -31,7 +31,7 @@ public class WithdrawService {
     private final PostRepository postRepository;
 
     @Transactional
-    public void execute(String email,String password){
+    public void execute(String email,String password) {
         Member member = memberRepository.findByEmail(email)
                 .orElseThrow(()-> new MemberNotFoundException("유저가 존재하지 않습니다"));
         RefreshToken refreshToken = refreshTokenRepository.findById(member.getEmail())

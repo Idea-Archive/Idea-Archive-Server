@@ -21,7 +21,7 @@ public class InsertHeartService {
     private final HeartRepository heartRepository;
 
     @Transactional
-    public void execute(Long postId){
+    public void execute(Long postId) {
         Member member = memberUtil.currentMember();
 
         Post post = postRepository.findById(postId)

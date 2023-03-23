@@ -2,10 +2,7 @@ package Idea.Archive.IdeaArchive.domain.post.presentation;
 
 import Idea.Archive.IdeaArchive.domain.post.presentation.dto.request.ModifyPostRequest;
 import Idea.Archive.IdeaArchive.domain.post.presentation.dto.request.WritePostRequest;
-import Idea.Archive.IdeaArchive.domain.post.presentation.dto.response.ViewByHeartListResponse;
-import Idea.Archive.IdeaArchive.domain.post.presentation.dto.response.ViewPostByIdResponse;
-import Idea.Archive.IdeaArchive.domain.post.presentation.dto.response.ViewPostResponse;
-import Idea.Archive.IdeaArchive.domain.post.presentation.dto.response.ViewByCategoryResponse;
+import Idea.Archive.IdeaArchive.domain.post.presentation.dto.response.*;
 import Idea.Archive.IdeaArchive.domain.post.service.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -29,6 +26,7 @@ public class PostController {
     private final FilterPostByCategoryService filterPostByCategoryService;
     private final InsertHeartService insertHeartService;
     private final ViewHeartListService viewHeartListService;
+    private final SharePostService sharePostService;
 
     @PostMapping("/write")
     public ResponseEntity<Void> writePost(@RequestBody @Valid WritePostRequest writePostRequest) {
@@ -67,20 +65,26 @@ public class PostController {
     }
 
     @GetMapping("/category")
-    public ResponseEntity<List<ViewByCategoryResponse>> ViewPostByCategory(@RequestParam String category){
+    public ResponseEntity<List<ViewByCategoryResponse>> ViewPostByCategory(@RequestParam String category) {
         List<ViewByCategoryResponse> response = filterPostByCategoryService.execute(category);
         return ResponseEntity.ok(response);
     }
 
     @GetMapping("{postId}/heart")
-    public ResponseEntity<Void> insertHeart(@PathVariable("postId") Long postId){
+    public ResponseEntity<Void> insertHeart(@PathVariable("postId") Long postId) {
         insertHeartService.execute(postId);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
     @GetMapping("/heart")
-    public ResponseEntity<List<ViewByHeartListResponse>> viewHeartList(){
+    public ResponseEntity<List<ViewByHeartListResponse>> viewHeartList() {
         List<ViewByHeartListResponse> heartList = viewHeartListService.execute();
         return ResponseEntity.ok(heartList);
+    }
+
+    @GetMapping("/share/{postId}")
+    public ResponseEntity<SharePostResponse> sharePost(@PathVariable Long postId) {
+        SharePostResponse postUrl = sharePostService.execute(postId);
+        return ResponseEntity.ok(postUrl);
     }
 }

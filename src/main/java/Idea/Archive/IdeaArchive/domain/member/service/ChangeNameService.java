@@ -17,7 +17,7 @@ public class ChangeNameService {
     private final MemberRepository memberRepository;
 
     @Transactional
-    public void execute(ChangeNameRequest changeNameRequest){
+    public void execute(ChangeNameRequest changeNameRequest) {
         Member member = memberUtil.currentMember();
         if (memberRepository.existsByName(changeNameRequest.getName())){
             throw new AlreadyExistNicknameException("이미 존재하는 닉네임입니다");
