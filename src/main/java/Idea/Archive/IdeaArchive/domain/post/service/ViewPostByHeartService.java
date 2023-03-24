@@ -21,7 +21,7 @@ public class ViewPostByHeartService {
 
     @Transactional
     public List<ViewPostResponse> execute() {
-        List<Post> posts = postRepository.findAll(Sort.by(Sort.Direction.DESC,"popularValue"));
+        List<Post> posts = postRepository.findAllOrderByHeartCountPlusViesDesc();
         if(posts.isEmpty()) {
             throw new NotExistPostException("게시글이 존재하지 않습니다");
         }
