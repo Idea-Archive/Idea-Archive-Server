@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Component
 public interface GithubAuth {
 
-    @PostMapping
+    @PostMapping(produces = "application/json")
     GithubTokenResponse githubAuth(GithubCodeRequest githubCodeRequest);
 
 }

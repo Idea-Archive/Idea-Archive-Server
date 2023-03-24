@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class GithubTokenResponse {
 
-    private String access_token;
+    private String accessToken;
+    private String tokenType;
     private String scope;
-    private String token_type;
 }

@@ -44,6 +44,7 @@ public class SecurityConfig {
                 .antMatchers("/email/**").permitAll()
                 .antMatchers("/auth/**").permitAll()
                 .antMatchers("/google/**").permitAll()
+                .antMatchers("/github/**").permitAll()
                 
                 .antMatchers("/member/**").authenticated()
                 .antMatchers("/post/**").authenticated()

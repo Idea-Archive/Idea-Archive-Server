@@ -7,7 +7,7 @@ import Idea.Archive.IdeaArchive.domain.member.entity.Member;
 import Idea.Archive.IdeaArchive.domain.member.repository.MemberRepository;
 import Idea.Archive.IdeaArchive.global.filter.role.Role;
 import Idea.Archive.IdeaArchive.global.img.DefaultImage;
-import Idea.Archive.IdeaArchive.global.security.AuthProperties;
+import Idea.Archive.IdeaArchive.global.security.GithubAuthProperties;
 import Idea.Archive.IdeaArchive.global.security.jwt.TokenProvider;
 import Idea.Archive.IdeaArchive.global.security.jwt.properties.JwtProperties;
 import Idea.Archive.IdeaArchive.infrastructure.feign.client.GithubAuth;
@@ -18,18 +18,23 @@ import Idea.Archive.IdeaArchive.infrastructure.feign.dto.response.GithubEmailRes
 import Idea.Archive.IdeaArchive.infrastructure.feign.dto.response.GithubNameResponse;
 import Idea.Archive.IdeaArchive.infrastructure.feign.dto.response.GithubTokenResponse;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+
+
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class GithubAuthService {
 
     private final MemberRepository memberRepository;
     private final GithubAuth githubAuth;
     private final GithubNameInfo githubNameInfo;
     private final GithubEmailInfo githubEmailInfo;
-    private final AuthProperties authProperties;
+    private final GithubAuthProperties githubAuthProperties;
     private final TokenProvider tokenProvider;
     private final RefreshTokenRepository refreshTokenRepository;
     private final JwtProperties jwtProperties;
@@ -49,20 +54,37 @@ public class GithubAuthService {
     @Transactional
     public MemberLoginResponse execute(String code) {
 
+        log.error("asdfasdf");
+        System.out.println(code);
+        System.out.println(githubAuthProperties.getBaseUrl());
+        System.out.println(githubAuthProperties.getClientSecret());
+        System.out.println(githubAuthProperties.getClientId());
+        System.out.println(githubAuthProperties.getRedirectUrl());
+
+
         GithubTokenResponse githubTokenResponse = githubAuth.githubAuth(
                 GithubCodeRequest.builder()
                         .code(code)
-                        .clientId(authProperties.getClientId())
-                        .clientSecret(authProperties.getClientSecret())
-                        .redirectUri(authProperties.getRedirectUrl())
+                        .clientId(githubAuthProperties.getClientId())
+                        .clientSecret(githubAuthProperties.getClientSecret())
+                        .redirectUri(githubAuthProperties.getRedirectUrl())
                         .build()
         );
 
-        GithubNameResponse githubNameResponse = githubNameInfo.githubNameInfo(githubTokenResponse.getAccess_token());
-        GithubEmailResponse githubEmailResponse = githubEmailInfo.githubEmailInfo(githubTokenResponse.getAccess_token());
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Authorization", "Bearer " + githubTokenResponse.getAccessToken());
+
+        System.out.println(githubTokenResponse.getAccessToken());
+
+        GithubNameResponse githubNameResponse = githubNameInfo.githubNameInfo(githubTokenResponse.getAccessToken());
+//          GithubEmailResponse githubEmailResponse = githubEmailInfo.githubEmailInfo(githubTokenResponse.getAccessToken());
+        GithubEmailResponse githubEmailResponse = githubEmailInfo.githubEmailInfo(headers);
 
         String email = githubEmailResponse.getEmail();
         String name = githubNameResponse.getName();
+
+        System.out.println(email);
+        System.out.println(name);
 
         String refreshToken = tokenProvider.generatedRefreshToken(email);
         String jwtAccessToken = tokenProvider.generatedAccessToken(email);
