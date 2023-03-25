@@ -24,5 +24,6 @@ public class ViewPostByIdResponse {
     private Integer heartCount;
     private Integer commentCount;
     private Integer applicantCount;
+    private Integer views;
 
 }

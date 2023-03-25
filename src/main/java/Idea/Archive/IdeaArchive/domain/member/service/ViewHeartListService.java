@@ -1,4 +1,4 @@
-package Idea.Archive.IdeaArchive.domain.post.service;
+package Idea.Archive.IdeaArchive.domain.member.service;
 
 import Idea.Archive.IdeaArchive.domain.member.entity.Member;
 import Idea.Archive.IdeaArchive.domain.post.exception.NotExistPostException;
@@ -20,7 +20,7 @@ public class ViewHeartListService {
     public List<ViewByHeartListResponse> execute() {
         Member member = memberUtil.currentMember();
         List<ViewByHeartListResponse> heartList = ViewByHeartListResponse.convertToHeartList(member.getHearts());
-        if(heartList.size()==0){
+        if(heartList.isEmpty()){
             throw new NotExistPostException("게시글이 존재하지 않습니다");
         }
         return heartList;

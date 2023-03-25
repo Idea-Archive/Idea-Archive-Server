@@ -4,7 +4,7 @@ import Idea.Archive.IdeaArchive.global.exception.ErrorCode;
 import lombok.Getter;
 
 @Getter
-public class MisMatchAuthCodeException extends RuntimeException{
+public class MisMatchAuthCodeException extends RuntimeException {
 
     private final ErrorCode errorCode;
 
