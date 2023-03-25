@@ -18,8 +18,6 @@ import Idea.Archive.IdeaArchive.infrastructure.feign.dto.response.GithubEmailRes
 import Idea.Archive.IdeaArchive.infrastructure.feign.dto.response.GithubNameResponse;
 import Idea.Archive.IdeaArchive.infrastructure.feign.dto.response.GithubTokenResponse;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,7 +25,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
-@Slf4j
 public class GithubAuthService {
 
     private final MemberRepository memberRepository;
@@ -54,14 +51,6 @@ public class GithubAuthService {
     @Transactional
     public MemberLoginResponse execute(String code) {
 
-        log.error("asdfasdf");
-        System.out.println(code);
-        System.out.println(githubAuthProperties.getBaseUrl());
-        System.out.println(githubAuthProperties.getClientSecret());
-        System.out.println(githubAuthProperties.getClientId());
-        System.out.println(githubAuthProperties.getRedirectUrl());
-
-
         GithubTokenResponse githubTokenResponse = githubAuth.githubAuth(
                 GithubCodeRequest.builder()
                         .code(code)
@@ -71,20 +60,14 @@ public class GithubAuthService {
                         .build()
         );
 
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Authorization", "Bearer " + githubTokenResponse.getAccessToken());
+        System.out.println(githubTokenResponse.getAccess_token());
 
-        System.out.println(githubTokenResponse.getAccessToken());
-
-        GithubNameResponse githubNameResponse = githubNameInfo.githubNameInfo(githubTokenResponse.getAccessToken());
-//          GithubEmailResponse githubEmailResponse = githubEmailInfo.githubEmailInfo(githubTokenResponse.getAccessToken());
-        GithubEmailResponse githubEmailResponse = githubEmailInfo.githubEmailInfo(headers);
+        GithubNameResponse githubNameResponse = githubNameInfo.githubNameInfo(githubTokenResponse.getAccess_token());
+        GithubEmailResponse githubEmailResponse = githubEmailInfo.githubEmailInfo(githubTokenResponse.getAccess_token());
 
         String email = githubEmailResponse.getEmail();
         String name = githubNameResponse.getName();
 
-        System.out.println(email);
-        System.out.println(name);
 
         String refreshToken = tokenProvider.generatedRefreshToken(email);
         String jwtAccessToken = tokenProvider.generatedAccessToken(email);

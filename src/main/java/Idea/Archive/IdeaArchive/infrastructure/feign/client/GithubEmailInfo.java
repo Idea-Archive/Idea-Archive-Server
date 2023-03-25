@@ -12,5 +12,5 @@ import org.springframework.web.bind.annotation.PathVariable;
 public interface GithubEmailInfo {
 
     @GetMapping
-    GithubEmailResponse githubEmailInfo(HttpHeaders headers);
+    GithubEmailResponse githubEmailInfo(@PathVariable("ACCESS_TOKEN") String accessToken);
 }
