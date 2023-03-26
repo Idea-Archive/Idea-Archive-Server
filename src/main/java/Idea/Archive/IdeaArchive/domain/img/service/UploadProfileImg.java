@@ -1,6 +1,9 @@
-package Idea.Archive.IdeaArchive.domain.member.service;
+package Idea.Archive.IdeaArchive.domain.img.service;
 
+import Idea.Archive.IdeaArchive.domain.member.entity.Member;
 import Idea.Archive.IdeaArchive.domain.member.exception.MisMatchExtensionException;
+import Idea.Archive.IdeaArchive.domain.member.repository.MemberRepository;
+import Idea.Archive.IdeaArchive.global.util.MemberUtil;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.DeleteObjectRequest;
@@ -28,9 +31,13 @@ public class UploadProfileImg {
     @Value("${cloud.aws.s3.bucket}")
     private String bucket;
     private final AmazonS3 amazonS3;
+    private final MemberRepository memberRepository;
+    private final MemberUtil memberUtil;
 
     @Transactional
     public List<String> execute(List<MultipartFile> multipartFiles) {
+        Member currentMember = memberUtil.currentMember();
+
         List<String> urls = new ArrayList<>();
         multipartFiles.forEach(file -> {
             String fileName = createFileName(file.getOriginalFilename());
@@ -45,8 +52,12 @@ public class UploadProfileImg {
                 throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "이미지 업로드에 실패했습니다.");
             }
 
+            currentMember.updateProfileImg(fileName);
+            System.out.println(fileName);
+
             urls.add(fileName);
         });
+        System.out.println(urls);
 
         return urls;
     }

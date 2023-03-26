@@ -9,10 +9,8 @@ import Idea.Archive.IdeaArchive.domain.member.presentation.dto.request.ChangeNam
 import Idea.Archive.IdeaArchive.domain.member.presentation.dto.request.MakeNewPasswordRequest;
 import Idea.Archive.IdeaArchive.domain.post.presentation.dto.response.ViewByHeartListResponse;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -29,7 +27,6 @@ public class MemberController {
     private final FindPasswordService findPasswordService;
     private final ChangeNameService changeNameService;
     private final ViewHeartListService viewHeartListService;
-    private final UploadProfileImg uploadProfileImg;
 
 
     @PatchMapping
@@ -67,11 +64,4 @@ public class MemberController {
         List<ViewByHeartListResponse> heartList = viewHeartListService.execute();
         return ResponseEntity.ok(heartList);
     }
-
-    @PostMapping("/profile")
-    public ResponseEntity<Void> uploadProfileImg(List<MultipartFile> multipartFiles) {
-        uploadProfileImg.execute(multipartFiles);
-        return ResponseEntity.noContent().build();
-    }
-
 }

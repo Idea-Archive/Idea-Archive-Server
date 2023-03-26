@@ -1,5 +1,6 @@
-package Idea.Archive.IdeaArchive.domain.member.service;
+package Idea.Archive.IdeaArchive.domain.img.service;
 
+import Idea.Archive.IdeaArchive.domain.img.service.UploadProfileImg;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.DeleteObjectRequest;
 import lombok.RequiredArgsConstructor;
