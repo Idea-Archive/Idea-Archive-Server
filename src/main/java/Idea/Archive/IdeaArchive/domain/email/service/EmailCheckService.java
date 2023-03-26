@@ -19,7 +19,7 @@ public class EmailCheckService {
 
     private final EmailAuthRepository emailAuthRepository;
 
-    public void execute(String email, String authKey){
+    public void execute(String email, String authKey) {
         EmailAuth emailAuth = emailAuthRepository.findById(email)
                 .orElseThrow(()->new MemberNotFoundException("유저를 찾을 수 없습니다."));
         checkAuth(emailAuth,authKey);
@@ -27,7 +27,7 @@ public class EmailCheckService {
         emailAuthRepository.save(emailAuth);
     }
 
-    private void checkAuth(EmailAuth emailAuth, String authKey){
+    private void checkAuth(EmailAuth emailAuth, String authKey) {
         if(!Objects.equals(emailAuth.getRandomValue(),authKey)){
             throw new MisMatchAuthCodeException("인증번호가 일치하지 않습니다.");
         }

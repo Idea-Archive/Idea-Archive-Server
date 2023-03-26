@@ -27,7 +27,7 @@ public class UploadProfileImg {
 
     @Value("${cloud.aws.s3.bucket}")
     private String bucket;
-    private AmazonS3 amazonS3;
+    private final AmazonS3 amazonS3;
 
     @Transactional
     public List<String> execute(List<MultipartFile> multipartFiles) {

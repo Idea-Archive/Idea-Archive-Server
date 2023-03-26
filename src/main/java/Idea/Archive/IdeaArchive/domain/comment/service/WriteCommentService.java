@@ -23,6 +23,8 @@ public class WriteCommentService {
         Member currentMember = memberUtil.currentMember();
         Post findPost = postRepository.findById(postId)
                 .orElseThrow(() -> new NotExistPostException("존재하지 않는 게시글입니다."));
+        findPost.updateComment(findPost.getCommentCount()+1);
+        postRepository.save(findPost);
         Comment comment = Comment.builder()
                 .content(request.getContent())
                 .post(findPost)

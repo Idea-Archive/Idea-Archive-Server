@@ -21,17 +21,17 @@ public class InsertHeartService {
     private final HeartRepository heartRepository;
 
     @Transactional
-    public void execute(Long postId){
+    public void execute(Long postId) {
         Member member = memberUtil.currentMember();
 
         Post post = postRepository.findById(postId)
                 .orElseThrow(()->new NotExistPostException("게시글이 존재하지 않습니다"));
 
-        if(heartRepository.existsHeartByMemberAndPost(member,post)){
+        if(heartRepository.existsHeartByMemberAndPost(member,post)) {
             post.updateHeart(post.getHeartCount()-1);
             postRepository.save(post);
             heartRepository.deleteHeartByMemberAndPost(member,post);
-        }else{
+        }else {
             Heart heart = Heart.builder()
                     .member(member)
                     .post(post)

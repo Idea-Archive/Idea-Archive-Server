@@ -19,7 +19,7 @@ public class ViewMyPostService {
     private final MemberUtil memberUtil;
 
     @Transactional
-    public List<MyPostResponse> execute(){
+    public List<MyPostResponse> execute() {
         Member member = memberUtil.currentMember();
         List<MyPostResponse> posts = MyPostResponse.convertToPostList(member.getPost());
         for(int i=0;i<posts.size();i++){

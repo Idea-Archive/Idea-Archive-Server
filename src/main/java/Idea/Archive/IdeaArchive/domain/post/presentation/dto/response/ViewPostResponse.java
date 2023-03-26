@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Builder
 @Getter
 @NoArgsConstructor
@@ -14,5 +16,8 @@ public class ViewPostResponse {
     private Long id;
     private String title;
     private String content;
-    private String category;
+    private List<String> category;
+    private Integer heartCount;
+    private Integer commentCount;
+
 }

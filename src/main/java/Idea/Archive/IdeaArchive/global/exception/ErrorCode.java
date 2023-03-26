@@ -32,7 +32,9 @@ public enum ErrorCode {
     NOT_QUALIFIED_WRITE_NOTICE("공지글을 작성할 권한이 없습니다",403),
     NOT_QUALIFIED_DELETE_NOTICE("공지글을 삭제할 권한이 없습니다",403),
     NOT_FOUND_NOTICE("공지글이 존재하지 않습니다",404),
-    MISMATCH_EXTENSION("파일 확장자가 일치하지 않습니다.", 400);
+    MISMATCH_EXTENSION("파일 확장자가 일치하지 않습니다.", 400),
+    ALREADY_APPLY_APPLICATION("이미 신청하셨습니다",400),
+    NOT_APPLY_APPLICATION("신청하지 않았습니다",400);
 
     private final String message;
     private final int status;

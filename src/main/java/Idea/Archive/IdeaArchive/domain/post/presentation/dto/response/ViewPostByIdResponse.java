@@ -18,7 +18,12 @@ public class ViewPostByIdResponse {
     private Long id;
     private String title;
     private String content;
-    private String category;
+    private List<String> category;
     private ViewMemberResponse member;
     private List<ViewCommentByPostResponse> comment;
+    private Integer heartCount;
+    private Integer commentCount;
+    private Integer applicantCount;
+    private Integer views;
+
 }

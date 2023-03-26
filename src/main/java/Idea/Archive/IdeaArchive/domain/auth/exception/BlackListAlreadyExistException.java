@@ -6,7 +6,7 @@ import lombok.RequiredArgsConstructor;
 
 @Getter
 @RequiredArgsConstructor
-public class BlackListAlreadyExistException extends RuntimeException{
+public class BlackListAlreadyExistException extends RuntimeException {
 
     private final ErrorCode errorcode;
 
