@@ -6,12 +6,15 @@ import Idea.Archive.IdeaArchive.domain.email.entity.EmailAuth;
 import Idea.Archive.IdeaArchive.domain.email.exception.NotVerifyEmailException;
 import Idea.Archive.IdeaArchive.domain.email.repository.EmailAuthRepository;
 import Idea.Archive.IdeaArchive.domain.member.entity.Member;
+import Idea.Archive.IdeaArchive.domain.member.exception.AlreadyExistNicknameException;
 import Idea.Archive.IdeaArchive.domain.member.repository.MemberRepository;
 import Idea.Archive.IdeaArchive.global.filter.role.Role;
 import Idea.Archive.IdeaArchive.global.img.DefaultImage;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import javax.naming.NameAlreadyBoundException;
 
 @Service
 @RequiredArgsConstructor
@@ -32,6 +35,10 @@ public class MemberSignUpService {
 
         if (!emailAuth.getAuthentication()) {
             throw new NotVerifyEmailException("인증되지 않은 이메일입니다.");
+        }
+
+        if(memberRepository.existsByName(memberSignUpRequest.getName())){
+            throw new AlreadyExistNicknameException("이미 존재하는 이름입니다");
         }
 
         Member member = Member
