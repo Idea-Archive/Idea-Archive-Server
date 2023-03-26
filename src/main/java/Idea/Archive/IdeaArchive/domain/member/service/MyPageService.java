@@ -20,11 +20,11 @@ public class MyPageService {
     public MyPageResponse execute() {
         Member currentMember = memberUtil.currentMember();
         Member member = memberRepository.findByEmail(currentMember.getEmail())
-                .orElseThrow(()->new MemberNotFoundException("존재하지 않는 회원입니다"));
+                .orElseThrow(() -> new MemberNotFoundException("존재하지 않는 회원입니다"));
         return MyPageResponse.builder()
                 .email(member.getEmail())
                 .name(member.getName())
+                .profileImg(member.getProfileImageUrl())
                 .build();
     }
-
 }

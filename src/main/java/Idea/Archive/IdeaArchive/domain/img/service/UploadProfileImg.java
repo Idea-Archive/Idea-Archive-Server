@@ -31,7 +31,6 @@ public class UploadProfileImg {
     @Value("${cloud.aws.s3.bucket}")
     private String bucket;
     private final AmazonS3 amazonS3;
-    private final MemberRepository memberRepository;
     private final MemberUtil memberUtil;
 
     @Transactional
@@ -79,9 +78,5 @@ public class UploadProfileImg {
         } catch (StringIndexOutOfBoundsException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "잘못된 형식의 파일(" + fileName + ") 입니다.");
         }
-    }
-
-    private void deleteImage(String filename) {
-        amazonS3.deleteObject(new DeleteObjectRequest(bucket, filename));
     }
 }

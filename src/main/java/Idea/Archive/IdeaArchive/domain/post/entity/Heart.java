@@ -24,7 +24,6 @@ public class Heart {
     @JoinColumn(name = "member_id")
     private Member member;
 
-
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "post_id")
     private Post post;
