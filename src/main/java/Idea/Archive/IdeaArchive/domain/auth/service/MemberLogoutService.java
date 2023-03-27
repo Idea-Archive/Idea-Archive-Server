@@ -32,7 +32,7 @@ public class MemberLogoutService {
     }
 
     private void saveBlackList(String accessToken, String email) {
-        if(redisTemplate.opsForValue().get(accessToken)!=null){
+        if(redisTemplate.opsForValue().get(accessToken)!=null) {
             throw new BlackListAlreadyExistException("블랙리스트에 이미 등록되어있습니다.");
         }
         BlackList blackList = BlackList.builder()

@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 @FeignClient(name = "GoogleInfoClient", url = "https://www.googleapis.com/oauth2/v1/userinfo")
 @Component
 public interface GoogleInfo {
-
     @GetMapping("?alt=json&access_token={ACCESS_TOKEN}")
     GoogleInfoResponse googleInfo(@PathVariable("ACCESS_TOKEN") String accessToken);
-
 }

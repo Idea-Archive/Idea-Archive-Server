@@ -2,11 +2,9 @@ package Idea.Archive.IdeaArchive.domain.img.service;
 
 import Idea.Archive.IdeaArchive.domain.member.entity.Member;
 import Idea.Archive.IdeaArchive.domain.member.exception.MisMatchExtensionException;
-import Idea.Archive.IdeaArchive.domain.member.repository.MemberRepository;
 import Idea.Archive.IdeaArchive.global.util.MemberUtil;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
-import com.amazonaws.services.s3.model.DeleteObjectRequest;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import lombok.RequiredArgsConstructor;
@@ -52,8 +50,6 @@ public class UploadProfileImg {
             }
 
             currentMember.updateProfileImg(fileName);
-            System.out.println(fileName);
-
             urls.add(fileName);
         });
         System.out.println(urls);
@@ -66,15 +62,15 @@ public class UploadProfileImg {
     }
 
     private String getFileExtension(String fileName) {
-        try {
-            List<String> extensions = Arrays.asList(".jpg", ".JPG", ".jpeg", ".JPEG", ".png", ".PNG");
-            String fileExtension = fileName.substring(fileName.lastIndexOf("."));
+        List<String> extensions = Arrays.asList(".jpg", ".JPG", ".jpeg", ".JPEG", ".png", ".PNG");
+        String fileExtension = fileName.substring(fileName.lastIndexOf("."));
+        System.out.println(fileExtension);
 
-            if (!fileName.contains(fileExtension)) {
+        try {
+            if (!fileName.contains(fileExtension) || !extensions.contains(fileExtension)) {
                 throw new MisMatchExtensionException("일치하지 않는 확장자입니다.");
             }
-
-            return fileName.substring(fileName.lastIndexOf("."));
+            return fileExtension;
         } catch (StringIndexOutOfBoundsException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "잘못된 형식의 파일(" + fileName + ") 입니다.");
         }

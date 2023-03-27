@@ -17,7 +17,7 @@ public class ChangeProfileService {
     @Value("${cloud.aws.s3.bucket}")
     private String bucket;
     private final UploadProfileImg uploadProfileImg;
-    private AmazonS3 amazonS3;
+    private final AmazonS3 amazonS3;
 
     public void execute(List<MultipartFile> multipartFileList, String fileName) {
         deleteImage(fileName);
