@@ -27,8 +27,8 @@ public class ImgController {
     }
 
     @PatchMapping("/change-profile")
-    public ResponseEntity<Void> changeProfileImg(List<MultipartFile> multipartFiles, String filename) {
-        changeProfileService.execute(multipartFiles, filename);
+    public ResponseEntity<Void> changeProfileImg(List<MultipartFile> multipartFiles) {
+        changeProfileService.execute(multipartFiles);
         return ResponseEntity.ok().build();
     }
 }

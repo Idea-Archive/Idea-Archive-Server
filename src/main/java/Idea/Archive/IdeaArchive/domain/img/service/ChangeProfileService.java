@@ -1,6 +1,8 @@
 package Idea.Archive.IdeaArchive.domain.img.service;
 
 import Idea.Archive.IdeaArchive.domain.img.service.UploadProfileImg;
+import Idea.Archive.IdeaArchive.domain.member.entity.Member;
+import Idea.Archive.IdeaArchive.global.util.MemberUtil;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.DeleteObjectRequest;
 import lombok.RequiredArgsConstructor;
@@ -18,9 +20,11 @@ public class ChangeProfileService {
     private String bucket;
     private final UploadProfileImg uploadProfileImg;
     private final AmazonS3 amazonS3;
+    private final MemberUtil memberUtil;
 
-    public void execute(List<MultipartFile> multipartFileList, String fileName) {
-        deleteImage(fileName);
+    public void execute(List<MultipartFile> multipartFileList) {
+        Member member = memberUtil.currentMember();
+        deleteImage(member.getProfileImageUrl());
         uploadProfileImg.execute(multipartFileList);
     }
 
