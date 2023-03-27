@@ -31,6 +31,24 @@ public class UploadProfileImg {
     private final AmazonS3 amazonS3;
     private final MemberUtil memberUtil;
 
+    private String createFileName(String fileName) {
+        return UUID.randomUUID().toString().concat(getFileExtension(fileName));
+    }
+
+    private String getFileExtension(String fileName) {
+        List<String> extensions = Arrays.asList(".jpg", ".JPG", ".jpeg", ".JPEG", ".png", ".PNG");
+        String fileExtension = fileName.substring(fileName.lastIndexOf("."));
+
+        try {
+            if (!fileName.contains(fileExtension) || !extensions.contains(fileExtension)) {
+                throw new MisMatchExtensionException("일치하지 않는 확장자입니다.");
+            }
+            return fileExtension;
+        } catch (StringIndexOutOfBoundsException e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "잘못된 형식의 파일(" + fileName + ") 입니다.");
+        }
+    }
+
     @Transactional
     public List<String> execute(List<MultipartFile> multipartFiles) {
         Member currentMember = memberUtil.currentMember();
@@ -52,27 +70,6 @@ public class UploadProfileImg {
             currentMember.updateProfileImg(fileName);
             urls.add(fileName);
         });
-        System.out.println(urls);
-
         return urls;
-    }
-
-    private String createFileName(String fileName) {
-        return UUID.randomUUID().toString().concat(getFileExtension(fileName));
-    }
-
-    private String getFileExtension(String fileName) {
-        List<String> extensions = Arrays.asList(".jpg", ".JPG", ".jpeg", ".JPEG", ".png", ".PNG");
-        String fileExtension = fileName.substring(fileName.lastIndexOf("."));
-        System.out.println(fileExtension);
-
-        try {
-            if (!fileName.contains(fileExtension) || !extensions.contains(fileExtension)) {
-                throw new MisMatchExtensionException("일치하지 않는 확장자입니다.");
-            }
-            return fileExtension;
-        } catch (StringIndexOutOfBoundsException e) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "잘못된 형식의 파일(" + fileName + ") 입니다.");
-        }
     }
 }

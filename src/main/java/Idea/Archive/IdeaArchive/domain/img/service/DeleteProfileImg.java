@@ -7,17 +7,14 @@ import com.amazonaws.services.s3.model.DeleteObjectRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
-
-import java.util.List;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
-public class ChangeProfileService {
+public class DeleteProfileImg {
 
     @Value("${cloud.aws.s3.bucket}")
     private String bucket;
-    private final UploadProfileImg uploadProfileImg;
     private final AmazonS3 amazonS3;
     private final MemberUtil memberUtil;
 
@@ -25,9 +22,9 @@ public class ChangeProfileService {
         amazonS3.deleteObject(new DeleteObjectRequest(bucket, fileName));
     }
 
-    public void execute(List<MultipartFile> multipartFileList) {
+    @Transactional
+    public void execute() {
         Member currentMember = memberUtil.currentMember();
         deleteImage(currentMember.getProfileImageUrl());
-        uploadProfileImg.execute(multipartFileList);
     }
 }
