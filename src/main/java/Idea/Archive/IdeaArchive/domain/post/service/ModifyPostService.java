@@ -28,7 +28,7 @@ public class ModifyPostService {
         Post post = postRepository.findById(postId)
                         .orElseThrow(() -> new NotExistPostException("존재하지 않는 게시글입니다."));
         verifyPostWriter(post);
-        post.update(modifyPostRequest.getTitle(), modifyPostRequest.getContent());
+        post.update(modifyPostRequest.getTitle(), modifyPostRequest.getContent(),modifyPostRequest.getCategory());
         postRepository.save(post);
     }
 
