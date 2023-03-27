@@ -8,6 +8,7 @@ import Idea.Archive.IdeaArchive.global.util.MemberUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.validation.Valid;
 
@@ -19,11 +20,8 @@ public class ChangeNameService {
     private final MemberRepository memberRepository;
 
     @Transactional
-    public void execute(@Valid ChangeNameRequest changeNameRequest) {
+    public void execute(@RequestBody @Valid ChangeNameRequest changeNameRequest) {
         Member member = memberUtil.currentMember();
-        if (memberRepository.existsByName(changeNameRequest.getName())){
-            throw new AlreadyExistNicknameException("이미 존재하는 닉네임입니다");
-        }
         member.updateName(changeNameRequest.getName());
     }
 }

@@ -32,15 +32,15 @@ public class FindPasswordService {
         Member member = memberUtil.currentMember();
         EmailAuth emailAuth = emailAuthRepository.findById(member.getEmail())
                 .orElseThrow(() -> new NotVerifyEmailException("인증되지 않은 이메일입니다."));
-        if(emailAuth.getAuthentication()){
-            if(!emailAuth.getEmail().equals(member.getEmail())){
+        if(emailAuth.getAuthentication()) {
+            if(!emailAuth.getEmail().equals(member.getEmail())) {
                 throw new NotVerifyEmailException("인증되지 않은 이메일 입니다.");
             }
-            if (!makeNewPasswordRequest.getPassword().equals(makeNewPasswordRequest.getCheckPassword())){
+            if (!makeNewPasswordRequest.getPassword().equals(makeNewPasswordRequest.getCheckPassword())) {
                 throw new MisMatchPasswordException("비밀번호가 일치하지 않습니다.");
             }
             member.updatePassword(passwordEncoder.encode(makeNewPasswordRequest.getCheckPassword()));
-        }else{
+        }else {
             throw new NotVerifyEmailException("인증되지 않은 이메일 입니다.");
         }
     }

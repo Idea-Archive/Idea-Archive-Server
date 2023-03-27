@@ -20,7 +20,7 @@ public class ChangePasswordService {
     @Transactional(rollbackFor = Exception.class)
     public void execute(ChangePasswordRequest changePasswordRequest) {
         Member member = memberUtil.currentMember();
-        if (!passwordEncoder.matches(changePasswordRequest.getCurrentPassword(), member.getPassword())){
+        if (!passwordEncoder.matches(changePasswordRequest.getCurrentPassword(), member.getPassword())) {
             throw new MisMatchPasswordException("현재 비밀번호가 일치하지 않습니다.");
         }
         member.updatePassword(passwordEncoder.encode(changePasswordRequest.getNewPassword()));
