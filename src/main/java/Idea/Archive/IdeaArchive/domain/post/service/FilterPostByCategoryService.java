@@ -16,7 +16,7 @@ public class FilterPostByCategoryService {
 
     public List<ViewByCategoryResponse> execute(String category) {
         List<ViewByCategoryResponse> posts = postRepository.findByCategory(category);
-        if (posts.size()==0) {
+        if (posts.isEmpty()) {
             throw new NotExistPostException("게시글이 존재하지 않습니다.");
         }
         return posts;
