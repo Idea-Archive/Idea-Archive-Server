@@ -28,7 +28,7 @@ public class EmailCheckService {
     }
 
     private void checkAuth(EmailAuth emailAuth, String authKey) {
-        if(!Objects.equals(emailAuth.getRandomValue(),authKey)){
+        if(!Objects.equals(emailAuth.getRandomValue(),authKey)) {
             throw new MisMatchAuthCodeException("인증번호가 일치하지 않습니다.");
         }
     }
