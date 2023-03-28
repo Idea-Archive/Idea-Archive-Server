@@ -8,6 +8,7 @@ import Idea.Archive.IdeaArchive.domain.email.exception.FailedSendEmailException;
 import Idea.Archive.IdeaArchive.domain.email.exception.ManyRequestEmailException;
 import Idea.Archive.IdeaArchive.domain.email.exception.MisMatchAuthCodeException;
 import Idea.Archive.IdeaArchive.domain.email.exception.NotVerifyEmailException;
+import Idea.Archive.IdeaArchive.domain.img.exception.NotExistImageException;
 import Idea.Archive.IdeaArchive.domain.member.exception.MemberNotFoundException;
 import Idea.Archive.IdeaArchive.domain.member.exception.MisMatchPasswordException;
 import Idea.Archive.IdeaArchive.domain.notice.exception.NotQualifiedDeleteNoticeException;
@@ -152,6 +153,12 @@ public class GlobalExceptionHandler {
     }
     @ExceptionHandler(NotQualifiedDeleteNoticeException.class)
     public ResponseEntity<ErrorMessage> handleNotQualifiedDeleteNoticeException (HttpServletRequest request, NotQualifiedDeleteNoticeException exception){
+        printError(request,exception,exception.getErrorCode().getMessage());
+        ErrorMessage errorMessage = new ErrorMessage(exception.getErrorCode().getMessage(), exception.getErrorCode().getStatus());
+        return new ResponseEntity<>(errorMessage,HttpStatus.valueOf(exception.getErrorCode().getStatus()));
+    }
+    @ExceptionHandler(NotExistImageException.class)
+    public ResponseEntity<ErrorMessage> handleNotExistImageException (HttpServletRequest request, NotExistImageException exception){
         printError(request,exception,exception.getErrorCode().getMessage());
         ErrorMessage errorMessage = new ErrorMessage(exception.getErrorCode().getMessage(), exception.getErrorCode().getStatus());
         return new ResponseEntity<>(errorMessage,HttpStatus.valueOf(exception.getErrorCode().getStatus()));
