@@ -28,7 +28,7 @@ public class TokenReissuanceService {
         RefreshToken token = refreshTokenRepository.findById(email)
                 .orElseThrow(()->new RefreshTokenNotFoundException("존재하지 않은 refreshToken입니다."));
 
-        if(!token.getRefreshToken().equals(reqToken)){
+        if(!token.getRefreshToken().equals(reqToken)) {
             throw new TokenNotValidException("토큰이 유효하지 않습니다.");
         }
 

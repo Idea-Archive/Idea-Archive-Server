@@ -23,11 +23,11 @@ public class ViewMyPostService {
         Member member = memberUtil.currentMember();
         List<MyPostResponse> posts = MyPostResponse.convertToPostList(member.getPost());
         for(int i=0;i<posts.size();i++){
-            if(!posts.get(0).getWriter().equals(member.getName())){
+            if(!posts.get(0).getWriter().equals(member.getName())) {
                 throw new MemberNotFoundException("회원이 존재하지 않습니다");
             }
         }
-        if (posts.size()==0){
+        if (posts.size()==0) {
             throw new NotExistPostException("게시글이 존재하지 않습니다.");
         }
         return posts;

@@ -10,7 +10,7 @@ public class BlackListAlreadyExistException extends RuntimeException {
 
     private final ErrorCode errorcode;
 
-    public BlackListAlreadyExistException(String message){
+    public BlackListAlreadyExistException(String message) {
         super(message);
         this.errorcode = ErrorCode.BLACKLIST_ALREADY_EXIST;
     }

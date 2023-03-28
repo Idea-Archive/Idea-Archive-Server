@@ -52,9 +52,10 @@ public class Post {
     @OneToMany(mappedBy = "post",fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Application> applications;
 
-    public void update(String title, String content) {
+    public void update(String title, String content,List<String> category) {
         this.title = title;
         this.content = content;
+        this.category = category;
     }
     public void updateHeart(Integer heartCount) {
         this.heartCount = heartCount;
