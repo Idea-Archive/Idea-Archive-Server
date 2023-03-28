@@ -20,9 +20,9 @@ public class ImgController {
     private final DeleteProfileImg deleteProfileImg;
 
     @PostMapping
-    public ResponseEntity<Void> uploadProfileImg(List<MultipartFile> multipartFiles) {
-        uploadProfileImg.execute(multipartFiles);
-        return ResponseEntity.ok().build();
+    public ResponseEntity<List<String>> uploadProfileImg(List<MultipartFile> multipartFiles) {
+        List<String> url = uploadProfileImg.execute(multipartFiles);
+        return ResponseEntity.ok(url);
     }
 
     @PatchMapping

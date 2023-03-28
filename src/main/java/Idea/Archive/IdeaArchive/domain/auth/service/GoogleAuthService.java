@@ -6,7 +6,6 @@ import Idea.Archive.IdeaArchive.domain.auth.repository.RefreshTokenRepository;
 import Idea.Archive.IdeaArchive.domain.member.entity.Member;
 import Idea.Archive.IdeaArchive.domain.member.repository.MemberRepository;
 import Idea.Archive.IdeaArchive.global.filter.role.Role;
-import Idea.Archive.IdeaArchive.global.img.DefaultImage;
 import Idea.Archive.IdeaArchive.global.security.AuthProperties;
 import Idea.Archive.IdeaArchive.global.security.jwt.TokenProvider;
 import Idea.Archive.IdeaArchive.global.security.jwt.properties.JwtProperties;
@@ -41,7 +40,7 @@ public class GoogleAuthService {
                             .email(email)
                             .name(name)
                             .role(Role.MEMBER)
-                            .profileImageUrl(DefaultImage.MEMBER_PROFILE_IMAGE)
+                            .profileImageUrl(null)
                             .build());
         }
     }

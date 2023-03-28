@@ -4,6 +4,7 @@ package Idea.Archive.IdeaArchive.domain.member.service;
 import Idea.Archive.IdeaArchive.domain.member.entity.Member;
 import Idea.Archive.IdeaArchive.domain.member.exception.MisMatchPasswordException;
 import Idea.Archive.IdeaArchive.domain.member.presentation.dto.request.ChangePasswordRequest;
+import Idea.Archive.IdeaArchive.domain.member.repository.MemberRepository;
 import Idea.Archive.IdeaArchive.global.util.MemberUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -16,6 +17,7 @@ public class ChangePasswordService {
 
     private final MemberUtil memberUtil;
     private final PasswordEncoder passwordEncoder;
+    private final MemberRepository memberRepository;
 
     @Transactional(rollbackFor = Exception.class)
     public void execute(ChangePasswordRequest changePasswordRequest) {
@@ -23,7 +25,6 @@ public class ChangePasswordService {
         if (!passwordEncoder.matches(changePasswordRequest.getCurrentPassword(), member.getPassword())) {
             throw new MisMatchPasswordException("현재 비밀번호가 일치하지 않습니다.");
         }
-        member.updatePassword(passwordEncoder.encode(changePasswordRequest.getNewPassword()));
-
+        memberRepository.save(member.updatePassword(passwordEncoder.encode(changePasswordRequest.getNewPassword())));
     }
 }

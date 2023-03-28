@@ -68,7 +68,7 @@ public class UploadProfileImg {
             }
 
             currentMember.updateProfileImg(fileName);
-            urls.add(fileName);
+            urls.add(amazonS3.getUrl(bucket, fileName).toString());
         });
         return urls;
     }
