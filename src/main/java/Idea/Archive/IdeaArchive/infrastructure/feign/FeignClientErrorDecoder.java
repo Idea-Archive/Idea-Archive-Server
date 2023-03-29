@@ -1,12 +1,15 @@
 package Idea.Archive.IdeaArchive.infrastructure.feign;
 
 import Idea.Archive.IdeaArchive.infrastructure.feign.exception.BadRequestException;
-import Idea.Archive.IdeaArchive.infrastructure.feign.exception.ExpiredTokenException;
-import Idea.Archive.IdeaArchive.infrastructure.feign.exception.ForbiddenException;
-import Idea.Archive.IdeaArchive.infrastructure.feign.exception.UnAuthorizedException;
+import com.amazonaws.services.kms.model.NotFoundException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import feign.FeignException;
 import feign.Response;
 import feign.codec.ErrorDecoder;
+import org.springframework.context.annotation.Bean;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 public class FeignClientErrorDecoder implements ErrorDecoder {
 
@@ -28,5 +31,4 @@ public class FeignClientErrorDecoder implements ErrorDecoder {
 
         return FeignException.errorStatus(methodKey, response);
     }
-
 }

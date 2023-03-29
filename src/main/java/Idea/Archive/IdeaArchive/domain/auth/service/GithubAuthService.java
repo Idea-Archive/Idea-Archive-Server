@@ -13,14 +13,17 @@ import Idea.Archive.IdeaArchive.global.security.jwt.properties.JwtProperties;
 import Idea.Archive.IdeaArchive.infrastructure.feign.client.GithubAuth;
 import Idea.Archive.IdeaArchive.infrastructure.feign.client.GithubEmailInfo;
 import Idea.Archive.IdeaArchive.infrastructure.feign.client.GithubNameInfo;
-import Idea.Archive.IdeaArchive.infrastructure.feign.dto.request.GithubCodeRequest;
 import Idea.Archive.IdeaArchive.infrastructure.feign.dto.response.GithubEmailResponse;
 import Idea.Archive.IdeaArchive.infrastructure.feign.dto.response.GithubNameResponse;
 import Idea.Archive.IdeaArchive.infrastructure.feign.dto.response.GithubTokenResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.RequestEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.net.URI;
 
 
 @Service
@@ -52,18 +55,26 @@ public class GithubAuthService {
     public MemberLoginResponse execute(String code) {
 
         GithubTokenResponse githubTokenResponse = githubAuth.githubAuth(
-                GithubCodeRequest.builder()
-                        .code(code)
-                        .clientId(githubAuthProperties.getClientId())
-                        .clientSecret(githubAuthProperties.getClientSecret())
-                        .redirectUri(githubAuthProperties.getRedirectUrl())
-                        .build()
+                code,
+                githubAuthProperties.getClientId(),
+                githubAuthProperties.getClientSecret(),
+                githubAuthProperties.getRedirectUrl()
         );
 
         System.out.println(githubTokenResponse.getAccess_token());
 
+        HttpHeaders headers = new org.springframework.http.HttpHeaders();
+        headers.add("Authorization", "Bearer " + githubTokenResponse.getAccess_token());
+
+        URI url = URI.create("localhost:8080/");
+
+        RequestEntity<String> request = new RequestEntity<>(headers, HttpMethod.GET, url);
+
         GithubNameResponse githubNameResponse = githubNameInfo.githubNameInfo(githubTokenResponse.getAccess_token());
         GithubEmailResponse githubEmailResponse = githubEmailInfo.githubEmailInfo(githubTokenResponse.getAccess_token());
+
+        System.out.println(githubNameResponse.getName());
+        System.out.println(githubEmailResponse.getEmail());
 
         String email = githubEmailResponse.getEmail();
         String name = githubNameResponse.getName();
