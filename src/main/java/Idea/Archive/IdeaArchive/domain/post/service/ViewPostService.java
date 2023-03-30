@@ -28,8 +28,7 @@ public class ViewPostService {
                         .category(n.getCategory())
                         .heartCount(n.getHeartCount())
                         .commentCount(n.getCommentCount())
-                        .member(
-                                ViewMemberResponse.convertToMember(n.getMember()))
+                        .member(ViewMemberResponse.convertToMember(n.getMember()))
                         .build())
                 .collect(Collectors.toList());
     }
