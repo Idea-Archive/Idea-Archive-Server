@@ -41,6 +41,28 @@ spring:
     host: ${REDIS_HOST}
     port: ${REDIS_PORT}
 
+  security:
+    oauth2:
+      client:
+        registration:
+          kakao:
+            client-authentication-method: POST
+            authorization-grant-type: authorization_code
+            scope:
+              - profile_nickname
+              - account_email
+            client-name: Kakao
+        provider:
+          kakao:
+            authorization-uri: https://kauth.kakao.com/oauth/authorize
+            token-uri: https://kauth.kakao.com/oauth/token
+            user-info-uri: https://kapi.kakao.com/v2/user/me
+            user-name-attribute: id
+
+
+
+
+
 
 auth:
   google:
@@ -48,6 +70,10 @@ auth:
     client-id: ${GOOGLE_CLIENT_ID}
     client-secret: ${GOOGLE_SECRET}
     redirect-url: ${GOOGLE_REDIRECT_URL}
+  kakao:
+    client-id: ${KAKAO_CLIENT_ID}
+    client-secret: ${KAKAO_SECRET}
+    redirect-url: ${KAKAO_REDIRECT_URL}
 
 
 jwt:
