@@ -16,18 +16,15 @@ public class FilterPostService {
 
 
     public List<ViewByCategoryResponse> execute(String searchKeyword, String category) {
+        List<ViewByCategoryResponse> posts;
         if(category.isEmpty()) {
-            List<ViewByCategoryResponse> posts = postRepository.findByTitleContaining(searchKeyword);
-            if (posts.isEmpty()) {
-                throw new NotExistPostException("게시글이 존재하지 않습니다.");
-            }
-            return posts;
+            posts = postRepository.findByTitleContaining(searchKeyword);
         }else {
-            List<ViewByCategoryResponse> posts = postRepository.findByTitleContainingAndCategory(searchKeyword, category);
-            if (posts.isEmpty()) {
-                throw new NotExistPostException("게시글이 존재하지 않습니다.");
-            }
-            return posts;
+            posts = postRepository.findByTitleContainingAndCategory(searchKeyword, category);
         }
+        if (posts.isEmpty()) {
+            throw new NotExistPostException("게시글이 존재하지 않습니다.");
+        }
+        return posts;
     }
 }
