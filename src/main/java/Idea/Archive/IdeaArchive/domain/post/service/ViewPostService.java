@@ -1,5 +1,6 @@
 package Idea.Archive.IdeaArchive.domain.post.service;
 
+import Idea.Archive.IdeaArchive.domain.member.presentation.dto.ViewMemberResponse;
 import Idea.Archive.IdeaArchive.domain.post.entity.Post;
 import Idea.Archive.IdeaArchive.domain.post.presentation.dto.response.ViewPostResponse;
 import Idea.Archive.IdeaArchive.domain.post.repository.PostRepository;
@@ -27,6 +28,7 @@ public class ViewPostService {
                         .category(n.getCategory())
                         .heartCount(n.getHeartCount())
                         .commentCount(n.getCommentCount())
+                        .member(ViewMemberResponse.convertToMember(n.getMember()))
                         .build())
                 .collect(Collectors.toList());
     }
