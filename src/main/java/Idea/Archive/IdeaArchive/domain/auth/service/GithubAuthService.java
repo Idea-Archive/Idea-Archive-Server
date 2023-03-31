@@ -46,7 +46,7 @@ public class GithubAuthService {
                             .email(email)
                             .name(name)
                             .role(Role.MEMBER)
-                            .profileImageUrl(DefaultImage.MEMBER_PROFILE_IMAGE)
+                            .profileImageUrl(null)
                             .build());
         }
     }
