@@ -10,6 +10,7 @@ import Idea.Archive.IdeaArchive.domain.email.exception.MisMatchAuthCodeException
 import Idea.Archive.IdeaArchive.domain.email.exception.NotVerifyEmailException;
 import Idea.Archive.IdeaArchive.domain.img.exception.NotExistImageException;
 import Idea.Archive.IdeaArchive.domain.member.exception.MemberNotFoundException;
+import Idea.Archive.IdeaArchive.domain.member.exception.MisMatchExtensionException;
 import Idea.Archive.IdeaArchive.domain.member.exception.MisMatchPasswordException;
 import Idea.Archive.IdeaArchive.domain.notice.exception.NotQualifiedDeleteNoticeException;
 import Idea.Archive.IdeaArchive.domain.notice.exception.NotQualifiedWriteNoticeException;
@@ -126,43 +127,50 @@ public class GlobalExceptionHandler {
 
 
     @ExceptionHandler(AlreadyInsertHeartException.class)
-    public ResponseEntity<ErrorMessage> handleAlreadyInsertHeartException (HttpServletRequest request, AlreadyInsertHeartException exception){
+    public ResponseEntity<ErrorMessage> handleAlreadyInsertHeartException(HttpServletRequest request, AlreadyInsertHeartException exception) {
         printError(request, exception, exception.getErrorCode().getMessage());
         ErrorMessage errorMessage = new ErrorMessage(exception.getErrorCode().getMessage(), exception.getErrorCode().getStatus());
         return new ResponseEntity<>(errorMessage, HttpStatus.valueOf(exception.getErrorCode().getStatus()));
     }
 
     @ExceptionHandler(AlreadyExistNicknameException.class)
-    public ResponseEntity<ErrorMessage> handleAlreadyExistNicknameException (HttpServletRequest request, AlreadyExistNicknameException exception){
+    public ResponseEntity<ErrorMessage> handleAlreadyExistNicknameException(HttpServletRequest request, AlreadyExistNicknameException exception){
         printError(request,exception,exception.getErrorCode().getMessage());
         ErrorMessage errorMessage = new ErrorMessage(exception.getErrorCode().getMessage(), exception.getErrorCode().getStatus());
         return new ResponseEntity<>(errorMessage,HttpStatus.valueOf(exception.getErrorCode().getStatus()));
     }
 
     @ExceptionHandler(NotQualifiedWriteNoticeException.class)
-    public ResponseEntity<ErrorMessage> handleNotQualifiedWriteNoticeException (HttpServletRequest request, NotQualifiedWriteNoticeException exception){
+    public ResponseEntity<ErrorMessage> handleNotQualifiedWriteNoticeException(HttpServletRequest request, NotQualifiedWriteNoticeException exception){
         printError(request,exception,exception.getErrorCode().getMessage());
         ErrorMessage errorMessage = new ErrorMessage(exception.getErrorCode().getMessage(), exception.getErrorCode().getStatus());
         return new ResponseEntity<>(errorMessage,HttpStatus.valueOf(exception.getErrorCode().getStatus()));
     }
     @ExceptionHandler(NoticeNotFoundException.class)
-    public ResponseEntity<ErrorMessage> handleNoticeNotFoundException (HttpServletRequest request, NoticeNotFoundException exception){
+    public ResponseEntity<ErrorMessage> handleNoticeNotFoundException(HttpServletRequest request, NoticeNotFoundException exception){
         printError(request,exception,exception.getErrorCode().getMessage());
         ErrorMessage errorMessage = new ErrorMessage(exception.getErrorCode().getMessage(), exception.getErrorCode().getStatus());
         return new ResponseEntity<>(errorMessage,HttpStatus.valueOf(exception.getErrorCode().getStatus()));
     }
     @ExceptionHandler(NotQualifiedDeleteNoticeException.class)
-    public ResponseEntity<ErrorMessage> handleNotQualifiedDeleteNoticeException (HttpServletRequest request, NotQualifiedDeleteNoticeException exception){
+    public ResponseEntity<ErrorMessage> handleNotQualifiedDeleteNoticeException(HttpServletRequest request, NotQualifiedDeleteNoticeException exception){
         printError(request,exception,exception.getErrorCode().getMessage());
         ErrorMessage errorMessage = new ErrorMessage(exception.getErrorCode().getMessage(), exception.getErrorCode().getStatus());
         return new ResponseEntity<>(errorMessage,HttpStatus.valueOf(exception.getErrorCode().getStatus()));
     }
     @ExceptionHandler(NotExistImageException.class)
-    public ResponseEntity<ErrorMessage> handleNotExistImageException (HttpServletRequest request, NotExistImageException exception){
+    public ResponseEntity<ErrorMessage> handleNotExistImageException(HttpServletRequest request, NotExistImageException exception){
         printError(request,exception,exception.getErrorCode().getMessage());
         ErrorMessage errorMessage = new ErrorMessage(exception.getErrorCode().getMessage(), exception.getErrorCode().getStatus());
         return new ResponseEntity<>(errorMessage,HttpStatus.valueOf(exception.getErrorCode().getStatus()));
     }
+    @ExceptionHandler(MisMatchExtensionException.class)
+    public ResponseEntity<ErrorMessage> handleMisMatchExtensionException(HttpServletRequest request, MisMatchExtensionException exception){
+        printError(request,exception,exception.getErrorCode().getMessage());
+        ErrorMessage errorMessage = new ErrorMessage(exception.getErrorCode().getMessage(), exception.getErrorCode().getStatus());
+        return new ResponseEntity<>(errorMessage,HttpStatus.valueOf(exception.getErrorCode().getStatus()));
+    }
+
     private void printError(HttpServletRequest request, RuntimeException ex, String message){
         log.error(request.getRequestURI());
         log.error(message);
