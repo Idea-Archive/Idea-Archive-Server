@@ -6,7 +6,6 @@ import Idea.Archive.IdeaArchive.domain.auth.repository.RefreshTokenRepository;
 import Idea.Archive.IdeaArchive.domain.member.entity.Member;
 import Idea.Archive.IdeaArchive.domain.member.repository.MemberRepository;
 import Idea.Archive.IdeaArchive.global.filter.role.Role;
-import Idea.Archive.IdeaArchive.global.img.DefaultImage;
 import Idea.Archive.IdeaArchive.global.security.GithubAuthProperties;
 import Idea.Archive.IdeaArchive.global.security.jwt.TokenProvider;
 import Idea.Archive.IdeaArchive.global.security.jwt.properties.JwtProperties;
@@ -70,10 +69,10 @@ public class GithubAuthService {
 
         RequestEntity<String> request = new RequestEntity<>(headers, HttpMethod.GET, url);
 
-        GithubNameResponse githubNameResponse = githubNameInfo.githubNameInfo(githubTokenResponse.getAccess_token());
-        GithubEmailResponse githubEmailResponse = githubEmailInfo.githubEmailInfo(githubTokenResponse.getAccess_token());
-
+        GithubNameResponse githubNameResponse = githubNameInfo.githubNameInfo(headers);
         System.out.println(githubNameResponse.getName());
+
+        GithubEmailResponse githubEmailResponse = githubEmailInfo.githubEmailInfo(githubTokenResponse.getAccess_token());
         System.out.println(githubEmailResponse.getEmail());
 
         String email = githubEmailResponse.getEmail();
