@@ -16,13 +16,8 @@ import Idea.Archive.IdeaArchive.infrastructure.feign.dto.response.GithubEmailRes
 import Idea.Archive.IdeaArchive.infrastructure.feign.dto.response.GithubNameResponse;
 import Idea.Archive.IdeaArchive.infrastructure.feign.dto.response.GithubTokenResponse;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.RequestEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.net.URI;
 
 
 @Service
@@ -62,14 +57,7 @@ public class GithubAuthService {
 
         System.out.println(githubTokenResponse.getAccess_token());
 
-        HttpHeaders headers = new org.springframework.http.HttpHeaders();
-        headers.add("Authorization", "Bearer " + githubTokenResponse.getAccess_token());
-
-        URI url = URI.create("localhost:8080/");
-
-        RequestEntity<String> request = new RequestEntity<>(headers, HttpMethod.GET, url);
-
-        GithubNameResponse githubNameResponse = githubNameInfo.githubNameInfo(headers);
+        GithubNameResponse githubNameResponse = githubNameInfo.githubNameInfo(githubTokenResponse.getAccess_token());
         System.out.println(githubNameResponse.getName());
 
         GithubEmailResponse githubEmailResponse = githubEmailInfo.githubEmailInfo(githubTokenResponse.getAccess_token());
