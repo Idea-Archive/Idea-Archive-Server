@@ -7,6 +7,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class GithubNameResponse {
 
-    private String name;
+    private String login;
 
 }
