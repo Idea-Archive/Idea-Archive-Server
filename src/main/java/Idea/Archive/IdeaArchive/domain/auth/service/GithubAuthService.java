@@ -60,7 +60,7 @@ public class GithubAuthService {
         GithubNameResponse githubNameResponse = githubNameInfo.githubNameInfo("Bearer " + githubTokenResponse.getAccess_token());
         System.out.println(githubNameResponse.getLogin());
 
-        GithubEmailResponse githubEmailResponse = githubEmailInfo.githubEmailInfo("Bearer " + githubTokenResponse.getAccess_token());
+        GithubEmailResponse githubEmailResponse = githubEmailInfo.githubEmailInfo("Bearer " + githubTokenResponse.getAccess_token()).get(1);
         System.out.println(githubEmailResponse.getEmail());
 
         String email = githubEmailResponse.getEmail();

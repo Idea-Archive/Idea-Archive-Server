@@ -7,10 +7,12 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 
+import java.util.List;
+
 @FeignClient(name = "GithubEmailInfoClient", url = "https://api.github.com/user/emails")
 @Component
 public interface GithubEmailInfo {
 
-    @GetMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    GithubEmailResponse githubEmailInfo(@RequestHeader("Authorization") String accessToken);
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    List<GithubEmailResponse> githubEmailInfo(@RequestHeader("Authorization") String accessToken);
 }

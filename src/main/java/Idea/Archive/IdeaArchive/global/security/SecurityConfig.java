@@ -49,6 +49,8 @@ public class SecurityConfig {
                 .antMatchers("/member/**").authenticated()
                 .antMatchers("/post/**").authenticated()
                 .antMatchers("/post/comment/**").authenticated()
+                .antMatchers("/img").authenticated()
+                .antMatchers("/google/**").authenticated()
 
                 .antMatchers("/member/notice/**").hasAuthority("ADMIN")
                 .anyRequest().authenticated();
