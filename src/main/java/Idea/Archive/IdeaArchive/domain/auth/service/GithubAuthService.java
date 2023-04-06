@@ -40,7 +40,6 @@ public class GithubAuthService {
                             .email(email)
                             .name(name)
                             .role(Role.MEMBER)
-                            .profileImageUrl(null)
                             .build());
         }
     }
@@ -55,17 +54,11 @@ public class GithubAuthService {
                 githubAuthProperties.getRedirectUrl()
         );
 
-        System.out.println(githubTokenResponse.getAccess_token());
-
         GithubNameResponse githubNameResponse = githubNameInfo.githubNameInfo("Bearer " + githubTokenResponse.getAccess_token());
-        System.out.println(githubNameResponse.getLogin());
-
         GithubEmailResponse githubEmailResponse = githubEmailInfo.githubEmailInfo("Bearer " + githubTokenResponse.getAccess_token()).get(1);
-        System.out.println(githubEmailResponse.getEmail());
 
         String email = githubEmailResponse.getEmail();
         String name = githubNameResponse.getLogin();
-
 
         String refreshToken = tokenProvider.generatedRefreshToken(email);
         String jwtAccessToken = tokenProvider.generatedAccessToken(email);
