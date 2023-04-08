@@ -35,7 +35,7 @@ public class AdminNoticeController {
     }
 
     @PostMapping("/write")
-    public ResponseEntity<Void> writeNotice(WriteNoticeRequest writeNoticeRequest) {
+    public ResponseEntity<Void> writeNotice(@RequestBody WriteNoticeRequest writeNoticeRequest) {
         writeNoticeService.execute(writeNoticeRequest);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
