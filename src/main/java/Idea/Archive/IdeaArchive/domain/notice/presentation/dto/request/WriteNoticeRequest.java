@@ -7,9 +7,9 @@ import javax.validation.constraints.NotBlank;
 @Getter
 public class WriteNoticeRequest {
 
-    @NotBlank
+    @NotBlank(message = "제목은 공백을 허용하지 않습니다.")
     private String title;
 
-    @NotBlank
+    @NotBlank(message = "제목은 공백을 허용하지 않습니다.")
     private String content;
 }
