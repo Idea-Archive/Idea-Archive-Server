@@ -1,8 +1,10 @@
 package Idea.Archive.IdeaArchive.domain.notice.presentation;
 
+import Idea.Archive.IdeaArchive.domain.notice.presentation.dto.request.ModifyNoticeRequest;
 import Idea.Archive.IdeaArchive.domain.notice.presentation.dto.request.WriteNoticeRequest;
 import Idea.Archive.IdeaArchive.domain.notice.presentation.dto.response.ViewNoticeByIdResponse;
 import Idea.Archive.IdeaArchive.domain.notice.presentation.dto.response.ViewNoticeResponse;
+import Idea.Archive.IdeaArchive.domain.notice.service.ModifyNoticeService;
 import Idea.Archive.IdeaArchive.domain.notice.service.ViewNoticeByIdService;
 import Idea.Archive.IdeaArchive.domain.notice.service.ViewNoticeService;
 import Idea.Archive.IdeaArchive.domain.notice.service.WriteNoticeService;
@@ -22,6 +24,7 @@ public class AdminNoticeController {
     private final ViewNoticeService viewNoticeService;
     private final ViewNoticeByIdService viewNoticeByIdService;
     private final WriteNoticeService writeNoticeService;
+    private final ModifyNoticeService modifyNoticeService;
 
     @GetMapping
     public ResponseEntity<List<ViewNoticeResponse>> viewNotice() {
@@ -39,5 +42,11 @@ public class AdminNoticeController {
     public ResponseEntity<Void> writeNotice(@RequestBody @Valid WriteNoticeRequest writeNoticeRequest) {
         writeNoticeService.execute(writeNoticeRequest);
         return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    @PatchMapping("{noticeId}")
+    public ResponseEntity<Void> modifyNotice(@PathVariable Long noticeId, @RequestBody @Valid ModifyNoticeRequest modifyNoticeRequest) {
+        modifyNoticeService.execute(noticeId, modifyNoticeRequest);
+        return ResponseEntity.ok().build();
     }
 }
