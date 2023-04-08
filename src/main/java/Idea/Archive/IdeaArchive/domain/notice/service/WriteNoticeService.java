@@ -21,7 +21,7 @@ public class WriteNoticeService {
     @Transactional
     public void execute(WriteNoticeRequest writeNoticeRequest) {
         Member member = memberUtil.currentMember();
-        if (member.getRole() != Role.ADMIN) {
+        if (member.getRole() != Role.MEMBER) {
             throw new NotQualifiedWriteNoticeException("공지글을 작성할 권한이 없습니다.");
         }
         Notice notice = Notice.builder()

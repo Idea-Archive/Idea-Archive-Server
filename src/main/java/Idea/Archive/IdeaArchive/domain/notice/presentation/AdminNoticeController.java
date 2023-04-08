@@ -1,4 +1,4 @@
-package Idea.Archive.IdeaArchive.domain.notice;
+package Idea.Archive.IdeaArchive.domain.notice.presentation;
 
 import Idea.Archive.IdeaArchive.domain.notice.presentation.dto.request.WriteNoticeRequest;
 import Idea.Archive.IdeaArchive.domain.notice.presentation.dto.response.ViewNoticeByIdResponse;
