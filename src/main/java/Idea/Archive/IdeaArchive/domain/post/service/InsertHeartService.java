@@ -1,6 +1,5 @@
 package Idea.Archive.IdeaArchive.domain.post.service;
 
-
 import Idea.Archive.IdeaArchive.domain.post.entity.Heart;
 import Idea.Archive.IdeaArchive.domain.member.entity.Member;
 import Idea.Archive.IdeaArchive.domain.post.repository.HeartRepository;

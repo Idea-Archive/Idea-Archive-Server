@@ -7,7 +7,6 @@ import Idea.Archive.IdeaArchive.infrastructure.feign.exception.UnAuthorizedExcep
 import feign.FeignException;
 import feign.Response;
 import feign.codec.ErrorDecoder;
-
 public class FeignClientErrorDecoder implements ErrorDecoder {
 
     @Override
@@ -28,5 +27,4 @@ public class FeignClientErrorDecoder implements ErrorDecoder {
 
         return FeignException.errorStatus(methodKey, response);
     }
-
 }

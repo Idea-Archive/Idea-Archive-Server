@@ -3,9 +3,7 @@ package Idea.Archive.IdeaArchive.domain.post.entity;
 
 import Idea.Archive.IdeaArchive.domain.member.entity.Member;
 import lombok.*;
-
 import javax.persistence.*;
-
 import static javax.persistence.FetchType.LAZY;
 
 @Entity

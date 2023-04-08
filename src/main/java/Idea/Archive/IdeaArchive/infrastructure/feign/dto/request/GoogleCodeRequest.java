@@ -20,5 +20,4 @@ public class GoogleCodeRequest {
         this.redirectUri = redirectUri;
         this.grantType = "authorization_code";
     }
-
 }
