@@ -21,5 +21,6 @@ public class ViewPostResponse {
     private Integer heartCount;
     private Integer commentCount;
     private ViewMemberResponse member;
+    private String time;
 
 }
