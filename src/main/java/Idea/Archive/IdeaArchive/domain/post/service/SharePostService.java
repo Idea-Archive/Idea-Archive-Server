@@ -17,7 +17,7 @@ public class SharePostService {
         postRepository.findById(postId)
                 .orElseThrow(() -> new NotExistPostException("존재하지 않은 게시글 입니다"));
         return SharePostResponse.builder()
-                .postUrl("http://localhost:8080/post/"+postId).
+                .postUrl("http://localhost:8080/post/" + postId).
                 build();
     }
 }
