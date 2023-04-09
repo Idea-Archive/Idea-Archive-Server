@@ -25,5 +25,6 @@ public class ViewPostByIdResponse {
     private Integer commentCount;
     private Integer applicantCount;
     private Integer views;
+    private String time;
 
 }

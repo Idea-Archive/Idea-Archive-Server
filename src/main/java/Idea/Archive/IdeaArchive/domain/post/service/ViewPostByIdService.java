@@ -37,6 +37,7 @@ public class ViewPostByIdService {
                 .commentCount(post.getCommentCount())
                 .applicantCount(post.getApplicantCount())
                 .views(post.getViews())
+                .time(post.getTime())
                 .build();
     }
 
