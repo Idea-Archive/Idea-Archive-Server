@@ -28,6 +28,7 @@ public class ViewPostService {
                         .heartCount(n.getHeartCount())
                         .commentCount(n.getCommentCount())
                         .member(ViewMemberResponse.convertToMember(n.getMember()))
+                        .time(n.getTime())
                         .build())
                 .collect(Collectors.toList());
     }
