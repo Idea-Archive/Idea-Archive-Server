@@ -23,6 +23,7 @@ public class ViewNoticeByIdService {
                 .id(noticeId)
                 .title(notice.getTitle())
                 .content(notice.getContent())
+                .time(notice.getTime())
                 .build();
     }
 }

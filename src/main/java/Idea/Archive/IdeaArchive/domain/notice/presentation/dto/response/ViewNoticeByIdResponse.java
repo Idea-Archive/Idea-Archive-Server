@@ -14,5 +14,6 @@ public class ViewNoticeByIdResponse {
     private Long id;
     private String title;
     private String content;
+    private String time;
 
-}
+}2
