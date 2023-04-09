@@ -6,8 +6,7 @@ import Idea.Archive.IdeaArchive.domain.auth.repository.RefreshTokenRepository;
 import Idea.Archive.IdeaArchive.domain.member.entity.Member;
 import Idea.Archive.IdeaArchive.domain.member.repository.MemberRepository;
 import Idea.Archive.IdeaArchive.global.filter.role.Role;
-import Idea.Archive.IdeaArchive.global.img.DefaultImage;
-import Idea.Archive.IdeaArchive.global.security.AuthProperties;
+import Idea.Archive.IdeaArchive.global.security.GoogleAuthProperties;
 import Idea.Archive.IdeaArchive.global.security.jwt.TokenProvider;
 import Idea.Archive.IdeaArchive.global.security.jwt.properties.JwtProperties;
 import Idea.Archive.IdeaArchive.infrastructure.feign.client.GoogleAuth;
@@ -28,7 +27,7 @@ public class GoogleAuthService {
 
     private final GoogleAuth googleAuth;
     private final GoogleInfo googleInfo;
-    private final AuthProperties authProperties;
+    private final GoogleAuthProperties googleAuthProperties;
     private final MemberRepository memberRepository;
     private final TokenProvider tokenProvider;
     private final JwtProperties jwtProperties;
@@ -41,7 +40,7 @@ public class GoogleAuthService {
                             .email(email)
                             .name(name)
                             .role(Role.MEMBER)
-                            .profileImageUrl(DefaultImage.MEMBER_PROFILE_IMAGE)
+                            .profileImageUrl(null)
                             .build());
         }
     }
@@ -49,16 +48,16 @@ public class GoogleAuthService {
     @Transactional
     public MemberLoginResponse execute(String code) {
 
-        GoogleTokenResponse tokenResponse = googleAuth.googleAuth(
-            GoogleCodeRequest.builder()
+        GoogleTokenResponse googleTokenResponse = googleAuth.googleAuth(
+                GoogleCodeRequest.builder()
                         .code(URLDecoder.decode(code, StandardCharsets.UTF_8))
-                        .clientId(authProperties.getClientId())
-                        .clientSecret(authProperties.getClientSecret())
-                        .redirectUri(authProperties.getRedirectUrl())
+                        .clientId(googleAuthProperties.getClientId())
+                        .clientSecret(googleAuthProperties.getClientSecret())
+                        .redirectUri(googleAuthProperties.getRedirectUrl())
                         .build()
         );
 
-        GoogleInfoResponse googleInfoResponse = googleInfo.googleInfo(tokenResponse.getAccess_token());
+        GoogleInfoResponse googleInfoResponse = googleInfo.googleInfo(googleTokenResponse.getAccess_token());
 
         String email = googleInfoResponse.getEmail();
         String name = googleInfoResponse.getName();

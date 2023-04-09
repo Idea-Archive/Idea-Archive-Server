@@ -1,3 +1,6 @@
+
+
+
 package Idea.Archive.IdeaArchive.global.security;
 
 import Idea.Archive.IdeaArchive.global.filter.JwtRequestFilter;
@@ -43,13 +46,16 @@ public class SecurityConfig {
                 .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
                 .antMatchers("/email/**").permitAll()
                 .antMatchers("/auth/**").permitAll()
-                .antMatchers("/kakao/**").permitAll()
-                
+                .antMatchers("/google/**").permitAll()
+                .antMatchers("/github/**").permitAll()
+                .antMatchers("/google/**").permitAll()
+
                 .antMatchers("/member/**").authenticated()
                 .antMatchers("/post/**").authenticated()
                 .antMatchers("/post/comment/**").authenticated()
+                .antMatchers("/img").authenticated()
 
-                .antMatchers("/admin/**").hasAuthority("ADMIN")
+                .antMatchers("/member/notice/**").hasAuthority("ADMIN")
                 .anyRequest().authenticated();
         http
                 .sessionManagement()
