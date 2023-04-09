@@ -1,6 +1,5 @@
 package Idea.Archive.IdeaArchive.domain.post.service;
 
-
 import Idea.Archive.IdeaArchive.domain.member.presentation.dto.ViewMemberResponse;
 import Idea.Archive.IdeaArchive.domain.post.entity.Post;
 import Idea.Archive.IdeaArchive.domain.post.exception.NotExistPostException;
@@ -9,7 +8,6 @@ import Idea.Archive.IdeaArchive.domain.post.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
 import java.util.stream.Collectors;
 

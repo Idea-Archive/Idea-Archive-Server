@@ -6,29 +6,29 @@ import Idea.Archive.IdeaArchive.domain.auth.repository.RefreshTokenRepository;
 import Idea.Archive.IdeaArchive.domain.member.entity.Member;
 import Idea.Archive.IdeaArchive.domain.member.repository.MemberRepository;
 import Idea.Archive.IdeaArchive.global.filter.role.Role;
-import Idea.Archive.IdeaArchive.global.security.KakaoAuthProperties;
+import Idea.Archive.IdeaArchive.global.security.GithubAuthProperties;
 import Idea.Archive.IdeaArchive.global.security.jwt.TokenProvider;
 import Idea.Archive.IdeaArchive.global.security.jwt.properties.JwtProperties;
-import Idea.Archive.IdeaArchive.infrastructure.feign.client.KakaoAuth;
-import Idea.Archive.IdeaArchive.infrastructure.feign.client.KakaoInfo;
-import Idea.Archive.IdeaArchive.infrastructure.feign.dto.request.KakaoCodeRequest;
-import Idea.Archive.IdeaArchive.infrastructure.feign.dto.response.KakaoInfoResponse;
-import Idea.Archive.IdeaArchive.infrastructure.feign.dto.response.KakaoTokenResponse;
+import Idea.Archive.IdeaArchive.infrastructure.feign.client.GithubAuth;
+import Idea.Archive.IdeaArchive.infrastructure.feign.client.GithubEmailInfo;
+import Idea.Archive.IdeaArchive.infrastructure.feign.client.GithubNameInfo;
+import Idea.Archive.IdeaArchive.infrastructure.feign.dto.response.GithubEmailResponse;
+import Idea.Archive.IdeaArchive.infrastructure.feign.dto.response.GithubNameResponse;
+import Idea.Archive.IdeaArchive.infrastructure.feign.dto.response.GithubTokenResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.net.URLDecoder;
-import java.nio.charset.StandardCharsets;
 
 @Service
 @RequiredArgsConstructor
-public class KakaoAuthService {
+public class GithubAuthService {
 
-    private final KakaoAuth kakaoAuth;
-    private final KakaoInfo kakaoInfo;
-    private final KakaoAuthProperties kakaoAuthProperties;
     private final MemberRepository memberRepository;
+    private final GithubAuth githubAuth;
+    private final GithubNameInfo githubNameInfo;
+    private final GithubEmailInfo githubEmailInfo;
+    private final GithubAuthProperties githubAuthProperties;
     private final TokenProvider tokenProvider;
     private final RefreshTokenRepository refreshTokenRepository;
     private final JwtProperties jwtProperties;
@@ -47,19 +47,18 @@ public class KakaoAuthService {
     @Transactional
     public MemberLoginResponse execute(String code) {
 
-        KakaoTokenResponse kakaoTokenResponse = kakaoAuth.kakaoAuth(
-                KakaoCodeRequest.builder()
-                        .code(URLDecoder.decode(code, StandardCharsets.UTF_8))
-                        .clientId(kakaoAuthProperties.getClientId())
-                        .clientSecret(kakaoAuthProperties.getClientSecret())
-                        .redirectUrl(kakaoAuthProperties.getRedirectUrl())
-                        .build()
+        GithubTokenResponse githubTokenResponse = githubAuth.githubAuth(
+                code,
+                githubAuthProperties.getClientId(),
+                githubAuthProperties.getClientSecret(),
+                githubAuthProperties.getRedirectUrl()
         );
 
-        KakaoInfoResponse kakaoInfoResponse = kakaoInfo.kakaoInfo(kakaoTokenResponse.getAccess_token());
+        GithubNameResponse githubNameResponse = githubNameInfo.githubNameInfo("Bearer " + githubTokenResponse.getAccess_token());
+        GithubEmailResponse githubEmailResponse = githubEmailInfo.githubEmailInfo("Bearer " + githubTokenResponse.getAccess_token()).get(1);
 
-        String email = kakaoInfoResponse.getEmail();
-        String name = kakaoInfoResponse.getName();
+        String email = githubEmailResponse.getEmail();
+        String name = githubNameResponse.getLogin();
 
         String refreshToken = tokenProvider.generatedRefreshToken(email);
         String jwtAccessToken = tokenProvider.generatedAccessToken(email);
@@ -78,6 +77,5 @@ public class KakaoAuthService {
                 .refreshToken(refreshToken)
                 .expiredAt(tokenProvider.getExpiredAtToken(jwtAccessToken, jwtProperties.getAccessSecret()))
                 .build();
-
     }
 }

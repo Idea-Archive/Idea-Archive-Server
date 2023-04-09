@@ -1,6 +1,5 @@
 package Idea.Archive.IdeaArchive.domain.post.service;
 
-import Idea.Archive.IdeaArchive.domain.post.entity.Post;
 import Idea.Archive.IdeaArchive.domain.post.exception.NotExistPostException;
 import Idea.Archive.IdeaArchive.domain.post.presentation.dto.response.SharePostResponse;
 import Idea.Archive.IdeaArchive.domain.post.repository.PostRepository;

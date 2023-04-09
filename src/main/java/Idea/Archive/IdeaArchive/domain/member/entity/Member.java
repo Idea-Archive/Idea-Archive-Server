@@ -20,7 +20,7 @@ public class Member {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "member_id", nullable = false)
+    @Column(name = "member_id")
     private Long memberId;
 
     @Column(name = "email", nullable = false)
@@ -32,7 +32,7 @@ public class Member {
     @Column(name = "password")
     private String password;
 
-    @Column(name = "profile_image_url", nullable = false)
+    @Column(name = "profile_image_url")
     private String profileImageUrl;
 
     @Column(name = "role", nullable = false)
@@ -51,12 +51,16 @@ public class Member {
         this.role = this.role == null ? Role.MEMBER : this.role;
     }
 
-    public void updatePassword(String password) {
+    public Member updatePassword(String password) {
         this.password = password;
+        return this;
     }
 
     public void updateName(String name){
         this.name = name;
+    }
+    public void updateProfileImg(String profileImageUrl) {
+        this.profileImageUrl = profileImageUrl;
     }
 
 }

@@ -64,5 +64,4 @@ public class MemberController {
         List<ViewByHeartListResponse> heartList = viewHeartListService.execute();
         return ResponseEntity.ok(heartList);
     }
-
 }
