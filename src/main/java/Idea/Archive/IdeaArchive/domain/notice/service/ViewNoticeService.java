@@ -24,6 +24,7 @@ public class ViewNoticeService {
                         .id(notice.getId())
                         .title(notice.getTitle())
                         .content(notice.getContent())
+                        .time(notice.getTime())
                         .build())
                 .collect(Collectors.toList());
     }

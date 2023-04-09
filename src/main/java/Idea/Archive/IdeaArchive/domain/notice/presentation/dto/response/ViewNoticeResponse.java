@@ -15,5 +15,6 @@ public class ViewNoticeResponse {
     private Long id;
     private String title;
     private String content;
+    private String time;
 
 }
