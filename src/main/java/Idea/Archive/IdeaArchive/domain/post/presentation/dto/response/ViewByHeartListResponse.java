@@ -1,5 +1,6 @@
 package Idea.Archive.IdeaArchive.domain.post.presentation.dto.response;
 
+import Idea.Archive.IdeaArchive.domain.post.entity.Category;
 import Idea.Archive.IdeaArchive.domain.post.entity.Heart;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,7 +19,7 @@ import java.util.stream.Stream;
 public class ViewByHeartListResponse {
 
     private String title;
-    private String category;
+    private Category category;
 
     public static ViewByHeartListResponse convertToHeart(Heart heart) {
         return ViewByHeartListResponse.builder()

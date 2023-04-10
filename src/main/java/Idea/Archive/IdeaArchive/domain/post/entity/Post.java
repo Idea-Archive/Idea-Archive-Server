@@ -31,7 +31,7 @@ public class Post {
     private String content;
 
     @ElementCollection(fetch = FetchType.EAGER)
-    private List<String> category;
+    private List<Category> category;
 
     @ColumnDefault("0")
     @Column(name = "heart_count", nullable = false)
@@ -63,7 +63,7 @@ public class Post {
     @OneToMany(mappedBy = "post",fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Application> applications;
 
-    public void update(String title, String content,List<String> category) {
+    public void update(String title, String content,List<Category> category) {
         this.title = title;
         this.content = content;
         this.category = category;

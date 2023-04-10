@@ -1,5 +1,6 @@
 package Idea.Archive.IdeaArchive.domain.member.presentation.dto.response;
 
+import Idea.Archive.IdeaArchive.domain.post.entity.Category;
 import Idea.Archive.IdeaArchive.domain.post.entity.Post;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,7 +18,7 @@ import java.util.stream.Stream;
 public class MyPostResponse {
 
     private String title;
-    private List<String> category;
+    private List<Category> category;
     private String writer;
 
     public static MyPostResponse convertToPost(Post post) {
