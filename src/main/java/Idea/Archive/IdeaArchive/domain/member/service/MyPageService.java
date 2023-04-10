@@ -16,7 +16,7 @@ public class MyPageService {
     private final MemberRepository memberRepository;
     private final MemberUtil memberUtil;
 
-    @Transactional
+    @Transactional(readOnly = true)
     public MyPageResponse execute() {
         Member currentMember = memberUtil.currentMember();
         Member member = memberRepository.findByEmail(currentMember.getEmail())
