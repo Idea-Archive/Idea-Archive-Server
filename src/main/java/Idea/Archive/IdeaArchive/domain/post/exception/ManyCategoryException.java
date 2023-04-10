@@ -4,12 +4,12 @@ import Idea.Archive.IdeaArchive.global.exception.ErrorCode;
 import lombok.Getter;
 
 @Getter
-public class AlreadyInsertHeartException extends RuntimeException {
+public class ManyCategoryException extends RuntimeException {
 
     private final ErrorCode errorCode;
 
-    public AlreadyInsertHeartException(String message) {
+    public ManyCategoryException(String message) {
         super(message);
-        this.errorCode = ErrorCode.ALREADY_INSERT_HEART;
+        this.errorCode = ErrorCode.MANY_CATEGORY_EXCEPTION;
     }
 }

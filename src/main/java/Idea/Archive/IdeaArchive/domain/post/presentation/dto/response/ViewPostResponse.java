@@ -1,6 +1,7 @@
 package Idea.Archive.IdeaArchive.domain.post.presentation.dto.response;
 
 import Idea.Archive.IdeaArchive.domain.member.presentation.dto.ViewMemberResponse;
+import Idea.Archive.IdeaArchive.domain.post.category.Category;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -17,7 +18,7 @@ public class ViewPostResponse {
     private Long id;
     private String title;
     private String content;
-    private List<String> category;
+    private List<Category> category;
     private Integer heartCount;
     private Integer commentCount;
     private ViewMemberResponse member;

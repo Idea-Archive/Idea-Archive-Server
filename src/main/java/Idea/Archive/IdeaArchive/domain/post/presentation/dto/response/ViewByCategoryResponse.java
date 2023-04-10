@@ -7,10 +7,9 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Getter
-@Builder
 public class ViewByCategoryResponse {
 
-    private final String title;
-    private final String content;
-    private final String category;
+    private String title;
+    private String content;
+    private String category;
 }

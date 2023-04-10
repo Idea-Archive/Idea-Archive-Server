@@ -35,7 +35,9 @@ public enum ErrorCode {
     MISMATCH_EXTENSION("파일 확장자가 일치하지 않습니다.", 400),
     ALREADY_APPLY_APPLICATION("이미 신청하셨습니다",400),
     NOT_APPLY_APPLICATION("신청하지 않았습니다",400),
-    NOT_EXIST_IMAGE_EXCEPTION("기본 프로필은 삭제할 수 없습니다.", 404);
+    NOT_EXIST_IMAGE_EXCEPTION("기본 프로필은 삭제할 수 없습니다.", 404),
+    MANY_CATEGORY_EXCEPTION("카테고리는 최대 5개까지 선택할 수 있습니다",400)
+    ;
 
     private final String message;
     private final int status;
