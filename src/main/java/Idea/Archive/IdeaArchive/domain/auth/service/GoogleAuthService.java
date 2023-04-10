@@ -74,6 +74,7 @@ public class GoogleAuthService {
                             .email(email)
                             .name(name)
                             .role(Role.MEMBER)
+                            .password(null)
                             .profileImageUrl(null)
                             .build());
         }

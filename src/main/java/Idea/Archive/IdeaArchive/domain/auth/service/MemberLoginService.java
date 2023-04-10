@@ -1,6 +1,5 @@
 package Idea.Archive.IdeaArchive.domain.auth.service;
 
-
 import Idea.Archive.IdeaArchive.domain.auth.entity.RefreshToken;
 import Idea.Archive.IdeaArchive.domain.auth.presentation.dto.request.MemberLoginRequest;
 import Idea.Archive.IdeaArchive.domain.auth.presentation.dto.response.MemberLoginResponse;
@@ -10,7 +9,6 @@ import Idea.Archive.IdeaArchive.domain.member.exception.MemberNotFoundException;
 import Idea.Archive.IdeaArchive.domain.member.exception.MisMatchPasswordException;
 import Idea.Archive.IdeaArchive.domain.member.repository.MemberRepository;
 import Idea.Archive.IdeaArchive.global.security.jwt.TokenProvider;
-import Idea.Archive.IdeaArchive.global.security.jwt.properties.JwtProperties;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
