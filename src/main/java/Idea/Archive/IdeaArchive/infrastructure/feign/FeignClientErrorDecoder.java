@@ -13,7 +13,7 @@ public class FeignClientErrorDecoder implements ErrorDecoder {
     public Exception decode(String methodKey, Response response) {
 
         if(response.status() >= 400) {
-            switch (response.status()){
+            switch (response.status()) {
                 case 401:
                     throw new UnAuthorizedException("권한이 없습니다. 401");
                 case 403:
