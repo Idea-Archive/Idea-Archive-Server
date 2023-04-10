@@ -16,7 +16,7 @@ public class ViewPostService {
 
     private final PostRepository postRepository;
 
-    @Transactional
+    @Transactional(readOnly = true)
     public List<ViewPostResponse> execute() {
         List<Post> noticeList = postRepository.findAll();
         return noticeList.stream()
