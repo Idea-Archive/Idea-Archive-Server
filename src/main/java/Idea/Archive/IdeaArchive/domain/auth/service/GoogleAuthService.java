@@ -8,7 +8,6 @@ import Idea.Archive.IdeaArchive.domain.member.repository.MemberRepository;
 import Idea.Archive.IdeaArchive.global.filter.role.Role;
 import Idea.Archive.IdeaArchive.global.security.GoogleAuthProperties;
 import Idea.Archive.IdeaArchive.global.security.jwt.TokenProvider;
-import Idea.Archive.IdeaArchive.global.security.jwt.properties.JwtProperties;
 import Idea.Archive.IdeaArchive.infrastructure.feign.client.GoogleAuth;
 import Idea.Archive.IdeaArchive.infrastructure.feign.client.GoogleInfo;
 import Idea.Archive.IdeaArchive.infrastructure.feign.dto.request.GoogleCodeRequest;
