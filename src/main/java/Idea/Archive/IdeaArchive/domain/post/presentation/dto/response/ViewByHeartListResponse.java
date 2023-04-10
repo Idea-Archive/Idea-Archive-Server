@@ -1,6 +1,6 @@
 package Idea.Archive.IdeaArchive.domain.post.presentation.dto.response;
 
-import Idea.Archive.IdeaArchive.domain.post.entity.Category;
+import Idea.Archive.IdeaArchive.domain.post.category.Category;
 import Idea.Archive.IdeaArchive.domain.post.entity.Heart;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
