@@ -16,8 +16,8 @@ public class GithubController {
 
     private final GithubAuthService githubAuthService;
 
-    @GetMapping("/receiveCode")
-    public ResponseEntity<MemberLoginResponse> GithubAuthLogin(@RequestParam("code") String code) {
+    @GetMapping("/receive-code")
+    public ResponseEntity<MemberLoginResponse> githubAuthLogin(@RequestParam("code") String code) {
         MemberLoginResponse memberLoginResponse = githubAuthService.execute(code);
         return ResponseEntity.ok().body(memberLoginResponse);
     }
