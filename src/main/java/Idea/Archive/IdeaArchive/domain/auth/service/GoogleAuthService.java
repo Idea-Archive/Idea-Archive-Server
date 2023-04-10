@@ -33,18 +33,6 @@ public class GoogleAuthService {
     private final JwtProperties jwtProperties;
     private final RefreshTokenRepository refreshTokenRepository;
 
-    private void createUser(String email, String name) {
-        if (memberRepository.findByEmail(email).isEmpty()) {
-            memberRepository.save(
-                    Member.builder()
-                            .email(email)
-                            .name(name)
-                            .role(Role.MEMBER)
-                            .profileImageUrl(null)
-                            .build());
-        }
-    }
-
     @Transactional
     public MemberLoginResponse execute(String code) {
 
@@ -79,5 +67,17 @@ public class GoogleAuthService {
                 .refreshToken(refreshToken)
                 .expiredAt(tokenProvider.getExpiredAtToken(jwtAccessToken, jwtProperties.getAccessSecret()))
                 .build();
+    }
+
+    private void createUser(String email, String name) {
+        if (memberRepository.findByEmail(email).isEmpty()) {
+            memberRepository.save(
+                    Member.builder()
+                            .email(email)
+                            .name(name)
+                            .role(Role.MEMBER)
+                            .profileImageUrl(null)
+                            .build());
+        }
     }
 }

@@ -33,17 +33,6 @@ public class GithubAuthService {
     private final RefreshTokenRepository refreshTokenRepository;
     private final JwtProperties jwtProperties;
 
-    private void createUser(String email, String name) {
-        if (memberRepository.findByEmail(email).isEmpty()) {
-            memberRepository.save(
-                    Member.builder()
-                            .email(email)
-                            .name(name)
-                            .role(Role.MEMBER)
-                            .build());
-        }
-    }
-
     @Transactional
     public MemberLoginResponse execute(String code) {
 
@@ -77,5 +66,16 @@ public class GithubAuthService {
                 .refreshToken(refreshToken)
                 .expiredAt(tokenProvider.getExpiredAtToken(jwtAccessToken, jwtProperties.getAccessSecret()))
                 .build();
+    }
+
+    private void createUser(String email, String name) {
+        if (memberRepository.findByEmail(email).isEmpty()) {
+            memberRepository.save(
+                    Member.builder()
+                            .email(email)
+                            .name(name)
+                            .role(Role.MEMBER)
+                            .build());
+        }
     }
 }
