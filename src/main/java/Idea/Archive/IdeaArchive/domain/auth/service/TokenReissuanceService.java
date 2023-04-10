@@ -34,7 +34,7 @@ public class TokenReissuanceService {
 
         String accessToken = tokenProvider.generatedAccessToken(email);
         String refreshToken = tokenProvider.generatedRefreshToken(email);
-        ZonedDateTime expiredAt = tokenProvider.getExpiredAtToken(accessToken, jwtProperties.getAccessSecret());
+        ZonedDateTime expiredAt = tokenProvider.getExpiredAtToken();
         token.exchangeRefreshToken(refreshToken);
         refreshTokenRepository.save(token);
         return NewTokenResponse.builder()

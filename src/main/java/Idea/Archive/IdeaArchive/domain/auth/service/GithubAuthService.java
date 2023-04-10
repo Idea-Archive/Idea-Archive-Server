@@ -31,7 +31,6 @@ public class GithubAuthService {
     private final GithubAuthProperties githubAuthProperties;
     private final TokenProvider tokenProvider;
     private final RefreshTokenRepository refreshTokenRepository;
-    private final JwtProperties jwtProperties;
 
     @Transactional
     public MemberLoginResponse execute(String code) {
@@ -52,19 +51,20 @@ public class GithubAuthService {
         String refreshToken = tokenProvider.generatedRefreshToken(email);
         String jwtAccessToken = tokenProvider.generatedAccessToken(email);
 
-        refreshTokenRepository.save(
-                RefreshToken.builder()
-                        .email(email)
-                        .refreshToken(refreshToken)
-                        .expiredAt(tokenProvider.getACCESS_TOKEN_EXPIRE_TIME())
-                        .build());
+        RefreshToken newToken = RefreshToken.builder()
+                .email(email)
+                .refreshToken(refreshToken)
+                .expiredAt(tokenProvider.getACCESS_TOKEN_EXPIRE_TIME())
+                .build();
+
+        refreshTokenRepository.save(newToken);
 
         createUser(email, name);
 
         return MemberLoginResponse.builder()
                 .accessToken(jwtAccessToken)
                 .refreshToken(refreshToken)
-                .expiredAt(tokenProvider.getExpiredAtToken(jwtAccessToken, jwtProperties.getAccessSecret()))
+                .expiredAt(tokenProvider.getExpiredAtToken())
                 .build();
     }
 

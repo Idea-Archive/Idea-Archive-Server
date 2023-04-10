@@ -23,7 +23,6 @@ public class MemberLoginService {
     private final PasswordEncoder passwordEncoder;
     private final TokenProvider tokenProvider;
     private final RefreshTokenRepository refreshTokenRepository;
-    private final JwtProperties jwtProperties;
 
 
     public MemberLoginResponse execute(MemberLoginRequest memberLoginRequest) {
@@ -43,7 +42,7 @@ public class MemberLoginService {
         return MemberLoginResponse.builder()
                 .accessToken(accessToken)
                 .refreshToken(refreshToken)
-                .expiredAt(tokenProvider.getExpiredAtToken(accessToken,jwtProperties.getAccessSecret()))
+                .expiredAt(tokenProvider.getExpiredAtToken())
                 .build();
     }
 }

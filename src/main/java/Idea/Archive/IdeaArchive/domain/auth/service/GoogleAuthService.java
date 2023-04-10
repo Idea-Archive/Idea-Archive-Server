@@ -30,7 +30,6 @@ public class GoogleAuthService {
     private final GoogleAuthProperties googleAuthProperties;
     private final MemberRepository memberRepository;
     private final TokenProvider tokenProvider;
-    private final JwtProperties jwtProperties;
     private final RefreshTokenRepository refreshTokenRepository;
 
     @Transactional
@@ -65,7 +64,7 @@ public class GoogleAuthService {
         return MemberLoginResponse.builder()
                 .accessToken(jwtAccessToken)
                 .refreshToken(refreshToken)
-                .expiredAt(tokenProvider.getExpiredAtToken(jwtAccessToken, jwtProperties.getAccessSecret()))
+                .expiredAt(tokenProvider.getExpiredAtToken())
                 .build();
     }
 
