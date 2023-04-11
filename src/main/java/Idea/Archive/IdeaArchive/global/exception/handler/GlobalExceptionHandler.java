@@ -16,6 +16,7 @@ import Idea.Archive.IdeaArchive.domain.notice.exception.NotQualifiedDeleteNotice
 import Idea.Archive.IdeaArchive.domain.notice.exception.NotQualifiedWriteNoticeException;
 import Idea.Archive.IdeaArchive.domain.notice.exception.NoticeNotFoundException;
 import Idea.Archive.IdeaArchive.domain.post.exception.AlreadyInsertHeartException;
+import Idea.Archive.IdeaArchive.domain.post.exception.ManyCategoryException;
 import Idea.Archive.IdeaArchive.domain.post.exception.NotExistPostException;
 import Idea.Archive.IdeaArchive.domain.post.exception.NotVerifyMember;
 import Idea.Archive.IdeaArchive.global.exception.ErrorMessage;
@@ -134,38 +135,45 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(AlreadyExistNicknameException.class)
-    public ResponseEntity<ErrorMessage> handleAlreadyExistNicknameException(HttpServletRequest request, AlreadyExistNicknameException exception){
+    public ResponseEntity<ErrorMessage> handleAlreadyExistNicknameException(HttpServletRequest request, AlreadyExistNicknameException exception) {
         printError(request,exception,exception.getErrorCode().getMessage());
         ErrorMessage errorMessage = new ErrorMessage(exception.getErrorCode().getMessage(), exception.getErrorCode().getStatus());
         return new ResponseEntity<>(errorMessage,HttpStatus.valueOf(exception.getErrorCode().getStatus()));
     }
 
     @ExceptionHandler(NotQualifiedWriteNoticeException.class)
-    public ResponseEntity<ErrorMessage> handleNotQualifiedWriteNoticeException(HttpServletRequest request, NotQualifiedWriteNoticeException exception){
+    public ResponseEntity<ErrorMessage> handleNotQualifiedWriteNoticeException(HttpServletRequest request, NotQualifiedWriteNoticeException exception) {
         printError(request,exception,exception.getErrorCode().getMessage());
         ErrorMessage errorMessage = new ErrorMessage(exception.getErrorCode().getMessage(), exception.getErrorCode().getStatus());
         return new ResponseEntity<>(errorMessage,HttpStatus.valueOf(exception.getErrorCode().getStatus()));
     }
     @ExceptionHandler(NoticeNotFoundException.class)
-    public ResponseEntity<ErrorMessage> handleNoticeNotFoundException(HttpServletRequest request, NoticeNotFoundException exception){
+    public ResponseEntity<ErrorMessage> handleNoticeNotFoundException(HttpServletRequest request, NoticeNotFoundException exception) {
         printError(request,exception,exception.getErrorCode().getMessage());
         ErrorMessage errorMessage = new ErrorMessage(exception.getErrorCode().getMessage(), exception.getErrorCode().getStatus());
         return new ResponseEntity<>(errorMessage,HttpStatus.valueOf(exception.getErrorCode().getStatus()));
     }
     @ExceptionHandler(NotQualifiedDeleteNoticeException.class)
-    public ResponseEntity<ErrorMessage> handleNotQualifiedDeleteNoticeException(HttpServletRequest request, NotQualifiedDeleteNoticeException exception){
+    public ResponseEntity<ErrorMessage> handleNotQualifiedDeleteNoticeException(HttpServletRequest request, NotQualifiedDeleteNoticeException exception) {
         printError(request,exception,exception.getErrorCode().getMessage());
         ErrorMessage errorMessage = new ErrorMessage(exception.getErrorCode().getMessage(), exception.getErrorCode().getStatus());
         return new ResponseEntity<>(errorMessage,HttpStatus.valueOf(exception.getErrorCode().getStatus()));
     }
     @ExceptionHandler(NotExistImageException.class)
-    public ResponseEntity<ErrorMessage> handleNotExistImageException(HttpServletRequest request, NotExistImageException exception){
+    public ResponseEntity<ErrorMessage> handleNotExistImageException(HttpServletRequest request, NotExistImageException exception) {
         printError(request,exception,exception.getErrorCode().getMessage());
         ErrorMessage errorMessage = new ErrorMessage(exception.getErrorCode().getMessage(), exception.getErrorCode().getStatus());
         return new ResponseEntity<>(errorMessage,HttpStatus.valueOf(exception.getErrorCode().getStatus()));
     }
     @ExceptionHandler(MisMatchExtensionException.class)
-    public ResponseEntity<ErrorMessage> handleMisMatchExtensionException(HttpServletRequest request, MisMatchExtensionException exception){
+    public ResponseEntity<ErrorMessage> handleMisMatchExtensionException(HttpServletRequest request, MisMatchExtensionException exception) {
+        printError(request,exception,exception.getErrorCode().getMessage());
+        ErrorMessage errorMessage = new ErrorMessage(exception.getErrorCode().getMessage(), exception.getErrorCode().getStatus());
+        return new ResponseEntity<>(errorMessage,HttpStatus.valueOf(exception.getErrorCode().getStatus()));
+    }
+
+    @ExceptionHandler(ManyCategoryException.class)
+    public ResponseEntity<ErrorMessage> handleManyCategoryException(HttpServletRequest request, ManyCategoryException exception) {
         printError(request,exception,exception.getErrorCode().getMessage());
         ErrorMessage errorMessage = new ErrorMessage(exception.getErrorCode().getMessage(), exception.getErrorCode().getStatus());
         return new ResponseEntity<>(errorMessage,HttpStatus.valueOf(exception.getErrorCode().getStatus()));

@@ -30,8 +30,7 @@ public class ViewPostByIdService {
                 .title(post.getTitle())
                 .content(post.getContent())
                 .category(post.getCategory())
-                .member(
-                        ViewMemberResponse.convertToMember(post.getMember()))
+                .member(ViewMemberResponse.convertToMember(post.getMember()))
                 .comment(comment)
                 .heartCount(post.getHeartCount())
                 .commentCount(post.getCommentCount())
