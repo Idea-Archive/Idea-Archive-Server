@@ -12,6 +12,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+
 @Service
 @RequiredArgsConstructor
 public class MemberLogoutService {
@@ -22,6 +24,7 @@ public class MemberLogoutService {
     private final RedisTemplate redisTemplate;
 
 
+    @Transactional
     public void execute(String accessToken) {
         Member member = memberUtil.currentMember();
         RefreshToken refreshToken = refreshTokenRepository.findById(member.getEmail())
@@ -40,6 +43,4 @@ public class MemberLogoutService {
                 .build();
         blackListRepository.save(blackList);
     }
-
-
 }
