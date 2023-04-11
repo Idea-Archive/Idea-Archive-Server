@@ -18,12 +18,6 @@ public class DeletePostService {
     private final MemberUtil memberUtil;
     private final HeartRepository heartRepository;
 
-    private void verifyPostWriter(Post post) {
-        if (!memberUtil.currentMember().equals(post.getMember())) {
-            throw new NotVerifyMember("검증되지 않은 회원입니다.");
-        }
-    }
-
     @Transactional
     public void execute(Long postId) {
         Post post = postRepository.findById(postId)
@@ -31,5 +25,11 @@ public class DeletePostService {
         verifyPostWriter(post);
         heartRepository.deleteByPost(post);
         postRepository.deleteById(postId);
+    }
+
+    private void verifyPostWriter(Post post) {
+        if (!memberUtil.currentMember().equals(post.getMember())) {
+            throw new NotVerifyMember("검증되지 않은 회원입니다.");
+        }
     }
 }
