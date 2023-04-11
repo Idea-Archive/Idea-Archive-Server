@@ -1,5 +1,6 @@
 package Idea.Archive.IdeaArchive.domain.post.presentation;
 
+import Idea.Archive.IdeaArchive.domain.post.presentation.dto.request.CategoryRequest;
 import Idea.Archive.IdeaArchive.domain.post.presentation.dto.request.ModifyPostRequest;
 import Idea.Archive.IdeaArchive.domain.post.presentation.dto.request.WritePostRequest;
 import Idea.Archive.IdeaArchive.domain.post.presentation.dto.response.*;
@@ -57,9 +58,9 @@ public class PostController {
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
-    @GetMapping("/category")
-    public ResponseEntity<List<ViewPostResponse>> viewPostByCategory(@RequestParam List<String> category) {
-        List<ViewPostResponse> response = getPostByCategoryService.execute(category);
+    @PostMapping("/category")
+    public ResponseEntity<List<ViewPostResponse>> viewPostByCategory(@RequestBody CategoryRequest categoryRequest) {
+        List<ViewPostResponse> response = getPostByCategoryService.execute(categoryRequest);
         return ResponseEntity.ok(response);
     }
 
