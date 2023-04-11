@@ -8,8 +8,8 @@ import Idea.Archive.IdeaArchive.domain.post.presentation.dto.response.ViewPostRe
 import Idea.Archive.IdeaArchive.domain.post.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,8 +19,7 @@ import java.util.stream.Collectors;
 public class GetPostByCategoryService {
 
     private final PostRepository postRepository;
-    private final EntityManager entityManager;
-
+    @Transactional
     public List<ViewPostResponse> execute(List<String> category) {
         List<Category> categoryList = new ArrayList<Category>();
         for (String s : category) {
