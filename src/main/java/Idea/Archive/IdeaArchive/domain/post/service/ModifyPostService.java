@@ -1,5 +1,6 @@
 package Idea.Archive.IdeaArchive.domain.post.service;
 
+import Idea.Archive.IdeaArchive.domain.post.category.Category;
 import Idea.Archive.IdeaArchive.domain.post.entity.Post;
 import Idea.Archive.IdeaArchive.domain.post.exception.NotExistPostException;
 import Idea.Archive.IdeaArchive.domain.post.exception.NotVerifyMember;
@@ -9,6 +10,9 @@ import Idea.Archive.IdeaArchive.global.util.MemberUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -28,7 +32,13 @@ public class ModifyPostService {
         Post post = postRepository.findById(postId)
                         .orElseThrow(() -> new NotExistPostException("존재하지 않는 게시글입니다."));
         verifyPostWriter(post);
-        post.update(modifyPostRequest.getTitle(), modifyPostRequest.getContent(),modifyPostRequest.getCategory());
+        List<String> stringList = modifyPostRequest.getCategory();
+        List<Category> categoryList = new ArrayList<Category>();
+        for (String s : stringList) {
+            Category enumValue = Enum.valueOf(Category.class, s);
+            categoryList.add(enumValue);
+        }
+        post.update(modifyPostRequest.getTitle(), modifyPostRequest.getContent(),categoryList);
         postRepository.save(post);
     }
 

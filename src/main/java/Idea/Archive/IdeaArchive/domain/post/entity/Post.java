@@ -3,7 +3,11 @@ package Idea.Archive.IdeaArchive.domain.post.entity;
 import Idea.Archive.IdeaArchive.domain.application.entity.Application;
 import Idea.Archive.IdeaArchive.domain.comment.entity.Comment;
 import Idea.Archive.IdeaArchive.domain.member.entity.Member;
+<<<<<<< HEAD
 import Idea.Archive.IdeaArchive.global.entity.BaseTimeEntity;
+=======
+import Idea.Archive.IdeaArchive.domain.post.category.Category;
+>>>>>>> 03af90c69faae84b580f410e2bece6105bdb3d7e
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -32,7 +36,7 @@ public class Post extends BaseTimeEntity {
     private String content;
 
     @ElementCollection(fetch = FetchType.EAGER)
-    private List<String> category;
+    private List<Category> category;
 
     @ColumnDefault("0")
     @Column(name = "heart_count", nullable = false)
@@ -64,7 +68,7 @@ public class Post extends BaseTimeEntity {
     @OneToMany(mappedBy = "post",fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Application> applications;
 
-    public void update(String title, String content,List<String> category) {
+    public void update(String title, String content,List<Category> category) {
         this.title = title;
         this.content = content;
         this.category = category;

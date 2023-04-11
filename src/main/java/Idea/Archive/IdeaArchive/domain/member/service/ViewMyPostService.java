@@ -19,7 +19,6 @@ import java.util.List;
 public class ViewMyPostService {
 
     private final PostRepository postRepository;
-
     private final MemberUtil memberUtil;
 
     @Transactional(readOnly = true)

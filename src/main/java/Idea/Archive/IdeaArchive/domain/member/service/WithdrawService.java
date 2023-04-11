@@ -42,7 +42,7 @@ public class WithdrawService {
         }
 
         List<Heart> hearts = heartRepository.findByMember_MemberId(member.getMemberId());
-        for(int i=0;i<hearts.size();i++){
+        for(int i=0;i<hearts.size();i++) {
             hearts.get(i).getPost().updateHeart(hearts.get(i).getPost().getHeartCount()-1);
         }
         heartRepository.deleteByMember_MemberId(member.getMemberId());
