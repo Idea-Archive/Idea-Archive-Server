@@ -3,11 +3,8 @@ package Idea.Archive.IdeaArchive.domain.post.entity;
 import Idea.Archive.IdeaArchive.domain.application.entity.Application;
 import Idea.Archive.IdeaArchive.domain.comment.entity.Comment;
 import Idea.Archive.IdeaArchive.domain.member.entity.Member;
-<<<<<<< HEAD
 import Idea.Archive.IdeaArchive.global.entity.BaseTimeEntity;
-=======
 import Idea.Archive.IdeaArchive.domain.post.category.Category;
->>>>>>> 03af90c69faae84b580f410e2bece6105bdb3d7e
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
