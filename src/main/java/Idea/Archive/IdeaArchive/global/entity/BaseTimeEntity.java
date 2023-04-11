@@ -1,15 +1,12 @@
 package Idea.Archive.IdeaArchive.global.entity;
 
 import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.jpa.domain.AbstractPersistable;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.Column;
 import javax.persistence.EntityListeners;
 import javax.persistence.MappedSuperclass;
 import java.time.Duration;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
 
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
@@ -25,7 +22,6 @@ public class BaseTimeEntity {
         Duration duration = Duration.between(createdDate, now);
 
         if (duration.getSeconds() < 60) {
-            long seconds = duration.getSeconds();
             return "방금 전";
         } else if (duration.toMinutes() < 60) {
             long minutes = duration.toMinutes();
