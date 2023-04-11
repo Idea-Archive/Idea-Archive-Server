@@ -22,8 +22,7 @@ public class PostController {
     private final ViewPostByIdService viewPostByIdService;
     private final ModifyPostService modifyPostService;
     private final DeletePostService deletePostService;
-    private final FilterPostService filterPostService;
-    private final FilterPostByCategoryService filterPostByCategoryService;
+    private final GetPostByCategoryService getPostByCategoryService;
     private final InsertHeartService insertHeartService;
     private final SharePostService sharePostService;
     private final ViewPopularPostService viewPopularPostService;
@@ -49,7 +48,7 @@ public class PostController {
     @PatchMapping("/{postId}")
     public ResponseEntity<Void> updatePost(@PathVariable Long postId, @RequestBody @Valid ModifyPostRequest modifyPostRequest) {
         modifyPostService.execute(postId, modifyPostRequest);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
     @DeleteMapping("/{postId}")
@@ -58,15 +57,9 @@ public class PostController {
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
-    @GetMapping("/search")
-    public ResponseEntity<List<ViewByCategoryResponse>> searchPost(@RequestParam String searchKeyword, @RequestParam String category) {
-        List<ViewByCategoryResponse> response =  filterPostService.execute(searchKeyword,category);
-        return ResponseEntity.ok(response);
-    }
-
     @GetMapping("/category")
-    public ResponseEntity<List<ViewByCategoryResponse>> viewPostByCategory(@RequestParam String category) {
-        List<ViewByCategoryResponse> response = filterPostByCategoryService.execute(category);
+    public ResponseEntity<List<ViewPostResponse>> viewPostByCategory(@RequestParam List<String> category) {
+        List<ViewPostResponse> response = getPostByCategoryService.execute(category);
         return ResponseEntity.ok(response);
     }
 
