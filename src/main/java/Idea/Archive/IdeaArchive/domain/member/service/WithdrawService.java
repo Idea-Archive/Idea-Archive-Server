@@ -35,15 +35,16 @@ public class WithdrawService {
         Member member = memberRepository.findByEmail(email)
                 .orElseThrow(()-> new MemberNotFoundException("유저가 존재하지 않습니다"));
         RefreshToken refreshToken = refreshTokenRepository.findById(member.getEmail())
-                        .orElseThrow(()->new RefreshTokenNotFoundException("존재하지 않은 리프레시 토큰입니다."));
+                        .orElseThrow(() -> new RefreshTokenNotFoundException("존재하지 않은 리프레시 토큰입니다."));
 
         if(!passwordEncoder.matches(password, member.getPassword())) {
             throw new MisMatchPasswordException("비밀번호가 일치하지 않습니다.");
         }
 
         List<Heart> hearts = heartRepository.findByMember_MemberId(member.getMemberId());
-        for(int i=0;i<hearts.size();i++) {
-            hearts.get(i).getPost().updateHeart(hearts.get(i).getPost().getHeartCount()-1);
+        for(int i = 0; i < hearts.size(); i++) {
+
+            hearts.get(i).getPost().updateHeart(hearts.get(i).getPost().getHeartCount() - 1);
         }
         heartRepository.deleteByMember_MemberId(member.getMemberId());
         postRepository.deleteByMember_MemberId(member.getMemberId());

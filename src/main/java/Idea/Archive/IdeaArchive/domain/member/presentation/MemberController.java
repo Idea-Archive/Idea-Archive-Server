@@ -40,7 +40,7 @@ public class MemberController {
         return ResponseEntity.ok().body(myPageResponse);
     }
     @DeleteMapping
-    public ResponseEntity<Void> withdraw(@RequestParam String email,@RequestParam String password) {
+    public ResponseEntity<Void> withdraw(@RequestParam String email, @RequestParam String password) {
         withdrawService.execute(email,password);
         return ResponseEntity.noContent().build();
     }
