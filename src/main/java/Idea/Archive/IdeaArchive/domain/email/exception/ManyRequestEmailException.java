@@ -9,7 +9,7 @@ public class ManyRequestEmailException extends RuntimeException {
 
     private final ErrorCode errorCode;
 
-    public ManyRequestEmailException(String message){
+    public ManyRequestEmailException(String message) {
         super(message);
         this.errorCode = ErrorCode.MANY_REQUEST_EMAIL_AUTH;
     }

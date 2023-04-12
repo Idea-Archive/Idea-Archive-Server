@@ -23,7 +23,6 @@ public class DeletePostService {
             throw new NotVerifyMember("검증되지 않은 회원입니다.");
         }
     }
-
     @Transactional
     public void execute(Long postId) {
         Post post = postRepository.findById(postId)

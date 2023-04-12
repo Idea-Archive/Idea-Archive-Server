@@ -25,16 +25,16 @@ public class SearchPostService {
         List<Post> posts = new ArrayList<Post>();
         if(categoryRequest.getCategory().isEmpty()) {
             posts = postRepository.findByTitleContaining(searchKeyword);
-        }else {
+        } else {
             List<Category> categoryList = new ArrayList<Category>();
             for (String s : categoryRequest.getCategory()) {
                 Category enumValue = Enum.valueOf(Category.class, s);
                 categoryList.add(enumValue);
                 System.out.println(enumValue);
             }
-            List<Post> categories = postRepository.findByAllCategories(categoryList, (long) categoryRequest.getCategory().size());
+            List<Post> categories = postRepository.findByAllCategories(categoryList, categoryRequest.getCategory().size());
             for (Post post : categories) {
-                if(post.getTitle().contains(searchKeyword)){
+                if(post.getTitle().contains(searchKeyword)) {
                     posts.add(post);
                 }
             }
@@ -43,14 +43,14 @@ public class SearchPostService {
             throw new NotExistPostException("게시글이 존재하지 않습니다.");
         }
         return posts.stream()
-                .map(n -> ViewPostResponse.builder()
-                        .id(n.getPostId())
-                        .title(n.getTitle())
-                        .content(n.getContent())
-                        .category(n.getCategory())
-                        .heartCount(n.getHeartCount())
-                        .commentCount(n.getCommentCount())
-                        .member(ViewMemberResponse.convertToMember(n.getMember()))
+                .map(p -> ViewPostResponse.builder()
+                        .id(p.getPostId())
+                        .title(p.getTitle())
+                        .content(p.getContent())
+                        .category(p.getCategory())
+                        .heartCount(p.getHeartCount())
+                        .commentCount(p.getCommentCount())
+                        .member(ViewMemberResponse.convertToMember(p.getMember()))
                         .build())
                 .collect(Collectors.toList());
     }

@@ -60,7 +60,7 @@ public class PostController {
     }
 
     @PostMapping("/search")
-    public ResponseEntity<List<ViewPostResponse>> searchPost(@RequestParam String keyword,@RequestBody CategoryRequest categoryRequest) {
+    public ResponseEntity<List<ViewPostResponse>> searchPost(@RequestParam String keyword, @RequestBody CategoryRequest categoryRequest) {
         List<ViewPostResponse> response = searchPostService.execute(keyword,categoryRequest);
         return ResponseEntity.ok(response);
     }
