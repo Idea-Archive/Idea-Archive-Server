@@ -12,6 +12,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+
 @Service
 @RequiredArgsConstructor
 public class MemberSignUpService {
@@ -20,6 +22,7 @@ public class MemberSignUpService {
     private final MemberRepository memberRepository;
     private final EmailAuthRepository emailAuthRepository;
 
+    @Transactional
     public void execute(MemberSignUpRequest memberSignUpRequest) {
 
         if(memberRepository.existsByEmail(memberSignUpRequest.getEmail())) {

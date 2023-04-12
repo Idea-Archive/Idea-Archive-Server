@@ -17,12 +17,6 @@ public class ModifyCommentService {
     private final CommentRepository commentRepository;
     private final MemberUtil memberUtil;
 
-    private void verifyPostWriter(Comment comment) {
-        if (!memberUtil.currentMember().equals(comment.getMember())) {
-            throw new NotVerifyMember("검증되지 않은 회원입니다.");
-        }
-    }
-
     @Transactional
     public void execute(Long commentId, ModifyCommentRequest request) {
         Comment comment = commentRepository.findById(commentId)
@@ -30,5 +24,11 @@ public class ModifyCommentService {
         verifyPostWriter(comment);
         comment.update(request.getContent());
         commentRepository.save(comment);
+    }
+
+    private void verifyPostWriter(Comment comment) {
+        if (!memberUtil.currentMember().equals(comment.getMember())) {
+            throw new NotVerifyMember("검증되지 않은 회원입니다.");
+        }
     }
 }

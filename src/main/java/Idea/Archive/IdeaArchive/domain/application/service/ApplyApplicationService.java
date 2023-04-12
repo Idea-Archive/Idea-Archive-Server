@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @RequiredArgsConstructor
 public class ApplyApplicationService {
+
     private final ApplicationRepository applicationRepository;
     private final PostRepository postRepository;
     private final MemberUtil memberUtil;
@@ -26,7 +27,7 @@ public class ApplyApplicationService {
         if(applicationRepository.existsByPostAndMember(post,member)) {
             post.updateApplication(post.getApplicantCount()-1);
             applicationRepository.deleteByPostAndMember(post,member);
-        }else {
+        } else {
             Application application = Application.builder()
                     .post(post)
                     .member(member)
@@ -35,6 +36,5 @@ public class ApplyApplicationService {
             postRepository.save(post);
             applicationRepository.save(application);
         }
-
     }
 }

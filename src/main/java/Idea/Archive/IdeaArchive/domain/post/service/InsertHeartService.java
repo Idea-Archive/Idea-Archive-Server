@@ -30,7 +30,7 @@ public class InsertHeartService {
             post.updateHeart(post.getHeartCount()-1);
             postRepository.save(post);
             heartRepository.deleteHeartByMemberAndPost(member,post);
-        }else {
+        } else {
             Heart heart = Heart.builder()
                     .member(member)
                     .post(post)

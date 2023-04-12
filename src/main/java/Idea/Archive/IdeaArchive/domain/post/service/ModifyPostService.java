@@ -21,12 +21,6 @@ public class ModifyPostService {
     private final PostRepository postRepository;
     private final MemberUtil memberUtil;
 
-    private void verifyPostWriter(Post post) {
-        if (!memberUtil.currentMember().equals(post.getMember())) {
-            throw new NotVerifyMember("검증되지 않은 회원입니다.");
-        }
-    }
-
     @Transactional
     public void execute(Long postId, ModifyPostRequest modifyPostRequest) {
         Post post = postRepository.findById(postId)
@@ -40,6 +34,12 @@ public class ModifyPostService {
         }
         post.update(modifyPostRequest.getTitle(), modifyPostRequest.getContent(),categoryList);
         postRepository.save(post);
+    }
+
+    private void verifyPostWriter(Post post) {
+        if (!memberUtil.currentMember().equals(post.getMember())) {
+            throw new NotVerifyMember("검증되지 않은 회원입니다.");
+        }
     }
 
 }
