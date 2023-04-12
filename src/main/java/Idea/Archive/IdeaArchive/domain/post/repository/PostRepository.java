@@ -13,7 +13,7 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 
     List<Post> findByTitleContaining(@Param("keyword") String keyword);
     @Query("SELECT p FROM Post p JOIN p.category c WHERE c IN (:category) GROUP BY p HAVING COUNT(DISTINCT c) = :numCategory")
-    List<Post> findByAllCategories(@Param("category") List<Category> category, @Param("numCategory") Long numCategory);
+    List<Post> findByAllCategories(@Param("category") List<Category> category, @Param("numCategory") int numCategory);
     void deleteByMember_MemberId(Long memberId);
     @Query("SELECT p FROM Post p ORDER BY p.heartCount + p.views DESC")
     List<Post> findAllOrderByHeartCountPlusViesDesc();

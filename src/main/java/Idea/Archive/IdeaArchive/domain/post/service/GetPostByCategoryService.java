@@ -20,6 +20,7 @@ import java.util.stream.Collectors;
 public class GetPostByCategoryService {
 
     private final PostRepository postRepository;
+
     @Transactional
     public List<ViewPostResponse> execute(CategoryRequest categoryRequest) {
         List<Category> categoryList = new ArrayList<Category>();
@@ -27,19 +28,19 @@ public class GetPostByCategoryService {
             Category enumValue = Enum.valueOf(Category.class, s);
             categoryList.add(enumValue);
         }
-        List<Post> posts = postRepository.findByAllCategories(categoryList,(long)categoryRequest.getCategory().size());
+        List<Post> posts = postRepository.findByAllCategories(categoryList, categoryRequest.getCategory().size());
         if (posts.isEmpty()) {
             throw new NotExistPostException("게시글이 존재하지 않습니다.");
         }
         return posts.stream()
-                .map(n -> ViewPostResponse.builder()
-                        .id(n.getPostId())
-                        .title(n.getTitle())
-                        .content(n.getContent())
-                        .category(n.getCategory())
-                        .heartCount(n.getHeartCount())
-                        .commentCount(n.getCommentCount())
-                        .member(ViewMemberResponse.convertToMember(n.getMember()))
+                .map(p -> ViewPostResponse.builder()
+                        .id(p.getPostId())
+                        .title(p.getTitle())
+                        .content(p.getContent())
+                        .category(p.getCategory())
+                        .heartCount(p.getHeartCount())
+                        .commentCount(p.getCommentCount())
+                        .member(ViewMemberResponse.convertToMember(p.getMember()))
                         .build())
                 .collect(Collectors.toList());
     }

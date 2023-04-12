@@ -22,9 +22,6 @@ public class WritePostService {
     @Transactional
     public void execute(WritePostRequest writePostRequest) {
         Member currentMember = memberUtil.currentMember();
-        if (writePostRequest.getCategory().size()>6) {
-            throw new ManyCategoryException("카테고리는 최대 5개까지 지정할 수 있습니다");
-        }
         List<String> stringList = writePostRequest.getCategory();
         List<Category> categoryList = new ArrayList<Category>();
         for (String s : stringList) {
