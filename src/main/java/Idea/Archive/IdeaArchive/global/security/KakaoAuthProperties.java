@@ -1,6 +1,5 @@
 package Idea.Archive.IdeaArchive.global.security;
 
-import lombok.Builder;
 import lombok.Getter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.ConstructorBinding;
@@ -12,11 +11,11 @@ public class KakaoAuthProperties {
 
     private final String clientId;
     private final String clientSecret;
-    private final String redirectUrl;
+    private final String redirectUri;
 
-    public KakaoAuthProperties(String clientId, String clientSecret, String redirectUrl) {
+    public KakaoAuthProperties(String clientId, String clientSecret, String redirectUri) {
         this.clientId = clientId;
         this.clientSecret = clientSecret;
-        this.redirectUrl = redirectUrl;
+        this.redirectUri = redirectUri;
     }
 }

@@ -11,15 +11,12 @@ import Idea.Archive.IdeaArchive.global.security.jwt.TokenProvider;
 import Idea.Archive.IdeaArchive.global.security.jwt.properties.JwtProperties;
 import Idea.Archive.IdeaArchive.infrastructure.feign.client.KakaoAuth;
 import Idea.Archive.IdeaArchive.infrastructure.feign.client.KakaoInfo;
-import Idea.Archive.IdeaArchive.infrastructure.feign.dto.request.KakaoCodeRequest;
 import Idea.Archive.IdeaArchive.infrastructure.feign.dto.response.KakaoInfoResponse;
 import Idea.Archive.IdeaArchive.infrastructure.feign.dto.response.KakaoTokenResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.net.URLDecoder;
-import java.nio.charset.StandardCharsets;
 
 @Service
 @RequiredArgsConstructor
@@ -33,36 +30,24 @@ public class KakaoAuthService {
     private final RefreshTokenRepository refreshTokenRepository;
     private final JwtProperties jwtProperties;
 
-    private void createUser(String email, String name) {
-        if (memberRepository.findByEmail(email).isEmpty()) {
-            memberRepository.save(
-                    Member.builder()
-                            .email(email)
-                            .name(name)
-                            .role(Role.MEMBER)
-                            .build());
-        }
-    }
-
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public MemberLoginResponse execute(String code) {
 
         KakaoTokenResponse kakaoTokenResponse = kakaoAuth.kakaoAuth(
-                KakaoCodeRequest.builder()
-                        .code(URLDecoder.decode(code, StandardCharsets.UTF_8))
-                        .clientId(kakaoAuthProperties.getClientId())
-                        .clientSecret(kakaoAuthProperties.getClientSecret())
-                        .redirectUrl(kakaoAuthProperties.getRedirectUrl())
-                        .build()
+                code,
+                kakaoAuthProperties.getClientId(),
+                kakaoAuthProperties.getClientSecret(),
+                kakaoAuthProperties.getRedirectUri(),
+                "authorization_code"
         );
 
-        KakaoInfoResponse kakaoInfoResponse = kakaoInfo.kakaoInfo(kakaoTokenResponse.getAccess_token());
+        KakaoInfoResponse kakaoInfoResponse = kakaoInfo.kakaoInfo("Bearer " + kakaoTokenResponse.getAccess_token());
 
-        String email = kakaoInfoResponse.getEmail();
-        String name = kakaoInfoResponse.getName();
+        String email = kakaoInfoResponse.getKakao_account().getEmail();
+        String name = kakaoInfoResponse.getKakao_account().getProfile().getNickname();
 
         String refreshToken = tokenProvider.generatedRefreshToken(email);
-        String jwtAccessToken = tokenProvider.generatedAccessToken(email);
+        String accessToken = tokenProvider.generatedAccessToken(email);
 
         refreshTokenRepository.save(
                 RefreshToken.builder()
@@ -74,10 +59,21 @@ public class KakaoAuthService {
         createUser(email, name);
 
         return MemberLoginResponse.builder()
-                .accessToken(jwtAccessToken)
+                .accessToken(accessToken)
                 .refreshToken(refreshToken)
-                .expiredAt(tokenProvider.getExpiredAtToken(jwtAccessToken, jwtProperties.getAccessSecret()))
+                .expiredAt(tokenProvider.getExpiredAtToken(accessToken, jwtProperties.getAccessSecret()))
                 .build();
 
+    }
+
+    private void createUser(String email, String name) {
+        if (memberRepository.findByEmail(email).isEmpty()) {
+            memberRepository.save(
+                    Member.builder()
+                            .email(email)
+                            .name(name)
+                            .role(Role.MEMBER)
+                            .build());
+        }
     }
 }

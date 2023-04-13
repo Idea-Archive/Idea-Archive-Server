@@ -1,13 +1,33 @@
 package Idea.Archive.IdeaArchive.infrastructure.feign.dto.response;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Getter
 @NoArgsConstructor
 public class KakaoInfoResponse {
 
     private Long id;
-    private String email;
-    private String name;
+    private KakaoAccount kakao_account;
+
+    @Setter
+    @Getter
+    @ToString
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class KakaoAccount {
+        private String email;
+        private Profile profile;
+    }
+
+    @Setter
+    @Getter
+    @ToString
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class Profile {
+        private String nickname;
+    }
+
+
+
 }

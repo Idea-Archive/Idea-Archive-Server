@@ -8,16 +8,16 @@ public class KakaoCodeRequest {
 
     private final String grant_type;
     private final String client_id;
-    private final String redirect_url;
+    private final String redirect_uri;
     private final String code;
-    private final String clientSecret;
+    private final String client_secret;
 
     @Builder
-    public KakaoCodeRequest(String grantType, String clientId, String redirectUrl, String code, String clientSecret) {
+    public KakaoCodeRequest(String clientId, String redirectUri, String code, String clientSecret) {
         this.grant_type = "authorization_code";
         this.client_id = clientId;
-        this.redirect_url = redirectUrl;
+        this.redirect_uri = redirectUri;
         this.code = code;
-        this.clientSecret = clientSecret;
+        this.client_secret = clientSecret;
     }
 }
