@@ -11,7 +11,6 @@ import Idea.Archive.IdeaArchive.domain.member.repository.MemberRepository;
 import Idea.Archive.IdeaArchive.domain.post.entity.Heart;
 import Idea.Archive.IdeaArchive.domain.post.repository.HeartRepository;
 import Idea.Archive.IdeaArchive.domain.post.repository.PostRepository;
-import Idea.Archive.IdeaArchive.global.util.MemberUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -25,7 +24,6 @@ public class WithdrawService {
 
     private final MemberRepository memberRepository;
     private final RefreshTokenRepository refreshTokenRepository;
-    private final MemberUtil memberUtil;
     private final PasswordEncoder passwordEncoder;
     private final HeartRepository heartRepository;
     private final PostRepository postRepository;
@@ -33,17 +31,16 @@ public class WithdrawService {
     @Transactional
     public void execute(String email,String password) {
         Member member = memberRepository.findByEmail(email)
-                .orElseThrow(()-> new MemberNotFoundException("유저가 존재하지 않습니다"));
+                .orElseThrow(() -> new MemberNotFoundException("유저가 존재하지 않습니다"));
         RefreshToken refreshToken = refreshTokenRepository.findById(member.getEmail())
-                        .orElseThrow(() -> new RefreshTokenNotFoundException("존재하지 않은 리프레시 토큰입니다."));
+                .orElseThrow(() -> new RefreshTokenNotFoundException("존재하지 않은 리프레시 토큰입니다."));
 
         if(!passwordEncoder.matches(password, member.getPassword())) {
             throw new MisMatchPasswordException("비밀번호가 일치하지 않습니다.");
         }
 
         List<Heart> hearts = heartRepository.findByMember_MemberId(member.getMemberId());
-        for(int i = 0; i < hearts.size(); i++) {
-
+        for (int i = 0; i < hearts.size(); i++) {
             hearts.get(i).getPost().updateHeart(hearts.get(i).getPost().getHeartCount() - 1);
         }
         heartRepository.deleteByMember_MemberId(member.getMemberId());
