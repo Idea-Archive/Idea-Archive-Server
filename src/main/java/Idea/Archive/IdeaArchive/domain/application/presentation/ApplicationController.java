@@ -27,6 +27,6 @@ public class ApplicationController {
     public ResponseEntity<List<ApplicationResponse>> listApplication(@PathVariable Long post_id) {
         List<ApplicationResponse> applications = applicationListService.execute(post_id);
         return ResponseEntity.ok(applications);
-
     }
+
 }

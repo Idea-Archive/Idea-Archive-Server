@@ -49,7 +49,7 @@ public class GoogleAuthService {
     public MemberLoginResponse execute(String code) {
 
         GoogleTokenResponse googleTokenResponse = googleAuth.googleAuth(
-            GoogleCodeRequest.builder()
+                GoogleCodeRequest.builder()
                         .code(URLDecoder.decode(code, StandardCharsets.UTF_8))
                         .clientId(googleAuthProperties.getClientId())
                         .clientSecret(googleAuthProperties.getClientSecret())

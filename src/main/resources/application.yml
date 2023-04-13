@@ -43,6 +43,10 @@ auth:
     client-id: ${GOOGLE_CLIENT_ID}
     client-secret: ${GOOGLE_SECRET}
     redirect-url: ${GOOGLE_REDIRECT_URL}
+  kakao:
+    client-id: ${KAKAO_CLIENT_ID}
+    client-secret: ${KAKAO_SECRET}
+    redirect-url: ${KAKAO_REDIRECT_URL}
   github:
     base-url: ${GITHUB_BASE_URL}
     client-id: ${GITHUB_CLIENT_ID}
