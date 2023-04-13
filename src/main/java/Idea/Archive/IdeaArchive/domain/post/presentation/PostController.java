@@ -1,5 +1,6 @@
 package Idea.Archive.IdeaArchive.domain.post.presentation;
 
+import Idea.Archive.IdeaArchive.domain.post.presentation.dto.request.CategoryRequest;
 import Idea.Archive.IdeaArchive.domain.post.presentation.dto.request.ModifyPostRequest;
 import Idea.Archive.IdeaArchive.domain.post.presentation.dto.request.WritePostRequest;
 import Idea.Archive.IdeaArchive.domain.post.presentation.dto.response.*;
@@ -22,8 +23,8 @@ public class PostController {
     private final ViewPostByIdService viewPostByIdService;
     private final ModifyPostService modifyPostService;
     private final DeletePostService deletePostService;
-    private final FilterPostService filterPostService;
-    private final FilterPostByCategoryService filterPostByCategoryService;
+    private final SearchPostService searchPostService;
+    private final GetPostByCategoryService getPostByCategoryService;
     private final InsertHeartService insertHeartService;
     private final SharePostService sharePostService;
     private final ViewPopularPostService viewPopularPostService;
@@ -49,7 +50,7 @@ public class PostController {
     @PatchMapping("/{postId}")
     public ResponseEntity<Void> updatePost(@PathVariable Long postId, @RequestBody @Valid ModifyPostRequest modifyPostRequest) {
         modifyPostService.execute(postId, modifyPostRequest);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
     @DeleteMapping("/{postId}")
@@ -58,15 +59,15 @@ public class PostController {
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
-    @GetMapping("/search")
-    public ResponseEntity<List<ViewByCategoryResponse>> searchPost(@RequestParam String searchKeyword, @RequestParam String category) {
-        List<ViewByCategoryResponse> response =  filterPostService.execute(searchKeyword,category);
+    @PostMapping("/search")
+    public ResponseEntity<List<ViewPostResponse>> searchPost(@RequestParam String keyword, @RequestBody CategoryRequest categoryRequest) {
+        List<ViewPostResponse> response = searchPostService.execute(keyword,categoryRequest);
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping("/category")
-    public ResponseEntity<List<ViewByCategoryResponse>> viewPostByCategory(@RequestParam String category) {
-        List<ViewByCategoryResponse> response = filterPostByCategoryService.execute(category);
+    @PostMapping("/category")
+    public ResponseEntity<List<ViewPostResponse>> viewPostByCategory(@RequestBody CategoryRequest categoryRequest) {
+        List<ViewPostResponse> response = getPostByCategoryService.execute(categoryRequest);
         return ResponseEntity.ok(response);
     }
 
