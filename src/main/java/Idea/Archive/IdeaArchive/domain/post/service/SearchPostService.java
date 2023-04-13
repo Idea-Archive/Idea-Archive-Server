@@ -21,7 +21,7 @@ public class SearchPostService {
     private final PostRepository postRepository;
 
     @Transactional
-    public List<ViewPostResponse> execute(String searchKeyword,CategoryRequest categoryRequest) {
+    public List<ViewPostResponse> execute(String searchKeyword, CategoryRequest categoryRequest) {
         List<Post> posts = new ArrayList<Post>();
         if(categoryRequest.getCategory().isEmpty()) {
             posts = postRepository.findByTitleContaining(searchKeyword);
