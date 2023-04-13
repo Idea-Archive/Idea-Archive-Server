@@ -18,7 +18,7 @@ public class ViewPostByIdService {
 
     private final PostRepository postRepository;
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public ViewPostByIdResponse execute(Long PostId) {
         Post post = postRepository.findById(PostId)
                 .orElseThrow(() -> new NotExistPostException("존재하지 않는 게시판입니다."));

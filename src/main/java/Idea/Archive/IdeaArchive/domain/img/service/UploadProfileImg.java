@@ -31,7 +31,7 @@ public class UploadProfileImg {
     private final AmazonS3 amazonS3;
     private final MemberUtil memberUtil;
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public List<String> execute(List<MultipartFile> multipartFiles) {
         Member currentMember = memberUtil.currentMember();
 

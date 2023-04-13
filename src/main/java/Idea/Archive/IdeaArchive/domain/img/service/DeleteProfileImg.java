@@ -19,7 +19,7 @@ public class DeleteProfileImg {
     private final AmazonS3 amazonS3;
     private final MemberUtil memberUtil;
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public void execute() {
         Member currentMember = memberUtil.currentMember();
         if (currentMember.getProfileImageUrl().isEmpty()) {

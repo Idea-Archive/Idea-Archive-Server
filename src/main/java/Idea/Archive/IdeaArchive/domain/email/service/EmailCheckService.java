@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.Objects;
 
 @Service
@@ -19,6 +20,7 @@ public class EmailCheckService {
 
     private final EmailAuthRepository emailAuthRepository;
 
+    @Transactional(rollbackOn = Exception.class)
     public void execute(String email, String authKey) {
         EmailAuth emailAuth = emailAuthRepository.findById(email)
                 .orElseThrow(()->new MemberNotFoundException("유저를 찾을 수 없습니다."));

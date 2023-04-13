@@ -21,11 +21,11 @@ public class ViewMyPostService {
     private final PostRepository postRepository;
     private final MemberUtil memberUtil;
 
-    @Transactional(readOnly = true)
+    @Transactional(readOnly = true, rollbackFor = Exception.class)
     public List<MyPostResponse> execute() {
         Member member = memberUtil.currentMember();
         List<Post> posts = postRepository.findByMember(member);
-        if(!postRepository.isAllMembersEqual(member,posts)){
+        if(!postRepository.isAllMembersEqual(member,posts)) {
             throw new MemberNotFoundException("존재하지 않은 회원입니다");
         }
         List<MyPostResponse> myPostResponses = MyPostResponse.convertToPostList(posts);

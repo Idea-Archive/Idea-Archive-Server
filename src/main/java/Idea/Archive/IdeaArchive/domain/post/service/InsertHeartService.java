@@ -19,18 +19,19 @@ public class InsertHeartService {
     private final PostRepository postRepository;
     private final HeartRepository heartRepository;
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public void execute(Long postId) {
         Member member = memberUtil.currentMember();
 
         Post post = postRepository.findById(postId)
                 .orElseThrow(()->new NotExistPostException("게시글이 존재하지 않습니다"));
 
-        if(heartRepository.existsHeartByMemberAndPost(member,post)) {
+        if(heartRepository.existsHeartByMemberAndPost(member, post)) {
             post.updateHeart(post.getHeartCount()-1);
             postRepository.save(post);
             heartRepository.deleteHeartByMemberAndPost(member,post);
         } else {
+            heartRepository.deleteHeartByMemberAndPost(member, post);
             Heart heart = Heart.builder()
                     .member(member)
                     .post(post)

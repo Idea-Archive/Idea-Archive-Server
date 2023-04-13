@@ -23,7 +23,7 @@ public class ChangeProfileService {
     private final AmazonS3 amazonS3;
     private final MemberUtil memberUtil;
 
-    @Transactional
+    @Transactional(rollbackOn = Exception.class)
     public void execute(List<MultipartFile> multipartFileList) {
         Member currentMember = memberUtil.currentMember();
         if (currentMember.getProfileImageUrl().isEmpty()) {

@@ -17,7 +17,7 @@ public class ModifyCommentService {
     private final CommentRepository commentRepository;
     private final MemberUtil memberUtil;
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public void execute(Long commentId, ModifyCommentRequest request) {
         Comment comment = commentRepository.findById(commentId)
                 .orElseThrow(() -> new NotExistCommentException("존재하지 않는 댓글입니다."));

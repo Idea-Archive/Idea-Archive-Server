@@ -31,7 +31,7 @@ public class GithubAuthService {
     private final TokenProvider tokenProvider;
     private final RefreshTokenRepository refreshTokenRepository;
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public MemberLoginResponse execute(String code) {
 
         GithubTokenResponse githubTokenResponse = githubAuth.githubAuth(

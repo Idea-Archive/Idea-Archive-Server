@@ -16,7 +16,7 @@ public class ViewHeartListService {
 
     private final MemberUtil memberUtil;
 
-    @Transactional(readOnly = true)
+    @Transactional(readOnly = true, rollbackFor = Exception.class)
     public List<ViewByHeartListResponse> execute() {
         Member member = memberUtil.currentMember();
         List<ViewByHeartListResponse> heartList = ViewByHeartListResponse.convertToHeartList(member.getHearts());

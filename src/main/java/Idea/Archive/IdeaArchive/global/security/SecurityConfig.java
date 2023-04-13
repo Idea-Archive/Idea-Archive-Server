@@ -1,3 +1,6 @@
+
+
+
 package Idea.Archive.IdeaArchive.global.security;
 
 import Idea.Archive.IdeaArchive.global.filter.JwtRequestFilter;
@@ -45,7 +48,7 @@ public class SecurityConfig {
                 .antMatchers("/auth/**").permitAll()
                 .antMatchers("/google/**").permitAll()
                 .antMatchers("/github/**").permitAll()
-                .antMatchers("/google/**").permitAll()
+                .antMatchers("/kakao/**").permitAll()
 
                 .antMatchers("/member/**").authenticated()
                 .antMatchers("/post/**").authenticated()

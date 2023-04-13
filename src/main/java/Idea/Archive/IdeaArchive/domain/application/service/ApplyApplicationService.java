@@ -19,7 +19,7 @@ public class ApplyApplicationService {
     private final PostRepository postRepository;
     private final MemberUtil memberUtil;
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public void execute(Long postId) {
         Member member = memberUtil.currentMember();
         Post post = postRepository.findById(postId)

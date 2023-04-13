@@ -11,6 +11,8 @@ import Idea.Archive.IdeaArchive.global.util.MemberUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+
 @Service
 @RequiredArgsConstructor
 public class WriteCommentService {
@@ -19,6 +21,7 @@ public class WriteCommentService {
     private final PostRepository postRepository;
     private final MemberUtil memberUtil;
 
+    @Transactional(rollbackOn = Exception.class)
     public void execute(Long postId, WriteCommentRequest request) {
         Member currentMember = memberUtil.currentMember();
         Post findPost = postRepository.findById(postId)

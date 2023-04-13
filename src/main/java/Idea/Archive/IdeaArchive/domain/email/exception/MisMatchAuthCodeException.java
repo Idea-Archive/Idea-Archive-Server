@@ -8,7 +8,7 @@ public class MisMatchAuthCodeException extends RuntimeException {
 
     private final ErrorCode errorCode;
 
-    public MisMatchAuthCodeException(String message){
+    public MisMatchAuthCodeException(String message) {
         super(message);
         this.errorCode = ErrorCode.MISMATCH_AUTH_CODE;
     }

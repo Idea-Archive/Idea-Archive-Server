@@ -17,7 +17,7 @@ public class ApplicationListService {
 
     private final PostRepository postRepository;
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public List<ApplicationResponse> execute(Long postId) {
         Post post = postRepository.findById(postId)
                 .orElseThrow(() -> new NotExistPostException("게시글이 존재하지 않습니다"));

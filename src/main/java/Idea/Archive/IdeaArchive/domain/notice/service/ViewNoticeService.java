@@ -16,7 +16,7 @@ public class ViewNoticeService {
 
     private final NoticeRepository noticeRepository;
 
-    @Transactional(readOnly = true)
+    @Transactional(readOnly = true, rollbackFor = Exception.class)
     public List<ViewNoticeResponse> execute() {
         List<Notice> noticeResponses = noticeRepository.findAll();
         return noticeResponses.stream()

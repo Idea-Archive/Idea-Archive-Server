@@ -21,7 +21,7 @@ public class ModifyPostService {
     private final PostRepository postRepository;
     private final MemberUtil memberUtil;
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public void execute(Long postId, ModifyPostRequest modifyPostRequest) {
         Post post = postRepository.findById(postId)
                         .orElseThrow(() -> new NotExistPostException("존재하지 않는 게시글입니다."));
@@ -32,7 +32,7 @@ public class ModifyPostService {
             Category enumValue = Enum.valueOf(Category.class, s);
             categoryList.add(enumValue);
         }
-        post.update(modifyPostRequest.getTitle(), modifyPostRequest.getContent(),categoryList);
+        post.update(modifyPostRequest.getTitle(), modifyPostRequest.getContent(), categoryList);
         postRepository.save(post);
     }
 

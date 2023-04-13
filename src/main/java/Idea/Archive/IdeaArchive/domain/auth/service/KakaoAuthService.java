@@ -6,50 +6,48 @@ import Idea.Archive.IdeaArchive.domain.auth.repository.RefreshTokenRepository;
 import Idea.Archive.IdeaArchive.domain.member.entity.Member;
 import Idea.Archive.IdeaArchive.domain.member.repository.MemberRepository;
 import Idea.Archive.IdeaArchive.global.filter.role.Role;
-import Idea.Archive.IdeaArchive.global.oauth.GoogleAuthProperties;
+import Idea.Archive.IdeaArchive.global.security.KakaoAuthProperties;
 import Idea.Archive.IdeaArchive.global.security.jwt.TokenProvider;
-import Idea.Archive.IdeaArchive.infrastructure.feign.client.GoogleAuth;
-import Idea.Archive.IdeaArchive.infrastructure.feign.client.GoogleInfo;
-import Idea.Archive.IdeaArchive.infrastructure.feign.dto.request.GoogleCodeRequest;
-import Idea.Archive.IdeaArchive.infrastructure.feign.dto.response.GoogleInfoResponse;
-import Idea.Archive.IdeaArchive.infrastructure.feign.dto.response.GoogleTokenResponse;
+import Idea.Archive.IdeaArchive.global.security.jwt.properties.JwtProperties;
+import Idea.Archive.IdeaArchive.infrastructure.feign.client.KakaoAuth;
+import Idea.Archive.IdeaArchive.infrastructure.feign.client.KakaoInfo;
+import Idea.Archive.IdeaArchive.infrastructure.feign.dto.response.KakaoInfoResponse;
+import Idea.Archive.IdeaArchive.infrastructure.feign.dto.response.KakaoTokenResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.net.URLDecoder;
-import java.nio.charset.StandardCharsets;
 
 @Service
 @RequiredArgsConstructor
-public class GoogleAuthService {
+public class KakaoAuthService {
 
-    private final GoogleAuth googleAuth;
-    private final GoogleInfo googleInfo;
-    private final GoogleAuthProperties googleAuthProperties;
+    private final KakaoAuth kakaoAuth;
+    private final KakaoInfo kakaoInfo;
+    private final KakaoAuthProperties kakaoAuthProperties;
     private final MemberRepository memberRepository;
     private final TokenProvider tokenProvider;
     private final RefreshTokenRepository refreshTokenRepository;
+    private final JwtProperties jwtProperties;
 
     @Transactional(rollbackFor = Exception.class)
     public MemberLoginResponse execute(String code) {
 
-        GoogleTokenResponse googleTokenResponse = googleAuth.googleAuth(
-                GoogleCodeRequest.builder()
-                        .code(URLDecoder.decode(code, StandardCharsets.UTF_8))
-                        .clientId(googleAuthProperties.getClientId())
-                        .clientSecret(googleAuthProperties.getClientSecret())
-                        .redirectUri(googleAuthProperties.getRedirectUrl())
-                        .build()
+        KakaoTokenResponse kakaoTokenResponse = kakaoAuth.kakaoAuth(
+                code,
+                kakaoAuthProperties.getClientId(),
+                kakaoAuthProperties.getClientSecret(),
+                kakaoAuthProperties.getRedirectUri(),
+                "authorization_code"
         );
 
-        GoogleInfoResponse googleInfoResponse = googleInfo.googleInfo(googleTokenResponse.getAccess_token());
+        KakaoInfoResponse kakaoInfoResponse = kakaoInfo.kakaoInfo("Bearer " + kakaoTokenResponse.getAccess_token());
 
-        String email = googleInfoResponse.getEmail();
-        String name = googleInfoResponse.getName();
+        String email = kakaoInfoResponse.getKakao_account().getEmail();
+        String name = kakaoInfoResponse.getKakao_account().getProfile().getNickname();
 
         String refreshToken = tokenProvider.generatedRefreshToken(email);
-        String jwtAccessToken = tokenProvider.generatedAccessToken(email);
+        String accessToken = tokenProvider.generatedAccessToken(email);
 
         refreshTokenRepository.save(
                 RefreshToken.builder()
@@ -61,10 +59,11 @@ public class GoogleAuthService {
         createUser(email, name);
 
         return MemberLoginResponse.builder()
-                .accessToken(jwtAccessToken)
+                .accessToken(accessToken)
                 .refreshToken(refreshToken)
                 .expiredAt(tokenProvider.getExpiredAtToken())
                 .build();
+
     }
 
     private void createUser(String email, String name) {
@@ -74,8 +73,6 @@ public class GoogleAuthService {
                             .email(email)
                             .name(name)
                             .role(Role.MEMBER)
-                            .password(null)
-                            .profileImageUrl(null)
                             .build());
         }
     }

@@ -19,7 +19,7 @@ public class ChangeNameService {
     private final MemberUtil memberUtil;
     private final MemberRepository memberRepository;
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public void execute(@RequestBody @Valid ChangeNameRequest changeNameRequest) {
         Member member = memberUtil.currentMember();
         member.updateName(changeNameRequest.getName());

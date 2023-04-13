@@ -22,7 +22,7 @@ public class MemberSignUpService {
     private final MemberRepository memberRepository;
     private final EmailAuthRepository emailAuthRepository;
 
-    @Transactional
+    @Transactional(rollbackOn = Exception.class)
     public void execute(MemberSignUpRequest memberSignUpRequest) {
 
         if(memberRepository.existsByEmail(memberSignUpRequest.getEmail())) {

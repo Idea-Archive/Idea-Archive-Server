@@ -18,7 +18,8 @@ public class DeletePostService {
     private final MemberUtil memberUtil;
     private final HeartRepository heartRepository;
 
-    @Transactional
+
+    @Transactional(rollbackFor = Exception.class)
     public void execute(Long postId) {
         Post post = postRepository.findById(postId)
                 .orElseThrow(() -> new NotExistPostException("존재하지 않는 게시글입니다."));

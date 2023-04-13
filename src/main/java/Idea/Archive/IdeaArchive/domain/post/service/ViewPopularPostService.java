@@ -17,7 +17,7 @@ public class ViewPopularPostService {
 
     private final PostRepository postRepository;
 
-    @Transactional(readOnly = true)
+    @Transactional(readOnly = true, rollbackFor = Exception.class)
     public List<ViewPostResponse> execute() {
         List<Post> posts = postRepository.findAllOrderByHeartCountPlusViesDesc();
         if(posts.isEmpty()) {

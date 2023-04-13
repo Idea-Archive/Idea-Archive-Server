@@ -27,7 +27,7 @@ public class FindPasswordService {
     private final EmailAuthRepository emailAuthRepository;
 
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public void execute(@Valid MakeNewPasswordRequest makeNewPasswordRequest) {
         Member member = memberUtil.currentMember();
         EmailAuth emailAuth = emailAuthRepository.findById(member.getEmail())
@@ -40,7 +40,7 @@ public class FindPasswordService {
                 throw new MisMatchPasswordException("비밀번호가 일치하지 않습니다.");
             }
             member.updatePassword(passwordEncoder.encode(makeNewPasswordRequest.getCheckPassword()));
-        }else {
+        } else {
             throw new NotVerifyEmailException("인증되지 않은 이메일 입니다.");
         }
     }

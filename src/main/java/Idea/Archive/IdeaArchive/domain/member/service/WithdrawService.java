@@ -28,7 +28,7 @@ public class WithdrawService {
     private final HeartRepository heartRepository;
     private final PostRepository postRepository;
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public void execute(String email,String password) {
         Member member = memberRepository.findByEmail(email)
                 .orElseThrow(() -> new MemberNotFoundException("유저가 존재하지 않습니다"));

@@ -18,7 +18,7 @@ public class WriteNoticeService {
     private final NoticeRepository noticeRepository;
     private final MemberUtil memberUtil;
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public void execute(WriteNoticeRequest writeNoticeRequest) {
         Member member = memberUtil.currentMember();
         if (member.getRole() != Role.MEMBER) {

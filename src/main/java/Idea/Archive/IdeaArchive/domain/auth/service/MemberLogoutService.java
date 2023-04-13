@@ -24,7 +24,7 @@ public class MemberLogoutService {
     private final RedisTemplate redisTemplate;
 
 
-    @Transactional
+    @Transactional(rollbackOn = Exception.class)
     public void execute(String accessToken) {
         Member member = memberUtil.currentMember();
         RefreshToken refreshToken = refreshTokenRepository.findById(member.getEmail())
