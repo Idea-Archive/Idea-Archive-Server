@@ -26,7 +26,7 @@ public class InsertHeartService {
         Post post = postRepository.findById(postId)
                 .orElseThrow(()->new NotExistPostException("게시글이 존재하지 않습니다"));
 
-        if(heartRepository.existsHeartByMemberAndPost(member,post)) {
+        if(heartRepository.existsHeartByMemberAndPost(member, post)) {
             post.updateHeart(post.getHeartCount()-1);
             postRepository.save(post);
             heartRepository.deleteHeartByMemberAndPost(member,post);

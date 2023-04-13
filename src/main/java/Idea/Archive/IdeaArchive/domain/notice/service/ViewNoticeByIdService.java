@@ -18,7 +18,6 @@ public class ViewNoticeByIdService {
     public ViewNoticeByIdResponse execute(Long noticeId) {
         Notice notice = noticeRepository.findById(noticeId)
                 .orElseThrow(() -> new NoticeNotFoundException("공지글이 존재하지 않습니다."));
-
         return ViewNoticeByIdResponse.builder()
                 .id(noticeId)
                 .title(notice.getTitle())

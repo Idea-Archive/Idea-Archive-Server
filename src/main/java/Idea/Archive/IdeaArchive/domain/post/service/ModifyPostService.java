@@ -32,7 +32,7 @@ public class ModifyPostService {
             Category enumValue = Enum.valueOf(Category.class, s);
             categoryList.add(enumValue);
         }
-        post.update(modifyPostRequest.getTitle(), modifyPostRequest.getContent(),categoryList);
+        post.update(modifyPostRequest.getTitle(), modifyPostRequest.getContent(), categoryList);
         postRepository.save(post);
     }
 
