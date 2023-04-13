@@ -40,7 +40,7 @@ public class FindPasswordService {
                 throw new MisMatchPasswordException("비밀번호가 일치하지 않습니다.");
             }
             member.updatePassword(passwordEncoder.encode(makeNewPasswordRequest.getCheckPassword()));
-        }else {
+        } else {
             throw new NotVerifyEmailException("인증되지 않은 이메일 입니다.");
         }
     }

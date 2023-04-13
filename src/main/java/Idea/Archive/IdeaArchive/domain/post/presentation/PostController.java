@@ -23,6 +23,7 @@ public class PostController {
     private final ViewPostByIdService viewPostByIdService;
     private final ModifyPostService modifyPostService;
     private final DeletePostService deletePostService;
+    private final SearchPostService searchPostService;
     private final GetPostByCategoryService getPostByCategoryService;
     private final InsertHeartService insertHeartService;
     private final SharePostService sharePostService;
@@ -56,6 +57,12 @@ public class PostController {
     public ResponseEntity<Void> deletePost(@PathVariable Long postId) {
         deletePostService.execute(postId);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
+
+    @PostMapping("/search")
+    public ResponseEntity<List<ViewPostResponse>> searchPost(@RequestParam String keyword, @RequestBody CategoryRequest categoryRequest) {
+        List<ViewPostResponse> response = searchPostService.execute(keyword,categoryRequest);
+        return ResponseEntity.ok(response);
     }
 
     @PostMapping("/category")
