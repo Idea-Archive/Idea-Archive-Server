@@ -11,5 +11,6 @@ import org.springframework.web.bind.annotation.RequestHeader;
 public interface KakaoInfo {
 
     @GetMapping
-    KakaoInfoResponse kakaoInfo(@RequestHeader String accessToken);
+    KakaoInfoResponse kakaoInfo(@RequestHeader(value = "Authorization") String accessToken);
+
 }
