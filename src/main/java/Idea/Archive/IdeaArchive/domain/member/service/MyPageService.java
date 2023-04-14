@@ -33,9 +33,6 @@ public class MyPageService {
             throw new NotExistPostException("게시글이 존재하지 않습니다");
         }
         List<Post> posts = postRepository.findByMember(member);
-        if(!postRepository.isAllMembersEqual(member,posts)) {
-            throw new MemberNotFoundException("존재하지 않은 회원입니다");
-        }
         List<ViewPostResponse> myPostList = ViewPostResponse.convertToPostList(posts);
         if (myPostList.isEmpty()) {
             throw new NotExistPostException("게시글이 존재하지 않습니다.");
