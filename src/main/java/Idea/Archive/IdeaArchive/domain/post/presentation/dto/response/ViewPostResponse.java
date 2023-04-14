@@ -38,10 +38,12 @@ public class ViewPostResponse {
                 .member(ViewMemberResponse.convertToMember(post.getMember()))
                 .build();
     }
+
     public static List<ViewPostResponse> convertToPostList(List<Post> posts) {
         Stream<Post> stream = posts.stream();
         return stream.map(ViewPostResponse::convertToPost).collect(Collectors.toList());
     }
+
     public static ViewPostResponse convertToHeart(Heart heart) {
         return ViewPostResponse.builder()
                 .id(heart.getPost().getPostId())

@@ -23,13 +23,13 @@ public class MyPageService {
     private final PostRepository postRepository;
     private final MemberUtil memberUtil;
 
-    @Transactional(readOnly = true)
+    @Transactional(rollbackFor = Exception.class, readOnly = true)
     public MyPageResponse execute() {
         Member currentMember = memberUtil.currentMember();
         Member member = memberRepository.findByEmail(currentMember.getEmail())
                 .orElseThrow(() -> new MemberNotFoundException("존재하지 않는 회원입니다"));
         List<ViewPostResponse> heartList = ViewPostResponse.convertToHeartList(member.getHearts());
-        if(heartList.isEmpty()) {
+        if (heartList.isEmpty()) {
             throw new NotExistPostException("게시글이 존재하지 않습니다");
         }
         List<Post> posts = postRepository.findByMember(member);
