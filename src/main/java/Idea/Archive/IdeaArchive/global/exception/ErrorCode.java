@@ -21,7 +21,6 @@ public enum ErrorCode {
     ALREADY_EXIST_ID("이미 존재하는 아이디입니다.", 409),
     FAILED_SEND_EMAIL("이메일 발송에 실패했습니다",400),
 
-
     // TOKEN
     TOKEN_NOT_VALID("토큰이 유효 하지 않습니다.", 401),
     TOKEN_EXPIRATION("토큰이 만료 되었습니다.", 401),

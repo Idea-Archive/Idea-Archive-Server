@@ -63,7 +63,6 @@ public class KakaoAuthService {
                 .refreshToken(refreshToken)
                 .expiredAt(tokenProvider.getExpiredAtToken())
                 .build();
-
     }
 
     private void createUser(String email, String name) {
