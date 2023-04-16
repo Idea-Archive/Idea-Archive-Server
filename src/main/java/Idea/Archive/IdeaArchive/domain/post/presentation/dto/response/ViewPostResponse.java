@@ -6,7 +6,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Builder
@@ -22,6 +24,8 @@ public class ViewPostResponse {
     private Integer heartCount;
     private Integer commentCount;
     private ViewMemberResponse member;
-    private String time;
+
+    @CreatedDate
+    private LocalDateTime createdDate;
 
 }

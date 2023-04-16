@@ -32,7 +32,7 @@ public class ViewPopularPostService {
                         .heartCount(p.getHeartCount())
                         .commentCount(p.getCommentCount())
                         .member(ViewMemberResponse.convertToMember(p.getMember()))
-                        .time(p.getTime())
+                        .createdDate(p.getCreatedDate())
                         .build())
                 .collect(Collectors.toList());
     }

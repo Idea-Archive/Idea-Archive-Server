@@ -25,7 +25,7 @@ public class ViewCommentByPostResponse {
         return ViewCommentByPostResponse.builder()
                 .commentId(comment.getCommentId())
                 .content(comment.getContent())
-                .time(comment.getTime())
+//                .time(comment.getTime())
                 .member(ViewMemberResponse.convertToMember(comment.getMember()))
                 .build();
     }
