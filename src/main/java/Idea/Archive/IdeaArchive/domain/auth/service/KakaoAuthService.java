@@ -8,7 +8,6 @@ import Idea.Archive.IdeaArchive.domain.member.repository.MemberRepository;
 import Idea.Archive.IdeaArchive.global.filter.role.Role;
 import Idea.Archive.IdeaArchive.global.security.KakaoAuthProperties;
 import Idea.Archive.IdeaArchive.global.security.jwt.TokenProvider;
-import Idea.Archive.IdeaArchive.global.security.jwt.properties.JwtProperties;
 import Idea.Archive.IdeaArchive.infrastructure.feign.client.KakaoAuth;
 import Idea.Archive.IdeaArchive.infrastructure.feign.client.KakaoInfo;
 import Idea.Archive.IdeaArchive.infrastructure.feign.dto.response.KakaoInfoResponse;
@@ -28,7 +27,6 @@ public class KakaoAuthService {
     private final MemberRepository memberRepository;
     private final TokenProvider tokenProvider;
     private final RefreshTokenRepository refreshTokenRepository;
-    private final JwtProperties jwtProperties;
 
     @Transactional(rollbackFor = Exception.class)
     public MemberLoginResponse execute(String code) {

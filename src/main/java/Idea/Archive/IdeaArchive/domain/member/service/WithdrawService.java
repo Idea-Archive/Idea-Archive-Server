@@ -1,6 +1,5 @@
 package Idea.Archive.IdeaArchive.domain.member.service;
 
-
 import Idea.Archive.IdeaArchive.domain.auth.entity.RefreshToken;
 import Idea.Archive.IdeaArchive.domain.auth.exception.RefreshTokenNotFoundException;
 import Idea.Archive.IdeaArchive.domain.auth.repository.RefreshTokenRepository;

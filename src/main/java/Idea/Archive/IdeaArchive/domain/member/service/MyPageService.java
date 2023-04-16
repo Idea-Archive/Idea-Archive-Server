@@ -23,7 +23,7 @@ public class MyPageService {
     private final PostRepository postRepository;
     private final MemberUtil memberUtil;
 
-    @Transactional(readOnly = true, rollbackFor = Exception.class)
+    @Transactional(rollbackFor = Exception.class, readOnly = true)
     public MyPageResponse execute() {
         Member currentMember = memberUtil.currentMember();
         Member member = memberRepository.findByEmail(currentMember.getEmail())
