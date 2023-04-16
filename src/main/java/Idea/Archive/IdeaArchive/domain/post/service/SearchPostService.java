@@ -23,7 +23,7 @@ public class SearchPostService {
     @Transactional(rollbackFor = Exception.class)
     public List<ViewPostResponse> execute(String searchKeyword, CategoryRequest categoryRequest) {
         List<Post> posts = new ArrayList<Post>();
-        if(categoryRequest.getCategory().isEmpty()) {
+        if (categoryRequest.getCategory().isEmpty()) {
             posts = postRepository.findByTitleContaining(searchKeyword);
         } else {
             List<Category> categoryList = new ArrayList<Category>();

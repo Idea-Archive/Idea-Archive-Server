@@ -35,7 +35,7 @@ public class WithdrawService {
         RefreshToken refreshToken = refreshTokenRepository.findById(member.getEmail())
                 .orElseThrow(() -> new RefreshTokenNotFoundException("존재하지 않은 리프레시 토큰입니다."));
 
-        if(!passwordEncoder.matches(password, member.getPassword())) {
+        if (!passwordEncoder.matches(password, member.getPassword())) {
             throw new MisMatchPasswordException("비밀번호가 일치하지 않습니다.");
         }
 

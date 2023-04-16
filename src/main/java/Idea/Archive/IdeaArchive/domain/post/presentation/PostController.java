@@ -88,4 +88,5 @@ public class PostController {
         List<ViewPostResponse> posts = viewPopularPostService.execute();
         return ResponseEntity.ok(posts);
     }
+
 }

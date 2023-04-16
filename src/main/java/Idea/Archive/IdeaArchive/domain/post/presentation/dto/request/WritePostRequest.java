@@ -20,5 +20,4 @@ public class WritePostRequest {
     @NotNull
     private List<String> category;
 
-
 }

@@ -20,7 +20,7 @@ public class ViewPopularPostService {
     @Transactional(readOnly = true, rollbackFor = Exception.class)
     public List<ViewPostResponse> execute() {
         List<Post> posts = postRepository.findAllOrderByHeartCountPlusViesDesc();
-        if(posts.isEmpty()) {
+        if (posts.isEmpty()) {
             throw new NotExistPostException("게시글이 존재하지 않습니다");
         }
         return posts.stream()
