@@ -24,9 +24,9 @@ public class ApplyApplicationService {
         Member member = memberUtil.currentMember();
         Post post = postRepository.findById(postId)
                 .orElseThrow(() -> new NotExistPostException("게시글이 존재하지 않습니다."));
-        if(applicationRepository.existsByPostAndMember(post,member)) {
-            post.updateApplication(post.getApplicantCount()-1);
-            applicationRepository.deleteByPostAndMember(post,member);
+        if (applicationRepository.existsByPostAndMember(post, member)) {
+            post.updateApplication(post.getApplicantCount() - 1);
+            applicationRepository.deleteByPostAndMember(post, member);
         } else {
             Application application = Application.builder()
                     .post(post)

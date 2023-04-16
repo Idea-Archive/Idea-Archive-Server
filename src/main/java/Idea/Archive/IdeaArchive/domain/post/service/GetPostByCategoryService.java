@@ -44,7 +44,4 @@ public class GetPostByCategoryService {
                         .build())
                 .collect(Collectors.toList());
     }
-
-
-
 }

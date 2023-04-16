@@ -1,4 +1,5 @@
 package Idea.Archive.IdeaArchive.domain.post.service;
+
 import Idea.Archive.IdeaArchive.domain.member.presentation.dto.ViewMemberResponse;
 import Idea.Archive.IdeaArchive.domain.post.category.Category;
 import Idea.Archive.IdeaArchive.domain.post.entity.Post;
@@ -23,6 +24,7 @@ public class SearchPostService {
     @Transactional(rollbackFor = Exception.class)
     public List<ViewPostResponse> execute(String searchKeyword, CategoryRequest categoryRequest) {
         List<Post> posts = new ArrayList<Post>();
+
         if (categoryRequest.getCategory().isEmpty()) {
             posts = postRepository.findByTitleContaining(searchKeyword);
         } else {
@@ -51,6 +53,7 @@ public class SearchPostService {
                         .heartCount(p.getHeartCount())
                         .commentCount(p.getCommentCount())
                         .member(ViewMemberResponse.convertToMember(p.getMember()))
+                        .createdDate(p.getCreatedDate())
                         .build())
                 .collect(Collectors.toList());
     }

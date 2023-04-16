@@ -61,7 +61,7 @@ public class PostController {
 
     @PostMapping("/search")
     public ResponseEntity<List<ViewPostResponse>> searchPost(@RequestParam String keyword, @RequestBody CategoryRequest categoryRequest) {
-        List<ViewPostResponse> response = searchPostService.execute(keyword,categoryRequest);
+        List<ViewPostResponse> response = searchPostService.execute(keyword, categoryRequest);
         return ResponseEntity.ok(response);
     }
 
@@ -88,5 +88,4 @@ public class PostController {
         List<ViewPostResponse> posts = viewPopularPostService.execute();
         return ResponseEntity.ok(posts);
     }
-
 }

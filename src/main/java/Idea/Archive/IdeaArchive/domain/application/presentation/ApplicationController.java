@@ -14,19 +14,19 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/application")
 public class ApplicationController {
+
     private final ApplyApplicationService applyApplicationService;
     private final ApplicationListService applicationListService;
 
     @PostMapping("/{post_id}")
-    public ResponseEntity<Void> applyApplication(@PathVariable Long post_id) {
-        applyApplicationService.execute(post_id);
+    public ResponseEntity<Void> applyApplication(@PathVariable("post_id") Long postId) {
+        applyApplicationService.execute(postId);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
     @GetMapping("/{post_id}")
-    public ResponseEntity<List<ApplicationResponse>> listApplication(@PathVariable Long post_id) {
-        List<ApplicationResponse> applications = applicationListService.execute(post_id);
+    public ResponseEntity<List<ApplicationResponse>> listApplication(@PathVariable("post_id") Long postId) {
+        List<ApplicationResponse> applications = applicationListService.execute(postId);
         return ResponseEntity.ok(applications);
     }
-
 }
