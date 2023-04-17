@@ -19,6 +19,9 @@ spring:
         max-request-size: 100MB
     open-in-view: false
 
+  profiles:
+    active: local
+
   mail:
     properties:
       mail:
