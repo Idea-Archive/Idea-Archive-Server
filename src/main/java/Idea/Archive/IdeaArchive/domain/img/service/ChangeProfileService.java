@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -22,10 +23,7 @@ public class ChangeProfileService {
     private final AmazonS3 amazonS3;
     private final MemberUtil memberUtil;
 
-    private void deleteImage(String fileName) {
-        amazonS3.deleteObject(new DeleteObjectRequest(bucket, fileName));
-    }
-
+    @Transactional(rollbackOn = Exception.class)
     public void execute(List<MultipartFile> multipartFileList) {
         Member currentMember = memberUtil.currentMember();
         if (currentMember.getProfileImageUrl().isEmpty()) {
@@ -33,5 +31,9 @@ public class ChangeProfileService {
         }
         deleteImage(currentMember.getProfileImageUrl());
         uploadProfileImg.execute(multipartFileList);
+    }
+
+    private void deleteImage(String fileName) {
+        amazonS3.deleteObject(new DeleteObjectRequest(bucket, fileName));
     }
 }

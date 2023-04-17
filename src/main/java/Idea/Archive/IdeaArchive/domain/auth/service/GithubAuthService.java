@@ -6,9 +6,8 @@ import Idea.Archive.IdeaArchive.domain.auth.repository.RefreshTokenRepository;
 import Idea.Archive.IdeaArchive.domain.member.entity.Member;
 import Idea.Archive.IdeaArchive.domain.member.repository.MemberRepository;
 import Idea.Archive.IdeaArchive.global.filter.role.Role;
-import Idea.Archive.IdeaArchive.global.security.GithubAuthProperties;
+import Idea.Archive.IdeaArchive.global.oauth.GithubAuthProperties;
 import Idea.Archive.IdeaArchive.global.security.jwt.TokenProvider;
-import Idea.Archive.IdeaArchive.global.security.jwt.properties.JwtProperties;
 import Idea.Archive.IdeaArchive.infrastructure.feign.client.GithubAuth;
 import Idea.Archive.IdeaArchive.infrastructure.feign.client.GithubEmailInfo;
 import Idea.Archive.IdeaArchive.infrastructure.feign.client.GithubNameInfo;
@@ -31,20 +30,8 @@ public class GithubAuthService {
     private final GithubAuthProperties githubAuthProperties;
     private final TokenProvider tokenProvider;
     private final RefreshTokenRepository refreshTokenRepository;
-    private final JwtProperties jwtProperties;
 
-    private void createUser(String email, String name) {
-        if (memberRepository.findByEmail(email).isEmpty()) {
-            memberRepository.save(
-                    Member.builder()
-                            .email(email)
-                            .name(name)
-                            .role(Role.MEMBER)
-                            .build());
-        }
-    }
-
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public MemberLoginResponse execute(String code) {
 
         GithubTokenResponse githubTokenResponse = githubAuth.githubAuth(
@@ -63,19 +50,33 @@ public class GithubAuthService {
         String refreshToken = tokenProvider.generatedRefreshToken(email);
         String jwtAccessToken = tokenProvider.generatedAccessToken(email);
 
-        refreshTokenRepository.save(
-                RefreshToken.builder()
-                        .email(email)
-                        .refreshToken(refreshToken)
-                        .expiredAt(tokenProvider.getACCESS_TOKEN_EXPIRE_TIME())
-                        .build());
+        RefreshToken newToken = RefreshToken.builder()
+                .email(email)
+                .refreshToken(refreshToken)
+                .expiredAt(tokenProvider.getACCESS_TOKEN_EXPIRE_TIME())
+                .build();
+
+        refreshTokenRepository.save(newToken);
 
         createUser(email, name);
 
         return MemberLoginResponse.builder()
                 .accessToken(jwtAccessToken)
                 .refreshToken(refreshToken)
-                .expiredAt(tokenProvider.getExpiredAtToken(jwtAccessToken, jwtProperties.getAccessSecret()))
+                .expiredAt(tokenProvider.getExpiredAtToken())
                 .build();
+    }
+
+    private void createUser(String email, String name) {
+        if (memberRepository.findByEmail(email).isEmpty()) {
+            memberRepository.save(
+                    Member.builder()
+                            .email(email)
+                            .name(name)
+                            .role(Role.MEMBER)
+                            .password(null)
+                            .profileImageUrl(null)
+                            .build());
+        }
     }
 }

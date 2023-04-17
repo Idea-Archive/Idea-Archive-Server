@@ -19,16 +19,16 @@ public class DeleteProfileImg {
     private final AmazonS3 amazonS3;
     private final MemberUtil memberUtil;
 
-    private void deleteImage(String fileName) {
-        amazonS3.deleteObject(new DeleteObjectRequest(bucket, fileName));
-    }
-
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public void execute() {
         Member currentMember = memberUtil.currentMember();
         if (currentMember.getProfileImageUrl().isEmpty()) {
             throw new NotExistImageException("기본 프로필은 삭제할 수 없습니다.");
         }
         deleteImage(currentMember.getProfileImageUrl());
+    }
+
+    private void deleteImage(String fileName) {
+        amazonS3.deleteObject(new DeleteObjectRequest(bucket, fileName));
     }
 }

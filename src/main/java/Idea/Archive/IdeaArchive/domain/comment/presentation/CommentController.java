@@ -21,20 +21,20 @@ public class CommentController {
     private final ModifyCommentService modifyCommentService;
     private final DeleteCommentService deleteCommentService;
 
-    @PostMapping("/comment/{postId}")
-    public ResponseEntity<Void> writeComment(@PathVariable Long postId, @RequestBody @Valid WriteCommentRequest request) {
+    @PostMapping("/comment/{post_id}")
+    public ResponseEntity<Void> writeComment(@PathVariable("post_id") Long postId, @RequestBody @Valid WriteCommentRequest request) {
         writeCommentService.execute(postId, request);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    @PatchMapping("/comment/{commentId}")
-    public ResponseEntity<Void> modifyComment(@PathVariable Long commentId, @RequestBody @Valid ModifyCommentRequest request) {
+    @PatchMapping("/comment/{comment_id}")
+    public ResponseEntity<Void> modifyComment(@PathVariable("comment_id") Long commentId, @RequestBody @Valid ModifyCommentRequest request) {
         modifyCommentService.execute(commentId, request);
         return ResponseEntity.ok().build();
     }
 
-    @DeleteMapping("/comment/{commentId}")
-    public ResponseEntity<Void> DeleteComment(@PathVariable Long commentId) {
+    @DeleteMapping("/comment/{comment_id}")
+    public ResponseEntity<Void> DeleteComment(@PathVariable("comment_id") Long commentId) {
         deleteCommentService.execute(commentId);
         return ResponseEntity.ok().build();
     }

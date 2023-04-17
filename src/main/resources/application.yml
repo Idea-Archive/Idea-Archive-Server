@@ -39,7 +39,6 @@ spring:
 
 auth:
   google:
-    base-url: ${GOOGLE_BASE_URL}
     client-id: ${GOOGLE_CLIENT_ID}
     client-secret: ${GOOGLE_SECRET}
     redirect-url: ${GOOGLE_REDIRECT_URL}
@@ -48,7 +47,6 @@ auth:
     client-secret: ${KAKAO_SECRET}
     redirect-url: ${KAKAO_REDIRECT_URL}
   github:
-    base-url: ${GITHUB_BASE_URL}
     client-id: ${GITHUB_CLIENT_ID}
     client-secret: ${GITHUB_SECRET}
     redirect-url: ${GITHUB_REDIRECT_URL}

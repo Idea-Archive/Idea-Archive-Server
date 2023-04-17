@@ -14,19 +14,20 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @RequiredArgsConstructor
 public class ApplyApplicationService {
+
     private final ApplicationRepository applicationRepository;
     private final PostRepository postRepository;
     private final MemberUtil memberUtil;
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public void execute(Long postId) {
         Member member = memberUtil.currentMember();
         Post post = postRepository.findById(postId)
                 .orElseThrow(() -> new NotExistPostException("게시글이 존재하지 않습니다."));
-        if(applicationRepository.existsByPostAndMember(post,member)) {
-            post.updateApplication(post.getApplicantCount()-1);
-            applicationRepository.deleteByPostAndMember(post,member);
-        }else {
+        if (applicationRepository.existsByPostAndMember(post, member)) {
+            post.updateApplication(post.getApplicantCount() - 1);
+            applicationRepository.deleteByPostAndMember(post, member);
+        } else {
             Application application = Application.builder()
                     .post(post)
                     .member(member)
@@ -35,6 +36,5 @@ public class ApplyApplicationService {
             postRepository.save(post);
             applicationRepository.save(application);
         }
-
     }
 }

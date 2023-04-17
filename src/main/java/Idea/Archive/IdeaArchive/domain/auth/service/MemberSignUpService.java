@@ -12,6 +12,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+
 @Service
 @RequiredArgsConstructor
 public class MemberSignUpService {
@@ -20,9 +22,10 @@ public class MemberSignUpService {
     private final MemberRepository memberRepository;
     private final EmailAuthRepository emailAuthRepository;
 
+    @Transactional(rollbackOn = Exception.class)
     public void execute(MemberSignUpRequest memberSignUpRequest) {
 
-        if(memberRepository.existsByEmail(memberSignUpRequest.getEmail())) {
+        if (memberRepository.existsByEmail(memberSignUpRequest.getEmail())) {
             throw new ExistEmailException("이미 존재하는 이메일입니다.");
         }
 

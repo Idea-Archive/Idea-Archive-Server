@@ -1,6 +1,5 @@
 package Idea.Archive.IdeaArchive.domain.auth.service;
 
-
 import Idea.Archive.IdeaArchive.domain.auth.entity.RefreshToken;
 import Idea.Archive.IdeaArchive.domain.auth.exception.RefreshTokenNotFoundException;
 import Idea.Archive.IdeaArchive.domain.auth.presentation.dto.response.NewTokenResponse;
@@ -26,15 +25,15 @@ public class TokenReissuanceService {
     public NewTokenResponse execute(String reqToken) {
         String email = tokenProvider.getUserEmail(reqToken,jwtProperties.getRefreshSecret());
         RefreshToken token = refreshTokenRepository.findById(email)
-                .orElseThrow(()->new RefreshTokenNotFoundException("존재하지 않은 refreshToken입니다."));
+                .orElseThrow(() -> new RefreshTokenNotFoundException("존재하지 않은 refreshToken입니다."));
 
-        if(!token.getRefreshToken().equals(reqToken)) {
+        if (!token.getRefreshToken().equals(reqToken)) {
             throw new TokenNotValidException("토큰이 유효하지 않습니다.");
         }
 
         String accessToken = tokenProvider.generatedAccessToken(email);
         String refreshToken = tokenProvider.generatedRefreshToken(email);
-        ZonedDateTime expiredAt = tokenProvider.getExpiredAtToken(accessToken, jwtProperties.getAccessSecret());
+        ZonedDateTime expiredAt = tokenProvider.getExpiredAtToken();
         token.exchangeRefreshToken(refreshToken);
         refreshTokenRepository.save(token);
         return NewTokenResponse.builder()
@@ -42,7 +41,5 @@ public class TokenReissuanceService {
                 .refreshToken(refreshToken)
                 .expiredAt(expiredAt)
                 .build();
-
-
     }
 }

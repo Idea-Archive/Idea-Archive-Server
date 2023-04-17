@@ -17,7 +17,7 @@ public class DeleteNoticeService {
     private final NoticeRepository noticeRepository;
     private final MemberUtil memberUtil;
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public void execute(Long noticeId) {
         Member member = memberUtil.currentMember();
         Notice notice = noticeRepository.findById(noticeId)

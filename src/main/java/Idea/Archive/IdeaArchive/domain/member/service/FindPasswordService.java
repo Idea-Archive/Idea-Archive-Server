@@ -27,7 +27,7 @@ public class FindPasswordService {
     private final EmailAuthRepository emailAuthRepository;
 
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public void execute(@Valid MakeNewPasswordRequest makeNewPasswordRequest) {
         Member member = memberUtil.currentMember();
         EmailAuth emailAuth = emailAuthRepository.findById(member.getEmail())

@@ -3,6 +3,7 @@ package Idea.Archive.IdeaArchive.domain.post.entity;
 import Idea.Archive.IdeaArchive.domain.application.entity.Application;
 import Idea.Archive.IdeaArchive.domain.comment.entity.Comment;
 import Idea.Archive.IdeaArchive.domain.member.entity.Member;
+import Idea.Archive.IdeaArchive.global.entity.BaseTimeEntity;
 import Idea.Archive.IdeaArchive.domain.post.category.Category;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,7 +19,7 @@ import java.util.List;
 @Getter @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Post {
+public class Post extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

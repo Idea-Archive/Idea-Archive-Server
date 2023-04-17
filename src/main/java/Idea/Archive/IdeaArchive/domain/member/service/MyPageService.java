@@ -44,7 +44,5 @@ public class MyPageService {
                 .myPost(myPostList)
                 .myHeartList(heartList)
                 .build();
-
-
     }
 }

@@ -55,7 +55,7 @@ public class SecurityConfig {
                 .antMatchers("/post/comment/**").authenticated()
                 .antMatchers("/img").authenticated()
 
-                .antMatchers("/member/notice/**").hasAuthority("ADMIN")
+                .antMatchers("/member/notice/**").hasAuthority("MEMBER")
                 .anyRequest().authenticated();
         http
                 .sessionManagement()

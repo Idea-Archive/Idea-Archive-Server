@@ -14,7 +14,7 @@ public class ViewNoticeByIdService {
 
     private final NoticeRepository noticeRepository;
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public ViewNoticeByIdResponse execute(Long noticeId) {
         Notice notice = noticeRepository.findById(noticeId)
                 .orElseThrow(() -> new NoticeNotFoundException("공지글이 존재하지 않습니다."));
@@ -22,6 +22,7 @@ public class ViewNoticeByIdService {
                 .id(noticeId)
                 .title(notice.getTitle())
                 .content(notice.getContent())
+                .createdDate(notice.getCreatedDate())
                 .build();
     }
 }

@@ -21,7 +21,7 @@ public class GetPostByCategoryService {
 
     private final PostRepository postRepository;
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public List<ViewPostResponse> execute(CategoryRequest categoryRequest) {
         List<Category> categoryList = new ArrayList<Category>();
         for (String s : categoryRequest.getCategory()) {
@@ -44,7 +44,4 @@ public class GetPostByCategoryService {
                         .build())
                 .collect(Collectors.toList());
     }
-
-
-
 }

@@ -1,6 +1,5 @@
 package Idea.Archive.IdeaArchive.domain.auth.service;
 
-
 import Idea.Archive.IdeaArchive.domain.auth.entity.BlackList;
 import Idea.Archive.IdeaArchive.domain.auth.entity.RefreshToken;
 import Idea.Archive.IdeaArchive.domain.auth.exception.BlackListAlreadyExistException;
@@ -13,6 +12,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+
 @Service
 @RequiredArgsConstructor
 public class MemberLogoutService {
@@ -23,16 +24,17 @@ public class MemberLogoutService {
     private final RedisTemplate redisTemplate;
 
 
+    @Transactional(rollbackOn = Exception.class)
     public void execute(String accessToken) {
         Member member = memberUtil.currentMember();
         RefreshToken refreshToken = refreshTokenRepository.findById(member.getEmail())
-                .orElseThrow(()->new RefreshTokenNotFoundException("RefreshToken을 찾을 수 없습니다."));
+                .orElseThrow(() -> new RefreshTokenNotFoundException("RefreshToken을 찾을 수 없습니다."));
         refreshTokenRepository.delete(refreshToken);
         saveBlackList(accessToken,member.getEmail());
     }
 
     private void saveBlackList(String accessToken, String email) {
-        if(redisTemplate.opsForValue().get(accessToken)!=null) {
+        if (redisTemplate.opsForValue().get(accessToken) != null) {
             throw new BlackListAlreadyExistException("블랙리스트에 이미 등록되어있습니다.");
         }
         BlackList blackList = BlackList.builder()
@@ -41,6 +43,4 @@ public class MemberLogoutService {
                 .build();
         blackListRepository.save(blackList);
     }
-
-
 }

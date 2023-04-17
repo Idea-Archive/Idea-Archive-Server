@@ -8,7 +8,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -26,6 +28,9 @@ public class ViewPostResponse {
     private Integer heartCount;
     private Integer commentCount;
     private ViewMemberResponse member;
+
+    @CreatedDate
+    private LocalDateTime createdDate;
 
     public static ViewPostResponse convertToPost(Post post) {
         return ViewPostResponse.builder()
@@ -60,5 +65,4 @@ public class ViewPostResponse {
         Stream<Heart> stream = hearts.stream();
         return stream.map(ViewPostResponse::convertToHeart).collect(Collectors.toList());
     }
-
 }

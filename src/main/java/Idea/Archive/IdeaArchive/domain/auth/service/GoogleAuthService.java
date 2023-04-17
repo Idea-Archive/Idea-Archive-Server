@@ -6,9 +6,8 @@ import Idea.Archive.IdeaArchive.domain.auth.repository.RefreshTokenRepository;
 import Idea.Archive.IdeaArchive.domain.member.entity.Member;
 import Idea.Archive.IdeaArchive.domain.member.repository.MemberRepository;
 import Idea.Archive.IdeaArchive.global.filter.role.Role;
-import Idea.Archive.IdeaArchive.global.security.GoogleAuthProperties;
+import Idea.Archive.IdeaArchive.global.oauth.GoogleAuthProperties;
 import Idea.Archive.IdeaArchive.global.security.jwt.TokenProvider;
-import Idea.Archive.IdeaArchive.global.security.jwt.properties.JwtProperties;
 import Idea.Archive.IdeaArchive.infrastructure.feign.client.GoogleAuth;
 import Idea.Archive.IdeaArchive.infrastructure.feign.client.GoogleInfo;
 import Idea.Archive.IdeaArchive.infrastructure.feign.dto.request.GoogleCodeRequest;
@@ -30,22 +29,9 @@ public class GoogleAuthService {
     private final GoogleAuthProperties googleAuthProperties;
     private final MemberRepository memberRepository;
     private final TokenProvider tokenProvider;
-    private final JwtProperties jwtProperties;
     private final RefreshTokenRepository refreshTokenRepository;
 
-    private void createUser(String email, String name) {
-        if (memberRepository.findByEmail(email).isEmpty()) {
-            memberRepository.save(
-                    Member.builder()
-                            .email(email)
-                            .name(name)
-                            .role(Role.MEMBER)
-                            .profileImageUrl(null)
-                            .build());
-        }
-    }
-
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public MemberLoginResponse execute(String code) {
 
         GoogleTokenResponse googleTokenResponse = googleAuth.googleAuth(
@@ -77,7 +63,20 @@ public class GoogleAuthService {
         return MemberLoginResponse.builder()
                 .accessToken(jwtAccessToken)
                 .refreshToken(refreshToken)
-                .expiredAt(tokenProvider.getExpiredAtToken(jwtAccessToken, jwtProperties.getAccessSecret()))
+                .expiredAt(tokenProvider.getExpiredAtToken())
                 .build();
+    }
+
+    private void createUser(String email, String name) {
+        if (memberRepository.findByEmail(email).isEmpty()) {
+            memberRepository.save(
+                    Member.builder()
+                            .email(email)
+                            .name(name)
+                            .role(Role.MEMBER)
+                            .password(null)
+                            .profileImageUrl(null)
+                            .build());
+        }
     }
 }

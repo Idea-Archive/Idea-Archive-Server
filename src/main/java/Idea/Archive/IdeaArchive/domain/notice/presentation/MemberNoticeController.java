@@ -27,8 +27,8 @@ public class MemberNoticeController {
         return ResponseEntity.ok(viewNoticeResponses);
     }
 
-    @GetMapping("{noticeId}")
-    public ResponseEntity<ViewNoticeByIdResponse> viewNoticeById(@PathVariable Long noticeId) {
+    @GetMapping("{notice_id}")
+    public ResponseEntity<ViewNoticeByIdResponse> viewNoticeById(@PathVariable("notice_id") Long noticeId) {
         ViewNoticeByIdResponse viewNoticeResponse = viewNoticeByIdService.execute(noticeId);
         return ResponseEntity.ok(viewNoticeResponse);
     }

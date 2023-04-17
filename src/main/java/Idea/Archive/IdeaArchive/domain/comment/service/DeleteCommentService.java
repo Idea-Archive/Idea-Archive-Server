@@ -16,17 +16,17 @@ public class DeleteCommentService {
     private final CommentRepository commentRepository;
     private final MemberUtil memberUtil;
 
-    private void verifyPostWriter(Comment comment) {
-        if (!memberUtil.currentMember().equals(comment.getMember())) {
-            throw new NotVerifyMember("검증되지 않은 회원입니다.");
-        }
-    }
-
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public void execute(Long commentId) {
         Comment comment = commentRepository.findById(commentId)
                 .orElseThrow(() -> new NotExistCommentException("존재하지 않는 댓글입니다."));
         verifyPostWriter(comment);
         commentRepository.deleteById(commentId);
+    }
+
+    private void verifyPostWriter(Comment comment) {
+        if (!memberUtil.currentMember().equals(comment.getMember())) {
+            throw new NotVerifyMember("검증되지 않은 회원입니다.");
+        }
     }
 }

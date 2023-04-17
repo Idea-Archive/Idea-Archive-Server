@@ -1,7 +1,9 @@
 package Idea.Archive.IdeaArchive.domain.member.entity;
 
+import Idea.Archive.IdeaArchive.domain.notice.entity.Notice;
 import Idea.Archive.IdeaArchive.domain.post.entity.Heart;
 import Idea.Archive.IdeaArchive.domain.post.entity.Post;
+import Idea.Archive.IdeaArchive.global.entity.BaseTimeEntity;
 import Idea.Archive.IdeaArchive.global.filter.role.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,7 +18,7 @@ import java.util.List;
 @Getter @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Member {
+public class Member extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -46,6 +48,9 @@ public class Member {
     @OneToMany(mappedBy = "member",fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Heart> hearts;
 
+    @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
+    private List<Notice> notices;
+
     @PrePersist
     public void setting() {
         this.role = this.role == null ? Role.MEMBER : this.role;
@@ -59,8 +64,8 @@ public class Member {
     public void updateName(String name){
         this.name = name;
     }
+
     public void updateProfileImg(String profileImageUrl) {
         this.profileImageUrl = profileImageUrl;
     }
-
 }

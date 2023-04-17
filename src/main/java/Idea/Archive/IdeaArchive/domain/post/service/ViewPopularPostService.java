@@ -17,7 +17,7 @@ public class ViewPopularPostService {
 
     private final PostRepository postRepository;
 
-    @Transactional(readOnly = true)
+    @Transactional(readOnly = true, rollbackFor = Exception.class)
     public List<ViewPostResponse> execute() {
         List<Post> posts = postRepository.findAllOrderByHeartCountPlusViesDesc();
         if (posts.isEmpty()) {
@@ -32,6 +32,7 @@ public class ViewPopularPostService {
                         .heartCount(p.getHeartCount())
                         .commentCount(p.getCommentCount())
                         .member(ViewMemberResponse.convertToMember(p.getMember()))
+                        .createdDate(p.getCreatedDate())
                         .build())
                 .collect(Collectors.toList());
     }

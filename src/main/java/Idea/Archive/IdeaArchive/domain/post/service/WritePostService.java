@@ -3,7 +3,6 @@ package Idea.Archive.IdeaArchive.domain.post.service;
 import Idea.Archive.IdeaArchive.domain.member.entity.Member;
 import Idea.Archive.IdeaArchive.domain.post.category.Category;
 import Idea.Archive.IdeaArchive.domain.post.entity.Post;
-import Idea.Archive.IdeaArchive.domain.post.exception.ManyCategoryException;
 import Idea.Archive.IdeaArchive.domain.post.presentation.dto.request.WritePostRequest;
 import Idea.Archive.IdeaArchive.domain.post.repository.PostRepository;
 import Idea.Archive.IdeaArchive.global.util.MemberUtil;
@@ -17,9 +16,11 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class WritePostService {
+
     private final PostRepository postRepository;
     private final MemberUtil memberUtil;
-    @Transactional
+
+    @Transactional(rollbackFor = Exception.class)
     public void execute(WritePostRequest writePostRequest) {
         Member currentMember = memberUtil.currentMember();
         List<String> stringList = writePostRequest.getCategory();

@@ -18,12 +18,14 @@ public class ViewCommentByPostResponse {
 
     private Long commentId;
     private String content;
+    private String time;
     private ViewMemberResponse member;
 
     public static ViewCommentByPostResponse convertToComment(Comment comment) {
         return ViewCommentByPostResponse.builder()
                 .commentId(comment.getCommentId())
                 .content(comment.getContent())
+//                .time(comment.getTime())
                 .member(ViewMemberResponse.convertToMember(comment.getMember()))
                 .build();
     }
