@@ -25,7 +25,7 @@ public class MemberSignUpService {
     @Transactional(rollbackOn = Exception.class)
     public void execute(MemberSignUpRequest memberSignUpRequest) {
 
-        if(memberRepository.existsByEmail(memberSignUpRequest.getEmail())) {
+        if (memberRepository.existsByEmail(memberSignUpRequest.getEmail())) {
             throw new ExistEmailException("이미 존재하는 이메일입니다.");
         }
 

@@ -41,20 +41,20 @@ public class PostController {
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping("/{postId}")
-    public ResponseEntity<ViewPostByIdResponse> viewPostById(@PathVariable Long postId) {
+    @GetMapping("/{post_id}")
+    public ResponseEntity<ViewPostByIdResponse> viewPostById(@PathVariable("post_id") Long postId) {
         ViewPostByIdResponse response = viewPostByIdService.execute(postId);
         return ResponseEntity.ok(response);
     }
 
-    @PatchMapping("/{postId}")
-    public ResponseEntity<Void> updatePost(@PathVariable Long postId, @RequestBody @Valid ModifyPostRequest modifyPostRequest) {
+    @PatchMapping("/{post_id}")
+    public ResponseEntity<Void> updatePost(@PathVariable("post_id") Long postId, @RequestBody @Valid ModifyPostRequest modifyPostRequest) {
         modifyPostService.execute(postId, modifyPostRequest);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
-    @DeleteMapping("/{postId}")
-    public ResponseEntity<Void> deletePost(@PathVariable("postId") Long postId) {
+    @DeleteMapping("/{post_id}")
+    public ResponseEntity<Void> deletePost(@PathVariable("post_id") Long postId) {
         deletePostService.execute(postId);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
@@ -71,14 +71,14 @@ public class PostController {
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping("{postId}/heart")
-    public ResponseEntity<Void> insertHeart(@PathVariable("postId") Long postId) {
+    @GetMapping("{post_id}/heart")
+    public ResponseEntity<Void> insertHeart(@PathVariable("post_id") Long postId) {
         insertHeartService.execute(postId);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
-    @GetMapping("/share/{postId}")
-    public ResponseEntity<SharePostResponse> sharePost(@PathVariable Long postId) {
+    @GetMapping("/share/{post_id}")
+    public ResponseEntity<SharePostResponse> sharePost(@PathVariable("post_id") Long postId) {
         SharePostResponse postUrl = sharePostService.execute(postId);
         return ResponseEntity.ok(postUrl);
     }

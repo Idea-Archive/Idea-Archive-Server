@@ -32,8 +32,8 @@ public class AdminNoticeController {
         return ResponseEntity.ok(viewNoticeResponses);
     }
 
-    @GetMapping("{noticeId}")
-    public ResponseEntity<ViewNoticeByIdResponse> viewNoticeById(@PathVariable Long noticeId) {
+    @GetMapping("{notice_id}")
+    public ResponseEntity<ViewNoticeByIdResponse> viewNoticeById(@PathVariable("notice_id") Long noticeId) {
         ViewNoticeByIdResponse viewNoticeResponse = viewNoticeByIdService.execute(noticeId);
         return ResponseEntity.ok(viewNoticeResponse);
     }
@@ -44,8 +44,8 @@ public class AdminNoticeController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    @PatchMapping("{noticeId}")
-    public ResponseEntity<Void> modifyNotice(@PathVariable Long noticeId, @RequestBody @Valid ModifyNoticeRequest modifyNoticeRequest) {
+    @PatchMapping("{notice_id}")
+    public ResponseEntity<Void> modifyNotice(@PathVariable("notice_id") Long noticeId, @RequestBody @Valid ModifyNoticeRequest modifyNoticeRequest) {
         modifyNoticeService.execute(noticeId, modifyNoticeRequest);
         return ResponseEntity.ok().build();
     }

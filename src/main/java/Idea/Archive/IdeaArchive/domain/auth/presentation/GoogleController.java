@@ -16,7 +16,7 @@ public class GoogleController {
 
     private final GoogleAuthService googleAuthService;
 
-    @GetMapping("/receive-code")
+    @GetMapping("/login")
     public ResponseEntity<MemberLoginResponse> googleAuthLogin(@RequestParam("code") String code) {
         MemberLoginResponse memberLoginResponse = googleAuthService.execute(code);
         return ResponseEntity.ok().body(memberLoginResponse);
