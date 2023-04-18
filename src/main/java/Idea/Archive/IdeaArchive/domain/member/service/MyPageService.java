@@ -29,14 +29,8 @@ public class MyPageService {
         Member member = memberRepository.findByEmail(currentMember.getEmail())
                 .orElseThrow(() -> new MemberNotFoundException("존재하지 않는 회원입니다"));
         List<ViewPostResponse> heartList = ViewPostResponse.convertToHeartList(member.getHearts());
-        if (heartList.isEmpty()) {
-            throw new NotExistPostException("게시글이 존재하지 않습니다");
-        }
         List<Post> posts = postRepository.findByMember(member);
         List<ViewPostResponse> myPostList = ViewPostResponse.convertToPostList(posts);
-        if (myPostList.isEmpty()) {
-            throw new NotExistPostException("게시글이 존재하지 않습니다.");
-        }
         return MyPageResponse.builder()
                 .email(member.getEmail())
                 .name(member.getName())
