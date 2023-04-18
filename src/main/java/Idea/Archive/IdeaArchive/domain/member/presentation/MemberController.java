@@ -2,6 +2,7 @@ package Idea.Archive.IdeaArchive.domain.member.presentation;
 
 
 import Idea.Archive.IdeaArchive.domain.member.presentation.dto.request.ChangePasswordRequest;
+import Idea.Archive.IdeaArchive.domain.member.presentation.dto.request.WithdrawMemberRequest;
 import Idea.Archive.IdeaArchive.domain.member.presentation.dto.response.MyPageResponse;
 import Idea.Archive.IdeaArchive.domain.member.service.*;
 import Idea.Archive.IdeaArchive.domain.member.presentation.dto.request.ChangeNameRequest;
@@ -37,8 +38,8 @@ public class MemberController {
     }
 
     @DeleteMapping
-    public ResponseEntity<Void> withdraw(@RequestParam String email, @RequestParam String password) {
-        withdrawService.execute(email,password);
+    public ResponseEntity<Void> withdraw(@RequestBody @Valid WithdrawMemberRequest withdrawMemberRequest) {
+        withdrawService.execute(withdrawMemberRequest);
         return ResponseEntity.noContent().build();
     }
 
