@@ -26,7 +26,7 @@ public class ViewPostByIdService {
         post.updateViews(post.getViews()+1);
         postRepository.save(post);
         return ViewPostByIdResponse.builder()
-                .id(post.getPostId())
+                .postId(post.getPostId())
                 .title(post.getTitle())
                 .content(post.getContent())
                 .category(post.getCategory())

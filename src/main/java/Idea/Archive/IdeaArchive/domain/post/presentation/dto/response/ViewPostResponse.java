@@ -21,7 +21,7 @@ import java.util.stream.Stream;
 @AllArgsConstructor
 public class ViewPostResponse {
 
-    private Long id;
+    private Long postId;
     private String title;
     private String content;
     private List<Category> category;
@@ -34,7 +34,7 @@ public class ViewPostResponse {
 
     public static ViewPostResponse convertToPost(Post post) {
         return ViewPostResponse.builder()
-                .id(post.getPostId())
+                .postId(post.getPostId())
                 .title(post.getTitle())
                 .content(post.getContent())
                 .category(post.getCategory())
@@ -52,7 +52,7 @@ public class ViewPostResponse {
 
     public static ViewPostResponse convertToHeart(Heart heart) {
         return ViewPostResponse.builder()
-                .id(heart.getPost().getPostId())
+                .postId(heart.getPost().getPostId())
                 .title(heart.getPost().getTitle())
                 .content(heart.getPost().getContent())
                 .category(heart.getPost().getCategory())

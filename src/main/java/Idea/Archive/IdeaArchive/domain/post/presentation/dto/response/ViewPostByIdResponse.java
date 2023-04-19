@@ -18,7 +18,7 @@ import java.util.List;
 @AllArgsConstructor
 public class ViewPostByIdResponse {
 
-    private Long id;
+    private Long postId;
     private String title;
     private String content;
     private List<Category> category;
