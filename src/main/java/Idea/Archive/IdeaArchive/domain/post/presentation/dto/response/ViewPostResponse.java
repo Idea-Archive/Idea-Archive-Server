@@ -40,6 +40,7 @@ public class ViewPostResponse {
                 .category(post.getCategory())
                 .heartCount(post.getHeartCount())
                 .commentCount(post.getCommentCount())
+                .createdDate(post.getCreatedDate())
                 .member(ViewMemberResponse.convertToMember(post.getMember()))
                 .build();
     }
@@ -57,6 +58,7 @@ public class ViewPostResponse {
                 .category(heart.getPost().getCategory())
                 .heartCount(heart.getPost().getHeartCount())
                 .commentCount(heart.getPost().getCommentCount())
+                .createdDate(heart.getPost().getCreatedDate())
                 .member(ViewMemberResponse.convertToMember(heart.getPost().getMember()))
                 .build();
     }
