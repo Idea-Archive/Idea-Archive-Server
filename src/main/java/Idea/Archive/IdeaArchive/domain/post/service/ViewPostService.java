@@ -21,7 +21,7 @@ public class ViewPostService {
         List<Post> noticeList = postRepository.findAll();
         return noticeList.stream()
                 .map(n -> ViewPostResponse.builder()
-                        .id(n.getPostId())
+                        .postId(n.getPostId())
                         .title(n.getTitle())
                         .content(n.getContent())
                         .category(n.getCategory())

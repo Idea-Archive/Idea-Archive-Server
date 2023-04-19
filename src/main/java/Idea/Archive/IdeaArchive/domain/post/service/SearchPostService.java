@@ -46,7 +46,7 @@ public class SearchPostService {
         }
         return posts.stream()
                 .map(p -> ViewPostResponse.builder()
-                        .id(p.getPostId())
+                        .postId(p.getPostId())
                         .title(p.getTitle())
                         .content(p.getContent())
                         .category(p.getCategory())

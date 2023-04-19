@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @Builder
 public class ViewNoticeResponse {
 
-    private Long id;
+    private Long noticeId;
     private String title;
     private String content;
 

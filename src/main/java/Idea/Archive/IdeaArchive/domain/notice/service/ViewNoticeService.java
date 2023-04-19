@@ -21,7 +21,7 @@ public class ViewNoticeService {
         List<Notice> noticeResponses = noticeRepository.findAll();
         return noticeResponses.stream()
                 .map(notice -> ViewNoticeResponse.builder()
-                        .id(notice.getId())
+                        .noticeId(notice.getNoticeId())
                         .title(notice.getTitle())
                         .content(notice.getContent())
                         .createdDate(notice.getCreatedDate())
