@@ -41,6 +41,7 @@ public class GetPostByCategoryService {
                         .heartCount(p.getHeartCount())
                         .commentCount(p.getCommentCount())
                         .member(ViewMemberResponse.convertToMember(p.getMember()))
+                        .createdDate(p.getCreatedDate())
                         .build())
                 .collect(Collectors.toList());
     }
