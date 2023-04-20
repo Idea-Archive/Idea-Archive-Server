@@ -2,6 +2,7 @@ package Idea.Archive.IdeaArchive.domain.member.service;
 
 import Idea.Archive.IdeaArchive.domain.auth.entity.RefreshToken;
 import Idea.Archive.IdeaArchive.domain.auth.exception.RefreshTokenNotFoundException;
+import Idea.Archive.IdeaArchive.domain.auth.presentation.dto.request.OauthWithdrawMemberRequest;
 import Idea.Archive.IdeaArchive.domain.auth.repository.RefreshTokenRepository;
 import Idea.Archive.IdeaArchive.domain.member.entity.Member;
 import Idea.Archive.IdeaArchive.domain.member.exception.MemberNotFoundException;
@@ -24,13 +25,11 @@ public class OauthWithdrawService {
 
     private final MemberRepository memberRepository;
     private final RefreshTokenRepository refreshTokenRepository;
-    private final PasswordEncoder passwordEncoder;
     private final HeartRepository heartRepository;
-    private final PostRepository postRepository;
 
     @Transactional(rollbackFor = Exception.class)
-    public void execute(String email) {
-        Member member = memberRepository.findByEmail(email)
+    public void execute(OauthWithdrawMemberRequest oauthWithdrawMemberRequest) {
+        Member member = memberRepository.findByEmail(oauthWithdrawMemberRequest.getEmail())
                 .orElseThrow(() -> new MemberNotFoundException("유저가 존재하지 않습니다"));
 
         RefreshToken refreshToken = refreshTokenRepository.findById(member.getEmail())
@@ -40,8 +39,6 @@ public class OauthWithdrawService {
         for (int i = 0; i < hearts.size(); i++) {
             hearts.get(i).getPost().updateHeart(hearts.get(i).getPost().getHeartCount() - 1);
         }
-        heartRepository.deleteByMember(member);
-        postRepository.deleteByMember(member);
         memberRepository.delete(member);
         refreshTokenRepository.delete(refreshToken);
     }
