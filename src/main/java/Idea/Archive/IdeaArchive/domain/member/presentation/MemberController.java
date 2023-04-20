@@ -1,6 +1,7 @@
 package Idea.Archive.IdeaArchive.domain.member.presentation;
 
 
+import Idea.Archive.IdeaArchive.domain.auth.presentation.dto.request.OauthWithdrawMemberRequest;
 import Idea.Archive.IdeaArchive.domain.member.presentation.dto.request.ChangePasswordRequest;
 import Idea.Archive.IdeaArchive.domain.member.presentation.dto.request.WithdrawMemberRequest;
 import Idea.Archive.IdeaArchive.domain.member.presentation.dto.response.MyPageResponse;
@@ -23,6 +24,7 @@ public class MemberController {
     private final WithdrawService withdrawService;
     private final FindPasswordService findPasswordService;
     private final ChangeNameService changeNameService;
+    private final OauthWithdrawService oauthWithdrawService;
 
 
     @PatchMapping
@@ -40,6 +42,12 @@ public class MemberController {
     @DeleteMapping
     public ResponseEntity<Void> withdraw(@RequestBody @Valid WithdrawMemberRequest withdrawMemberRequest) {
         withdrawService.execute(withdrawMemberRequest);
+        return ResponseEntity.noContent().build();
+    }
+
+    @DeleteMapping("/oauth")
+    public ResponseEntity<Void> withdraw(@RequestBody @Valid OauthWithdrawMemberRequest oauthWithdrawMemberRequest) {
+        oauthWithdrawService.execute(oauthWithdrawMemberRequest);
         return ResponseEntity.noContent().build();
     }
 
