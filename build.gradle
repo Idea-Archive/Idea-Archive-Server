@@ -1,8 +1,3 @@
-buildscript {
-	ext {
-		queryDslVersion = "4.4.0"
-	}
-}
 plugins {
 	id 'java'
 	id 'org.springframework.boot' version '2.6.6'
@@ -18,7 +13,6 @@ configurations {
 		extendsFrom annotationProcessor
 	}
 }
-
 
 repositories {
 	mavenCentral()
@@ -42,23 +36,6 @@ dependencies {
 	implementation 'io.jsonwebtoken:jjwt-api:0.11.1'
 	runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.1'
 	runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.1'
-
-	// QueryDSL
-	implementation "com.querydsl:querydsl-jpa:${queryDslVersion}"
-	annotationProcessor(
-			"javax.persistence:javax.persistence-api",
-			"javax.annotation:javax.annotation-api",
-			"com.querydsl:querydsl-apt:${queryDslVersion}:jpa")
-
-}
-
-// QueryDSL
-sourceSets {
-	main {
-		java {
-			srcDirs = ["$projectDir/src/main/java", "$projectDir/build/generated"]
-		}
-	}
 }
 
 tasks.named('test') {
