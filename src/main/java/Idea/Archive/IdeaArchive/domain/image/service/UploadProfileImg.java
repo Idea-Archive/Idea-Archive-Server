@@ -1,4 +1,4 @@
-package Idea.Archive.IdeaArchive.domain.img.service;
+package Idea.Archive.IdeaArchive.domain.image.service;
 
 import Idea.Archive.IdeaArchive.domain.member.entity.Member;
 import Idea.Archive.IdeaArchive.domain.member.exception.MisMatchExtensionException;

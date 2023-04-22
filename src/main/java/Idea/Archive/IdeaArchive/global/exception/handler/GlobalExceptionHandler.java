@@ -8,7 +8,7 @@ import Idea.Archive.IdeaArchive.domain.email.exception.FailedSendEmailException;
 import Idea.Archive.IdeaArchive.domain.email.exception.ManyRequestEmailException;
 import Idea.Archive.IdeaArchive.domain.email.exception.MisMatchAuthCodeException;
 import Idea.Archive.IdeaArchive.domain.email.exception.NotVerifyEmailException;
-import Idea.Archive.IdeaArchive.domain.img.exception.NotExistImageException;
+import Idea.Archive.IdeaArchive.domain.image.exception.NotExistImageException;
 import Idea.Archive.IdeaArchive.domain.member.exception.MemberNotFoundException;
 import Idea.Archive.IdeaArchive.domain.member.exception.MisMatchExtensionException;
 import Idea.Archive.IdeaArchive.domain.member.exception.MisMatchPasswordException;
