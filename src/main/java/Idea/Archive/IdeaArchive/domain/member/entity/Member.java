@@ -41,16 +41,6 @@ public class Member extends BaseTimeEntity {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-
-    @OneToMany(mappedBy = "member",fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Post> post;
-
-    @OneToMany(mappedBy = "member",fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Heart> hearts;
-
-    @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
-    private List<Notice> notices;
-
     @PrePersist
     public void setting() {
         this.role = this.role == null ? Role.MEMBER : this.role;
