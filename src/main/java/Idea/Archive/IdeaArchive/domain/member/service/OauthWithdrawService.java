@@ -6,14 +6,10 @@ import Idea.Archive.IdeaArchive.domain.auth.presentation.dto.request.OauthWithdr
 import Idea.Archive.IdeaArchive.domain.auth.repository.RefreshTokenRepository;
 import Idea.Archive.IdeaArchive.domain.member.entity.Member;
 import Idea.Archive.IdeaArchive.domain.member.exception.MemberNotFoundException;
-import Idea.Archive.IdeaArchive.domain.member.exception.MisMatchPasswordException;
-import Idea.Archive.IdeaArchive.domain.member.presentation.dto.request.WithdrawMemberRequest;
 import Idea.Archive.IdeaArchive.domain.member.repository.MemberRepository;
-import Idea.Archive.IdeaArchive.domain.post.entity.Heart;
-import Idea.Archive.IdeaArchive.domain.post.repository.HeartRepository;
-import Idea.Archive.IdeaArchive.domain.post.repository.PostRepository;
+import Idea.Archive.IdeaArchive.domain.heart.entity.Heart;
+import Idea.Archive.IdeaArchive.domain.heart.repository.HeartRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

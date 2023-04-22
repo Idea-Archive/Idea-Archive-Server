@@ -1,7 +1,7 @@
-package Idea.Archive.IdeaArchive.domain.post.repository;
+package Idea.Archive.IdeaArchive.domain.heart.repository;
 
 import Idea.Archive.IdeaArchive.domain.member.entity.Member;
-import Idea.Archive.IdeaArchive.domain.post.entity.Heart;
+import Idea.Archive.IdeaArchive.domain.heart.entity.Heart;
 import Idea.Archive.IdeaArchive.domain.post.entity.Post;
 import org.springframework.data.jpa.repository.JpaRepository;
 

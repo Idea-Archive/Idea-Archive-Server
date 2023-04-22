@@ -1,8 +1,8 @@
-package Idea.Archive.IdeaArchive.domain.post.service;
+package Idea.Archive.IdeaArchive.domain.heart.service;
 
-import Idea.Archive.IdeaArchive.domain.post.entity.Heart;
+import Idea.Archive.IdeaArchive.domain.heart.entity.Heart;
 import Idea.Archive.IdeaArchive.domain.member.entity.Member;
-import Idea.Archive.IdeaArchive.domain.post.repository.HeartRepository;
+import Idea.Archive.IdeaArchive.domain.heart.repository.HeartRepository;
 import Idea.Archive.IdeaArchive.domain.post.entity.Post;
 import Idea.Archive.IdeaArchive.domain.post.exception.NotExistPostException;
 import Idea.Archive.IdeaArchive.domain.post.repository.PostRepository;
