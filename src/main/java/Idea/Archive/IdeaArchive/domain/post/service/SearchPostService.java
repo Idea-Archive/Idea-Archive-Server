@@ -22,11 +22,11 @@ public class SearchPostService {
     private final PostRepository postRepository;
 
     @Transactional(rollbackFor = Exception.class)
-    public List<ViewPostResponse> execute(String searchKeyword, CategoryRequest categoryRequest) {
+    public List<ViewPostResponse> execute(String title, CategoryRequest categoryRequest) {
         List<Post> posts = new ArrayList<Post>();
 
         if (categoryRequest.getCategory().isEmpty()) {
-            posts = postRepository.findByTitleContaining(searchKeyword);
+            posts = postRepository.findByTitleContaining(title);
         } else {
             List<Category> categoryList = new ArrayList<Category>();
             for (String s : categoryRequest.getCategory()) {
@@ -36,7 +36,7 @@ public class SearchPostService {
             }
             List<Post> categories = postRepository.findByAllCategories(categoryList, categoryRequest.getCategory().size());
             for (Post post : categories) {
-                if(post.getTitle().contains(searchKeyword)) {
+                if(post.getTitle().contains(title)) {
                     posts.add(post);
                 }
             }
