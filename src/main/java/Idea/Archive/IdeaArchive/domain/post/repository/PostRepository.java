@@ -1,7 +1,7 @@
 package Idea.Archive.IdeaArchive.domain.post.repository;
 
 import Idea.Archive.IdeaArchive.domain.member.entity.Member;
-import Idea.Archive.IdeaArchive.domain.post.category.Category;
+import Idea.Archive.IdeaArchive.domain.post.enums.Category;
 import Idea.Archive.IdeaArchive.domain.post.entity.Post;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

@@ -1,6 +1,6 @@
 package Idea.Archive.IdeaArchive.domain.post.service;
 
-import Idea.Archive.IdeaArchive.domain.post.category.Category;
+import Idea.Archive.IdeaArchive.domain.post.enums.Category;
 import Idea.Archive.IdeaArchive.domain.post.entity.Post;
 import Idea.Archive.IdeaArchive.domain.post.exception.NotExistPostException;
 import Idea.Archive.IdeaArchive.domain.post.exception.NotVerifyMember;
