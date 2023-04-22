@@ -56,15 +56,6 @@ public class Post extends BaseTimeEntity {
     @Column(name = "post_views", nullable = false)
     private Integer views;
 
-    @Builder.Default
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "post")
-    private List<Comment> commentList = new ArrayList<>();
-
-    @OneToMany(mappedBy = "post",fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Heart> hearts;
-
-    @OneToMany(mappedBy = "post",fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Application> applications;
 
     public void update(String title, String content,List<Category> category) {
         this.title = title;

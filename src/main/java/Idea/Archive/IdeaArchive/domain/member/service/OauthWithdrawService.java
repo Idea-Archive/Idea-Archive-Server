@@ -31,7 +31,7 @@ public class OauthWithdrawService {
         RefreshToken refreshToken = refreshTokenRepository.findById(member.getEmail())
                 .orElseThrow(() -> new RefreshTokenNotFoundException("존재하지 않은 리프레시 토큰입니다."));
 
-        List<Heart> hearts = heartRepository.findByMember_MemberId(member.getMemberId());
+        List<Heart> hearts = heartRepository.findByMember(member);
         for (int i = 0; i < hearts.size(); i++) {
             hearts.get(i).getPost().updateHeart(hearts.get(i).getPost().getHeartCount() - 1);
         }

@@ -39,7 +39,7 @@ public class WithdrawService {
             throw new MisMatchPasswordException("비밀번호가 일치하지 않습니다.");
         }
 
-        List<Heart> hearts = heartRepository.findByMember_MemberId(member.getMemberId());
+        List<Heart> hearts = heartRepository.findByMember(member);
         for (int i = 0; i < hearts.size(); i++) {
             hearts.get(i).getPost().updateHeart(hearts.get(i).getPost().getHeartCount() - 1);
         }

@@ -1,6 +1,8 @@
 package Idea.Archive.IdeaArchive.domain.post.service;
 
+import Idea.Archive.IdeaArchive.domain.comment.entity.Comment;
 import Idea.Archive.IdeaArchive.domain.comment.presentation.dto.response.ViewCommentByPostResponse;
+import Idea.Archive.IdeaArchive.domain.comment.repository.CommentRepository;
 import Idea.Archive.IdeaArchive.domain.member.presentation.dto.ViewMemberResponse;
 import Idea.Archive.IdeaArchive.domain.post.entity.Post;
 import Idea.Archive.IdeaArchive.domain.post.exception.NotExistPostException;
@@ -17,12 +19,14 @@ import java.util.List;
 public class ViewPostByIdService {
 
     private final PostRepository postRepository;
+    private final CommentRepository commentRepository;
 
     @Transactional(rollbackFor = Exception.class)
     public ViewPostByIdResponse execute(Long PostId) {
         Post post = postRepository.findById(PostId)
                 .orElseThrow(() -> new NotExistPostException("존재하지 않는 게시판입니다."));
-        List<ViewCommentByPostResponse> comment = ViewCommentByPostResponse.convertToCommentList(post.getCommentList());
+        List<Comment> comments = commentRepository.findByPost(post);
+        List<ViewCommentByPostResponse> comment = ViewCommentByPostResponse.convertToCommentList(comments);
         post.updateViews(post.getViews()+1);
         postRepository.save(post);
         return ViewPostByIdResponse.builder()
