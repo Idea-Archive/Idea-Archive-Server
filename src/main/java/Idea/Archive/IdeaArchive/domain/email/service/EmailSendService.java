@@ -49,8 +49,8 @@ public class EmailSendService {
                         .email(email)
                         .build());
 
-        if(emailAuth.getAttemptCount() >= 100) {
-            throw new ManyRequestEmailException("15분에 최대 100번까지 요청가능합니다.");
+        if(emailAuth.getAttemptCount() >= 3) {
+            throw new ManyRequestEmailException("15분에 최대 3번까지 요청가능합니다.");
         }
         emailAuth.updateRandomValue(authKey);
         emailAuth.increaseAttemptCount();
