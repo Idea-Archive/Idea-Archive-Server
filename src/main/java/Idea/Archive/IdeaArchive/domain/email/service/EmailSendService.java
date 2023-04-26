@@ -1,6 +1,5 @@
 package Idea.Archive.IdeaArchive.domain.email.service;
 
-
 import Idea.Archive.IdeaArchive.domain.email.entity.EmailAuth;
 import Idea.Archive.IdeaArchive.domain.email.exception.FailedSendEmailException;
 import Idea.Archive.IdeaArchive.domain.email.exception.ManyRequestEmailException;
@@ -19,7 +18,6 @@ import javax.mail.internet.MimeMessage;
 import java.util.Random;
 
 @Service
-@Async
 @RequiredArgsConstructor
 @Slf4j
 public class EmailSendService {
@@ -32,9 +30,9 @@ public class EmailSendService {
     public void execute(EmailAuthRequest emailAuthRequest) {
 
         Random random = new Random();
-        String authKey = String.valueOf(random.nextInt(8888)+1111);
+        String authKey = String.valueOf(random.nextInt(8888) + 1111);
 
-        sendAuthEmail(emailAuthRequest.getEmail(),authKey);
+        sendAuthEmail(emailAuthRequest.getEmail(), authKey);
     }
 
     private void sendAuthEmail(String email,String authKey) {
@@ -58,10 +56,10 @@ public class EmailSendService {
         emailAuthRepository.save(emailAuth);
         try {
             MimeMessage mimeMessage = mailSender.createMimeMessage();
-            MimeMessageHelper helper = new MimeMessageHelper(mimeMessage,true,"utf-8");
+            MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true, "utf-8");
             helper.setTo(email);
             helper.setSubject(title);
-            helper.setText(content,true);
+            helper.setText(content, true);
             mailSender.send(mimeMessage);
         } catch (MessagingException e) {
             throw new FailedSendEmailException("메일 발송에 실패했습니다");

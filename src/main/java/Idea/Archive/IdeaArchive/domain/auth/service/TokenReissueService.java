@@ -15,7 +15,7 @@ import java.time.ZonedDateTime;
 
 @Service
 @RequiredArgsConstructor
-public class TokenReissuanceService {
+public class TokenReissueService {
 
     private final RefreshTokenRepository refreshTokenRepository;
     private final TokenProvider tokenProvider;
@@ -36,6 +36,7 @@ public class TokenReissuanceService {
         ZonedDateTime expiredAt = tokenProvider.getExpiredAtToken();
         token.exchangeRefreshToken(refreshToken);
         refreshTokenRepository.save(token);
+
         return NewTokenResponse.builder()
                 .accessToken(accessToken)
                 .refreshToken(refreshToken)
