@@ -3,7 +3,7 @@ package Idea.Archive.IdeaArchive.domain.post.service;
 import Idea.Archive.IdeaArchive.domain.post.entity.Post;
 import Idea.Archive.IdeaArchive.domain.post.exception.NotExistPostException;
 import Idea.Archive.IdeaArchive.domain.post.exception.NotVerifyMember;
-import Idea.Archive.IdeaArchive.domain.post.repository.HeartRepository;
+import Idea.Archive.IdeaArchive.domain.heart.repository.HeartRepository;
 import Idea.Archive.IdeaArchive.domain.post.repository.PostRepository;
 import Idea.Archive.IdeaArchive.global.util.MemberUtil;
 import lombok.RequiredArgsConstructor;

@@ -1,10 +1,8 @@
 package Idea.Archive.IdeaArchive.domain.post.entity;
 
-import Idea.Archive.IdeaArchive.domain.application.entity.Application;
-import Idea.Archive.IdeaArchive.domain.comment.entity.Comment;
 import Idea.Archive.IdeaArchive.domain.member.entity.Member;
 import Idea.Archive.IdeaArchive.global.entity.BaseTimeEntity;
-import Idea.Archive.IdeaArchive.domain.post.category.Category;
+import Idea.Archive.IdeaArchive.domain.post.enums.Category;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -12,7 +10,6 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -55,15 +52,6 @@ public class Post extends BaseTimeEntity {
     @Column(name = "post_views", nullable = false)
     private Integer views;
 
-    @Builder.Default
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "post")
-    private List<Comment> commentList = new ArrayList<>();
-
-    @OneToMany(mappedBy = "post",fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Heart> hearts;
-
-    @OneToMany(mappedBy = "post",fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Application> applications;
 
     public void update(String title, String content,List<Category> category) {
         this.title = title;

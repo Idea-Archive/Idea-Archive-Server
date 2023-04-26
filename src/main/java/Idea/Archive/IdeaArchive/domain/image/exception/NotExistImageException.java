@@ -1,4 +1,4 @@
-package Idea.Archive.IdeaArchive.domain.img.exception;
+package Idea.Archive.IdeaArchive.domain.image.exception;
 
 import Idea.Archive.IdeaArchive.global.exception.ErrorCode;
 import lombok.Getter;

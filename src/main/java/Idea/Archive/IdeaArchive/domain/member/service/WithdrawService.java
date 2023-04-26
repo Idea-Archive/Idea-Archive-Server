@@ -8,8 +8,8 @@ import Idea.Archive.IdeaArchive.domain.member.exception.MemberNotFoundException;
 import Idea.Archive.IdeaArchive.domain.member.exception.MisMatchPasswordException;
 import Idea.Archive.IdeaArchive.domain.member.presentation.dto.request.WithdrawMemberRequest;
 import Idea.Archive.IdeaArchive.domain.member.repository.MemberRepository;
-import Idea.Archive.IdeaArchive.domain.post.entity.Heart;
-import Idea.Archive.IdeaArchive.domain.post.repository.HeartRepository;
+import Idea.Archive.IdeaArchive.domain.heart.entity.Heart;
+import Idea.Archive.IdeaArchive.domain.heart.repository.HeartRepository;
 import Idea.Archive.IdeaArchive.domain.post.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -39,7 +39,7 @@ public class WithdrawService {
             throw new MisMatchPasswordException("비밀번호가 일치하지 않습니다.");
         }
 
-        List<Heart> hearts = heartRepository.findByMember_MemberId(member.getMemberId());
+        List<Heart> hearts = heartRepository.findByMember(member);
         for (int i = 0; i < hearts.size(); i++) {
             hearts.get(i).getPost().updateHeart(hearts.get(i).getPost().getHeartCount() - 1);
         }

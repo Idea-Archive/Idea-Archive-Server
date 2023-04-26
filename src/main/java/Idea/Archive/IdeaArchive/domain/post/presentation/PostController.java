@@ -1,5 +1,6 @@
 package Idea.Archive.IdeaArchive.domain.post.presentation;
 
+import Idea.Archive.IdeaArchive.domain.heart.service.InsertHeartService;
 import Idea.Archive.IdeaArchive.domain.post.presentation.dto.request.CategoryRequest;
 import Idea.Archive.IdeaArchive.domain.post.presentation.dto.request.ModifyPostRequest;
 import Idea.Archive.IdeaArchive.domain.post.presentation.dto.request.WritePostRequest;

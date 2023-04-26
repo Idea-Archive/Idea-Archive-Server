@@ -1,4 +1,4 @@
-package Idea.Archive.IdeaArchive.domain.post.category;
+package Idea.Archive.IdeaArchive.domain.post.enums;
 
 public enum Category {
     구인구직,

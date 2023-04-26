@@ -18,17 +18,17 @@ public class ViewPostService {
 
     @Transactional(readOnly = true, rollbackFor = Exception.class)
     public List<ViewPostResponse> execute() {
-        List<Post> noticeList = postRepository.findAll();
-        return noticeList.stream()
-                .map(n -> ViewPostResponse.builder()
-                        .postId(n.getPostId())
-                        .title(n.getTitle())
-                        .content(n.getContent())
-                        .category(n.getCategory())
-                        .heartCount(n.getHeartCount())
-                        .commentCount(n.getCommentCount())
-                        .member(ViewMemberResponse.convertToMember(n.getMember()))
-                        .createdDate(n.getCreatedDate())
+        List<Post> posts = postRepository.findAll();
+        return posts.stream()
+                .map(p -> ViewPostResponse.builder()
+                        .postId(p.getPostId())
+                        .title(p.getTitle())
+                        .content(p.getContent())
+                        .category(p.getCategory())
+                        .heartCount(p.getHeartCount())
+                        .commentCount(p.getCommentCount())
+                        .member(ViewMemberResponse.convertToMember(p.getMember()))
+                        .createdDate(p.getCreatedDate())
                         .build())
                 .collect(Collectors.toList());
     }

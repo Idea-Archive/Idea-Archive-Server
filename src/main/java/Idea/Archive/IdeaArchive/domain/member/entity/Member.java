@@ -1,7 +1,7 @@
 package Idea.Archive.IdeaArchive.domain.member.entity;
 
 import Idea.Archive.IdeaArchive.domain.notice.entity.Notice;
-import Idea.Archive.IdeaArchive.domain.post.entity.Heart;
+import Idea.Archive.IdeaArchive.domain.heart.entity.Heart;
 import Idea.Archive.IdeaArchive.domain.post.entity.Post;
 import Idea.Archive.IdeaArchive.global.entity.BaseTimeEntity;
 import Idea.Archive.IdeaArchive.global.filter.role.Role;
@@ -40,16 +40,6 @@ public class Member extends BaseTimeEntity {
     @Column(name = "role", nullable = false)
     @Enumerated(EnumType.STRING)
     private Role role;
-
-
-    @OneToMany(mappedBy = "member",fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Post> post;
-
-    @OneToMany(mappedBy = "member",fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Heart> hearts;
-
-    @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
-    private List<Notice> notices;
 
     @PrePersist
     public void setting() {

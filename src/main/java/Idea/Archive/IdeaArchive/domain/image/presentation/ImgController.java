@@ -1,8 +1,8 @@
-package Idea.Archive.IdeaArchive.domain.img.presentation;
+package Idea.Archive.IdeaArchive.domain.image.presentation;
 
-import Idea.Archive.IdeaArchive.domain.img.service.ChangeProfileService;
-import Idea.Archive.IdeaArchive.domain.img.service.DeleteProfileImg;
-import Idea.Archive.IdeaArchive.domain.img.service.UploadProfileImg;
+import Idea.Archive.IdeaArchive.domain.image.service.ChangeProfileService;
+import Idea.Archive.IdeaArchive.domain.image.service.DeleteProfileImg;
+import Idea.Archive.IdeaArchive.domain.image.service.UploadProfileImg;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

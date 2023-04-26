@@ -1,7 +1,8 @@
-package Idea.Archive.IdeaArchive.domain.post.entity;
+package Idea.Archive.IdeaArchive.domain.heart.entity;
 
 
 import Idea.Archive.IdeaArchive.domain.member.entity.Member;
+import Idea.Archive.IdeaArchive.domain.post.entity.Post;
 import lombok.*;
 import javax.persistence.*;
 import static javax.persistence.FetchType.LAZY;

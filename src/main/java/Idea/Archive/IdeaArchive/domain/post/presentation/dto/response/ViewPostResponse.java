@@ -1,8 +1,8 @@
 package Idea.Archive.IdeaArchive.domain.post.presentation.dto.response;
 
 import Idea.Archive.IdeaArchive.domain.member.presentation.dto.ViewMemberResponse;
-import Idea.Archive.IdeaArchive.domain.post.category.Category;
-import Idea.Archive.IdeaArchive.domain.post.entity.Heart;
+import Idea.Archive.IdeaArchive.domain.post.enums.Category;
+import Idea.Archive.IdeaArchive.domain.heart.entity.Heart;
 import Idea.Archive.IdeaArchive.domain.post.entity.Post;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

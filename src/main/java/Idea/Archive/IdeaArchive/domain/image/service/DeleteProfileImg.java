@@ -1,6 +1,6 @@
-package Idea.Archive.IdeaArchive.domain.img.service;
+package Idea.Archive.IdeaArchive.domain.image.service;
 
-import Idea.Archive.IdeaArchive.domain.img.exception.NotExistImageException;
+import Idea.Archive.IdeaArchive.domain.image.exception.NotExistImageException;
 import Idea.Archive.IdeaArchive.domain.member.entity.Member;
 import Idea.Archive.IdeaArchive.global.util.MemberUtil;
 import com.amazonaws.services.s3.AmazonS3;
