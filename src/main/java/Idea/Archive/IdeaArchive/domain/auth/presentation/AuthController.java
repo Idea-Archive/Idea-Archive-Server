@@ -20,7 +20,7 @@ public class AuthController {
     private final MemberSignUpService memberSignUpService;
     private final MemberLoginService memberLoginService;
     private final MemberLogoutService memberLogoutService;
-    private final TokenReissuanceService tokenReissuanceService;
+    private final TokenReissueService tokenReissueService;
 
     @PostMapping("/signup")
     public ResponseEntity<Void> signUp(@RequestBody @Valid MemberSignUpRequest memberSignUpRequest) {
@@ -42,7 +42,7 @@ public class AuthController {
 
     @PatchMapping
     public ResponseEntity<NewTokenResponse> reIssueToken(@RequestHeader("RefreshToken") String token) {
-        NewTokenResponse reIssueToken = tokenReissuanceService.execute(token);
+        NewTokenResponse reIssueToken = tokenReissueService.execute(token);
         return ResponseEntity.ok(reIssueToken);
     }
 }
