@@ -41,7 +41,7 @@ public class MemberSignUpService {
                 .email(memberSignUpRequest.getEmail())
                 .password(passwordEncoder.encode(memberSignUpRequest.getPassword()))
                 .name(memberSignUpRequest.getName())
-                .role(Role.from(memberSignUpRequest.getRole()))
+                .role(Role.MEMBER)
                 .profileImageUrl(null)
                 .build();
 
