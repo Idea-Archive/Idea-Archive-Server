@@ -5,7 +5,7 @@ import Idea.Archive.IdeaArchive.domain.notice.entity.Notice;
 import Idea.Archive.IdeaArchive.domain.notice.exception.NotQualifiedWriteNoticeException;
 import Idea.Archive.IdeaArchive.domain.notice.presentation.dto.request.WriteNoticeRequest;
 import Idea.Archive.IdeaArchive.domain.notice.repository.NoticeRepository;
-import Idea.Archive.IdeaArchive.global.filter.role.Role;
+import Idea.Archive.IdeaArchive.domain.member.enums.Role;
 import Idea.Archive.IdeaArchive.global.util.MemberUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

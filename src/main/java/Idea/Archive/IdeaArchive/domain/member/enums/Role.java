@@ -1,4 +1,4 @@
-package Idea.Archive.IdeaArchive.global.filter.role;
+package Idea.Archive.IdeaArchive.domain.member.enums;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 

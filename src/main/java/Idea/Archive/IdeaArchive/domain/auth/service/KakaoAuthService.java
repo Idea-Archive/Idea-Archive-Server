@@ -5,7 +5,7 @@ import Idea.Archive.IdeaArchive.domain.auth.presentation.dto.response.MemberLogi
 import Idea.Archive.IdeaArchive.domain.auth.repository.RefreshTokenRepository;
 import Idea.Archive.IdeaArchive.domain.member.entity.Member;
 import Idea.Archive.IdeaArchive.domain.member.repository.MemberRepository;
-import Idea.Archive.IdeaArchive.global.filter.role.Role;
+import Idea.Archive.IdeaArchive.domain.member.enums.Role;
 import Idea.Archive.IdeaArchive.global.security.KakaoAuthProperties;
 import Idea.Archive.IdeaArchive.global.security.jwt.TokenProvider;
 import Idea.Archive.IdeaArchive.infrastructure.feign.client.KakaoAuth;
