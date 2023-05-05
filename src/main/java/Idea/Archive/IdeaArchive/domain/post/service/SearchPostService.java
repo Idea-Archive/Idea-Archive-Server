@@ -26,7 +26,7 @@ public class SearchPostService {
         List<Post> posts = new ArrayList<Post>();
 
         if (categoryRequest.getCategory().isEmpty()) {
-            posts = postRepository.findByTitleContainingOrContentContaining(keyword,keyword);
+            posts = postRepository.findByTitleContainingOrContentContaining(keyword, keyword);
         } else {
             List<Category> categoryList = new ArrayList<Category>();
             for (String s : categoryRequest.getCategory()) {
@@ -37,6 +37,8 @@ public class SearchPostService {
             List<Post> categories = postRepository.findByAllCategories(categoryList, categoryRequest.getCategory().size());
             for (Post post : categories) {
                 if (post.getTitle().contains(keyword)) {
+                    posts.add(post);
+                } else if (post.getContent().contains(keyword)) {
                     posts.add(post);
                 }
             }
