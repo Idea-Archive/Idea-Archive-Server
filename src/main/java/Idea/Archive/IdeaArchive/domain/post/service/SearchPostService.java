@@ -42,9 +42,9 @@ public class SearchPostService {
                     posts.add(post);
                 }
             }
-            if (posts.isEmpty()) {
-                throw new NotExistPostException("게시글이 존재하지 않습니다.");
-            }
+        }
+        if (posts.isEmpty()) {
+            throw new NotExistPostException("게시글이 존재하지 않습니다.");
         }
         return posts.stream()
                 .map(p -> ViewPostResponse.builder()
