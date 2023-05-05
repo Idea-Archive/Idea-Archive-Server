@@ -26,7 +26,7 @@ public class SearchPostService {
         List<Post> posts = new ArrayList<Post>();
 
         if (categoryRequest.getCategory().isEmpty()) {
-            posts = postRepository.findByTitleContainingOrContentContaining(keyword,keyword);
+            posts = postRepository.findByTitleContainingOrContentContaining(keyword, keyword);
         } else {
             List<Category> categoryList = new ArrayList<Category>();
             for (String s : categoryRequest.getCategory()) {
@@ -38,11 +38,13 @@ public class SearchPostService {
             for (Post post : categories) {
                 if (post.getTitle().contains(keyword)) {
                     posts.add(post);
+                } else if (post.getContent().contains(keyword)) {
+                    posts.add(post);
                 }
             }
-        }
-        if (posts.isEmpty()) {
-            throw new NotExistPostException("게시글이 존재하지 않습니다.");
+            if (posts.isEmpty()) {
+                throw new NotExistPostException("게시글이 존재하지 않습니다.");
+            }
         }
         return posts.stream()
                 .map(p -> ViewPostResponse.builder()
