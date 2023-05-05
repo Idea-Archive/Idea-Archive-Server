@@ -72,7 +72,7 @@ public class PostController {
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping("{post_id}/heart")
+    @PostMapping("{post_id}/heart")
     public ResponseEntity<Void> insertHeart(@PathVariable("post_id") Long postId) {
         insertHeartService.execute(postId);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
