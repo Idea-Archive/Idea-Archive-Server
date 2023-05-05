@@ -14,7 +14,7 @@ import javax.validation.constraints.Email;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/email")
-public class    EmailAuthController {
+public class EmailAuthController {
 
     private final EmailSendService emailSendService;
     private final EmailCheckService emailCheckService;

@@ -1,6 +1,5 @@
 package Idea.Archive.IdeaArchive.domain.email.service;
 
-
 import Idea.Archive.IdeaArchive.domain.email.entity.EmailAuth;
 import Idea.Archive.IdeaArchive.domain.email.exception.MisMatchAuthCodeException;
 import Idea.Archive.IdeaArchive.domain.email.repository.EmailAuthRepository;
@@ -16,7 +15,6 @@ import java.util.Objects;
 @RequiredArgsConstructor
 @Slf4j
 public class EmailCheckService {
-
 
     private final EmailAuthRepository emailAuthRepository;
 
