@@ -1,6 +1,3 @@
-
-
-
 package Idea.Archive.IdeaArchive.global.security;
 
 import Idea.Archive.IdeaArchive.global.filter.JwtRequestFilter;
@@ -39,7 +36,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .csrf().disable()
+                .csrf().and()
                 .cors().disable();
         http
                 .authorizeRequests()
@@ -53,8 +50,7 @@ public class SecurityConfig {
                 .antMatchers("/member/**").authenticated()
                 .antMatchers("/post/**").authenticated()
                 .antMatchers("/post/comment/**").authenticated()
-                .antMatchers("/img").authenticated()
-
+                .antMatchers("/img/**").authenticated()
                 .antMatchers("/admin/notice/**").hasAuthority("ADMIN")
                 .anyRequest().authenticated();
         http
