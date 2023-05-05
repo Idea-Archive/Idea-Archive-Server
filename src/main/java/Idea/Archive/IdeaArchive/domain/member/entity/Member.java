@@ -1,17 +1,13 @@
 package Idea.Archive.IdeaArchive.domain.member.entity;
 
-import Idea.Archive.IdeaArchive.domain.notice.entity.Notice;
-import Idea.Archive.IdeaArchive.domain.heart.entity.Heart;
-import Idea.Archive.IdeaArchive.domain.post.entity.Post;
 import Idea.Archive.IdeaArchive.global.entity.BaseTimeEntity;
-import Idea.Archive.IdeaArchive.global.filter.role.Role;
+import Idea.Archive.IdeaArchive.domain.member.enums.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
 
 
 @Entity
