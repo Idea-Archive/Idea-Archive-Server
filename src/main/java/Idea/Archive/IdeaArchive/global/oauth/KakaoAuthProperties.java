@@ -14,10 +14,4 @@ public class KakaoAuthProperties {
     private final String clientId;
     private final String clientSecret;
     private final String redirectUri;
-
-//    public KakaoAuthProperties(String clientId, String clientSecret, String redirectUri) {
-//        this.clientId = clientId;
-//        this.clientSecret = clientSecret;
-//        this.redirectUri = redirectUri;
-//    }
 }

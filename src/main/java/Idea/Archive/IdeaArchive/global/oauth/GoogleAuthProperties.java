@@ -15,11 +15,4 @@ public class GoogleAuthProperties {
     private final String clientId;
     private final String clientSecret;
     private final String redirectUrl;
-
-//    public GoogleAuthProperties(String baseUrl, String clientId, String clientSecret, String redirectUrl) {
-//        this.baseUrl = baseUrl;
-//        this.clientId = clientId;
-//        this.clientSecret = clientSecret;
-//        this.redirectUrl = redirectUrl;
-//    }
 }
