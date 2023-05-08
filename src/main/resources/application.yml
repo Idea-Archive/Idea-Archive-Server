@@ -32,6 +32,7 @@ spring:
     host: ${EMAIL_HOST}
     username: ${EMAIL_NAME}
     password: ${EMAIL_PASSWORD}
+    port: ${EMAIL_PORT}
 
   main:
     allow-bean-definition-overriding: true
