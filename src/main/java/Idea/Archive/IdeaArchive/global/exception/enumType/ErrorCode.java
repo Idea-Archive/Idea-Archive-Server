@@ -1,4 +1,4 @@
-package Idea.Archive.IdeaArchive.global.exception;
+package Idea.Archive.IdeaArchive.global.exception.enumType;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -29,9 +29,6 @@ public enum ErrorCode {
 
     // COMMENT
     NOT_EXIST_COMMENT("존재하지 않는 댓글입니다", 404),
-
-    // HEART
-    ALREADY_INSERT_HEART("이미 좋아요를 누르셨습니다.", 400),
 
     // AUTH
     UNAUTHORIZED("권한이 없습니다.", 401),
