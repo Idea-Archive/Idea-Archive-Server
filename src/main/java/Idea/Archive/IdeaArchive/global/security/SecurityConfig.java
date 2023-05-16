@@ -1,5 +1,6 @@
 package Idea.Archive.IdeaArchive.global.security;
 
+import Idea.Archive.IdeaArchive.global.filter.ExceptionHandlerFilter;
 import Idea.Archive.IdeaArchive.global.filter.JwtRequestFilter;
 import Idea.Archive.IdeaArchive.global.security.handler.CustomAccessDeniedHandler;
 import Idea.Archive.IdeaArchive.global.security.handler.CustomAuthenticationEntryPointHandler;
@@ -22,6 +23,7 @@ import org.springframework.web.cors.CorsUtils;
 public class SecurityConfig {
 
     private final JwtRequestFilter jwtRequestFilter;
+    private final ExceptionHandlerFilter exceptionHandlerFilter;
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
@@ -63,7 +65,9 @@ public class SecurityConfig {
                 .accessDeniedHandler(new CustomAccessDeniedHandler())
                 .authenticationEntryPoint(new CustomAuthenticationEntryPointHandler());
         http
-                .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+                .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(exceptionHandlerFilter, JwtRequestFilter.class);
+
         return http.build();
     }
 }

@@ -1,15 +1,13 @@
 package Idea.Archive.IdeaArchive.domain.post.exception;
 
-import Idea.Archive.IdeaArchive.global.exception.ErrorCode;
+import Idea.Archive.IdeaArchive.global.exception.IdeaArchiveException;
+import Idea.Archive.IdeaArchive.global.exception.enumType.ErrorCode;
 import lombok.Getter;
 
 @Getter
-public class NotExistPostException extends RuntimeException {
+public class NotExistPostException extends IdeaArchiveException {
 
-    private final ErrorCode errorCode;
-
-    public NotExistPostException(String message) {
-        super(message);
-        this.errorCode = ErrorCode.NOT_EXIST_POST;
+    public NotExistPostException() {
+        super(ErrorCode.NOT_EXIST_POST);
     }
 }

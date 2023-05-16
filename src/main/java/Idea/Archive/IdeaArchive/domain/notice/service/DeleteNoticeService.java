@@ -21,9 +21,9 @@ public class DeleteNoticeService {
     public void execute(Long noticeId) {
         Member member = memberUtil.currentMember();
         Notice notice = noticeRepository.findById(noticeId)
-                .orElseThrow(() -> new NoticeNotFoundException("공지글이 존재하지 않습니다."));
+                .orElseThrow(() -> new NoticeNotFoundException());
         if (member.getMemberId() != notice.getMember().getMemberId()) {
-            throw new NotQualifiedDeleteNoticeException("공지글을 삭제할 권한이 없습니다.");
+            throw new NotQualifiedDeleteNoticeException();
         }
         noticeRepository.delete(notice);
     }

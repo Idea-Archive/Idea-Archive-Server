@@ -1,15 +1,13 @@
 package Idea.Archive.IdeaArchive.domain.auth.exception;
 
-import Idea.Archive.IdeaArchive.global.exception.ErrorCode;
+import Idea.Archive.IdeaArchive.global.exception.IdeaArchiveException;
+import Idea.Archive.IdeaArchive.global.exception.enumType.ErrorCode;
 import lombok.Getter;
 
 @Getter
-public class ExistEmailException extends RuntimeException {
+public class ExistEmailException extends IdeaArchiveException {
 
-    private final ErrorCode errorCode;
-
-    public ExistEmailException(String message) {
-        super(message);
-        this.errorCode = ErrorCode.ALREADY_EXIST_EMAIL;
+    public ExistEmailException() {
+        super(ErrorCode.EXPIRE_EMAIL_CODE);
     }
 }

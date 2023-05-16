@@ -1,5 +1,6 @@
 package Idea.Archive.IdeaArchive.global.security.jwt;
 
+import Idea.Archive.IdeaArchive.domain.member.exception.MemberNotFoundException;
 import Idea.Archive.IdeaArchive.global.security.auth.MemberDetailsService;
 import Idea.Archive.IdeaArchive.global.security.exception.TokenExpirationException;
 import Idea.Archive.IdeaArchive.global.security.exception.TokenNotValidException;
@@ -60,7 +61,7 @@ public class TokenProvider {
     }
 
     public Claims extractAllClaims(String token, String secret) {
-        token = token.replace("Bearer", "");
+        token = token.replace("Bearer ", "");
         try {
             return Jwts.parserBuilder()
                     .setSigningKey(getSignInKey(secret))
@@ -68,9 +69,10 @@ public class TokenProvider {
                     .parseClaimsJws(token)
                     .getBody();
         } catch (ExpiredJwtException e) {
-            throw new TokenExpirationException("토큰이 만료 되었습니다.");
+            System.out.println("sdfsfds");
+            throw new TokenExpirationException();
         } catch (JwtException e) {
-            throw new TokenNotValidException("토큰이 유효 하지 않습니다.");
+            throw new TokenNotValidException();
         }
     }
 

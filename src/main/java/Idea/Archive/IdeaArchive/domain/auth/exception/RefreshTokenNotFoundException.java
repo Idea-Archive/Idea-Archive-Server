@@ -1,15 +1,14 @@
 package Idea.Archive.IdeaArchive.domain.auth.exception;
 
 
-import Idea.Archive.IdeaArchive.global.exception.ErrorCode;
+import Idea.Archive.IdeaArchive.global.exception.IdeaArchiveException;
+import Idea.Archive.IdeaArchive.global.exception.enumType.ErrorCode;
 import lombok.Getter;
 
 @Getter
-public class RefreshTokenNotFoundException extends RuntimeException {
+public class RefreshTokenNotFoundException extends IdeaArchiveException {
 
-    private final ErrorCode errorCode;
-
-    public RefreshTokenNotFoundException(String message){
-        this.errorCode = ErrorCode.REFRESH_TOKEN_NOT_FOUND;
+    public RefreshTokenNotFoundException() {
+        super(ErrorCode.REFRESH_TOKEN_NOT_FOUND);
     }
 }

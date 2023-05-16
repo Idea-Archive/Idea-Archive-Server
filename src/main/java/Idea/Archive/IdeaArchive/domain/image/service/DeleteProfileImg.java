@@ -23,7 +23,7 @@ public class DeleteProfileImg {
     public void execute() {
         Member currentMember = memberUtil.currentMember();
         if (currentMember.getProfileImageUrl().isEmpty()) {
-            throw new NotExistImageException("기본 프로필은 삭제할 수 없습니다.");
+            throw new NotExistImageException();
         }
         deleteImage(currentMember.getProfileImageUrl());
     }

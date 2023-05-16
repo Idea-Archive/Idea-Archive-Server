@@ -26,10 +26,10 @@ public class OauthWithdrawService {
     @Transactional(rollbackFor = Exception.class)
     public void execute(OauthWithdrawMemberRequest oauthWithdrawMemberRequest) {
         Member member = memberRepository.findByEmail(oauthWithdrawMemberRequest.getEmail())
-                .orElseThrow(() -> new MemberNotFoundException("유저가 존재하지 않습니다"));
+                .orElseThrow(MemberNotFoundException::new);
 
         RefreshToken refreshToken = refreshTokenRepository.findById(member.getEmail())
-                .orElseThrow(() -> new RefreshTokenNotFoundException("존재하지 않은 리프레시 토큰입니다."));
+                .orElseThrow(RefreshTokenNotFoundException::new);
 
         List<Heart> hearts = heartRepository.findByMember(member);
         for (int i = 0; i < hearts.size(); i++) {

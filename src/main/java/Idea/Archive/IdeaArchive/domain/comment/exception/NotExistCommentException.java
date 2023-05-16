@@ -1,15 +1,13 @@
 package Idea.Archive.IdeaArchive.domain.comment.exception;
 
-import Idea.Archive.IdeaArchive.global.exception.ErrorCode;
+import Idea.Archive.IdeaArchive.global.exception.IdeaArchiveException;
+import Idea.Archive.IdeaArchive.global.exception.enumType.ErrorCode;
 import lombok.Getter;
 
 @Getter
-public class NotExistCommentException extends RuntimeException {
+public class NotExistCommentException extends IdeaArchiveException {
 
-    private final ErrorCode errorCode;
-
-    public NotExistCommentException(String message) {
-        super(message);
-        this.errorCode = ErrorCode.NOT_EXIST_COMMENT;
+    public NotExistCommentException() {
+        super(ErrorCode.NOT_EXIST_COMMENT);
     }
 }

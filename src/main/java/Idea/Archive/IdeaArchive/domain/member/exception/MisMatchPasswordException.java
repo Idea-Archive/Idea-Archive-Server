@@ -1,17 +1,14 @@
 package Idea.Archive.IdeaArchive.domain.member.exception;
 
 
-import Idea.Archive.IdeaArchive.global.exception.ErrorCode;
+import Idea.Archive.IdeaArchive.global.exception.IdeaArchiveException;
+import Idea.Archive.IdeaArchive.global.exception.enumType.ErrorCode;
 import lombok.Getter;
 
 @Getter
-public class MisMatchPasswordException extends RuntimeException {
+public class MisMatchPasswordException extends IdeaArchiveException {
 
-    private final ErrorCode errorCode;
-
-    public MisMatchPasswordException(String message) {
-        super(message);
-        this.errorCode = ErrorCode.MISMATCH_MEMBER_PASSWORD;
-
+    public MisMatchPasswordException() {
+        super(ErrorCode.MISMATCH_MEMBER_PASSWORD);
     }
 }
