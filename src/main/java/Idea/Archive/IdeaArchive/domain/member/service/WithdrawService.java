@@ -31,12 +31,12 @@ public class WithdrawService {
     @Transactional(rollbackFor = Exception.class)
     public void execute(WithdrawMemberRequest withdrawMemberRequest) {
         Member member = memberRepository.findByEmail(withdrawMemberRequest.getEmail())
-                .orElseThrow(() -> new MemberNotFoundException("유저가 존재하지 않습니다"));
+                .orElseThrow(() -> new MemberNotFoundException());
         RefreshToken refreshToken = refreshTokenRepository.findById(member.getEmail())
-                .orElseThrow(() -> new RefreshTokenNotFoundException("존재하지 않은 리프레시 토큰입니다."));
+                .orElseThrow(() -> new RefreshTokenNotFoundException());
 
         if (!passwordEncoder.matches(withdrawMemberRequest.getPassword(), member.getPassword())) {
-            throw new MisMatchPasswordException("비밀번호가 일치하지 않습니다.");
+            throw new MisMatchPasswordException();
         }
 
         List<Heart> hearts = heartRepository.findByMember(member);

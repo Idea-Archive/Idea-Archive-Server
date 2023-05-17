@@ -21,7 +21,7 @@ public class EmailCheckService {
     @Transactional(rollbackOn = Exception.class)
     public void execute(String email, String authKey) {
         EmailAuth emailAuth = emailAuthRepository.findById(email)
-                .orElseThrow(()->new MemberNotFoundException("유저를 찾을 수 없습니다."));
+                .orElseThrow(()->new MemberNotFoundException());
         checkAuth(emailAuth,authKey);
         emailAuth.updateAuthentication(true);
         emailAuthRepository.save(emailAuth);
@@ -29,7 +29,7 @@ public class EmailCheckService {
 
     private void checkAuth(EmailAuth emailAuth, String authKey) {
         if(!Objects.equals(emailAuth.getRandomValue(),authKey)) {
-            throw new MisMatchAuthCodeException("인증번호가 일치하지 않습니다.");
+            throw new MisMatchAuthCodeException();
         }
     }
 }

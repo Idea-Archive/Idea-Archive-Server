@@ -26,14 +26,14 @@ public class MemberSignUpService {
     public void execute(MemberSignUpRequest memberSignUpRequest) {
 
         if (memberRepository.existsByEmail(memberSignUpRequest.getEmail())) {
-            throw new ExistEmailException("이미 존재하는 이메일입니다.");
+            throw new ExistEmailException();
         }
 
         EmailAuth emailAuth = emailAuthRepository.findById(memberSignUpRequest.getEmail())
-                .orElseThrow(() -> new NotVerifyEmailException("인증되지 않은 이메일입니다."));
+                .orElseThrow(() -> new NotVerifyEmailException());
 
         if (!emailAuth.getAuthentication()) {
-            throw new NotVerifyEmailException("인증되지 않은 이메일입니다.");
+            throw new NotVerifyEmailException();
         }
 
         Member member = Member

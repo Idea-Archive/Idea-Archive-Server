@@ -24,7 +24,7 @@ public class ModifyPostService {
     @Transactional(rollbackFor = Exception.class)
     public void execute(Long postId, ModifyPostRequest modifyPostRequest) {
         Post post = postRepository.findById(postId)
-                        .orElseThrow(() -> new NotExistPostException("존재하지 않는 게시글입니다."));
+                        .orElseThrow(() -> new NotExistPostException());
         verifyPostWriter(post);
         List<String> stringList = modifyPostRequest.getCategory();
         List<Category> categoryList = new ArrayList<Category>();
@@ -38,7 +38,7 @@ public class ModifyPostService {
 
     private void verifyPostWriter(Post post) {
         if (!memberUtil.currentMember().equals(post.getMember())) {
-            throw new NotVerifyMember("검증되지 않은 회원입니다.");
+            throw new NotVerifyMember();
         }
     }
 

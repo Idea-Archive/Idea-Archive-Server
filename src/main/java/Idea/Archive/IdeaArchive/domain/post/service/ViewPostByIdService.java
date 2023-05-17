@@ -24,7 +24,7 @@ public class ViewPostByIdService {
     @Transactional(rollbackFor = Exception.class)
     public ViewPostByIdResponse execute(Long PostId) {
         Post post = postRepository.findById(PostId)
-                .orElseThrow(() -> new NotExistPostException("존재하지 않는 게시판입니다."));
+                .orElseThrow(() -> new NotExistPostException());
         List<Comment> comments = commentRepository.findByPost(post);
         List<ViewCommentByPostResponse> comment = ViewCommentByPostResponse.convertToCommentList(comments);
         post.updateViews(post.getViews()+1);

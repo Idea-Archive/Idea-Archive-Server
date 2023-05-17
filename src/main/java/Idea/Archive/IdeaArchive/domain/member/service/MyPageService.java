@@ -29,7 +29,7 @@ public class MyPageService {
     public MyPageResponse execute() {
         Member currentMember = memberUtil.currentMember();
         Member member = memberRepository.findByEmail(currentMember.getEmail())
-                .orElseThrow(() -> new MemberNotFoundException("존재하지 않는 회원입니다"));
+                .orElseThrow(() -> new MemberNotFoundException());
         List<Heart> hearts = heartRepository.findByMember(member);
         List<ViewPostResponse> heartList = ViewPostResponse.convertToHeartList(hearts);
         List<Post> posts = postRepository.findByMember(member);

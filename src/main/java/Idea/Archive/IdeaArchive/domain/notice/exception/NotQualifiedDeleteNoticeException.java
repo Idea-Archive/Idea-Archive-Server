@@ -1,15 +1,13 @@
 package Idea.Archive.IdeaArchive.domain.notice.exception;
 
-import Idea.Archive.IdeaArchive.global.exception.ErrorCode;
+import Idea.Archive.IdeaArchive.global.exception.IdeaArchiveException;
+import Idea.Archive.IdeaArchive.global.exception.enumType.ErrorCode;
 import lombok.Getter;
 
 @Getter
-public class NotQualifiedDeleteNoticeException extends RuntimeException {
+public class NotQualifiedDeleteNoticeException extends IdeaArchiveException {
 
-    private final ErrorCode errorCode;
-
-    public NotQualifiedDeleteNoticeException(String message) {
-        super(message);
-        this.errorCode = ErrorCode.NOT_QUALIFIED_DELETE_NOTICE;
+    public NotQualifiedDeleteNoticeException() {
+        super(ErrorCode.NOT_QUALIFIED_DELETE_NOTICE);
     }
 }

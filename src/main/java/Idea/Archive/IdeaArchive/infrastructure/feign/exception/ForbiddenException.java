@@ -1,6 +1,6 @@
 package Idea.Archive.IdeaArchive.infrastructure.feign.exception;
 
-import Idea.Archive.IdeaArchive.global.exception.ErrorCode;
+import Idea.Archive.IdeaArchive.global.exception.enumType.ErrorCode;
 
 public class ForbiddenException extends RuntimeException {
 

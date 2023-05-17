@@ -1,15 +1,13 @@
 package Idea.Archive.IdeaArchive.global.security.exception;
 
-import Idea.Archive.IdeaArchive.global.exception.ErrorCode;
+import Idea.Archive.IdeaArchive.global.exception.IdeaArchiveException;
+import Idea.Archive.IdeaArchive.global.exception.enumType.ErrorCode;
 import lombok.Getter;
 
 @Getter
-public class TokenExpirationException extends RuntimeException {
+public class TokenExpirationException extends IdeaArchiveException {
 
-    private final ErrorCode errorCode;
-
-    public TokenExpirationException(String message) {
-        super(message);
-        this.errorCode = ErrorCode.TOKEN_EXPIRATION;
+    public TokenExpirationException() {
+        super(ErrorCode.TOKEN_EXPIRATION);
     }
 }

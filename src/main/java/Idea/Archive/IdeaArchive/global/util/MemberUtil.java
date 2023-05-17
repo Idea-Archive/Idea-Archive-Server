@@ -18,6 +18,6 @@ public class MemberUtil {
     public Member currentMember(){
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
         return memberRepository.findByEmail(email)
-                .orElseThrow(() -> new MemberNotFoundException("존재하지 않는 회원입니다."));
+                .orElseThrow(() -> new MemberNotFoundException());
     }
 }

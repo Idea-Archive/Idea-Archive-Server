@@ -1,15 +1,13 @@
 package Idea.Archive.IdeaArchive.domain.auth.exception;
 
-import Idea.Archive.IdeaArchive.global.exception.ErrorCode;
+import Idea.Archive.IdeaArchive.global.exception.IdeaArchiveException;
+import Idea.Archive.IdeaArchive.global.exception.enumType.ErrorCode;
 import lombok.Getter;
 
 @Getter
-public class BlackListAlreadyExistException extends RuntimeException {
+public class BlackListAlreadyExistException extends IdeaArchiveException {
 
-    private final ErrorCode errorCode;
-
-    public BlackListAlreadyExistException(String message) {
-        super(message);
-        this.errorCode = ErrorCode.BLACKLIST_ALREADY_EXIST;
+    public BlackListAlreadyExistException() {
+        super(ErrorCode.BLACKLIST_ALREADY_EXIST);
     }
 }

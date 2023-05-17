@@ -1,16 +1,14 @@
 package Idea.Archive.IdeaArchive.domain.member.exception;
 
-import Idea.Archive.IdeaArchive.global.exception.ErrorCode;
+import Idea.Archive.IdeaArchive.global.exception.IdeaArchiveException;
+import Idea.Archive.IdeaArchive.global.exception.enumType.ErrorCode;
 import lombok.Getter;
 
 @Getter
-public class MisMatchExtensionException extends RuntimeException {
+public class MisMatchExtensionException extends IdeaArchiveException {
 
-    private final ErrorCode errorCode;
-
-    public MisMatchExtensionException(String message) {
-        super(message);
-        this.errorCode = ErrorCode.MISMATCH_EXTENSION;
+    public MisMatchExtensionException() {
+        super(ErrorCode.MISMATCH_EXTENSION);
     }
 
 }

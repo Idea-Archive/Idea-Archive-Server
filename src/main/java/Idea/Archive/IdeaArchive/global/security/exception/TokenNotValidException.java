@@ -1,15 +1,14 @@
 package Idea.Archive.IdeaArchive.global.security.exception;
 
-import Idea.Archive.IdeaArchive.global.exception.ErrorCode;
+import Idea.Archive.IdeaArchive.global.exception.IdeaArchiveException;
+import Idea.Archive.IdeaArchive.global.exception.enumType.ErrorCode;
 import lombok.Getter;
 
 @Getter
-public class TokenNotValidException extends RuntimeException {
+public class TokenNotValidException extends IdeaArchiveException {
 
-    private final ErrorCode errorCode;
-
-    public TokenNotValidException(String message) {
-        super(message);
-        this.errorCode = ErrorCode.TOKEN_NOT_VALID;
+    public TokenNotValidException() {
+        super(ErrorCode.TOKEN_NOT_VALID);
     }
+
 }

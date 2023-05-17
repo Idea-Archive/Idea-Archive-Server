@@ -65,7 +65,7 @@ public class UploadProfileImg {
 
         try {
             if (!fileName.contains(fileExtension) || !extensions.contains(fileExtension)) {
-                throw new MisMatchExtensionException("일치하지 않는 확장자입니다.");
+                throw new MisMatchExtensionException();
             }
             return fileExtension;
         } catch (StringIndexOutOfBoundsException e) {

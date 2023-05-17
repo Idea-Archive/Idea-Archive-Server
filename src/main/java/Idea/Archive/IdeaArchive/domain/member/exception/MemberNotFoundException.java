@@ -1,15 +1,13 @@
 package Idea.Archive.IdeaArchive.domain.member.exception;
 
-import Idea.Archive.IdeaArchive.global.exception.ErrorCode;
+import Idea.Archive.IdeaArchive.global.exception.IdeaArchiveException;
+import Idea.Archive.IdeaArchive.global.exception.enumType.ErrorCode;
 import lombok.Getter;
 
 @Getter
-public class MemberNotFoundException extends RuntimeException {
+public class MemberNotFoundException extends IdeaArchiveException {
 
-    private final ErrorCode errorCode;
-
-    public MemberNotFoundException(String message) {
-        super(message);
-        this.errorCode = ErrorCode.MEMBER_NOT_FOUND;
+    public MemberNotFoundException() {
+        super(ErrorCode.MEMBER_NOT_FOUND);
     }
 }

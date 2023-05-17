@@ -28,14 +28,14 @@ public class MemberLogoutService {
     public void execute(String accessToken) {
         Member member = memberUtil.currentMember();
         RefreshToken refreshToken = refreshTokenRepository.findById(member.getEmail())
-                .orElseThrow(() -> new RefreshTokenNotFoundException("RefreshToken을 찾을 수 없습니다."));
+                .orElseThrow(() -> new RefreshTokenNotFoundException());
         refreshTokenRepository.delete(refreshToken);
         saveBlackList(accessToken,member.getEmail());
     }
 
     private void saveBlackList(String accessToken, String email) {
         if (redisTemplate.opsForValue().get(accessToken) != null) {
-            throw new BlackListAlreadyExistException("블랙리스트에 이미 등록되어있습니다.");
+            throw new BlackListAlreadyExistException();
         }
         BlackList blackList = BlackList.builder()
                 .email(email)

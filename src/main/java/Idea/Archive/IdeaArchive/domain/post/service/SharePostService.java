@@ -16,7 +16,7 @@ public class SharePostService {
     @Transactional(rollbackFor = Exception.class)
     public SharePostResponse execute(Long postId) {
         postRepository.findById(postId)
-                .orElseThrow(() -> new NotExistPostException("존재하지 않은 게시글 입니다"));
+                .orElseThrow(() -> new NotExistPostException());
         return SharePostResponse.builder()
                 .postUrl("http://localhost:8080/post/" + postId).
                 build();

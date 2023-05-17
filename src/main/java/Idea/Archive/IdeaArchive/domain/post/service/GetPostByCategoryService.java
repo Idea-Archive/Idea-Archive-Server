@@ -30,7 +30,7 @@ public class GetPostByCategoryService {
         }
         List<Post> posts = postRepository.findByAllCategories(categoryList, categoryRequest.getCategory().size());
         if (posts.isEmpty()) {
-            throw new NotExistPostException("게시글이 존재하지 않습니다.");
+            throw new NotExistPostException();
         }
         return posts.stream()
                 .map(p -> ViewPostResponse.builder()

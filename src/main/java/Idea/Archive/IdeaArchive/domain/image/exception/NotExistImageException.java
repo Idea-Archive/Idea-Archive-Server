@@ -1,15 +1,13 @@
 package Idea.Archive.IdeaArchive.domain.image.exception;
 
-import Idea.Archive.IdeaArchive.global.exception.ErrorCode;
+import Idea.Archive.IdeaArchive.global.exception.IdeaArchiveException;
+import Idea.Archive.IdeaArchive.global.exception.enumType.ErrorCode;
 import lombok.Getter;
 
 @Getter
-public class NotExistImageException extends RuntimeException {
+public class NotExistImageException extends IdeaArchiveException {
 
-    private final ErrorCode errorCode;
-
-    public NotExistImageException(String message) {
-        super(message);
-        this.errorCode = ErrorCode.NOT_EXIST_IMAGE_EXCEPTION;
+    public NotExistImageException() {
+        super(ErrorCode.NOT_EXIST_IMAGE_EXCEPTION);
     }
 }
