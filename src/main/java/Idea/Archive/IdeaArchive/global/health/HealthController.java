@@ -1,4 +1,4 @@
-package Idea.Archive.IdeaArchive.domain.health;
+package Idea.Archive.IdeaArchive.global.health;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@RequiredArgsConstructor
 @RequestMapping("/health")
 public class HealthController {
 
