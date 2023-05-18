@@ -43,6 +43,7 @@ public class SecurityConfig {
         http
                 .authorizeRequests()
                 .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
+                .antMatchers("/health/**").permitAll()
                 .antMatchers("/email/**").permitAll()
                 .antMatchers("/auth/**").permitAll()
                 .antMatchers("/google/**").permitAll()
