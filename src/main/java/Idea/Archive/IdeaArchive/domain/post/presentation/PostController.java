@@ -25,7 +25,7 @@ public class PostController {
     private final ModifyPostService modifyPostService;
     private final DeletePostService deletePostService;
     private final SearchPostService searchPostService;
-    private final GetPostByCategoryService getPostByCategoryService;
+    private final ViewPostByCategoryService viewPostByCategoryService;
     private final InsertHeartService insertHeartService;
     private final SharePostService sharePostService;
     private final ViewPopularPostService viewPopularPostService;
@@ -68,7 +68,7 @@ public class PostController {
 
     @PostMapping("/category")
     public ResponseEntity<List<ViewPostResponse>> viewPostByCategory(@RequestBody CategoryRequest categoryRequest) {
-        List<ViewPostResponse> response = getPostByCategoryService.execute(categoryRequest);
+        List<ViewPostResponse> response = viewPostByCategoryService.execute(categoryRequest);
         return ResponseEntity.ok(response);
     }
 

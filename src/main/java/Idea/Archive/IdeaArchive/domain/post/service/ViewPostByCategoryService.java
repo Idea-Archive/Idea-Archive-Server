@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class GetPostByCategoryService {
+public class ViewPostByCategoryService {
 
     private final PostRepository postRepository;
 
