@@ -1,29 +1,23 @@
 version: 0.0
 os: linux
+
 files:
   - source:  /
-    destination: /home/ubuntu/build/
-    
+    destination: /home/ubuntu/build
+    overwrite: yes
+
 permissions:
-- object: /
-   pattern: "**"
-   owner: ubuntu
-   group: ubuntu
-   
+  - object: /
+    pattern: "**"
+    owner: ubuntu
+    group: ubuntu
+
 hooks:
-  BeforeInstall:
-    - location: scripts/server_clear.sh
-      timeout: 3000
-      runas: ubuntu
   AfterInstall:
-    - location: scripts/initialize.sh
-      timeout: 3000
+    - location: scripts/server_stop.sh
+      timeout: 60
       runas: ubuntu
   ApplicationStart:
     - location: scripts/server_start.sh
-      timeout: 3000
-      runas: ubuntu
-  ApplicationStop:
-    - location: scripts/server_stop.sh
-      timeout: 3000
+      timeout: 60
       runas: ubuntu
