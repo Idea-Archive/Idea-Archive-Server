@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 ROOT_PATH="/home/ubuntu/build"
-JAR="$ROOT_PATH/IdeaArchieve-0.0.1-SNAPSHOT.jar"
+JAR="$ROOT_PATH/IdeaArchieve.jar"
 STOP_LOG="$ROOT_PATH/stop.log"
 SERVICE_PID=$(pgrep -f $JAR) # 실행중인 Spring 서버의 PID
 
