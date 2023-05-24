@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 ROOT_PATH="/home/ubuntu/build"
-JAR="$ROOT_PATH/application.jar"
+JAR="IdeaArchieve-0.0.1-SNAPSHOT.jar"
 
 APP_LOG="$ROOT_PATH/application.log"
 ERROR_LOG="$ROOT_PATH/error.log"
