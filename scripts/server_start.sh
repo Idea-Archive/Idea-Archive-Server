@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
-ROOT_PATH="/home/ubuntu/build"
-JAR="build/libs/IdeaArchieve-0.0.1-SNAPSHOT.jar"
+PROJECT_ROOT="/home/ubuntu/build"
+JAR="$PROJECT_ROOT/IdeaArchieve-0.0.1-SNAPSHOT.jar"
 
-APP_LOG="$ROOT_PATH/application.log"
-ERROR_LOG="$ROOT_PATH/error.log"
-START_LOG="$ROOT_PATH/start.log"
+APP_LOG="$PROJECT_ROOT/application.log"
+ERROR_LOG="$PROJECT_ROOT/error.log"
+START_LOG="$PROJECT_ROOT/start.log"
 
 NOW=$(date +%c)
 
 echo "[$NOW] $JAR 복사" >> $START_LOG
-cp $ROOT_PATH/build/libs/spring-github-action-1.0.0.jar $JAR
+cp $ROOT_PATH/build/libs/*.jar $JAR
 
 echo "[$NOW] > $JAR 실행" >> $START_LOG
 nohup java -jar $JAR > $APP_LOG 2> $ERROR_LOG &
