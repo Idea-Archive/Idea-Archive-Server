@@ -12,6 +12,7 @@ echo "[$NOW] $JAR 복사" >> $START_LOG
 cp $PROJECT_ROOT/build/libs/IdeaArchieve-0.0.1-SNAPSHOT.jar $JAR
 
 echo "[$NOW] > $JAR 실행" >> $START_LOG
+cd $PROJECT_ROOT/
 nohup java -jar IdeaArchieve.jar > $APP_LOG 2> $ERROR_LOG &
 
 SERVICE_PID=$(pgrep -f $JAR)
