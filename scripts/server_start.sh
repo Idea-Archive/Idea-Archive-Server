@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 PROJECT_ROOT="/home/ubuntu/build"
 JAR="$PROJECT_ROOT/IdeaArchieve.jar"
-
 APP_LOG="$PROJECT_ROOT/application.log"
 ERROR_LOG="$PROJECT_ROOT/error.log"
 START_LOG="$PROJECT_ROOT/start.log"
