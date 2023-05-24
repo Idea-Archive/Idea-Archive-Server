@@ -49,6 +49,29 @@ jobs:
       - name: Build with Gradle
         run : ./gradlew clean build --exclude-task test
       
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }} //IAM의 ACCESS KEY ID를 GITHUB SECRET KEY로 설정
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }} //GITHUB SECRET KEY로 설정
+          aws-region: ${{ secrets.AWS_REGION }} //GITHUB SECRET KEY중 AWS_REGION의 값을 ap-northeast-2로 설정
+
+      - name: Upload to AWS S3
+        run: |
+          aws deploy push \
+            --application-name ia-codedeploy \
+            --ignore-hidden-files \
+            --s3-location s3://ia-s3-bucket/$GITHUB_SHA.zip \
+            --source .
+
+      - name: Deploy to AWS EC2 from S3
+        run: |
+          aws deploy create-deployment \
+            --application-name ia-codedeploy \
+            --deployment-config-name CodeDeployDefault.AllAtOnce \
+            --deployment-group-name ia-codedeploy-group \
+            --s3-location bucket=ia-s3-bucket,key=$GITHUB_SHA.zip,bundleType=zip
+            
       - name: IA Backend CI Discord Notification
         uses: sarisia/actions-status-discord@v1
         if: ${{ success() }}
