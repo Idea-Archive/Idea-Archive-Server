@@ -14,7 +14,8 @@ cp $PROJECT_ROOT/build/libs/IdeaArchieve-0.0.1-SNAPSHOT.jar $JAR
 
 echo "[$NOW] > $JAR 실행" >> $START_LOG
 cd $PROJECT_ROOT/
-echo "${{ secrets.IA_BACKEND_ENV }}" > /src/main/resources/application.yml 
+
+source ~/.bashrc 
 nohup java -jar IdeaArchieve.jar > $APP_LOG 2> $ERROR_LOG &
 
 SERVICE_PID=$(pgrep -f $JAR)
