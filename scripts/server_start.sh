@@ -5,6 +5,7 @@ JAR="$PROJECT_ROOT/IdeaArchieve.jar"
 APP_LOG="$PROJECT_ROOT/application.log"
 ERROR_LOG="$PROJECT_ROOT/error.log"
 START_LOG="$PROJECT_ROOT/start.log"
+ENV_LOG = "$PROJECT_ROOT/env.log"
 
 NOW=$(date +%c)
 
@@ -13,7 +14,7 @@ cp $PROJECT_ROOT/build/libs/IdeaArchieve-0.0.1-SNAPSHOT.jar $JAR
 
 echo "[$NOW] > $JAR 실행" >> $START_LOG
 cd $PROJECT_ROOT/
-echo "${{ secrets.IA_BACKEND_ENV }}" > ./src/main/resources/application.yml
+echo "${{ secrets.IA_BACKEND_ENV }}" > /src/main/resources/application.yml 
 nohup java -jar IdeaArchieve.jar > $APP_LOG 2> $ERROR_LOG &
 
 SERVICE_PID=$(pgrep -f $JAR)
