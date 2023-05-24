@@ -6,18 +6,18 @@ files:
 
 hooks:
   BeforeInstall:
-    - location: ./scripts/server_clear.sh
+    - location: scripts/server_clear.sh
       timeout: 3000
       runas: root
   AfterInstall:
-    - location: ./scripts/initialize.sh
+    - location: scripts/initialize.sh
       timeout: 3000
       runas: root
   ApplicationStart:
-    - location: ./scripts/server_start.sh
+    - location: scripts/server_start.sh
       timeout: 3000
       runas: root
   ApplicationStop:
-    - location: ./scripts/server_stop.sh
+    - location: scripts/server_stop.sh
       timeout: 3000
       runas: root
