@@ -69,7 +69,6 @@ public class TokenProvider {
                     .parseClaimsJws(token)
                     .getBody();
         } catch (ExpiredJwtException e) {
-            System.out.println("sdfsfds");
             throw new TokenExpirationException();
         } catch (JwtException e) {
             throw new TokenNotValidException();
