@@ -39,7 +39,7 @@ jobs:
       - name: Set up JDK 11 job has success
         if: ${{ success() }}
         run: echo "jdk 11 job succeeded"
-          
+      
       - name: Setup Gradle
         uses: gradle/gradle-build-action@v2
       
@@ -48,29 +48,6 @@ jobs:
       
       - name: Build with Gradle
         run : ./gradlew clean build --exclude-task test
-      
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }} 
-          aws-region: ap-northeast-2
-
-      - name: Upload to AWS S3
-        run: |
-          aws deploy push \
-            --application-name ia-codedeploy \
-            --ignore-hidden-files \
-            --s3-location s3://ia-s3-bucket/$GITHUB_SHA.zip \
-            --source .
-
-      - name: Deploy to AWS EC2 from S3
-        run: |
-          aws deploy create-deployment \
-            --application-name ia-codedeploy \
-            --deployment-config-name CodeDeployDefault.AllAtOnce \
-            --deployment-group-name ia-codedeploy-group \
-            --s3-location bucket=ia-s3-bucket,key=$GITHUB_SHA.zip,bundleType=zip
             
       - name: IA Backend CI Discord Notification
         uses: sarisia/actions-status-discord@v1
