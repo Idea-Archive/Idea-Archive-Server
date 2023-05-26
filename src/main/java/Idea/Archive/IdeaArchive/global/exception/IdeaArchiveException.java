@@ -9,9 +9,4 @@ import lombok.Getter;
 public class IdeaArchiveException extends RuntimeException {
 
     private ErrorCode errorCode;
-
-//    public ErrorCode getErrorCode() {
-//        return errorCode;
-//    }
-
 }

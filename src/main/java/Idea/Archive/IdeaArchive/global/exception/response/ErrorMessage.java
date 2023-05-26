@@ -17,5 +17,4 @@ public class ErrorMessage {
         this.message = errorCode.getMessage();
         this.status = errorCode.getStatus();
     }
-
 }
