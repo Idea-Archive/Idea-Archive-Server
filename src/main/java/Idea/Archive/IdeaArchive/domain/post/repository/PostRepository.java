@@ -18,6 +18,4 @@ public interface PostRepository extends JpaRepository<Post, Long> {
     @Query("SELECT p FROM Post p ORDER BY p.heartCount + p.views DESC")
     List<Post> findAllOrderByHeartCountPlusViesDesc();
     List<Post> findByMember(Member member);
-
-
 }
