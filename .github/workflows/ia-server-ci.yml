@@ -12,15 +12,6 @@ env:
   DB_PASSWORD : ${{secrets.DB_PASSWORD}}
   DB_PORT : ${{secrets.DB_PORT}}
   DB_USER : ${{secrets.DB_USER}}
-  EMAIL_HOST: ${{secrets.EMAIL_HOST}}
-  EMAIL_NAME: ${{secrets.EMAIL_NAME}}
-  EMAIL_PASSWORD: ${{secrets.EMAIL_PASSWORD}}
-  GOOGLE_BASE_URL: ${{secrets.GOOGLE_BASE_URL}}
-  GOOGLE_CLIENT_ID: ${{secrets.GOOGLE_CLIENT_ID}}
-  GOOGLE_REDIRECT_URL : ${{secrets.GOOGLE_REDIRECT_URL}}
-  REDIS_HOST: ${{secrets.REDIS_HOST}}
-  REDIS_PORT: ${{secrets.REDIS_PORT}}
-  REFRESH_SECRET: ${{secrets.REFRESH_SECRET}}
   
 jobs:
   CI:
