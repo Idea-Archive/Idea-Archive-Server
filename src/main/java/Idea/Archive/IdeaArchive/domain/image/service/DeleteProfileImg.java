@@ -25,6 +25,7 @@ public class DeleteProfileImg {
         if (currentMember.getProfileImageUrl().isEmpty()) {
             throw new NotExistImageException();
         }
+        currentMember.updateProfileImg(null);
         deleteImage(currentMember.getProfileImageUrl());
     }
 
