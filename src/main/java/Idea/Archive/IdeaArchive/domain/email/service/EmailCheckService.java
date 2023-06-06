@@ -5,7 +5,6 @@ import Idea.Archive.IdeaArchive.domain.email.exception.MisMatchAuthCodeException
 import Idea.Archive.IdeaArchive.domain.email.repository.EmailAuthRepository;
 import Idea.Archive.IdeaArchive.domain.member.exception.MemberNotFoundException;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -13,7 +12,6 @@ import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
-@Slf4j
 public class EmailCheckService {
 
     private final EmailAuthRepository emailAuthRepository;
@@ -21,14 +19,14 @@ public class EmailCheckService {
     @Transactional(rollbackOn = Exception.class)
     public void execute(String email, String authKey) {
         EmailAuth emailAuth = emailAuthRepository.findById(email)
-                .orElseThrow(()->new MemberNotFoundException());
-        checkAuth(emailAuth,authKey);
+                .orElseThrow(() -> new MemberNotFoundException());
+        checkAuth(emailAuth, authKey);
         emailAuth.updateAuthentication(true);
         emailAuthRepository.save(emailAuth);
     }
 
     private void checkAuth(EmailAuth emailAuth, String authKey) {
-        if(!Objects.equals(emailAuth.getRandomValue(),authKey)) {
+        if (!Objects.equals(emailAuth.getRandomValue(), authKey)) {
             throw new MisMatchAuthCodeException();
         }
     }
