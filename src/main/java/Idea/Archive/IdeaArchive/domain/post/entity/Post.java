@@ -26,7 +26,7 @@ public class Post extends BaseTimeEntity {
     @Column(name = "title", nullable = false, length = 30)
     private String title;
 
-    @Column(name = "content", nullable = false)
+    @Column(name = "content", nullable = false, length = 500)
     private String content;
 
     @ElementCollection(fetch = FetchType.EAGER)
@@ -37,7 +37,7 @@ public class Post extends BaseTimeEntity {
     private Integer heartCount;
 
     @ColumnDefault("0")
-    @Column(name = "comment_count",nullable = false)
+    @Column(name = "comment_count", nullable = false)
     private Integer commentCount;
 
     @ManyToOne(fetch = FetchType.LAZY)

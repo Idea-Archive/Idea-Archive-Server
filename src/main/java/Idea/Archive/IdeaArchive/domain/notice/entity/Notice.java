@@ -18,10 +18,10 @@ public class Notice extends BaseTimeEntity {
     @Column(name = "notice_id")
     private Long noticeId;
 
-    @Column(name = "title", nullable = false)
+    @Column(name = "title", nullable = false, length = 30)
     private String title;
 
-    @Column(name = "content", nullable = false)
+    @Column(name = "content", nullable = false, length = 500)
     private String content;
 
     @ManyToOne
