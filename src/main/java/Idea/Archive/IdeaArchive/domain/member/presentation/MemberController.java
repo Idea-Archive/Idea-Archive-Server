@@ -1,6 +1,5 @@
 package Idea.Archive.IdeaArchive.domain.member.presentation;
 
-
 import Idea.Archive.IdeaArchive.domain.auth.presentation.dto.request.OauthWithdrawMemberRequest;
 import Idea.Archive.IdeaArchive.domain.member.presentation.dto.request.ChangePasswordRequest;
 import Idea.Archive.IdeaArchive.domain.member.presentation.dto.request.WithdrawMemberRequest;
@@ -62,5 +61,4 @@ public class MemberController {
         changeNameService.execute(changeNameRequest);
         return ResponseEntity.noContent().build();
     }
-
 }
