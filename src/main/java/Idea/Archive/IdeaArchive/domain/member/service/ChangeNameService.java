@@ -2,7 +2,6 @@ package Idea.Archive.IdeaArchive.domain.member.service;
 
 import Idea.Archive.IdeaArchive.domain.member.presentation.dto.request.ChangeNameRequest;
 import Idea.Archive.IdeaArchive.domain.member.entity.Member;
-import Idea.Archive.IdeaArchive.domain.member.repository.MemberRepository;
 import Idea.Archive.IdeaArchive.global.util.MemberUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -16,7 +15,6 @@ import javax.validation.Valid;
 public class ChangeNameService {
 
     private final MemberUtil memberUtil;
-    private final MemberRepository memberRepository;
 
     @Transactional(rollbackFor = Exception.class)
     public void execute(@RequestBody @Valid ChangeNameRequest changeNameRequest) {
