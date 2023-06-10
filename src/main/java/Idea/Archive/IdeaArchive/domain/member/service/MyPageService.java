@@ -21,8 +21,6 @@ import java.util.List;
 public class MyPageService {
 
     private final MemberRepository memberRepository;
-    private final HeartRepository heartRepository;
-    private final PostRepository postRepository;
     private final MemberUtil memberUtil;
 
     @Transactional(rollbackFor = Exception.class, readOnly = true)
@@ -30,16 +28,10 @@ public class MyPageService {
         Member currentMember = memberUtil.currentMember();
         Member member = memberRepository.findByEmail(currentMember.getEmail())
                 .orElseThrow(() -> new MemberNotFoundException());
-        List<Heart> hearts = heartRepository.findByMember(member);
-        List<ViewPostResponse> heartList = ViewPostResponse.convertToHeartList(hearts);
-        List<Post> posts = postRepository.findByMember(member);
-        List<ViewPostResponse> myPostList = ViewPostResponse.convertToPostList(posts);
         return MyPageResponse.builder()
                 .email(member.getEmail())
                 .name(member.getName())
                 .profileImg(member.getProfileImageUrl())
-                .myPost(myPostList)
-                .myHeartList(heartList)
                 .build();
     }
 }
