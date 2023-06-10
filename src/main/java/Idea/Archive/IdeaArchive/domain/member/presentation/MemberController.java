@@ -7,11 +7,13 @@ import Idea.Archive.IdeaArchive.domain.member.presentation.dto.response.MyPageRe
 import Idea.Archive.IdeaArchive.domain.member.service.*;
 import Idea.Archive.IdeaArchive.domain.member.presentation.dto.request.ChangeNameRequest;
 import Idea.Archive.IdeaArchive.domain.member.presentation.dto.request.MakeNewPasswordRequest;
+import Idea.Archive.IdeaArchive.domain.post.presentation.dto.response.ViewPostResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -24,6 +26,7 @@ public class MemberController {
     private final FindPasswordService findPasswordService;
     private final ChangeNameService changeNameService;
     private final OauthWithdrawService oauthWithdrawService;
+    private final ViewMyPostService viewMyPostService;
 
 
     @PatchMapping
@@ -61,4 +64,11 @@ public class MemberController {
         changeNameService.execute(changeNameRequest);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/my-post")
+    public ResponseEntity<List<ViewPostResponse>> viewMyPost() {
+        List<ViewPostResponse> myPosts = viewMyPostService.execute();
+        return ResponseEntity.ok(myPosts);
+    }
+
 }
