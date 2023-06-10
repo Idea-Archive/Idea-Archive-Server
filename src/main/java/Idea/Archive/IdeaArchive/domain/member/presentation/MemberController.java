@@ -27,10 +27,11 @@ public class MemberController {
     private final ChangeNameService changeNameService;
     private final OauthWithdrawService oauthWithdrawService;
     private final ViewMyPostService viewMyPostService;
+    private final ViewMyHeartService viewMyHeartService;
 
 
     @PatchMapping
-    public ResponseEntity<Void> editPassword(@RequestBody @Valid ChangePasswordRequest changePasswordRequest) {
+    public ResponseEntity<Void> changePassword(@RequestBody @Valid ChangePasswordRequest changePasswordRequest) {
         changePasswordService.execute(changePasswordRequest);
         return ResponseEntity.noContent().build();
     }
@@ -65,10 +66,15 @@ public class MemberController {
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping("/my-post")
+    @GetMapping("/posts")
     public ResponseEntity<List<ViewPostResponse>> viewMyPost() {
         List<ViewPostResponse> myPosts = viewMyPostService.execute();
         return ResponseEntity.ok(myPosts);
     }
 
+    @GetMapping("/hearts-posts")
+    public ResponseEntity<List<ViewPostResponse>> viewMyHeart() {
+        List<ViewPostResponse> myPosts = viewMyHeartService.execute();
+        return ResponseEntity.ok(myPosts);
+    }
 }
