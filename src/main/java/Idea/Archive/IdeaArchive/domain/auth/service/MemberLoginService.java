@@ -36,7 +36,7 @@ public class MemberLoginService {
 
         String accessToken = tokenProvider.generatedAccessToken(memberLoginRequest.getEmail());
         String refreshToken = tokenProvider.generatedRefreshToken(memberLoginRequest.getEmail());
-        RefreshToken entityRedis = new RefreshToken(memberLoginRequest.getEmail(), refreshToken,tokenProvider.getREFRESH_TOKEN_EXPIRE_TIME());
+        RefreshToken entityRedis = new RefreshToken(memberLoginRequest.getEmail(), refreshToken, tokenProvider.getREFRESH_TOKEN_EXPIRE_TIME());
 
         refreshTokenRepository.save(entityRedis);
 
