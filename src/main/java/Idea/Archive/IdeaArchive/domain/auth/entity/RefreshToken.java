@@ -25,5 +25,4 @@ public class RefreshToken {
     public void exchangeRefreshToken(String refreshToken) {
         this.refreshToken = refreshToken;
     }
-
 }
