@@ -20,7 +20,6 @@ import java.util.List;
 @RequestMapping("/member")
 public class MemberController {
 
-    private final ChangePasswordService changePasswordService;
     private final MyPageService myPageService;
     private final WithdrawService withdrawService;
     private final FindPasswordService findPasswordService;
@@ -28,13 +27,6 @@ public class MemberController {
     private final OauthWithdrawService oauthWithdrawService;
     private final ViewMyPostService viewMyPostService;
     private final ViewMyHeartService viewMyHeartService;
-
-
-    @PatchMapping
-    public ResponseEntity<Void> changePassword(@RequestBody @Valid ChangePasswordRequest changePasswordRequest) {
-        changePasswordService.execute(changePasswordRequest);
-        return ResponseEntity.noContent().build();
-    }
 
     @GetMapping
     public ResponseEntity<MyPageResponse> viewMyPage() {
