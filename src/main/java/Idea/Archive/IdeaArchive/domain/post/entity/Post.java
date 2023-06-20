@@ -3,10 +3,7 @@ package Idea.Archive.IdeaArchive.domain.post.entity;
 import Idea.Archive.IdeaArchive.domain.member.entity.Member;
 import Idea.Archive.IdeaArchive.global.entity.BaseTimeEntity;
 import Idea.Archive.IdeaArchive.domain.post.enums.Category;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
@@ -14,7 +11,7 @@ import java.util.List;
 
 @Entity
 @Getter @Builder
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 public class Post extends BaseTimeEntity {
 

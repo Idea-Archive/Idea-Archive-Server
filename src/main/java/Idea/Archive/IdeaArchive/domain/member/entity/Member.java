@@ -2,10 +2,7 @@ package Idea.Archive.IdeaArchive.domain.member.entity;
 
 import Idea.Archive.IdeaArchive.global.entity.BaseTimeEntity;
 import Idea.Archive.IdeaArchive.domain.member.enums.Role;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -13,7 +10,7 @@ import javax.persistence.*;
 @Entity
 @Getter @Builder
 @AllArgsConstructor
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Member extends BaseTimeEntity {
 
     @Id

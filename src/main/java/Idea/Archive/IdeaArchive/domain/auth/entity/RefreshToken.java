@@ -8,7 +8,7 @@ import org.springframework.data.redis.core.index.Indexed;
 
 
 @Getter @Builder
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @ToString
 @RedisHash(value = "refreshToken")
