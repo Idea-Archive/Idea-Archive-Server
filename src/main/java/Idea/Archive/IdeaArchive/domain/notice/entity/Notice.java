@@ -7,10 +7,9 @@ import lombok.*;
 import javax.persistence.*;
 
 @Entity
-@Getter
-@Builder
+@Getter @Builder
 @AllArgsConstructor
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Notice extends BaseTimeEntity {
 
     @Id
