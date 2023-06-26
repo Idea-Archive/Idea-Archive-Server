@@ -41,6 +41,7 @@ public class ViewPostByIdService {
                 .applicantCount(post.getApplicantCount())
                 .views(post.getViews())
                 .createdDate(post.getCreatedDate())
+                .heart(post.getHeart())
                 .build();
     }
 }

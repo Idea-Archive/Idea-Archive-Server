@@ -38,6 +38,7 @@ public class WritePostService {
                 .commentCount(0)
                 .applicantCount(0)
                 .views(0)
+                .heart(false)
                 .build();
         postRepository.save(post);
     }

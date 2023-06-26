@@ -49,6 +49,9 @@ public class Post extends BaseTimeEntity {
     @Column(name = "post_views", nullable = false)
     private Integer views;
 
+    @Column(name = "heart")
+    private Boolean heart;
+
 
     public void update(String title, String content,List<Category> category) {
         this.title = title;
@@ -58,6 +61,10 @@ public class Post extends BaseTimeEntity {
 
     public void updateHeart(Integer heartCount) {
         this.heartCount = heartCount;
+    }
+
+    public void updateHeartStatus(Boolean status) {
+        this.heart = status;
     }
 
     public void updateComment(Integer commentCount) {this.commentCount = commentCount;}

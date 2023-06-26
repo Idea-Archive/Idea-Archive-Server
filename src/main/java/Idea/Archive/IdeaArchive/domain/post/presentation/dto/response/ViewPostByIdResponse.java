@@ -28,6 +28,7 @@ public class ViewPostByIdResponse {
     private Integer commentCount;
     private Integer applicantCount;
     private Integer views;
+    private Boolean heart;
 
     @CreatedDate
     private LocalDateTime createdDate;
