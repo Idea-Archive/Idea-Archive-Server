@@ -28,6 +28,7 @@ public class ViewPostResponse {
     private Integer heartCount;
     private Integer commentCount;
     private ViewMemberResponse member;
+    private Boolean heart;
 
     @CreatedDate
     private LocalDateTime createdDate;
@@ -42,6 +43,7 @@ public class ViewPostResponse {
                 .commentCount(post.getCommentCount())
                 .createdDate(post.getCreatedDate())
                 .member(ViewMemberResponse.convertToMember(post.getMember()))
+                .heart(post.getHeart())
                 .build();
     }
 
@@ -60,6 +62,7 @@ public class ViewPostResponse {
                 .commentCount(heart.getPost().getCommentCount())
                 .createdDate(heart.getPost().getCreatedDate())
                 .member(ViewMemberResponse.convertToMember(heart.getPost().getMember()))
+                .heart(heart.getPost().getHeart())
                 .build();
     }
 

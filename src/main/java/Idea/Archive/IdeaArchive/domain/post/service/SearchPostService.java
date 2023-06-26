@@ -55,6 +55,7 @@ public class SearchPostService {
                         .commentCount(p.getCommentCount())
                         .member(ViewMemberResponse.convertToMember(p.getMember()))
                         .createdDate(p.getCreatedDate())
+                        .heart(p.getHeart())
                         .build())
                 .collect(Collectors.toList());
     }
