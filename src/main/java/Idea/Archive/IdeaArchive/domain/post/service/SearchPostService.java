@@ -32,7 +32,6 @@ public class SearchPostService {
             for (String s : categoryRequest.getCategory()) {
                 Category enumValue = Enum.valueOf(Category.class, s);
                 categoryList.add(enumValue);
-                System.out.println(enumValue);
             }
             List<Post> categories = postRepository.findByAllCategories(categoryList, categoryRequest.getCategory().size());
             for (Post post : categories) {
