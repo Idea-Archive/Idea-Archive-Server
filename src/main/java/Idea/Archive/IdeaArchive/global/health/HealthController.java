@@ -1,18 +1,19 @@
 package Idea.Archive.IdeaArchive.global.health;
 
-import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/health")
 public class HealthController {
 
     @GetMapping
-    public ResponseEntity<Void> health() {
-        return ResponseEntity.status(HttpStatus.OK).build();
+    public ResponseEntity<Map<String, String>> healthCheck() {
+        Map<String, String> response = new HashMap<>();
+        response.put("message", "IceeTea server running");
+        return ResponseEntity.ok(response);
     }
+
 }
