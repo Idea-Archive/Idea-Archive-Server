@@ -7,6 +7,7 @@ import Idea.Archive.IdeaArchive.global.security.handler.CustomAuthenticationEntr
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -43,20 +44,63 @@ public class SecurityConfig {
         http
                 .authorizeRequests()
                 .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
-                .antMatchers("/health/**").permitAll()
-                .antMatchers("/email/**").permitAll()
-                .antMatchers("/auth/**").permitAll()
-                .antMatchers("/google/**").permitAll()
-                .antMatchers("/github/**").permitAll()
-                .antMatchers("/kakao/**").permitAll()
-                .antMatchers("/post/**").permitAll()
-                .antMatchers("/post/comment/**").permitAll()
 
-                .antMatchers("/member/**").authenticated()
-                .antMatchers("/img/**").authenticated()
+                // health
+                .antMatchers(HttpMethod.GET, "/health").permitAll()
 
-                .antMatchers("/member/notice/**").hasAuthority("MEMBER")
-                .antMatchers("/admin/notice/**").hasAuthority("ADMIN")
+                // email
+                .antMatchers(HttpMethod.POST, "/email/send").permitAll()
+                .antMatchers(HttpMethod.HEAD, "/email").permitAll()
+
+                // auth
+                .antMatchers(HttpMethod.POST,"/auth/signup").permitAll()
+                .antMatchers(HttpMethod.POST, "/auth/login").permitAll()
+                .antMatchers(HttpMethod.PATCH, "/auth").permitAll()
+                .antMatchers(HttpMethod.DELETE, "/auth").authenticated()
+                .antMatchers(HttpMethod.GET, "/google/login").permitAll()
+                .antMatchers(HttpMethod.GET, "/github/login").permitAll()
+                .antMatchers(HttpMethod.GET, "/kakao/login").permitAll()
+
+                // post
+                .antMatchers(HttpMethod.POST, "/post/write").authenticated()
+                .antMatchers(HttpMethod.GET, "/post").permitAll()
+                .antMatchers(HttpMethod.GET, "/post/{post_id}").permitAll()
+                .antMatchers(HttpMethod.PATCH, "/post/{post_id}").authenticated()
+                .antMatchers(HttpMethod.DELETE, "/post/{post_id}").authenticated()
+                .antMatchers(HttpMethod.POST, "/post/search").permitAll()
+                .antMatchers(HttpMethod.POST, "/post/category").permitAll()
+                .antMatchers(HttpMethod.POST, "/post/{post_id}/heart").authenticated()
+                .antMatchers(HttpMethod.GET, "/post/share/{post_id}").permitAll()
+                .antMatchers(HttpMethod.GET, "/post/popular").permitAll()
+
+                // comment
+                .antMatchers(HttpMethod.POST, "/post/comment/{post_id}").authenticated()
+                .antMatchers(HttpMethod.PATCH, "/post/comment/{post_id}").authenticated()
+                .antMatchers(HttpMethod.DELETE, "/post/comment/{post_id}").authenticated()
+
+                // member
+                .antMatchers(HttpMethod.GET, "/member").authenticated()
+                .antMatchers(HttpMethod.DELETE, "/member").authenticated()
+                .antMatchers(HttpMethod.DELETE, "/member/oauth").authenticated()
+                .antMatchers(HttpMethod.PATCH, "/member/find-password").permitAll()
+                .antMatchers(HttpMethod.PATCH, "/member/name").authenticated()
+                .antMatchers(HttpMethod.GET, "/member/posts").authenticated()
+                .antMatchers(HttpMethod.GET, "/member/hearts-posts").authenticated()
+
+                // image
+                .antMatchers(HttpMethod.POST, "/img").authenticated()
+                .antMatchers(HttpMethod.PATCH, "/img").authenticated()
+                .antMatchers(HttpMethod.DELETE, "/img").authenticated()
+
+                // notice
+                .antMatchers(HttpMethod.GET, "/admin/notice").hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.GET, "/admin/notice/{notice_id}").hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.POST, "/admin/notice/write").hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.PATCH, "/admin/notice/{notice_id}").hasAuthority("ADMIN")
+
+                .antMatchers(HttpMethod.GET, "member/notice").hasAuthority("MEMBER")
+                .antMatchers(HttpMethod.GET, "member/notice/{notice_id").hasAuthority("MEMBER")
+
                 .anyRequest().authenticated();
         http
                 .sessionManagement()
