@@ -18,7 +18,7 @@ public class KakaoController {
 
     @GetMapping("/login")
     public ResponseEntity<MemberLoginResponse> kakaoAuthLogin(@RequestParam("code") String code) {
-        MemberLoginResponse memberLoginResponse = kakaoAuthService.execute(code);
-        return ResponseEntity.ok().body(memberLoginResponse);
+        MemberLoginResponse response = kakaoAuthService.execute(code);
+        return ResponseEntity.ok().body(response);
     }
 }

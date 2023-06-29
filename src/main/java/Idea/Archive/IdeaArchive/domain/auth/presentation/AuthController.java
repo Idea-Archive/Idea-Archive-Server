@@ -30,8 +30,8 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<MemberLoginResponse> login(@RequestBody @Valid MemberLoginRequest memberLoginRequest) {
-        MemberLoginResponse memberLoginResponse = memberLoginService.execute(memberLoginRequest);
-        return ResponseEntity.ok(memberLoginResponse);
+        MemberLoginResponse response = memberLoginService.execute(memberLoginRequest);
+        return ResponseEntity.ok(response);
     }
 
     @DeleteMapping
@@ -42,7 +42,7 @@ public class AuthController {
 
     @PatchMapping
     public ResponseEntity<NewTokenResponse> reIssueToken(@RequestHeader("RefreshToken") String token) {
-        NewTokenResponse reIssueToken = tokenReissueService.execute(token);
-        return ResponseEntity.ok(reIssueToken);
+        NewTokenResponse response = tokenReissueService.execute(token);
+        return ResponseEntity.ok(response);
     }
 }
