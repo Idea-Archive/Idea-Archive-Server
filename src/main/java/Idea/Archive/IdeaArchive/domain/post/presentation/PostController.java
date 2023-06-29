@@ -80,13 +80,13 @@ public class PostController {
 
     @GetMapping("/share/{post_id}")
     public ResponseEntity<SharePostResponse> sharePost(@PathVariable("post_id") Long postId) {
-        SharePostResponse postUrl = sharePostService.execute(postId);
-        return ResponseEntity.ok(postUrl);
+        SharePostResponse response = sharePostService.execute(postId);
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping("/popular")
     public ResponseEntity<List<ViewPostResponse>> viewPostByHeart() {
-        List<ViewPostResponse> posts = viewPopularPostService.execute();
-        return ResponseEntity.ok(posts);
+        List<ViewPostResponse> response = viewPopularPostService.execute();
+        return ResponseEntity.ok(response);
     }
 }

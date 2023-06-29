@@ -28,14 +28,14 @@ public class AdminNoticeController {
 
     @GetMapping
     public ResponseEntity<List<ViewNoticeResponse>> viewNotice() {
-        List<ViewNoticeResponse> viewNoticeResponses = viewNoticeService.execute();
-        return ResponseEntity.ok(viewNoticeResponses);
+        List<ViewNoticeResponse> response = viewNoticeService.execute();
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping("{notice_id}")
     public ResponseEntity<ViewNoticeByIdResponse> viewNoticeById(@PathVariable("notice_id") Long noticeId) {
-        ViewNoticeByIdResponse viewNoticeResponse = viewNoticeByIdService.execute(noticeId);
-        return ResponseEntity.ok(viewNoticeResponse);
+        ViewNoticeByIdResponse response = viewNoticeByIdService.execute(noticeId);
+        return ResponseEntity.ok(response);
     }
 
     @PostMapping("/write")

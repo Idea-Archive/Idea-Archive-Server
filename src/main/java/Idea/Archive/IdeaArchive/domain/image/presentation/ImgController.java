@@ -21,8 +21,8 @@ public class ImgController {
 
     @PostMapping
     public ResponseEntity<List<String>> uploadProfileImg(List<MultipartFile> multipartFiles) {
-        List<String> url = uploadProfileImg.execute(multipartFiles);
-        return ResponseEntity.ok(url);
+        List<String> response = uploadProfileImg.execute(multipartFiles);
+        return ResponseEntity.ok(response);
     }
 
     @PatchMapping
