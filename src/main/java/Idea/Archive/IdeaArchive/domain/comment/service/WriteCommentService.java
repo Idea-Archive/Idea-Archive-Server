@@ -26,7 +26,7 @@ public class WriteCommentService {
         Member currentMember = memberUtil.currentMember();
         Post findPost = postRepository.findById(postId)
                 .orElseThrow(() -> new NotExistPostException());
-        findPost.updateComment(findPost.getCommentCount()+1);
+        findPost.updateComment(findPost.getCommentCount() + 1);
         postRepository.save(findPost);
         Comment comment = Comment.builder()
                 .content(request.getContent())
@@ -35,5 +35,4 @@ public class WriteCommentService {
                 .build();
         commentRepository.save(comment);
     }
-
 }

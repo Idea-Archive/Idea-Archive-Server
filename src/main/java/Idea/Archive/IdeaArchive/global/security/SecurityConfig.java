@@ -49,10 +49,10 @@ public class SecurityConfig {
                 .antMatchers("/google/**").permitAll()
                 .antMatchers("/github/**").permitAll()
                 .antMatchers("/kakao/**").permitAll()
+                .antMatchers("/post/**").permitAll()
+                .antMatchers("/post/comment/**").permitAll()
 
                 .antMatchers("/member/**").authenticated()
-                .antMatchers("/post/**").authenticated()
-                .antMatchers("/post/comment/**").authenticated()
                 .antMatchers("/img/**").authenticated()
 
                 .antMatchers("/member/notice/**").hasAuthority("MEMBER")
