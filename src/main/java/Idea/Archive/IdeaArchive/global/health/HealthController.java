@@ -18,5 +18,4 @@ public class HealthController {
         response.put("message", "IdeaArchive server running");
         return ResponseEntity.ok(response);
     }
-
 }

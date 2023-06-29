@@ -1,6 +1,5 @@
 package Idea.Archive.IdeaArchive.domain.auth.presentation.dto.response;
 
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
