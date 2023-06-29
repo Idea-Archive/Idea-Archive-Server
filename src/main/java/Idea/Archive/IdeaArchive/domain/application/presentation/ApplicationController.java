@@ -26,7 +26,7 @@ public class ApplicationController {
 
     @GetMapping("/{post_id}")
     public ResponseEntity<List<ApplicationResponse>> listApplication(@PathVariable("post_id") Long postId) {
-        List<ApplicationResponse> applications = applicationListService.execute(postId);
-        return ResponseEntity.ok(applications);
+        List<ApplicationResponse> response = applicationListService.execute(postId);
+        return ResponseEntity.ok(response);
     }
 }

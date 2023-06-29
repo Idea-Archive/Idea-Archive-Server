@@ -60,13 +60,13 @@ public class MemberController {
 
     @GetMapping("/posts")
     public ResponseEntity<List<ViewPostResponse>> viewMyPost() {
-        List<ViewPostResponse> myPostList = viewMyPostService.execute();
-        return ResponseEntity.ok(myPostList);
+        List<ViewPostResponse> response = viewMyPostService.execute();
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping("/hearts-posts")
     public ResponseEntity<List<ViewPostResponse>> viewMyHeart() {
-        List<ViewPostResponse> myPostList = viewMyHeartService.execute();
-        return ResponseEntity.ok(myPostList);
+        List<ViewPostResponse> response = viewMyHeartService.execute();
+        return ResponseEntity.ok(response);
     }
 }
