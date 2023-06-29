@@ -1,7 +1,6 @@
 package Idea.Archive.IdeaArchive.domain.member.presentation;
 
 import Idea.Archive.IdeaArchive.domain.auth.presentation.dto.request.OauthWithdrawMemberRequest;
-import Idea.Archive.IdeaArchive.domain.member.presentation.dto.request.ChangePasswordRequest;
 import Idea.Archive.IdeaArchive.domain.member.presentation.dto.request.WithdrawMemberRequest;
 import Idea.Archive.IdeaArchive.domain.member.presentation.dto.response.MyPageResponse;
 import Idea.Archive.IdeaArchive.domain.member.service.*;

@@ -1,6 +1,5 @@
 package Idea.Archive.IdeaArchive.domain.email.presentation;
 
-
 import Idea.Archive.IdeaArchive.domain.email.presentation.dto.request.EmailAuthRequest;
 import Idea.Archive.IdeaArchive.domain.email.service.EmailCheckService;
 import Idea.Archive.IdeaArchive.domain.email.service.EmailSendService;
