@@ -1,10 +1,10 @@
 package Idea.Archive.IdeaArchive.domain.post.presentation.dto.response;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 
-@RequiredArgsConstructor
+@AllArgsConstructor
 @Builder
 @Getter
 public class SharePostResponse {

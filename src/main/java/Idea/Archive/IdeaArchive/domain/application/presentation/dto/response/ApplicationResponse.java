@@ -1,11 +1,9 @@
 package Idea.Archive.IdeaArchive.domain.application.presentation.dto.response;
 
-
 import Idea.Archive.IdeaArchive.domain.application.entity.Application;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,7 +12,6 @@ import java.util.stream.Stream;
 @Getter
 @Builder
 @AllArgsConstructor
-@NoArgsConstructor
 public class ApplicationResponse {
 
     private Long memberId;
