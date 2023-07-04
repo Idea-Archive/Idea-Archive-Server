@@ -99,7 +99,7 @@ public class SecurityConfig {
                 .antMatchers(HttpMethod.PATCH, "/admin/notice/{notice_id}").hasAuthority("ADMIN")
 
                 .antMatchers(HttpMethod.GET, "member/notice").hasAuthority("MEMBER")
-                .antMatchers(HttpMethod.GET, "member/notice/{notice_id").hasAuthority("MEMBER")
+                .antMatchers(HttpMethod.GET, "member/notice/{notice_id}").hasAuthority("MEMBER")
 
                 .anyRequest().authenticated();
         http
