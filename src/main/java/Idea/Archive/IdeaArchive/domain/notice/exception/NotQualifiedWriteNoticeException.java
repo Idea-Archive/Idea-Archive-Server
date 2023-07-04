@@ -2,9 +2,7 @@ package Idea.Archive.IdeaArchive.domain.notice.exception;
 
 import Idea.Archive.IdeaArchive.global.exception.IdeaArchiveException;
 import Idea.Archive.IdeaArchive.global.exception.enumType.ErrorCode;
-import lombok.Getter;
 
-@Getter
 public class NotQualifiedWriteNoticeException extends IdeaArchiveException {
 
     public NotQualifiedWriteNoticeException() {
