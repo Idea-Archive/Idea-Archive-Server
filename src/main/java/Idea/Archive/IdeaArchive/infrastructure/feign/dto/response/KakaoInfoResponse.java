@@ -27,7 +27,4 @@ public class KakaoInfoResponse {
     public static class Profile {
         private String nickname;
     }
-
-
-
 }

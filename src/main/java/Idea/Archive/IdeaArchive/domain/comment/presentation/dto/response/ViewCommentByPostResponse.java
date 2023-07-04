@@ -5,7 +5,6 @@ import Idea.Archive.IdeaArchive.domain.member.presentation.dto.ViewMemberRespons
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 
 import java.time.LocalDateTime;
@@ -15,7 +14,6 @@ import java.util.stream.Stream;
 
 @Getter @Builder
 @AllArgsConstructor
-@NoArgsConstructor
 public class ViewCommentByPostResponse {
 
     private Long commentId;
