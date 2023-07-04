@@ -2,9 +2,7 @@ package Idea.Archive.IdeaArchive.global.security.exception;
 
 import Idea.Archive.IdeaArchive.global.exception.IdeaArchiveException;
 import Idea.Archive.IdeaArchive.global.exception.enumType.ErrorCode;
-import lombok.Getter;
 
-@Getter
 public class TokenExpirationException extends IdeaArchiveException {
 
     public TokenExpirationException() {
