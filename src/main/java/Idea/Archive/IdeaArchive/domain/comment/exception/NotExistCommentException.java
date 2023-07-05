@@ -1,7 +1,7 @@
 package Idea.Archive.IdeaArchive.domain.comment.exception;
 
 import Idea.Archive.IdeaArchive.global.exception.IdeaArchiveException;
-import Idea.Archive.IdeaArchive.global.exception.enumType.ErrorCode;
+import Idea.Archive.IdeaArchive.global.exception.enums.ErrorCode;
 
 public class NotExistCommentException extends IdeaArchiveException {
 

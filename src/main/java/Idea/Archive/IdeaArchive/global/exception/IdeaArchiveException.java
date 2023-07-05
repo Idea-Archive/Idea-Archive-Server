@@ -1,6 +1,6 @@
 package Idea.Archive.IdeaArchive.global.exception;
 
-import Idea.Archive.IdeaArchive.global.exception.enumType.ErrorCode;
+import Idea.Archive.IdeaArchive.global.exception.enums.ErrorCode;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

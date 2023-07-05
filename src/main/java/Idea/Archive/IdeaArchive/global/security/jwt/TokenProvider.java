@@ -1,6 +1,5 @@
 package Idea.Archive.IdeaArchive.global.security.jwt;
 
-import Idea.Archive.IdeaArchive.domain.member.exception.MemberNotFoundException;
 import Idea.Archive.IdeaArchive.global.security.auth.MemberDetailsService;
 import Idea.Archive.IdeaArchive.global.security.exception.TokenExpirationException;
 import Idea.Archive.IdeaArchive.global.security.exception.TokenNotValidException;
