@@ -19,5 +19,4 @@ public class CustomAuthenticationEntryPointHandler implements AuthenticationEntr
         log.info("===AuthenticationEntryPoint===");
         response.sendError(HttpServletResponse.SC_UNAUTHORIZED);
     }
-
 }

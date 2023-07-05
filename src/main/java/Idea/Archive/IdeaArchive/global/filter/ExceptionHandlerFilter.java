@@ -1,7 +1,7 @@
 package Idea.Archive.IdeaArchive.global.filter;
 
 import Idea.Archive.IdeaArchive.global.exception.IdeaArchiveException;
-import Idea.Archive.IdeaArchive.global.exception.enumType.ErrorCode;
+import Idea.Archive.IdeaArchive.global.exception.enums.ErrorCode;
 import Idea.Archive.IdeaArchive.global.exception.response.ErrorMessage;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;

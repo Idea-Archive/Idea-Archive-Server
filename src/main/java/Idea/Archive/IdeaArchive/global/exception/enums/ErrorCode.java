@@ -1,4 +1,4 @@
-package Idea.Archive.IdeaArchive.global.exception.enumType;
+package Idea.Archive.IdeaArchive.global.exception.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
