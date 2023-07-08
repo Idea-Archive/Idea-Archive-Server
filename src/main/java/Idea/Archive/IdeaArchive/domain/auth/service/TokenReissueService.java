@@ -22,12 +22,12 @@ public class TokenReissueService {
     private final JwtProperties jwtProperties;
 
     @Transactional(rollbackFor = Exception.class)
-    public NewTokenResponse execute(String reqToken) {
-        String email = tokenProvider.getUserEmail(reqToken,jwtProperties.getRefreshSecret());
+    public NewTokenResponse execute(String requestToken) {
+        String email = tokenProvider.getUserEmail(requestToken,jwtProperties.getRefreshSecret());
         RefreshToken token = refreshTokenRepository.findById(email)
                 .orElseThrow(() -> new RefreshTokenNotFoundException());
 
-        if (!token.getRefreshToken().equals(reqToken)) {
+        if (!token.getRefreshToken().equals(requestToken)) {
             throw new TokenNotValidException();
         }
 
