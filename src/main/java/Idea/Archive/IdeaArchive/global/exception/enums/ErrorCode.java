@@ -33,7 +33,7 @@ public enum ErrorCode {
     // AUTH
     UNAUTHORIZED("권한이 없습니다.", 401),
     FORBIDDEN("권한이 없습니다.", 403),
-    MANY_REQUEST_EMAIL_AUTH("15분에 최대 3번의 이메일 요청만 가능합니다.", 429),
+    MANY_REQUEST_EMAIL_AUTH("15분에 최대 15번의 이메일 요청만 가능합니다.", 429),
     EXPIRE_EMAIL_CODE("이메일 인증번호 시간이 만료되었습니다.", 401),
     BLACKLIST_ALREADY_EXIST("블랙리스트에 이미 등록되었습니다", 400),
 
