@@ -47,7 +47,7 @@ public class EmailSendService {
                         .email(email)
                         .build());
 
-        if(emailAuth.getAttemptCount() >= 3) {
+        if(emailAuth.getAttemptCount() >= 15) {
             throw new ManyRequestEmailException();
         }
         emailAuth.updateRandomValue(authKey);
