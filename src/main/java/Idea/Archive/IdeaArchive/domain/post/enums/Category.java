@@ -1,23 +1,19 @@
 package Idea.Archive.IdeaArchive.domain.post.enums;
 
 public enum Category {
-    구인구직,
-    추천,
+    구인,
+    아이디어,
     피드백,
-    FrontEnd,
-    BackEnd,
-    Android,
+    프론트엔드,
+    백엔드,
+    안드로이드,
     iOS,
-    보안,
-    클라우드,
-    네트워크,
+    디자인,
+    AI,
     게임개발,
+    보안,
     DevOps,
-    머신러닝,
-    하드웨어엔지니어,
-    임베디드,
-    PHP,
     DBA,
     웹퍼블리셔,
-    디자인
+    임베디드
 }
