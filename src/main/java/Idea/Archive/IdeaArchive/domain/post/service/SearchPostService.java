@@ -23,28 +23,25 @@ public class SearchPostService {
 
     @Transactional(rollbackFor = Exception.class)
     public List<ViewPostResponse> execute(String keyword, CategoryRequest categoryRequest) {
-        List<Post> posts = new ArrayList<Post>();
+        List<Post> posts;
 
         if (categoryRequest.getCategory().isEmpty()) {
             posts = postRepository.findByTitleContainingOrContentContaining(keyword, keyword);
         } else {
-            List<Category> categoryList = new ArrayList<Category>();
-            for (String s : categoryRequest.getCategory()) {
-                Category enumValue = Enum.valueOf(Category.class, s);
-                categoryList.add(enumValue);
-            }
-            List<Post> categories = postRepository.findByAllCategories(categoryList, categoryRequest.getCategory().size());
-            for (Post post : categories) {
-                if (post.getTitle().contains(keyword)) {
-                    posts.add(post);
-                } else if (post.getContent().contains(keyword)) {
-                    posts.add(post);
-                }
-            }
+            List<Category> categoryList = categoryRequest.getCategory().stream()
+                    .map(category -> Enum.valueOf(Category.class, category))
+                    .collect(Collectors.toList());
+
+            posts = postRepository.findByAllCategories(categoryList, categoryRequest.getCategory().size())
+                    .stream()
+                    .filter(post -> post.getTitle().contains(keyword) || post.getContent().contains(keyword))
+                    .collect(Collectors.toList());
         }
+
         if (posts.isEmpty()) {
             throw new NotExistPostException();
         }
+
         return posts.stream()
                 .map(p -> ViewPostResponse.builder()
                         .postId(p.getPostId())
