@@ -29,7 +29,7 @@ public class SearchPostService {
             posts = postRepository.findByTitleContainingOrContentContaining(keyword, keyword);
         } else {
             List<Category> categoryList = categoryRequest.getCategory().stream()
-                    .map(s -> Enum.valueOf(Category.class, s))
+                    .map(category -> Enum.valueOf(Category.class, category))
                     .collect(Collectors.toList());
 
             posts = postRepository.findByAllCategories(categoryList, categoryRequest.getCategory().size())

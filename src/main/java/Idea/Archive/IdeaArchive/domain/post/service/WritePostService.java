@@ -24,7 +24,7 @@ public class WritePostService {
     public void execute(WritePostRequest writePostRequest) {
         Member currentMember = memberUtil.currentMember();
         List<Category> categoryList = writePostRequest.getCategory().stream()
-                .map(s -> Enum.valueOf(Category.class, s))
+                .map(category -> Enum.valueOf(Category.class, category))
                 .collect(Collectors.toList());
 
         Post post = Post.builder()

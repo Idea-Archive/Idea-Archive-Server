@@ -23,7 +23,7 @@ public class ViewPostByCategoryService {
     @Transactional(rollbackFor = Exception.class)
     public List<ViewPostResponse> execute(CategoryRequest categoryRequest) {
         List<Category> categoryList = categoryRequest.getCategory().stream()
-                .map(s -> Enum.valueOf(Category.class, s))
+                .map(category -> Enum.valueOf(Category.class, category))
                 .collect(Collectors.toList());
         List<Post> posts = postRepository.findByAllCategories(categoryList, categoryRequest.getCategory().size());
         if (posts.isEmpty()) {
