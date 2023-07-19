@@ -27,7 +27,6 @@ public class PostController {
     private final SearchPostService searchPostService;
     private final ViewPostByCategoryService viewPostByCategoryService;
     private final InsertHeartService insertHeartService;
-    private final SharePostService sharePostService;
     private final ViewPopularPostService viewPopularPostService;
 
     @PostMapping("/write")
@@ -76,12 +75,6 @@ public class PostController {
     public ResponseEntity<Void> insertHeart(@PathVariable("post_id") Long postId) {
         insertHeartService.execute(postId);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-    }
-
-    @GetMapping("/share/{post_id}")
-    public ResponseEntity<SharePostResponse> sharePost(@PathVariable("post_id") Long postId) {
-        SharePostResponse response = sharePostService.execute(postId);
-        return ResponseEntity.ok(response);
     }
 
     @GetMapping("/popular")
