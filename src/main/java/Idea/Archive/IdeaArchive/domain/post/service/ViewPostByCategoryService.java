@@ -11,7 +11,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,11 +22,9 @@ public class ViewPostByCategoryService {
 
     @Transactional(rollbackFor = Exception.class)
     public List<ViewPostResponse> execute(CategoryRequest categoryRequest) {
-        List<Category> categoryList = new ArrayList<Category>();
-        for (String s : categoryRequest.getCategory()) {
-            Category enumValue = Enum.valueOf(Category.class, s);
-            categoryList.add(enumValue);
-        }
+        List<Category> categoryList = categoryRequest.getCategory().stream()
+                .map(s -> Enum.valueOf(Category.class, s))
+                .collect(Collectors.toList());
         List<Post> posts = postRepository.findByAllCategories(categoryList, categoryRequest.getCategory().size());
         if (posts.isEmpty()) {
             throw new NotExistPostException();

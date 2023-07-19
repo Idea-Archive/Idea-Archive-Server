@@ -10,8 +10,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -23,12 +23,10 @@ public class WritePostService {
     @Transactional(rollbackFor = Exception.class)
     public void execute(WritePostRequest writePostRequest) {
         Member currentMember = memberUtil.currentMember();
-        List<String> stringList = writePostRequest.getCategory();
-        List<Category> categoryList = new ArrayList<Category>();
-        for (String s : stringList) {
-            Category enumValue = Enum.valueOf(Category.class, s);
-            categoryList.add(enumValue);
-        }
+        List<Category> categoryList = writePostRequest.getCategory().stream()
+                .map(s -> Enum.valueOf(Category.class, s))
+                .collect(Collectors.toList());
+
         Post post = Post.builder()
                 .title(writePostRequest.getTitle())
                 .content(writePostRequest.getContent())
@@ -40,6 +38,7 @@ public class WritePostService {
                 .views(0)
                 .heart(false)
                 .build();
+
         postRepository.save(post);
     }
 }
