@@ -21,4 +21,3 @@ hooks:
   ApplicationStart:
     - location: scripts/server_start.sh
       timeout: 300
-      runas: ubuntu

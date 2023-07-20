@@ -8,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-
 @Slf4j
 @RestControllerAdvice
 public class GlobalExceptionHandler {
@@ -19,8 +18,8 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(new ErrorMessage(e.getErrorCode()), HttpStatus.valueOf(e.getErrorCode().getStatus()));
     }
 
-    private void printError(RuntimeException ex, String message) {
+    private void printError(RuntimeException e, String message) {
         log.error(message);
-        ex.printStackTrace();
+        e.printStackTrace();
     }
 }
