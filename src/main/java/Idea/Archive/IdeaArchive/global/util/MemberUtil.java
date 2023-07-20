@@ -13,7 +13,7 @@ public class MemberUtil {
 
     private final MemberRepository memberRepository;
 
-    public Member currentMember(){
+    public Member currentMember() {
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
         return memberRepository.findByEmail(email)
                 .orElseThrow(() -> new MemberNotFoundException());

@@ -70,7 +70,6 @@ public class SecurityConfig {
                 .antMatchers(HttpMethod.POST, "/post/search").permitAll()
                 .antMatchers(HttpMethod.POST, "/post/category").permitAll()
                 .antMatchers(HttpMethod.POST, "/post/{post_id}/heart").authenticated()
-                .antMatchers(HttpMethod.GET, "/post/share/{post_id}").permitAll()
                 .antMatchers(HttpMethod.GET, "/post/popular").permitAll()
 
                 // comment

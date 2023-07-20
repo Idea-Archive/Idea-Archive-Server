@@ -15,6 +15,7 @@ public class RefreshToken {
 
     @Id
     private String email;
+
     @Indexed
     private String refreshToken;
 

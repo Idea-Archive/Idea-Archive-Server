@@ -1,6 +1,5 @@
 package Idea.Archive.IdeaArchive.domain.heart.entity;
 
-
 import Idea.Archive.IdeaArchive.domain.member.entity.Member;
 import Idea.Archive.IdeaArchive.domain.post.entity.Post;
 import lombok.*;
