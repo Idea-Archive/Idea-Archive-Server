@@ -44,7 +44,7 @@ jobs:
         uses: sarisia/actions-status-discord@v1
         if: ${{ success() }}
         with:
-          title: ✅ Idea Archieve Backend CI success ✅
+          title: ✅ Idea Archive Backend CI success ✅
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
           color: 00FF00
 
@@ -52,6 +52,6 @@ jobs:
         uses: sarisia/actions-status-discord@v1
         if: ${{ failure() }}
         with:
-          title: ❗️ Idea Archieve Backend CI failed ❗️
+          title: ❗️ Idea Archive Backend CI failed ❗️
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
           color: FF0000
