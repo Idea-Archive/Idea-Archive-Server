@@ -13,10 +13,12 @@ public class ViewMemberResponse {
 
     private Long memberId;
     private String name;
+    private String profileImageUrl;
     public static ViewMemberResponse convertToMember(Member member) {
         return ViewMemberResponse.builder()
                 .memberId(member.getMemberId())
                 .name(member.getName())
+                .profileImageUrl(member.getProfileImageUrl())
                 .build();
     }
 }
