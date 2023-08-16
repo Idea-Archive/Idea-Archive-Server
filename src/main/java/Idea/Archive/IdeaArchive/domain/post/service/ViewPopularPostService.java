@@ -20,9 +20,11 @@ public class ViewPopularPostService {
     @Transactional(readOnly = true, rollbackFor = Exception.class)
     public List<ViewPostResponse> execute() {
         List<Post> posts = postRepository.findAllOrderByHeartCountPlusViesDesc();
+
         if (posts.isEmpty()) {
             throw new NotExistPostException();
         }
+
         return posts.stream()
                 .map(p -> ViewPostResponse.builder()
                         .postId(p.getPostId())

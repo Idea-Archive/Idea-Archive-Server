@@ -26,9 +26,11 @@ public class ViewPostByIdService {
         Post post = postRepository.findById(PostId)
                 .orElseThrow(() -> new NotExistPostException());
         List<Comment> comments = commentRepository.findByPost(post);
+
         List<ViewCommentByPostResponse> comment = ViewCommentByPostResponse.convertToCommentList(comments);
         post.updateViews(post.getViews() + 1);
         postRepository.save(post);
+
         return ViewPostByIdResponse.builder()
                 .postId(post.getPostId())
                 .title(post.getTitle())
