@@ -1,6 +1,6 @@
 package Idea.Archive.IdeaArchive.domain.member.entity;
 
-import Idea.Archive.IdeaArchive.global.entity.BaseTimeEntity;
+import Idea.Archive.IdeaArchive.common.entity.BaseTimeEntity;
 import Idea.Archive.IdeaArchive.domain.member.enums.Role;
 import lombok.*;
 

@@ -2,7 +2,7 @@ package Idea.Archive.IdeaArchive.domain.comment.entity;
 
 import Idea.Archive.IdeaArchive.domain.member.entity.Member;
 import Idea.Archive.IdeaArchive.domain.post.entity.Post;
-import Idea.Archive.IdeaArchive.global.entity.BaseTimeEntity;
+import Idea.Archive.IdeaArchive.common.entity.BaseTimeEntity;
 import lombok.*;
 
 import javax.persistence.*;

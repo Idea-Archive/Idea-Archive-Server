@@ -1,4 +1,4 @@
-package Idea.Archive.IdeaArchive.global.entity;
+package Idea.Archive.IdeaArchive.common.entity;
 
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;
