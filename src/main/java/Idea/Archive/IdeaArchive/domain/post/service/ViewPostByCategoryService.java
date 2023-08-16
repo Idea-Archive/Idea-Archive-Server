@@ -26,9 +26,11 @@ public class ViewPostByCategoryService {
                 .map(category -> Enum.valueOf(Category.class, category))
                 .collect(Collectors.toList());
         List<Post> posts = postRepository.findByAllCategories(categoryList, categoryRequest.getCategory().size());
+
         if (posts.isEmpty()) {
             throw new NotExistPostException();
         }
+
         return posts.stream()
                 .map(p -> ViewPostResponse.builder()
                         .postId(p.getPostId())

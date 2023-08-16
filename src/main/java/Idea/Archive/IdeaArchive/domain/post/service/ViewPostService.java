@@ -19,6 +19,7 @@ public class ViewPostService {
     @Transactional(readOnly = true, rollbackFor = Exception.class)
     public List<ViewPostResponse> execute() {
         List<Post> posts = postRepository.findAll();
+
         return posts.stream()
                 .map(p -> ViewPostResponse.builder()
                         .postId(p.getPostId())
